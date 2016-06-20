@@ -31,6 +31,14 @@ public class TextFieldLimited extends TextField {
     }
 
     /**
+     * Lista de estilos aplicable.
+     * @return List: La lista de estilos.
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
+        return TextFieldLimited.StyleableProperties.STYLEABLES;
+    }
+
+    /**
      * Reemplazar el texto basado en cambios de teclado, no deja ingresar mas text si length es mayor al maximo.
      * @param start int: Donde empece el cambio.
      * @param end int: Donde termina.
@@ -74,6 +82,14 @@ public class TextFieldLimited extends TextField {
     }
 
     /**
+     * Devolver la cantidad maxima si está asignado.
+     * @return int: Cantidad de caracters.
+     */
+    public final int getMaxLength() {
+        return maxLength == null ? 0 : maxLength.get();
+    }
+
+    /**
      * Asignar un valor maximo de caracters permitidio en el TextFieldLimited.
      * @param value int: La cantidad maxima.
      */
@@ -81,14 +97,6 @@ public class TextFieldLimited extends TextField {
         if (maxLength != null || value > 0) {
             maxLengthProperty().set(value);
         }
-    }
-
-    /**
-     * Devolver la cantidad maxima si está asignado.
-     * @return int: Cantidad de caracters.
-     */
-    public final int getMaxLength() {
-        return maxLength == null ? 0 : maxLength.get();
     }
 
     /**
@@ -143,13 +151,5 @@ public class TextFieldLimited extends TextField {
             styleables.add(MAX_LENGTH);
             STYLEABLES = Collections.unmodifiableList(styleables);
         }
-    }
-
-    /**
-     * Lista de estilos aplicable.
-     * @return List: La lista de estilos.
-     */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
-        return TextFieldLimited.StyleableProperties.STYLEABLES;
     }
 }

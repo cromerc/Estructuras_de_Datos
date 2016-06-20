@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 
-<MenuBar fx:id="menuBar" fx:controller="cl.cromer.estructuras.MenuController" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1">
+<MenuBar xmlns:fx="http://javafx.com/fxml/1" fx:id="menuBar" fx:controller="cl.cromer.estructuras.MenuController" xmlns="http://javafx.com/javafx/8.0.92">
     <Menu text="%estructuras">
         <Menu text="%array">
             <MenuItem text="%arraySimple" onAction="#menuArraySimple"/>

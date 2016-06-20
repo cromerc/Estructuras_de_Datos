@@ -25,6 +25,18 @@ public class Main extends Application {
     static final public boolean DEBUG = false;
 
     /**
+     * Inicilizar el logeo y lanzar la interfaz grafica.
+     * @param args String[]: Argumentos desde la consola.
+     */
+    public static void main(String[] args) {
+        if (DEBUG) {
+            new Logs();
+        }
+
+        launch(args);
+    }
+
+    /**
      * Crear el stage y la scene para la aplicación grafica.
      * @param stage El primer stage donde va todas las cosas visuales.
      */
@@ -50,17 +62,5 @@ public class Main extends Application {
         stage.setMinHeight(640);
         stage.setMinWidth(768);
         stage.show();
-    }
-
-    /**
-     * Inicilizar el logeo y lanzar la interfaz grafica.
-     * @param args String[]: Argumentos desde la consola.
-     */
-    public static void main(String[] args) {
-        if (DEBUG) {
-            new Logs();
-        }
-
-        launch(args);
     }
 }

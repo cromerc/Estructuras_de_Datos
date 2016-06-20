@@ -102,6 +102,40 @@ public class Grafico {
     }
 
     /**
+     * Crear un animacion de transicion usando colores que cambian.
+     * @param rectangle Rectangle: El objeto que desea animar.
+     * @param text Text: El texto que desea animar.
+     * @param colorBackground Color: Color del fondo de destacer.
+     * @param colorText Color: Color del texto.
+     * @return PauseTransition: La transition creado con los elementos y colores.
+     */
+    private static PauseTransition createPauseTransition(Rectangle rectangle , Text text, Color colorBackground, Color colorText) {
+        PauseTransition changeColor = new PauseTransition(new Duration(100));
+        changeColor.setOnFinished(actionEvent -> {
+            rectangle.setFill(colorBackground);
+            text.setStroke(colorText);
+        });
+        return changeColor ;
+    }
+
+    /**
+     * Crear un animacion de transicion usando colores que cambian.
+     * @param circle Circle: El objeto que desea animar.
+     * @param text Text: El texto que desea animar.
+     * @param colorBackground Color: Color del fondo de destacer.
+     * @param colorText Color: Color del texto.
+     * @return PauseTransition: La transition creado con los elementos y colores.
+     */
+    private static PauseTransition createPauseTransition(Circle circle , Text text, Color colorBackground, Color colorText) {
+        PauseTransition changeColor = new PauseTransition(new Duration(100));
+        changeColor.setOnFinished(actionEvent -> {
+            circle.setFill(colorBackground);
+            text.setStroke(colorText);
+        });
+        return changeColor ;
+    }
+
+    /**
      * Destacar un elemento
      * @param valor int: El indice a destacar.
      * @param tipo String: El tipo de objeto a destacer(rectangulo o cicurlo)
@@ -158,39 +192,5 @@ public class Grafico {
             text.setStroke(destacadoFG);
             destacado = -1;
         }
-    }
-
-    /**
-     * Crear un animacion de transicion usando colores que cambian.
-     * @param rectangle Rectangle: El objeto que desea animar.
-     * @param text Text: El texto que desea animar.
-     * @param colorBackground Color: Color del fondo de destacer.
-     * @param colorText Color: Color del texto.
-     * @return PauseTransition: La transition creado con los elementos y colores.
-     */
-    private static PauseTransition createPauseTransition(Rectangle rectangle , Text text, Color colorBackground, Color colorText) {
-        PauseTransition changeColor = new PauseTransition(new Duration(100));
-        changeColor.setOnFinished(actionEvent -> {
-            rectangle.setFill(colorBackground);
-            text.setStroke(colorText);
-        });
-        return changeColor ;
-    }
-
-    /**
-     * Crear un animacion de transicion usando colores que cambian.
-     * @param circle Circle: El objeto que desea animar.
-     * @param text Text: El texto que desea animar.
-     * @param colorBackground Color: Color del fondo de destacer.
-     * @param colorText Color: Color del texto.
-     * @return PauseTransition: La transition creado con los elementos y colores.
-     */
-    private static PauseTransition createPauseTransition(Circle circle , Text text, Color colorBackground, Color colorText) {
-        PauseTransition changeColor = new PauseTransition(new Duration(100));
-        changeColor.setOnFinished(actionEvent -> {
-            circle.setFill(colorBackground);
-            text.setStroke(colorText);
-        });
-        return changeColor ;
     }
 }

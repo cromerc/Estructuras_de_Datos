@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="768.0" prefWidth="1024.0" spacing="10" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.cromer.estructuras.SeleccionController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="768.0" prefWidth="1024.0" spacing="10" xmlns="http://javafx.com/javafx/8.0.92" fx:controller="cl.cromer.estructuras.SeleccionController">
     <fx:include source="menu.fxml" />
     <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
         <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS" spacing="50">
