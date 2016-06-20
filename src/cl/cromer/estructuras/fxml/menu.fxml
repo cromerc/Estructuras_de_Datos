@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<MenuBar fx:id="menuBar" fx:controller="cl.cromer.estructuras.MenuController" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1">
+    <Menu text="%estructuras">
+        <Menu text="%array">
+            <MenuItem text="%arraySimple" onAction="#menuArraySimple"/>
+            <MenuItem text="%arrayOrdenado" onAction="#menuArrayOrdenado"/>
+        </Menu>
+        <Menu text="%ordenamiento">
+            <MenuItem text="%burbuja" onAction="#menuBurbuja"/>
+            <MenuItem text="%insercion" onAction="#menuInsercion"/>
+            <MenuItem text="%seleccion" onAction="#menuSeleccion"/>
+            <MenuItem text="%shell" onAction="#menuShell"/>
+        </Menu>
+        <Menu text="%listaEnlazada">
+            <MenuItem text="%listaSimple"/>
+            <MenuItem text="%listaCircular"/>
+            <MenuItem text="%doblementeEnlazada"/>
+        </Menu>
+        <MenuItem text="%pila" onAction="#menuPila"/>
+        <MenuItem text="%cola" onAction="#menuCola"/>
+        <Menu text="%arboles">
+            <MenuItem text="%general"/>
+            <MenuItem text="%binario"/>
+            <MenuItem text="%busquedaBinario"/>
+            <MenuItem text="%AVL"/>
+            <MenuItem text="%rojoNegro"/>
+            <MenuItem text="%bTree"/>
+        </Menu>
+        <Menu text="%grafos">
+            <MenuItem text="%dirigidos"/>
+            <MenuItem text="%noDirigidos"/>
+        </Menu>
+        <MenuItem text="%tablaHash"/>
+    </Menu>
+    <Menu text="%idioma">
+        <MenuItem onAction="#menuIngles" text="%ingles"/>
+        <MenuItem onAction="#menuEspanol" text="%espanol"/>
+    </Menu>
+    <Menu text="%ayuda">
+        <MenuItem onAction="#menuAcerca" text="%acerca"/>
+    </Menu>
+</MenuBar>

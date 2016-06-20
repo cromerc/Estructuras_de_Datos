@@ -1,0 +1,6 @@
+public void pop() {
+    // Borrar el valor que está encima.
+    this.pila[encima] = 0;
+    // Restar el nivel de la pila.
+    encima--;
+}

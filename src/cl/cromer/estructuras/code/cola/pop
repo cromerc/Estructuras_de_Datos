@@ -1,0 +1,6 @@
+public void pop() {
+    // Borrar el valor que está al prinicipio.
+    this.pila[primer] = 0;
+    // Cambiar el primer nivel de la cola.
+    primer++;
+}

@@ -1,0 +1,10 @@
+public int buscar(int valor) {
+    for (int i = 0; i < array.length; i++) {
+        if (array[i] != 0 && array[i] == valor) {
+            // Se encontró
+            return i;
+        }
+    }
+    // No se encontró
+    return -1;
+}

@@ -1,0 +1,13 @@
+public void burbuja() {
+    for (int i = elementos - 1; i > 1; i--) {
+        for(j = 0; in < i; j++) {
+            // Si están fuera del orden
+            if (array[j] > array[j+1]) {
+                // Intercambiar valores
+                int temp = array[j];
+                array[j] = array[j+1];
+                array[j+1] = temp;
+            }
+        }
+    }
+}
