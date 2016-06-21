@@ -210,4 +210,40 @@ public class Array {
 
         return cambio;
     }
+
+    /**
+     * Ordenar el array usando shell.
+     * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
+     * @return boolean: Verdad si algo cambió, sino falso.
+     */
+    public boolean shell(boolean paso) {
+        boolean cambio = false;
+
+        int j, i;
+        String temp;
+
+        int h = 1;
+        while (h <= size() / 3) {
+            h = h * 3 + 1;
+        }
+
+        while (h > 0) {
+            for (i=h; i < size(); i++) {
+                temp = array[i];
+                j = i;
+                while (j > h-1 && Integer.valueOf(array[j-h]) >=  Integer.valueOf(temp)) {
+                    array[j] = array[j-h];
+                    j -= h;
+                    cambio = true;
+                }
+                array[j] = temp;
+                if (paso && cambio) {
+                    return true;
+                }
+            }
+            h = (h-1) / 3;
+        }
+
+        return cambio;
+    }
 }

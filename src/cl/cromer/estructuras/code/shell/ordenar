@@ -1,0 +1,25 @@
+public void shell() {
+    int i, j;
+    int temp;
+
+    int h = 1;
+    while (h <= elementos / 3) {
+        // Sumatorio de (h * 3 + 1)
+        h = h * 3 + 1;
+    }
+
+    // Mientras que h es mayor que 0.
+    while (h > 0) {
+        for (i = h; i < elementos; i++) {
+            temp = array[i];
+            j = i;
+            while (j > h-1 && array[j-h] >=  temp) {
+                // Ordenar dento el "shell"
+                array[j] = array[j-h];
+                j -= h;
+            }
+            array[j] = temp;
+        }
+        h = (h-1) / 3;
+    }
+}

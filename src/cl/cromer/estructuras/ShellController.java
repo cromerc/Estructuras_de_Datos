@@ -22,12 +22,12 @@ public class ShellController implements Initializable {
     /**
      * Donde poner el contenido de array.
      */
-    @FXML private HBox contenidoSeleccion;
+    @FXML private HBox contenidoShell;
 
     /**
      * Donde va el codigo a mostrar a la pantalla.
      */
-    @FXML private Text codigoSeleccion;
+    @FXML private Text codigoShell;
 
     /**
      * La escena donde está cosas graficas.
@@ -71,7 +71,7 @@ public class ShellController implements Initializable {
                 numero = random.nextInt(rango) + minimo;
             }
             array.insertar(numero);
-            contenidoSeleccion.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(i), String.valueOf(numero)));
+            contenidoShell.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(i), String.valueOf(numero)));
             colores.siguinteColor();
         }
     }
@@ -113,10 +113,10 @@ public class ShellController implements Initializable {
         }
 
         // Mostrar el codigo
-        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/seleccion/ordenar")).useDelimiter("\\Z").next();
-        codigoSeleccion.setText(codigoTexto);
+        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/shell/ordenar")).useDelimiter("\\Z").next();
+        codigoShell.setText(codigoTexto);
 
-        if (!array.seleccion(true)) {
+        if (!array.shell(true)) {
             errorYaOrdenado();
         }
 
@@ -133,10 +133,10 @@ public class ShellController implements Initializable {
         }
 
         // Mostrar el codigo
-        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/seleccion/ordenar")).useDelimiter("\\Z").next();
-        codigoSeleccion.setText(codigoTexto);
+        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/shell/ordenar")).useDelimiter("\\Z").next();
+        codigoShell.setText(codigoTexto);
 
-        if (!array.seleccion(false)) {
+        if (!array.shell(false)) {
             errorYaOrdenado();
         }
 
@@ -150,7 +150,7 @@ public class ShellController implements Initializable {
         ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("seleccionYaOrdenado"));
+        dialog.setContentText(resourceBundle.getString("shellYaOrdenado"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
         dialog.show();
     }
@@ -159,7 +159,7 @@ public class ShellController implements Initializable {
      * Crear el array de temaño 10.
      */
     private void initializeScene() {
-        scene = contenidoSeleccion.getScene();
+        scene = contenidoShell.getScene();
     }
 
     /**
