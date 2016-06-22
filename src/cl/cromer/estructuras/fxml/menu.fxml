@@ -13,6 +13,7 @@
             <MenuItem text="%insercion" onAction="#menuInsercion"/>
             <MenuItem text="%seleccion" onAction="#menuSeleccion"/>
             <MenuItem text="%shell" onAction="#menuShell"/>
+            <MenuItem text="%quick" onAction="#menuQuick"/>
         </Menu>
         <Menu text="%listaEnlazada">
             <MenuItem text="%listaSimple"/>

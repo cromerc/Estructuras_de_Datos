@@ -119,6 +119,18 @@ public class MenuController extends VBox implements Initializable {
     }
 
     /**
+     * Click en Selecion.
+     */
+    @FXML
+    protected void menuQuick() {
+        loadStage(
+                resourceBundle.getString("tituloQuick"),
+                "/cl/cromer/estructuras/fxml/quick.fxml",
+                "/cl/cromer/estructuras/css/style.css"
+        );
+    }
+
+    /**
      * Click en Pila.
      */
     @FXML
@@ -240,6 +252,7 @@ public class MenuController extends VBox implements Initializable {
      * Cargar el fxml y css.
      * @param fxml String: El archivo de fxml.
      * @param css String: El archivo de css.
+     * @param resourceBundle ResourceBundle: El idioma nuevo para cambiarlo.
      */
     private void loadStage(String fxml, String css, ResourceBundle resourceBundle) {
         Scene scene = menuBar.getScene();
@@ -265,6 +278,7 @@ public class MenuController extends VBox implements Initializable {
      * @param title String: El titulo de la escena.
      * @param fxml String: El archivo de fxml.
      * @param css String: El archivo de css.
+     * @param object Object: El objeto a pasar a la nueva escena.
      */
     private void loadStage(String title, String fxml, String css, Object object) {
         Scene scene = menuBar.getScene();

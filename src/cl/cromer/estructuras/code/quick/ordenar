@@ -1,0 +1,47 @@
+public void quick() {
+    // Llamar al metodo recursivo.
+    recurenciaQuick(0, elementos - 1);
+}
+
+private void recurenciaQuick(int izquerda, int derecha) {
+    if (derecha - izquerda <= 0) {
+        // Si derecha es menor que izquerda ya terminó.
+        return;
+    }
+    else {
+        int pivot = array[derecha];
+
+        int particion = particionar(izquerda, derecha, pivot);
+        recurenciaQuick(izquerda, particion - 1);
+        recurenciaQuick(particion + 1, derecha);
+    }
+}
+
+private int particionar(int izquerda, int derecha, int pivot) {
+    int punteroIzquerda = izquerda-1;
+    int punteroDerecha = derecha;
+    while (true) {
+        // Sumar el punteroIzquerda hasta que es igual al pivot
+        while (array[++punteroIzquerda] < pivot);
+        // Restar el puntoDerecha hasta que es igual a pivot o hasta 0.
+        while (punteroDerecha > 0 && array[--punteroDerecha] > pivot);
+
+        if (punteroIzquerda >= punteroDerecha) {
+            // Si el puntero izquerda es mayor o igual a la derech termina el while.
+            break;
+        }
+        else {
+            // Intercambiar los valores.
+            int temp = array[punteroIzquerda];
+            array[punteroIzquerda] = array[punteroDerecha];
+            array[punteroDerecha] = temp;
+        }
+    }
+    // Intercambiar los valores.
+    int temp = array[punteroIzquerda];
+    array[punteroIzquerda] = array[derecha];
+    array[derecha] = temp;
+
+    // Devolver la posición donde terminó.
+    return punteroIzquerda;
+}

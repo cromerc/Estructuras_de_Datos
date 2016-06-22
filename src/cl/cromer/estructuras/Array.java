@@ -246,4 +246,125 @@ public class Array {
 
         return cambio;
     }
+
+    /**
+     * Ordenar el array usando quick.
+     * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
+     * @return boolean: Verdad si algo cambió, sino falso.
+     */
+    public boolean quick(boolean paso) {
+        String array[] = this.array.clone();
+        boolean cambio = false;
+        boolean cambio2;
+        cambio2 = recurenciaQuick(0, size() - 1, paso);
+        for (int i = 0; i < size(); i++) {
+            if (!array[i].equals(this.array[i])) {
+                cambio = true;
+            }
+        }
+        return (cambio || cambio2);
+    }
+
+    /**
+     * Metodo recursivo para ordenar using quick sort.
+     * @param izquerda int: La posición del quick desded la izquerda.
+     * @param derecha int: La posición del quick desded la derecha..
+     * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
+     * @return boolean: Verdad si algo cambió, sino falso.
+     */
+    private boolean recurenciaQuick(int izquerda, int derecha, boolean paso) {
+        boolean cambio;
+        boolean cambio2;
+
+        if (derecha - izquerda <= 0) {
+            return false;
+        }
+        else {
+            String pivot = array[derecha];
+
+            ParticionarResult particionarResult = particionar(izquerda, derecha, pivot);
+            if (paso && particionarResult.getCambio()) {
+                return particionarResult.getCambio();
+            }
+            cambio = recurenciaQuick(izquerda, particionarResult.getPunteroIzquerda() - 1, paso);
+            cambio2 = recurenciaQuick(particionarResult.getPunteroIzquerda() + 1, derecha, paso);
+            return (paso && (cambio || cambio2));
+        }
+    }
+
+    /**
+     *
+     * @param izquerda int: La posición del quick desded la izquerda.
+     * @param derecha int: La posición del quick desded la derecha.
+     * @param pivot String: El valor a comparar con los otros.
+     * @return ParticionarResult: Los resultados de particionar.
+     */
+    private ParticionarResult particionar(int izquerda, int derecha, String pivot) {
+        boolean cambio = false;
+
+        int punteroIzquerda = izquerda-1;
+        int punteroDerecha = derecha;
+        while (true) {
+            //noinspection StatementWithEmptyBody
+            while (Integer.valueOf(array[++punteroIzquerda]) < Integer.valueOf(pivot));
+            //noinspection StatementWithEmptyBody
+            while (punteroDerecha > 0 && Integer.valueOf(array[--punteroDerecha]) > Integer.valueOf(pivot));
+
+            if (punteroIzquerda >= punteroDerecha) {
+                break;
+            }
+            else {
+                String temp = array[punteroIzquerda];
+                array[punteroIzquerda] = array[punteroDerecha];
+                array[punteroDerecha] = temp;
+                cambio = true;
+            }
+        }
+        String temp = array[punteroIzquerda];
+        array[punteroIzquerda] = array[derecha];
+        array[derecha] = temp;
+
+        return  new ParticionarResult(cambio, punteroIzquerda);
+    }
+
+    /**
+     * Esta clase contiene los resultados de Partricionar.
+     */
+    final public class ParticionarResult {
+        /**
+         * Si habia algun cambio.
+         */
+        private boolean cambio;
+
+        /**
+         * La parte izquerda que cambió.
+         */
+        private int punteroIzquerda;
+
+        /**
+         * Inicializar.
+         * @param cambio boolean: Si habia un cambio o no.
+         * @param punteroIzquerda: El valor desde la izquerda donde fue un cambio.
+         */
+        public ParticionarResult(boolean cambio, int punteroIzquerda) {
+            this.cambio = cambio;
+            this.punteroIzquerda = punteroIzquerda;
+        }
+
+        /**
+         * Devolver el cambio.
+         * @return boolean: Devolver el valor de cambio.
+         */
+        public boolean getCambio() {
+            return cambio;
+        }
+
+        /**
+         * Devolver el puntero izquerda.
+         * @return int: Devolver el valor de puntero.
+         */
+        public int getPunteroIzquerda() {
+            return punteroIzquerda;
+        }
+    }
 }
