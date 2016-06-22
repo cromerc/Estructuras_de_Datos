@@ -22,10 +22,10 @@ public class Array {
 
     /**
      * Crear el array con el tamaño pasador por argumento.
-     * @param temano int: El temaño del array a crear.
+     * @param tamano int: El tamaño del array a crear.
      */
-    public Array(int temano) {
-        this.array = new String[temano];
+    public Array(int tamano) {
+        this.array = new String[tamano];
         size = 0;
         ordered = false;
     }
@@ -366,5 +366,98 @@ public class Array {
         public int getPunteroIzquerda() {
             return punteroIzquerda;
         }
+    }
+
+    /**
+     * Ordenar el array usando merge.
+     * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
+     * @return boolean: Verdad si algo cambió, sino falso.
+     */
+    public boolean merge(boolean paso) {
+        String array[] = this.array.clone();
+        boolean cambio = false;
+        boolean cambio2;
+        String[] temp = new String[size()];
+        cambio2 = recurenciaMerge(temp, 0, size() - 1, paso);
+        for (int i = 0; i < size(); i++) {
+            if (!array[i].equals(this.array[i])) {
+                cambio = true;
+            }
+        }
+        return (cambio || cambio2);
+    }
+
+    /**
+     * El metodo recursivo para ordenar con merge.
+     * @param temp String[]: El array temporario para trabajar.
+     * @param izquerda int: El lado izquerda.
+     * @param derecha int: El lado derecha.
+     * @param paso boolean: Verdad si es paso por paso.
+     * @return boolean: Devolver si algo cambió.
+     */
+    private boolean recurenciaMerge(String[] temp, int izquerda, int derecha, boolean paso) {
+        if (izquerda != derecha) {
+            boolean cambio;
+            boolean cambio2;
+            boolean cambio3;
+
+            int medio = (izquerda + derecha) / 2;
+            cambio = recurenciaMerge(temp, izquerda, medio, paso);
+            if (paso && cambio) {
+                return true;
+            }
+            cambio2 = recurenciaMerge(temp, medio + 1, derecha, paso);
+            if (paso && cambio2) {
+                return true;
+            }
+            cambio3 = merge(temp, izquerda, medio + 1, derecha, paso);
+            return (paso && cambio3);
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * Este metodo hace los cambios al array.
+     * @param temp String[]: El array temporario para trabajar.
+     * @param prevIzquerda int: El valor previo de la izquerda.
+     * @param prevMedio int: El valor previo al medio.
+     * @param prevDerecha int: El valor previo de la derecha.
+     * @param paso boolean: Si es paso por paso.
+     * @return boolean: Devolver si algo cambió.
+     */
+    private boolean merge(String[] temp, int prevIzquerda, int prevMedio, int prevDerecha, boolean paso) {
+        boolean cambio = false;
+        int j = 0;
+        int izquerda = prevIzquerda;
+        int medio = prevMedio - 1;
+        int derecha = prevDerecha - izquerda + 1;
+
+        while (prevIzquerda <= medio && prevMedio <= prevDerecha) {
+            if (Integer.valueOf(array[prevIzquerda]) < Integer.valueOf(array[prevMedio])) {
+                temp[j++] = array[prevIzquerda++];
+            }
+            else {
+                temp[j++] = array[prevMedio++];
+            }
+        }
+
+        while (prevIzquerda <= medio) {
+            temp[j++] = array[prevIzquerda++];
+        }
+
+        while (prevMedio <= prevDerecha) {
+            temp[j++] = array[prevMedio++];
+        }
+
+        for (j = 0; j < derecha; j++) {
+            String temp2 = array[izquerda + j];
+            array[izquerda + j] = temp[j];
+            if (paso && !array[izquerda + j].equals(temp2)) {
+                cambio = true;
+            }
+        }
+        return cambio;
     }
 }

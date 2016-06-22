@@ -259,7 +259,7 @@ public class ArrayController implements Initializable {
     }
 
     /**
-     * Crear el array de temaño 10. La scene está usado para saber si es de tipo ordenado o simple segun el ménu.
+     * Crear el array de tamaño 10. La scene está usado para saber si es de tipo ordenado o simple segun el ménu.
      */
     private void initializeArray() {
         scene = contenidoArray.getScene();

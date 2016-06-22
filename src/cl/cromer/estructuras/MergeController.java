@@ -15,19 +15,19 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
- * Esta clase es para controlar todos la interfaz de Shell.
+ * Esta clase es para controlar todos la interfaz de Merge.
  * @author Chris Cromer
  */
-public class ShellController implements Initializable {
+public class MergeController implements Initializable {
     /**
      * Donde poner el contenido de array.
      */
-    @FXML private HBox contenidoShell;
+    @FXML private HBox contenidoMerge;
 
     /**
      * Donde va el codigo a mostrar a la pantalla.
      */
-    @FXML private Text codigoShell;
+    @FXML private Text codigoMerge;
 
     /**
      * La escena donde está cosas graficas.
@@ -71,7 +71,7 @@ public class ShellController implements Initializable {
                 numero = random.nextInt(rango) + minimo;
             }
             array.insertar(numero);
-            contenidoShell.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(i), String.valueOf(numero)));
+            contenidoMerge.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(i), String.valueOf(numero)));
             colores.siguinteColor();
         }
     }
@@ -113,10 +113,10 @@ public class ShellController implements Initializable {
         }
 
         // Mostrar el codigo
-        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/shell/ordenar")).useDelimiter("\\Z").next();
-        codigoShell.setText(codigoTexto);
+        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/merge/ordenar")).useDelimiter("\\Z").next();
+        codigoMerge.setText(codigoTexto);
 
-        if (!array.shell(true)) {
+        if (!array.merge(true)) {
             errorYaOrdenado();
         }
 
@@ -133,10 +133,10 @@ public class ShellController implements Initializable {
         }
 
         // Mostrar el codigo
-        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/shell/ordenar")).useDelimiter("\\Z").next();
-        codigoShell.setText(codigoTexto);
+        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/merge/ordenar")).useDelimiter("\\Z").next();
+        codigoMerge.setText(codigoTexto);
 
-        if (!array.shell(false)) {
+        if (!array.merge(false)) {
             errorYaOrdenado();
         }
 
@@ -150,7 +150,7 @@ public class ShellController implements Initializable {
         ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("shellYaOrdenado"));
+        dialog.setContentText(resourceBundle.getString("mergeYaOrdenado"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
         dialog.show();
     }
@@ -159,7 +159,7 @@ public class ShellController implements Initializable {
      * Crear el array de tamaño 10.
      */
     private void initializeScene() {
-        scene = contenidoShell.getScene();
+        scene = contenidoMerge.getScene();
     }
 
     /**

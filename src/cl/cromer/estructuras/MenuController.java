@@ -107,7 +107,7 @@ public class MenuController extends VBox implements Initializable {
     }
 
     /**
-     * Click en Selecion.
+     * Click en Shell.
      */
     @FXML
     protected void menuShell() {
@@ -119,14 +119,26 @@ public class MenuController extends VBox implements Initializable {
     }
 
     /**
-     * Click en Selecion.
+     * Click en Quick.
      */
     @FXML
     protected void menuQuick() {
         loadStage(
-                resourceBundle.getString("tituloQuick"),
-                "/cl/cromer/estructuras/fxml/quick.fxml",
-                "/cl/cromer/estructuras/css/style.css"
+            resourceBundle.getString("tituloQuick"),
+            "/cl/cromer/estructuras/fxml/quick.fxml",
+            "/cl/cromer/estructuras/css/style.css"
+        );
+    }
+
+    /**
+     * Click en Merge.
+     */
+    @FXML
+    protected void menuMerge() {
+        loadStage(
+            resourceBundle.getString("tituloMerge"),
+            "/cl/cromer/estructuras/fxml/merge.fxml",
+            "/cl/cromer/estructuras/css/style.css"
         );
     }
 

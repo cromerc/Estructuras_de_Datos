@@ -1,0 +1,50 @@
+public void merge() {
+    // Crear un array temporario para trabajar.
+    int[] temp = new int[elementos];
+    // Llamar al metodo recursivo.
+    recMergeSort(temp, 0, elementos - 1);
+}
+
+private void recMergeSort(int[] temp, int izquerda, int derecha) {
+    if (izquerda != derecha) {
+        int medio = (izquerda + derecha) / 2;
+        // Trabajar con los valores en el lado izquerdo.
+        recMergeSort(temp, izquerda, medio);
+        // Trabajar con los valores en el lado derecha.
+        recMergeSort(temp, medio + 1, derecha);
+        // Unir los valores.
+        merge(temp, izquerda, medio + 1, derecha);
+    }
+}
+
+private void merge(int[] temp, int prevIzquerda, int prevMedio, int derecha) {
+    int j = 0;
+    int izquerda = prevIzquerda;
+    int medio = prevMedio - 1;
+    int masDerecha = derecha - izquerda + 1;
+
+    while (prevIzquerda <= medio && prevMedio <= derecha) {
+        // Poner un valor en el array temporario.
+        if (array[prevIzquerda] < array[prevMedio]) {
+            temp[j++] = array[prevIzquerda++];
+        }
+        else {
+            temp[j++] = array[prevMedio++];
+        }
+    }
+
+    while (prevIzquerda <= medio) {
+        // Mientras que el valor previos de izquerda es menor que el medio correr los valores.
+        temp[j++] = array[prevIzquerda++];
+    }
+
+    while (prevMedio <= derecha) {
+        // Mientras que el valor previos de derecha es menor que el medio correr los valores.
+        temp[j++] = array[prevMedio++];
+    }
+
+    for (j = 0; j < masDerecha; j++) {
+        // Copiar los valores al array real.
+        array[izquerda + j] = temp[j];
+    }
+}

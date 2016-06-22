@@ -156,7 +156,7 @@ public class InsercionController implements Initializable {
     }
 
     /**
-     * Crear el array de temaño 10.
+     * Crear el array de tamaño 10.
      */
     private void initializeScene() {
         scene = contenidoInsercion.getScene();
