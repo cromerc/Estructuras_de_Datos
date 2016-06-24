@@ -91,7 +91,7 @@ public class Cola {
      * @return String: El valor que está guardado en el indice.
      */
     public String getIndice(int indice) {
-        if (indice >= 0 && indice < cola.length) {
+        if (cola != null && indice >= 0 && indice < cola.length) {
             return cola[indice];
         }
         else {

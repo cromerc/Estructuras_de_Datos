@@ -293,9 +293,9 @@ public class Array {
     }
 
     /**
-     *
-     * @param izquerda int: La posición del quick desded la izquerda.
-     * @param derecha int: La posición del quick desded la derecha.
+     * Particionar el array desded la izquerda y derecho usando un pivot.
+     * @param izquerda int: La posición del quick desde la izquerda.
+     * @param derecha int: La posición del quick desde la derecha.
      * @param pivot String: El valor a comparar con los otros.
      * @return ParticionarResult: Los resultados de particionar.
      */

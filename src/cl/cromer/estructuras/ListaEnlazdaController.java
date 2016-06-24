@@ -3,7 +3,9 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -14,25 +16,25 @@ import java.util.Scanner;
 import java.util.logging.Level;
 
 /**
- * Esta clase es para controlar todos la interfaz de Array.
+ * Esta clase es para controlar todos la interfaz de ListaEnlazada.
  * @author Chris Cromer
  */
-public class ArrayController implements Initializable {
+public class ListaEnlazdaController implements Initializable {
 
     /**
      * La caja para ingresar textos.
      */
-    @FXML private TextFieldLimited valorArray;
+    @FXML private TextFieldLimited valorLista;
 
     /**
      * Donde poner el contenido de array.
      */
-    @FXML private VBox contenidoArray;
+    @FXML private VBox contenidoLista;
 
     /**
      * Donde va el codigo a mostrar a la pantalla.
      */
-    @FXML private Text codigoArray;
+    @FXML private Text codigoLista;
 
     /**
      * La escena donde está cosas graficas.
@@ -67,7 +69,7 @@ public class ArrayController implements Initializable {
         Colores colores = new Colores();
 
         for (int i = 0; i < 10; i++) {
-            contenidoArray.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(i)));
+            contenidoLista.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(i)));
             colores.siguinteColor();
         }
     }
@@ -128,11 +130,11 @@ public class ArrayController implements Initializable {
         // Mostrar el codigo
         String tipo = (array.isOrdered())?"Ordenado":"Simple";
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-        codigoArray.setText(codigoTexto);
+        codigoLista.setText(codigoTexto);
 
-        if (valorArray.getText() != null && !valorArray.getText().trim().equals("")) {
+        if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
             try {
-                boolean exito = array.insertar(Integer.valueOf(valorArray.getText()));
+                boolean exito = array.insertar(Integer.valueOf(valorLista.getText()));
                 if (exito) {
                     generarGrafico();
                 }
@@ -173,11 +175,11 @@ public class ArrayController implements Initializable {
         // Mostrar el codigo
         String tipo = (array.isOrdered())?"Ordenado":"Simple";
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/eliminar")).useDelimiter("\\Z").next();
-        codigoArray.setText(codigoTexto);
+        codigoLista.setText(codigoTexto);
 
         try {
-            if (valorArray.getText() != null && !valorArray.getText().trim().equals("")) {
-                boolean exito = array.eliminar(Integer.valueOf(valorArray.getText()));
+            if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
+                boolean exito = array.eliminar(Integer.valueOf(valorLista.getText()));
                 if (exito) {
                     generarGrafico();
                 }
@@ -209,11 +211,11 @@ public class ArrayController implements Initializable {
         // Mostrar el codigo
         String tipo = (array.isOrdered())?"Ordenado":"Simple";
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/buscar")).useDelimiter("\\Z").next();
-        codigoArray.setText(codigoTexto);
+        codigoLista.setText(codigoTexto);
 
         try {
-            if (valorArray.getText() != null && !valorArray.getText().trim().equals("")) {
-                int encontrado = array.buscar(Integer.valueOf(valorArray.getText()));
+            if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
+                int encontrado = array.buscar(Integer.valueOf(valorLista.getText()));
                 if (encontrado != -1) {
                     generarGrafico();
                     grafico = new Grafico(scene);
@@ -262,13 +264,11 @@ public class ArrayController implements Initializable {
      * Crear el array de tamaño 10. La scene está usado para saber si es de tipo ordenado o simple segun el ménu.
      */
     private void initializeArray() {
-        scene = contenidoArray.getScene();
+        scene = contenidoLista.getScene();
         grafico = new Grafico(scene);
         this.array = new Array(10);
-        ArrayTipos arrayTipos = (ArrayTipos) scene.getUserData();
-        if (arrayTipos.getTipo() == ArrayTipos.ORDENADO) {
-            this.array.setOrdered(true);
-        }
+        Array array = (Array) scene.getUserData();
+        this.array.setOrdered(array.isOrdered());
     }
 
     /**

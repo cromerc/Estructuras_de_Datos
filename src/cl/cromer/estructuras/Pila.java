@@ -90,7 +90,7 @@ public class Pila {
      * @return String: El valor que está guardado en el indice.
      */
     public String getIndice(int indice) {
-        if (indice >= 0 && indice < pila.length) {
+        if (pila != null && indice >= 0 && indice < pila.length) {
             return pila[indice];
         }
         else {

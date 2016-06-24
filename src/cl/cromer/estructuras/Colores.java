@@ -10,7 +10,7 @@ public class Colores {
     /**
      * Cuantos colores estan definidos en esta clase.
      */
-    static public int MAX_COLORS = 7;
+    static final public int MAX_COLORS = 7;
 
     /**
      * El color actual en forma numerica.

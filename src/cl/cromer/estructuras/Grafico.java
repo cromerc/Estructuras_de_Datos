@@ -17,6 +17,16 @@ import javafx.util.Duration;
  */
 public class Grafico {
     /**
+     * Tipo de dibujo rectuangular.
+     */
+    static final public int RECTANGULO = 0;
+
+    /**
+     * Tipo de dibujo circular.
+     */
+    static final public int CIRCULO = 1;
+
+    /**
      * Contiene la animación de destacar.
      */
     private SequentialTransition blinkTransition;
@@ -29,7 +39,7 @@ public class Grafico {
     /**
      * El tipo de objeto que está destacado.
      */
-    private String tipo;
+    private int tipo;
 
     /**
      * El color original de fondo para volver cuando no es destacado.
@@ -138,22 +148,25 @@ public class Grafico {
     /**
      * Destacar un elemento
      * @param valor int: El indice a destacar.
-     * @param tipo String: El tipo de objeto a destacer(rectangulo o cicurlo)
+     * @param tipo int: El tipo de objeto a destacer, {@value #RECTANGULO} o {@value #CIRCULO}
      */
-    public void destacer(int valor, String tipo) {
-        if (!tipo.equals("rectangulo") && !tipo.equals("circulo")) {
+    public void destacer(int valor, int tipo) {
+        if (tipo != RECTANGULO && tipo != CIRCULO) {
             return;
         }
-        this.tipo = tipo;
+        else {
+            this.tipo = tipo;
+        }
+
         destacado = valor;
         Colores colores = new Colores();
         Rectangle rectangle = null;
         Circle circle = null;
-        if (tipo.equals("rectangulo")) {
+        if (this.tipo == RECTANGULO) {
             rectangle = (Rectangle) scene.lookup("#border_" + String.valueOf(valor));
             destacadoBG = (Color) rectangle.getFill();
         }
-        else if (tipo.equals("circulo")) {
+        else if (this.tipo == CIRCULO) {
             circle = (Circle) scene.lookup("#border_" + String.valueOf(valor));
             destacadoBG = (Color) circle.getFill();
         }
@@ -161,10 +174,10 @@ public class Grafico {
         destacadoFG = (Color) text.getStroke();
         PauseTransition changeColor[] = new PauseTransition[Colores.MAX_COLORS];
         for (int i = 0; i < Colores.MAX_COLORS; i++) {
-            if (tipo.equals("rectangulo")) {
+            if (this.tipo == RECTANGULO) {
                 changeColor[i] = createPauseTransition(rectangle, text, colores.getFondo(), colores.getTexto());
             }
-            else if (tipo.equals("circulo")) {
+            else if (this.tipo == CIRCULO) {
                 changeColor[i] = createPauseTransition(circle, text, colores.getFondo(), colores.getTexto());
             }
             colores.siguinteColor();
@@ -180,11 +193,11 @@ public class Grafico {
     public void removerDestacar() {
         if (destacado != -1) {
             blinkTransition.stop();
-            if (tipo.equals("rectangulo")) {
+            if (tipo == RECTANGULO) {
                 Rectangle rectangle = (Rectangle) scene.lookup("#border_" + String.valueOf(destacado));
                 rectangle.setFill(destacadoBG);
             }
-            else if (tipo.equals("circulo")) {
+            else if (tipo == CIRCULO) {
                 Circle circle = (Circle) scene.lookup("#border_" + String.valueOf(destacado));
                 circle.setFill(destacadoBG);
             }

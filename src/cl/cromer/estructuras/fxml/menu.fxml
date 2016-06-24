@@ -17,7 +17,7 @@
             <MenuItem text="%merge" onAction="#menuMerge"/>
         </Menu>
         <Menu text="%listaEnlazada">
-            <MenuItem text="%listaSimple"/>
+            <MenuItem text="%listaSimple" onAction="#menuListaEnlazadaSimple"/>
             <MenuItem text="%listaCircular"/>
             <MenuItem text="%doblementeEnlazada"/>
         </Menu>

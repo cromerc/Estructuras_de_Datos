@@ -192,7 +192,7 @@ public class PilaController implements Initializable {
         int encontrado = pila.peek();
         if (encontrado != Integer.MIN_VALUE) {
             generarGrafico();
-            grafico.destacer(pila.size() - 1, "rectangulo");
+            grafico.destacer(pila.size() - 1, Grafico.RECTANGULO);
         }
         else {
             errorVacia();

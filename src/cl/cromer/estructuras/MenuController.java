@@ -45,13 +45,12 @@ public class MenuController extends VBox implements Initializable {
      */
     @FXML
     protected void menuArraySimple() {
-        Array array = new Array(1);
-        array.setOrdered(false);
+        ArrayTipos arrayTipos = new ArrayTipos(ArrayTipos.SIMPLE);
         loadStage(
             resourceBundle.getString("tituloArraySimple"),
             "/cl/cromer/estructuras/fxml/array.fxml",
             "/cl/cromer/estructuras/css/style.css",
-            array
+            arrayTipos
         );
     }
 
@@ -60,13 +59,12 @@ public class MenuController extends VBox implements Initializable {
      */
     @FXML
     protected void menuArrayOrdenado() {
-        Array array = new Array(1);
-        array.setOrdered(true);
+        ArrayTipos arrayTipos = new ArrayTipos(ArrayTipos.ORDENADO);
         loadStage(
             resourceBundle.getString("tituloArrayOrdenado"),
             "/cl/cromer/estructuras/fxml/array.fxml",
             "/cl/cromer/estructuras/css/style.css",
-            array
+            arrayTipos
         );
     }
 
@@ -139,6 +137,20 @@ public class MenuController extends VBox implements Initializable {
             resourceBundle.getString("tituloMerge"),
             "/cl/cromer/estructuras/fxml/merge.fxml",
             "/cl/cromer/estructuras/css/style.css"
+        );
+    }
+
+    /**
+     * Click en Lista Enlazada Simple.
+     */
+    @FXML
+    protected void menuListaEnlazadaSimple() {
+        ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(ListaEnlazadaTipos.SIMPLE);
+        loadStage(
+            resourceBundle.getString("tituloMerge"),
+            "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
+            "/cl/cromer/estructuras/css/style.css",
+            listaEnlazadaTipos
         );
     }
 
