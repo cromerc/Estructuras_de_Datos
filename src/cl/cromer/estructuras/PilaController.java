@@ -129,6 +129,7 @@ public class PilaController implements Initializable {
             try {
                 if (pila.size() < 10) {
                     pila.push(Integer.valueOf(valorPila.getText()));
+                    valorPila.setText("");
                     generarGrafico();
                 }
                 else {

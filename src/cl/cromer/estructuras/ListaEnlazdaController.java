@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -20,14 +21,18 @@ import java.util.logging.Level;
  * @author Chris Cromer
  */
 public class ListaEnlazdaController implements Initializable {
+    /**
+     * La caja para ingresar la llave.
+     */
+    @FXML private TextFieldLimited llaveLista;
 
     /**
-     * La caja para ingresar textos.
+     * La caja para ingresar el valor.
      */
     @FXML private TextFieldLimited valorLista;
 
     /**
-     * Donde poner el contenido de array.
+     * Donde poner el contenido de lista.
      */
     @FXML private VBox contenidoLista;
 
@@ -47,14 +52,24 @@ public class ListaEnlazdaController implements Initializable {
     private ResourceBundle resourceBundle;
 
     /**
-     * El array usado en la aplicación.
+     * La lista enlazada usado en la aplicación.
      */
-    private Array array;
+    private ListaEnlazada listaEnlazada;
 
     /**
-     * Grafico rectangulos.
+     * Tipo de lista enlazada a trabajar.
+     */
+    private ListaEnlazadaTipos listaEnlazadaTipos;
+
+    /**
+     * Grafico rectangulos y lineas.
      */
     private Grafico grafico;
+
+    /**
+     * Colores por los dibjos.
+     */
+    private Colores colores;
 
     /**
      * Inicializar todos los datos y dibujar las graficas.
@@ -66,21 +81,15 @@ public class ListaEnlazdaController implements Initializable {
         this.resourceBundle = resourceBundle;
 
         scene = null;
-        Colores colores = new Colores();
-
-        for (int i = 0; i < 10; i++) {
-            contenidoLista.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(i)));
-            colores.siguinteColor();
-        }
     }
 
     /**
-     * Llenar el array con numeros al azar.
+     * Llenar la lista con numeros al azar.
      */
     @FXML
     protected void botonLlenar() {
         if (scene == null) {
-            initializeArray();
+            initializeLista();
         }
 
         Random random = new Random();
@@ -88,66 +97,70 @@ public class ListaEnlazdaController implements Initializable {
         int minimo = 0;
         int rango = maximo - minimo + 1;
 
-        for (int i = array.size(); i < 10; i++) {
+        for (int i = listaEnlazada.size(); listaEnlazada.size() < 5; i++) {
             int numero = random.nextInt(rango) + minimo;
-            while (array.buscar(numero) != -1) {
-                numero = random.nextInt(rango) + minimo;
+            while (listaEnlazada.buscar(i) != null) {
+                i++;
             }
-            array.insertar(numero);
+            listaEnlazada.insertar(i, numero);
         }
         generarGrafico();
     }
 
     /**
-     * Vaciar el array de todos los valores.
+     * Vaciar la lista de todos los valores.
      */
     @FXML
     protected void botonVaciar() {
         if (scene == null) {
-            initializeArray();
+            initializeLista();
         }
 
-        if (array.isOrdered()) {
-            array = new Array(10);
-            array.setOrdered(true);
-        }
-        else {
-            array = new Array(10);
-            array.setOrdered(false);
-        }
+        listaEnlazada = new ListaEnlazada();
         generarGrafico();
     }
 
     /**
-     * Insertar un valor al array y mostrar el codigo en la pantalla.
+     * Insertar un valor a la lista y mostrar el codigo en la pantalla.
      */
     @FXML
     protected void botonInsertar() {
         if (scene == null) {
-            initializeArray();
+            initializeLista();
+        }
+
+        String tipo;
+        switch (listaEnlazadaTipos.getTipo()) {
+            case ListaEnlazadaTipos.SIMPLE:
+                tipo = "Simple";
+                break;
+            case ListaEnlazadaTipos.CIRCULAR:
+                tipo = "Circular";
+                break;
+            case ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA:
+                tipo = "Doblemente";
+                break;
+            default:
+                tipo = "Simple";
         }
 
         // Mostrar el codigo
-        String tipo = (array.isOrdered())?"Ordenado":"Simple";
-        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-        codigoLista.setText(codigoTexto);
+        //String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/listaEnlazada" + tipo + "/insertar")).useDelimiter("\\Z").next();
+        //codigoLista.setText(codigoTexto);
 
-        if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
+        if (llaveLista.getText() != null && !llaveLista.getText().trim().equals("") && valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
             try {
-                boolean exito = array.insertar(Integer.valueOf(valorLista.getText()));
+                boolean exito = listaEnlazada.insertar(Integer.valueOf(llaveLista.getText()), Integer.valueOf(valorLista.getText()));
                 if (exito) {
+                    llaveLista.setText("");
+                    valorLista.setText("");
                     generarGrafico();
                 }
                 else {
                     ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
                     Dialog<String> dialog = new Dialog<>();
                     dialog.setTitle(resourceBundle.getString("error"));
-                    if (array.size() == 10) {
-                        dialog.setContentText(resourceBundle.getString("arrayLleno"));
-                    }
-                    else {
-                        dialog.setContentText(resourceBundle.getString("arrayValorExiste"));
-                    }
+                    dialog.setContentText(resourceBundle.getString("listaLlaveExiste"));
                     dialog.getDialogPane().getButtonTypes().add(botonCerrar);
                     dialog.show();
                 }
@@ -164,23 +177,25 @@ public class ListaEnlazdaController implements Initializable {
     }
 
     /**
-     * Eliminar un valor del array si existe y mostrar el codigo en la pantalla.
+     * Eliminar un valor de la lista si existe y mostrar el codigo en la pantalla.
      */
     @FXML
     protected void botonEliminar() {
         if (scene == null) {
-            initializeArray();
+            initializeLista();
         }
 
         // Mostrar el codigo
-        String tipo = (array.isOrdered())?"Ordenado":"Simple";
-        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/eliminar")).useDelimiter("\\Z").next();
-        codigoLista.setText(codigoTexto);
+        //String tipo = (array.isOrdered())?"Ordenado":"Simple";
+        //String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/eliminar")).useDelimiter("\\Z").next();
+        //codigoLista.setText(codigoTexto);
 
         try {
-            if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
-                boolean exito = array.eliminar(Integer.valueOf(valorLista.getText()));
+            if (llaveLista.getText() != null && !llaveLista.getText().trim().equals("")) {
+                boolean exito = listaEnlazada.eliminar(Integer.valueOf(llaveLista.getText()));
                 if (exito) {
+                    llaveLista.setText("");
+                    valorLista.setText("");
                     generarGrafico();
                 }
                 else {
@@ -199,27 +214,27 @@ public class ListaEnlazdaController implements Initializable {
     }
 
     /**
-     * Buscar si existe un elemento en el array y mostrar el codigo en la pantalla
-     * Si existe el valor destacarlo.
+     * Buscar si existe una llave en la lista y mostrar el codigo en la pantalla
+     * Si existe la llave destacarla.
      */
     @FXML
     protected void botonBuscar() {
         if (scene == null) {
-            initializeArray();
+            initializeLista();
         }
 
         // Mostrar el codigo
-        String tipo = (array.isOrdered())?"Ordenado":"Simple";
-        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/buscar")).useDelimiter("\\Z").next();
-        codigoLista.setText(codigoTexto);
+        //String tipo = (array.isOrdered())?"Ordenado":"Simple";
+        //String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/buscar")).useDelimiter("\\Z").next();
+        //codigoLista.setText(codigoTexto);
 
         try {
-            if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
-                int encontrado = array.buscar(Integer.valueOf(valorLista.getText()));
-                if (encontrado != -1) {
+            if (llaveLista.getText() != null && !llaveLista.getText().trim().equals("")) {
+                ListaEnlazada.Enlace enlace = listaEnlazada.buscar(Integer.valueOf(llaveLista.getText()));
+                if (enlace != null) {
                     generarGrafico();
                     grafico = new Grafico(scene);
-                    grafico.destacer(encontrado, Grafico.RECTANGULO);
+                    grafico.destacer(enlace.getLlave(), Grafico.RECTANGULO);
                 }
                 else {
                     errorNoEsta();
@@ -237,38 +252,37 @@ public class ListaEnlazdaController implements Initializable {
     }
 
     /**
-     * Se muestra un error si la persona no ingresa un valor en el TextField.
+     * Se muestra un error si la persona no ingresa un valor y una llave en los TextField.
      */
     private void errorNoValor() {
         ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("arrayNoValor"));
+        dialog.setContentText(resourceBundle.getString("listaNoValor"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
         dialog.show();
     }
 
     /**
-     * Error cuando el valor no está en el array.
+     * Error cuando la llave no está en la lista.
      */
     private void errorNoEsta() {
         ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("arrayNoEsta"));
+        dialog.setContentText(resourceBundle.getString("listaNoEsta"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
         dialog.show();
     }
 
     /**
-     * Crear el array de tamaño 10. La scene está usado para saber si es de tipo ordenado o simple segun el ménu.
+     * Crear una lista vacia.
      */
-    private void initializeArray() {
+    private void initializeLista() {
         scene = contenidoLista.getScene();
         grafico = new Grafico(scene);
-        this.array = new Array(10);
-        Array array = (Array) scene.getUserData();
-        this.array.setOrdered(array.isOrdered());
+        this.listaEnlazada = new ListaEnlazada();
+        listaEnlazadaTipos = (ListaEnlazadaTipos) scene.getUserData();
     }
 
     /**
@@ -276,9 +290,12 @@ public class ListaEnlazdaController implements Initializable {
      */
     private void generarGrafico() {
         grafico.removerDestacar();
-        for (int i = 0; i < 10; i++) {
-            Text text = (Text) scene.lookup("#caja_" + String.valueOf(i));
-            text.setText(array.getIndice(i));
+        colores = new Colores();
+        contenidoLista.getChildren().clear();
+        for (int i = 0; i < listaEnlazada.size(); i++) {
+            ListaEnlazada.Enlace enlace = listaEnlazada.getIndice(i);
+            contenidoLista.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave()) + " | " + String.valueOf(enlace.getValor()), 50), Grafico.crearLineaVertical());
+            colores.siguinteColor();
         }
     }
 }

@@ -3,8 +3,24 @@ package cl.cromer.estructuras;
 public class ListaEnlazada {
     private Enlace lista;
 
+    private int size;
+
+    private int tipo;
+
     public ListaEnlazada() {
         lista = null;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
     public Enlace buscar(int llave) {
@@ -39,6 +55,7 @@ public class ListaEnlazada {
             nueva.setValor(valor);
             nueva.setSiguente(lista);
             lista = nueva;
+            size++;
             return true;
         }
         else {
@@ -73,11 +90,32 @@ public class ListaEnlazada {
                 // Sino cortar esta enlace de la lista
                 previo.setSiguente(lista.getSiguente());
             }
+            size--;
             return true;
         }
         else {
             // La lista es vacia, no hay nada para eliminar
             return false;
+        }
+    }
+
+    /**
+     * Devolver un enlace con su llave y valor.
+     * @param indice int: El indice que desea ver.
+     * @return Enlace: El enlace a devolver.
+     */
+    public Enlace getIndice(int indice) {
+        if (lista != null && indice >= 0 && indice < size()) {
+            int i = size();
+            Enlace lista = this.lista;
+            while (i > indice + 1) {
+                lista = lista.getSiguente();
+                i--;
+            }
+            return lista;
+        }
+        else {
+            return null;
         }
     }
 

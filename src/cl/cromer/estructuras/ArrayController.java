@@ -134,6 +134,7 @@ public class ArrayController implements Initializable {
             try {
                 boolean exito = array.insertar(Integer.valueOf(valorArray.getText()));
                 if (exito) {
+                    valorArray.setText("");
                     generarGrafico();
                 }
                 else {
@@ -179,6 +180,7 @@ public class ArrayController implements Initializable {
             if (valorArray.getText() != null && !valorArray.getText().trim().equals("")) {
                 boolean exito = array.eliminar(Integer.valueOf(valorArray.getText()));
                 if (exito) {
+                    valorArray.setText("");
                     generarGrafico();
                 }
                 else {

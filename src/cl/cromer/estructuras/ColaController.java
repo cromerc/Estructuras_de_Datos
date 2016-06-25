@@ -129,6 +129,7 @@ public class ColaController implements Initializable {
             try {
                 if (cola.size() < 10) {
                     cola.push(Integer.valueOf(valorCola.getText()));
+                    valorCola.setText("");
                     generarGrafico();
                 }
                 else {

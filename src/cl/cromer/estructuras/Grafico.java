@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -66,6 +67,22 @@ public class Grafico {
     }
 
     /**
+     * Crear una linea vertical
+     * @return StackPane: Devolver el stackpane que contiene la linea vertical.
+     */
+    public static StackPane crearLineaVertical() {
+        Line line = new Line();
+        line.setStartX(20);
+        line.setEndX(20);
+        line.setStartY(0);
+        line.setEndY(20);
+
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(line);
+        return stackPane;
+    }
+
+    /**
      * Crear un rectangulo con texto adentro.
      * @param colores Colores: Los colores para dar color al rectangulo.
      * @param label String: El texto por el ID de fxml.
@@ -98,6 +115,31 @@ public class Grafico {
         Rectangle rectangle = new Rectangle();
         rectangle.setHeight(40);
         rectangle.setWidth(40);
+        rectangle.setFill(colores.getFondo());
+        rectangle.setStroke(Color.BLACK);
+        rectangle.setId("border_" + label);
+        Text text = new Text();
+        text.setId("caja_" + label);
+        text.setStroke(colores.getTexto());
+        text.setText(texto);
+
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(rectangle, text);
+        return stackPane;
+    }
+
+    /**
+     * Crear un rectangulo con texto adentro.
+     * @param colores Colores: Los colores para dar color al rectangulo.
+     * @param label String: El texto por el ID de fxml.
+     * @param texto String: El texto a colocar dentro el rectangulo.
+     * @param tamano int: El tamaño del rectangulo.
+     * @return StackPane: Devolver el stackpane que contiene el rectangulo y texto.
+     */
+    public static StackPane crearCaja(Colores colores, String label, String texto, int tamano) {
+        Rectangle rectangle = new Rectangle();
+        rectangle.setHeight(tamano);
+        rectangle.setWidth(tamano);
         rectangle.setFill(colores.getFondo());
         rectangle.setStroke(Color.BLACK);
         rectangle.setId("border_" + label);
