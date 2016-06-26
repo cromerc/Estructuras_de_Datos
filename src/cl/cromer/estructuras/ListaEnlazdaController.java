@@ -6,14 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.logging.Level;
 
 /**
@@ -21,11 +19,6 @@ import java.util.logging.Level;
  * @author Chris Cromer
  */
 public class ListaEnlazdaController implements Initializable {
-    /**
-     * La caja para ingresar la llave.
-     */
-    @FXML private TextFieldLimited llaveLista;
-
     /**
      * La caja para ingresar el valor.
      */
@@ -55,6 +48,11 @@ public class ListaEnlazdaController implements Initializable {
      * La lista enlazada usado en la aplicación.
      */
     private ListaEnlazada listaEnlazada;
+
+    /**
+     * La lista enlazada circular usado en la aplicación.
+     */
+    private ListaEnlazadaCircular listaEnlazadaCircular;
 
     /**
      * Tipo de lista enlazada a trabajar.
@@ -97,12 +95,23 @@ public class ListaEnlazdaController implements Initializable {
         int minimo = 0;
         int rango = maximo - minimo + 1;
 
-        for (int i = listaEnlazada.size(); listaEnlazada.size() < 5; i++) {
-            int numero = random.nextInt(rango) + minimo;
-            while (listaEnlazada.buscar(i) != null) {
-                i++;
+        if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+            for (listaEnlazada.size(); listaEnlazada.size() < 5; ) {
+                int numero = random.nextInt(rango) + minimo;
+                while (listaEnlazada.buscar(numero) != null) {
+                    numero = random.nextInt(rango) + minimo;
+                }
+                listaEnlazada.insertar(numero);
             }
-            listaEnlazada.insertar(i, numero);
+        }
+        else {
+            for (listaEnlazadaCircular.size(); listaEnlazadaCircular.size() < 5; ) {
+                int numero = random.nextInt(rango) + minimo;
+                while (listaEnlazadaCircular.buscar(numero) != null) {
+                    numero = random.nextInt(rango) + minimo;
+                }
+                listaEnlazadaCircular.insertar(numero);
+            }
         }
         generarGrafico();
     }
@@ -116,7 +125,14 @@ public class ListaEnlazdaController implements Initializable {
             initializeLista();
         }
 
-        listaEnlazada = new ListaEnlazada();
+        if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+            listaEnlazada = new ListaEnlazada();
+            listaEnlazada.setTipo(listaEnlazadaTipos.getTipo());
+        }
+        else {
+            listaEnlazadaCircular = new ListaEnlazadaCircular();
+            listaEnlazadaCircular.setTipo(ListaEnlazadaTipos.SIMPLE);
+        }
         generarGrafico();
     }
 
@@ -129,7 +145,7 @@ public class ListaEnlazdaController implements Initializable {
             initializeLista();
         }
 
-        String tipo;
+        /*String tipo;
         switch (listaEnlazadaTipos.getTipo()) {
             case ListaEnlazadaTipos.SIMPLE:
                 tipo = "Simple";
@@ -142,17 +158,22 @@ public class ListaEnlazdaController implements Initializable {
                 break;
             default:
                 tipo = "Simple";
-        }
+        }*/
 
         // Mostrar el codigo
         //String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/listaEnlazada" + tipo + "/insertar")).useDelimiter("\\Z").next();
         //codigoLista.setText(codigoTexto);
 
-        if (llaveLista.getText() != null && !llaveLista.getText().trim().equals("") && valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
+        if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
             try {
-                boolean exito = listaEnlazada.insertar(Integer.valueOf(llaveLista.getText()), Integer.valueOf(valorLista.getText()));
+                boolean exito;
+                if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+                    exito = listaEnlazada.insertar(Integer.valueOf(valorLista.getText()));
+                }
+                else {
+                    exito = listaEnlazadaCircular.insertar(Integer.valueOf(valorLista.getText()));
+                }
                 if (exito) {
-                    llaveLista.setText("");
                     valorLista.setText("");
                     generarGrafico();
                 }
@@ -191,10 +212,15 @@ public class ListaEnlazdaController implements Initializable {
         //codigoLista.setText(codigoTexto);
 
         try {
-            if (llaveLista.getText() != null && !llaveLista.getText().trim().equals("")) {
-                boolean exito = listaEnlazada.eliminar(Integer.valueOf(llaveLista.getText()));
+            if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
+                boolean exito;
+                if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+                    exito = listaEnlazada.eliminar(Integer.valueOf(valorLista.getText()));
+                }
+                else {
+                    exito = listaEnlazadaCircular.eliminar(Integer.valueOf(valorLista.getText()));
+                }
                 if (exito) {
-                    llaveLista.setText("");
                     valorLista.setText("");
                     generarGrafico();
                 }
@@ -229,8 +255,14 @@ public class ListaEnlazdaController implements Initializable {
         //codigoLista.setText(codigoTexto);
 
         try {
-            if (llaveLista.getText() != null && !llaveLista.getText().trim().equals("")) {
-                ListaEnlazada.Enlace enlace = listaEnlazada.buscar(Integer.valueOf(llaveLista.getText()));
+            if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
+                Enlace enlace;
+                if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+                    enlace = listaEnlazada.buscar(Integer.valueOf(valorLista.getText()));
+                }
+                else {
+                    enlace = listaEnlazadaCircular.buscar(Integer.valueOf(valorLista.getText()));
+                }
                 if (enlace != null) {
                     generarGrafico();
                     grafico = new Grafico(scene);
@@ -281,8 +313,15 @@ public class ListaEnlazdaController implements Initializable {
     private void initializeLista() {
         scene = contenidoLista.getScene();
         grafico = new Grafico(scene);
-        this.listaEnlazada = new ListaEnlazada();
         listaEnlazadaTipos = (ListaEnlazadaTipos) scene.getUserData();
+        if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+            listaEnlazada = new ListaEnlazada();
+            listaEnlazada.setTipo(listaEnlazadaTipos.getTipo());
+        }
+        else {
+            listaEnlazadaCircular = new ListaEnlazadaCircular();
+            listaEnlazadaCircular.setTipo(ListaEnlazadaTipos.SIMPLE);
+        }
     }
 
     /**
@@ -292,10 +331,55 @@ public class ListaEnlazdaController implements Initializable {
         grafico.removerDestacar();
         colores = new Colores();
         contenidoLista.getChildren().clear();
-        for (int i = 0; i < listaEnlazada.size(); i++) {
-            ListaEnlazada.Enlace enlace = listaEnlazada.getIndice(i);
-            contenidoLista.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave()) + " | " + String.valueOf(enlace.getValor()), 50), Grafico.crearLineaVertical());
-            colores.siguinteColor();
+
+        if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+            for (int i = 0; i < listaEnlazada.size(); i++) {
+                Enlace enlace = listaEnlazada.getIndice(i);
+                if (listaEnlazada.getTipo() == ListaEnlazadaTipos.SIMPLE) {
+                    dibujarSimple(enlace);
+                }
+                else if (listaEnlazada.getTipo() == ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA) {
+                    if (i != listaEnlazada.size() - 1) {
+                        dibujarDoble(enlace);
+                    }
+                    else {
+                        dibujarSimple(enlace);
+                    }
+                }
+                colores.siguinteColor();
+            }
         }
+        else {
+            for (int i = 0; i < listaEnlazadaCircular.size(); i++) {
+                Enlace enlace = listaEnlazadaCircular.getIndice(i);
+                dibujarSimple(enlace);
+                colores.siguinteColor();
+            }
+        }
+    }
+
+    /**
+     * Dibujarlo con una flecha.
+     * @param enlace Object: El enlace que tiene la llave y valor.
+     */
+    private void dibujarSimple(Enlace enlace) {
+        contenidoLista.getChildren().addAll(
+            Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave())),
+            Grafico.crearLineaVertical(),
+            Grafico.crearFlechaAbajo()
+        );
+    }
+
+    /**
+     * Dibujarlo con dos flechas.
+     * @param enlace El enlace que tiene la llave y valor.
+     */
+    private void dibujarDoble(Enlace enlace) {
+        contenidoLista.getChildren().addAll(
+            Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave())),
+            Grafico.crearFlechaArriba(),
+            Grafico.crearLineaVertical(),
+            Grafico.crearFlechaAbajo()
+        );
     }
 }

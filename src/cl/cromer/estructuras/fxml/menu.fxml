@@ -18,8 +18,8 @@
         </Menu>
         <Menu text="%listaEnlazada">
             <MenuItem text="%listaSimple" onAction="#menuListaEnlazadaSimple"/>
-            <MenuItem text="%listaCircular"/>
-            <MenuItem text="%doblementeEnlazada"/>
+            <MenuItem text="%listaCircular" onAction="#menuListaEnlazadaCircular"/>
+            <MenuItem text="%doblementeEnlazada" onAction="#menuListaEnlazadaDoble"/>
         </Menu>
         <MenuItem text="%pila" onAction="#menuPila"/>
         <MenuItem text="%cola" onAction="#menuCola"/>

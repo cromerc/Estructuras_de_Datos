@@ -147,7 +147,35 @@ public class MenuController extends VBox implements Initializable {
     protected void menuListaEnlazadaSimple() {
         ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(ListaEnlazadaTipos.SIMPLE);
         loadStage(
-            resourceBundle.getString("tituloMerge"),
+            resourceBundle.getString("tituloListaEnlazadaSimple"),
+            "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
+            "/cl/cromer/estructuras/css/style.css",
+            listaEnlazadaTipos
+        );
+    }
+
+    /**
+     * Click en Lista Enlazada Circular.
+     */
+    @FXML
+    protected void menuListaEnlazadaCircular() {
+        ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(ListaEnlazadaTipos.CIRCULAR);
+        loadStage(
+            resourceBundle.getString("tituloListaEnlazadaCircular"),
+            "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
+            "/cl/cromer/estructuras/css/style.css",
+            listaEnlazadaTipos
+        );
+    }
+
+    /**
+     * Click en Lista Enlazada Doble.
+     */
+    @FXML
+    protected void menuListaEnlazadaDoble() {
+        ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA);
+        loadStage(
+            resourceBundle.getString("tituloListaEnlazadaDoble"),
             "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
             "/cl/cromer/estructuras/css/style.css",
             listaEnlazadaTipos

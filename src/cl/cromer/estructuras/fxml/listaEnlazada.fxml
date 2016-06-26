@@ -18,9 +18,6 @@
                     <Button text="%insertar" onAction="#botonInsertar" />
                     <Button text="%eliminar" onAction="#botonEliminar" />
                     <Button text="%buscar" onAction="#botonBuscar" />
-                    <Text text="%llave" />
-                    <TextFieldLimited fx:id="llaveLista" maxLength="2" prefWidth="40" />
-                    <Text text="%valor" />
                     <TextFieldLimited fx:id="valorLista" maxLength="2" prefWidth="40" />
                 </HBox>
                 <VBox fx:id="contenidoLista" alignment="CENTER" />

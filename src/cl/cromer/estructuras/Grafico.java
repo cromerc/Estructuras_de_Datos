@@ -8,6 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -64,6 +65,40 @@ public class Grafico {
     public Grafico(Scene scene) {
         this.scene = scene;
         destacado = -1;
+    }
+
+    /**
+     * Crear una flecha que apunta por abajo.
+     * @return StackPane: Devolver el stackpane que contiene la flecha.
+     */
+    public static StackPane crearFlechaAbajo() {
+        Polygon polygon = new Polygon();
+        polygon.getPoints().addAll(
+            0.0, 0.0,
+            10.0, 0.0,
+            5.0, 10.0
+        );
+
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(polygon);
+        return stackPane;
+    }
+
+    /**
+     * Crear una flecha que apunta por arriba.
+     * @return StackPane: Devolver el stackpane que contiene la flecha.
+     */
+    public static StackPane crearFlechaArriba() {
+        Polygon polygon = new Polygon();
+        polygon.getPoints().addAll(
+            5.0, 0.0,
+            0.0, 10.0,
+            10.0, 10.0
+        );
+
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(polygon);
+        return stackPane;
     }
 
     /**
