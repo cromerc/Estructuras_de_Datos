@@ -1,6 +1,10 @@
 package cl.cromer.estructuras;
 
-public class ListaEnlazada {
+/**
+ * Crear una estructura de dato de tipo lista enlazada.
+ * @author Chris Cromer
+ */
+final public class ListaEnlazada {
     /**
      * El enlace principal de la lista.
      */

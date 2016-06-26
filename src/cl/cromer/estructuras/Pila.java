@@ -4,7 +4,7 @@ package cl.cromer.estructuras;
  * Crear una estructura de dato de tipo pila.
  * @author Chris Cromer
  */
-public class Pila {
+final public class Pila {
     /**
      * La pila.
      */

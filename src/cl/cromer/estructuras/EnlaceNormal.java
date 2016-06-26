@@ -2,8 +2,9 @@ package cl.cromer.estructuras;
 
 /**
  * Esta clase es de tipo de enlace normal.
+ * @author Chris Cromer
  */
-public class EnlaceNormal implements Enlace {
+final public class EnlaceNormal implements Enlace {
     /**
      * La llave.
      */

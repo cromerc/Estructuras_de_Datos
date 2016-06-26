@@ -1,5 +1,9 @@
 package cl.cromer.estructuras;
 
+/**
+ * Esta clase contiene los tipos de listas enlazadas.
+ * @author Chris Cromer
+ */
 final public class ListaEnlazadaTipos {
     /**
      * Tipo simple.

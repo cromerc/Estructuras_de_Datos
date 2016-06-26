@@ -1,6 +1,10 @@
 package cl.cromer.estructuras;
 
-public class ListaEnlazadaCircular {
+/**
+ * Crear una estructura de dato de tipo lista enlazada circular.
+ * @author Chris Cromer
+ */
+final public class ListaEnlazadaCircular {
     /**
      * El primer enlace.
      */

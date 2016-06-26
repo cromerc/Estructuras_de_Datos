@@ -2,6 +2,7 @@ package cl.cromer.estructuras;
 
 /**
  * Esta clase contiene los tipos de array.
+ * @author Chris Cromer
  */
 final public class ArrayTipos {
     /**

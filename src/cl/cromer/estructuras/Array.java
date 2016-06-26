@@ -4,7 +4,7 @@ package cl.cromer.estructuras;
  * Crear una estructura de dato de tipo array.
  * @author Chris Cromer
  */
-public class Array {
+final public class Array {
     /**
      * El array.
      */

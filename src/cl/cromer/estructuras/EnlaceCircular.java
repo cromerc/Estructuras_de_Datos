@@ -2,8 +2,9 @@ package cl.cromer.estructuras;
 
 /**
  * Esta clase es de tipo de enlace circular.
+ * @author Chris Cromer
  */
-public class EnlaceCircular implements Enlace {
+final public class EnlaceCircular implements Enlace {
     /**
      * La llave.
      */

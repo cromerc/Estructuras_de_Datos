@@ -4,7 +4,7 @@ package cl.cromer.estructuras;
  * Crear una estructura de dato de tipo cola.
  * @author Chris Cromer
  */
-public class Cola {
+final public class Cola {
     /**
      * La cola.
      */
