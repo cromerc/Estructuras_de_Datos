@@ -15,6 +15,7 @@
     </properties>
     <properties id="javafx-properties">
       <options>
+        <option name="alias" value="" />
         <option name="appClass" value="cl.cromer.estructuras.Main" />
         <option name="customManifestAttributes">
           <list>
@@ -29,8 +30,10 @@
           </list>
         </option>
         <option name="description" value="" />
+        <option name="enabledSigning" value="true" />
         <option name="height" value="768" />
         <option name="htmlParamFile" value="" />
+        <option name="keystore" value="" />
         <option name="nativeBundle" value="all" />
         <option name="paramFile" value="" />
         <option name="title" value="Estructuras de Datos" />

@@ -3,7 +3,11 @@ package cl.cromer.estructuras;
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -102,7 +106,7 @@ public class Grafico {
     }
 
     /**
-     * Crear una linea vertical
+     * Crear una linea vertical.
      * @return StackPane: Devolver el stackpane que contiene la linea vertical.
      */
     public static StackPane crearLineaVertical() {
@@ -114,6 +118,45 @@ public class Grafico {
 
         StackPane stackPane = new StackPane();
         stackPane.getChildren().addAll(line);
+        return stackPane;
+    }
+
+    /**
+     * Crear la linea circular con flecha.
+     * @param cajas int: La cantidad de cajas que están.
+     * @return StackPane: Devolver el stackpane que contiene la linea horizontal.
+     */
+    public static Pane crearLineaCircular(int cajas) {
+        int height = (cajas - 1) * (40 + 20 + 10);
+        height = height + 20 + 10;
+
+        Line top = new Line();
+        top.setStartY(20);
+        top.setEndY(20);
+        top.setStartX(0);
+        top.setEndX(20);
+
+        Polygon flechaDerecha = new Polygon();
+        flechaDerecha.getPoints().addAll(
+            10.0, 15.0,
+            20.0, 20.0,
+            10.0, 25.0
+        );
+
+        Line vertical = new Line();
+        vertical.setStartY(20);
+        vertical.setEndY(height);
+
+        Line bottom = new Line();
+        bottom.setStartY(height);
+        bottom.setEndY(height);
+        bottom.setStartX(0);
+        bottom.setEndX(20);
+
+
+        Pane stackPane = new Pane();
+        stackPane.getChildren().addAll(top, flechaDerecha, vertical, bottom);
+
         return stackPane;
     }
 

@@ -20,7 +20,10 @@
                     <Button text="%buscar" onAction="#botonBuscar" />
                     <TextFieldLimited fx:id="valorLista" maxLength="2" prefWidth="40" />
                 </HBox>
-                <VBox fx:id="contenidoLista" alignment="CENTER" />
+                <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS" spacing="0">
+                    <VBox fx:id="contenidoListaCircular" alignment="TOP_LEFT" />
+                    <VBox fx:id="contenidoLista" alignment="TOP_CENTER" />
+                </HBox>
             </VBox>
             <StackPane alignment="TOP_LEFT" minWidth="450">
                 <Text fx:id="codigoLista" />

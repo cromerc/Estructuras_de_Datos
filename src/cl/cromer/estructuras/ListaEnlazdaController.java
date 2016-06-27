@@ -3,6 +3,7 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -28,6 +29,11 @@ public class ListaEnlazdaController implements Initializable {
      * Donde poner el contenido de lista.
      */
     @FXML private VBox contenidoLista;
+
+    /**
+     * Donde poner el contenido de lista circular.
+     */
+    @FXML private VBox contenidoListaCircular;
 
     /**
      * Donde va el codigo a mostrar a la pantalla.
@@ -331,19 +337,20 @@ public class ListaEnlazdaController implements Initializable {
         grafico.removerDestacar();
         colores = new Colores();
         contenidoLista.getChildren().clear();
+        contenidoListaCircular.getChildren().clear();
 
         if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
             for (int i = 0; i < listaEnlazada.size(); i++) {
                 Enlace enlace = listaEnlazada.getIndice(i);
                 if (listaEnlazada.getTipo() == ListaEnlazadaTipos.SIMPLE) {
-                    dibujarSimple(enlace);
+                    dibujarSimple(enlace, false);
                 }
                 else if (listaEnlazada.getTipo() == ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA) {
                     if (i != listaEnlazada.size() - 1) {
-                        dibujarDoble(enlace);
+                        dibujarDoble(enlace, (i == 0));
                     }
                     else {
-                        dibujarSimple(enlace);
+                        dibujarSimple(enlace, false);
                     }
                 }
                 colores.siguinteColor();
@@ -352,8 +359,11 @@ public class ListaEnlazdaController implements Initializable {
         else {
             for (int i = 0; i < listaEnlazadaCircular.size(); i++) {
                 Enlace enlace = listaEnlazadaCircular.getIndice(i);
-                dibujarSimple(enlace);
+                dibujarSimple(enlace, (i == listaEnlazadaCircular.size() - 1));
                 colores.siguinteColor();
+            }
+            if (listaEnlazadaCircular.size() > 0) {
+                contenidoListaCircular.getChildren().addAll(Grafico.crearLineaCircular(listaEnlazadaCircular.size()));
             }
         }
     }
@@ -362,19 +372,29 @@ public class ListaEnlazdaController implements Initializable {
      * Dibujarlo con una flecha.
      * @param enlace Object: El enlace que tiene la llave y valor.
      */
-    private void dibujarSimple(Enlace enlace) {
+    private void dibujarSimple(Enlace enlace, boolean sinFlecha) {
         contenidoLista.getChildren().addAll(
-            Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave())),
-            Grafico.crearLineaVertical(),
-            Grafico.crearFlechaAbajo()
+            Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave()))
         );
+        if (!sinFlecha) {
+            contenidoLista.getChildren().addAll(
+                Grafico.crearLineaVertical(),
+                Grafico.crearFlechaAbajo()
+            );
+        }
     }
 
     /**
      * Dibujarlo con dos flechas.
      * @param enlace El enlace que tiene la llave y valor.
      */
-    private void dibujarDoble(Enlace enlace) {
+    private void dibujarDoble(Enlace enlace, boolean primer) {
+        if (primer) {
+            contenidoLista.getChildren().addAll(
+                Grafico.crearFlechaArriba(),
+                Grafico.crearLineaVertical()
+            );
+        }
         contenidoLista.getChildren().addAll(
             Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave())),
             Grafico.crearFlechaArriba(),

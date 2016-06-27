@@ -16,6 +16,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
+import static cl.cromer.estructuras.ListaEnlazadaTipos.SIMPLE;
+
 /**
  * Controlar las acciones cuando una opción es elegido en el menu.
  */
@@ -145,7 +147,7 @@ public class MenuController extends VBox implements Initializable {
      */
     @FXML
     protected void menuListaEnlazadaSimple() {
-        ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(ListaEnlazadaTipos.SIMPLE);
+        ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(SIMPLE);
         loadStage(
             resourceBundle.getString("tituloListaEnlazadaSimple"),
             "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
