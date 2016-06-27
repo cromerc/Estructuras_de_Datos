@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class Main extends Application {
         //stage.setMaximized(true);
         stage.setMinHeight(640);
         stage.setMinWidth(768);
-        //stage.getIcons().add(new Image("file:icon.png"));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
         stage.show();
     }
 }
