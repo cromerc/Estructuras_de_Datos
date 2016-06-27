@@ -17,7 +17,7 @@ import java.util.logging.Level;
  * Creado en 2016-1
  * Se necesita java 8 instalado.
  * @author Chris Cromer
- * @version 1.0
+ * @version 1.0.0
  */
 public class Main extends Application {
     /**
