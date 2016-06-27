@@ -62,6 +62,7 @@ public class Main extends Application {
         //stage.setMaximized(true);
         stage.setMinHeight(640);
         stage.setMinWidth(768);
+        //stage.getIcons().add(new Image("file:icon.png"));
         stage.show();
     }
 }
