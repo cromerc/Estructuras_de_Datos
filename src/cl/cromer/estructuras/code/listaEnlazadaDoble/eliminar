@@ -1,0 +1,63 @@
+public void eliminar(int llave) {
+    if (lista != null) {
+        // Crear una lista temporario para trabajar
+        Enlace lista = this.lista;
+        // Guardar el enlace previo
+        Enlace previo = lista;
+        while (lista.getLlave() != llave) {
+            // Buscar hasta la llave es encontraddo
+            if (lista.getSiguente() != null) {
+                // Buscar en el sigenute enlace
+                previo = lista;
+                lista = lista.getSiguente();
+            }
+            else {
+                // No se encuentra la llave
+                return;
+            }
+        }
+        // Se encontró
+        if (lista == this.lista) {
+            // Si es el primer enlace, cambiarlo al siguente enlace
+            this.lista = this.lista.getSiguente();
+            if (this.lista.getPrevio() != null) {
+                this.lista.setPrevio(null);
+            }
+        }
+        else {
+            // Sino cortar este enlace de la lista
+            previo.setSiguente(lista.getSiguente());
+        }
+    }
+}
+
+final public class Enlace {
+    private int llave;
+    private Enlace siguente;
+    private Enlace previo;
+
+    public Enlace(Enlace siguiente, int llave) {
+        this.siguente = siguente;
+        this.llave = llave;
+    }
+
+    public int getLlave() {
+        return llave;
+    }
+
+    public Enlace getSiguente() {
+        return siguente;
+    }
+
+    public void setSiguente(Enlace siguente) {
+        this.siguente = siguente;
+    }
+
+    public Enlace getPrevio() {
+        return previo;
+    }
+
+    public void setPrevio(Enlace previo) {
+        this.previo = previo;
+    }
+}

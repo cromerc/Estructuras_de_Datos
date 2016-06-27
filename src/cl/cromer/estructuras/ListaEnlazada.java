@@ -61,7 +61,7 @@ final public class ListaEnlazada {
             // La lista no es vacia
             Enlace lista = this.lista;
             while (lista.getLlave() != llave) {
-                // Buscar hasta la llave es encontraddo
+                // Buscar hasta la llave es encontrado
                 if (lista.getSiguente() != null) {
                     // Buscar en la sigenute enlace
                     lista = (Enlace) lista.getSiguente();
@@ -88,13 +88,13 @@ final public class ListaEnlazada {
     public boolean insertar(int llave) {
         if (buscar(llave) == null) {
             // Crear una enlace y agregarla a la lista
-            Enlace nueva = new EnlaceNormal();
-            nueva.setLlave(llave);
-            nueva.setSiguente(lista);
+            Enlace nuevo = new EnlaceNormal();
+            nuevo.setLlave(llave);
+            nuevo.setSiguente(lista);
             if (lista != null) {
-                lista.setPrevio(nueva);
+                lista.setPrevio(nuevo);
             }
-            lista = nueva;
+            lista = nuevo;
             size++;
             return true;
         }

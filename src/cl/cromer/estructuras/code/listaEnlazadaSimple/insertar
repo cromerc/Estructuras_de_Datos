@@ -1,0 +1,30 @@
+public void insertar(int llave) {
+    if (buscar(llave) == null) {
+        // Crear un enlace nuevo
+        Enlace nuevo = new Enlace(lista, llave);
+        // Agregar el enlace a la lista
+        lista = nuevo;
+    }
+}
+
+final public class Enlace {
+    private int llave;
+    private Enlace siguente;
+
+    public Enlace(Enlace siguiente, int llave) {
+        this.siguente = siguente;
+        this.llave = llave;
+    }
+
+    public int getLlave() {
+        return llave;
+    }
+
+    public Enlace getSiguente() {
+        return siguente;
+    }
+
+    public void setSiguente(Enlace siguente) {
+        this.siguente = siguente;
+    }
+}

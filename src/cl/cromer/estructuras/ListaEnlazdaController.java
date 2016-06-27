@@ -3,7 +3,6 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -13,6 +12,7 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.logging.Level;
 
 /**
@@ -151,7 +151,7 @@ public class ListaEnlazdaController implements Initializable {
             initializeLista();
         }
 
-        /*String tipo;
+        String tipo;
         switch (listaEnlazadaTipos.getTipo()) {
             case ListaEnlazadaTipos.SIMPLE:
                 tipo = "Simple";
@@ -160,15 +160,15 @@ public class ListaEnlazdaController implements Initializable {
                 tipo = "Circular";
                 break;
             case ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA:
-                tipo = "Doblemente";
+                tipo = "Doble";
                 break;
             default:
                 tipo = "Simple";
-        }*/
+        }
 
         // Mostrar el codigo
-        //String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/listaEnlazada" + tipo + "/insertar")).useDelimiter("\\Z").next();
-        //codigoLista.setText(codigoTexto);
+        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/listaEnlazada" + tipo + "/insertar")).useDelimiter("\\Z").next();
+        codigoLista.setText(codigoTexto);
 
         if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
             try {
@@ -212,10 +212,24 @@ public class ListaEnlazdaController implements Initializable {
             initializeLista();
         }
 
+        String tipo;
+        switch (listaEnlazadaTipos.getTipo()) {
+            case ListaEnlazadaTipos.SIMPLE:
+                tipo = "Simple";
+                break;
+            case ListaEnlazadaTipos.CIRCULAR:
+                tipo = "Circular";
+                break;
+            case ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA:
+                tipo = "Doble";
+                break;
+            default:
+                tipo = "Simple";
+        }
+
         // Mostrar el codigo
-        //String tipo = (array.isOrdered())?"Ordenado":"Simple";
-        //String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/eliminar")).useDelimiter("\\Z").next();
-        //codigoLista.setText(codigoTexto);
+        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/listaEnlazada" + tipo + "/eliminar")).useDelimiter("\\Z").next();
+        codigoLista.setText(codigoTexto);
 
         try {
             if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
@@ -255,10 +269,24 @@ public class ListaEnlazdaController implements Initializable {
             initializeLista();
         }
 
+        String tipo;
+        switch (listaEnlazadaTipos.getTipo()) {
+            case ListaEnlazadaTipos.SIMPLE:
+                tipo = "Simple";
+                break;
+            case ListaEnlazadaTipos.CIRCULAR:
+                tipo = "Circular";
+                break;
+            case ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA:
+                tipo = "Doble";
+                break;
+            default:
+                tipo = "Simple";
+        }
+
         // Mostrar el codigo
-        //String tipo = (array.isOrdered())?"Ordenado":"Simple";
-        //String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/buscar")).useDelimiter("\\Z").next();
-        //codigoLista.setText(codigoTexto);
+        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/listaEnlazada" + tipo + "/buscar")).useDelimiter("\\Z").next();
+        codigoLista.setText(codigoTexto);
 
         try {
             if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {

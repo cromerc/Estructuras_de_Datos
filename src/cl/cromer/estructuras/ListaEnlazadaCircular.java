@@ -132,12 +132,14 @@ final public class ListaEnlazadaCircular {
                     previo = lista;
                     lista = (Enlace) lista.getSiguente();
                 }
-                else {
-                    // No se encuentra
-                    return false;
-                }
                 i++;
             }
+
+            if (lista.getLlave() != llave) {
+                // No se encontró
+                return false;
+            }
+
             // Se encontró
             if (lista == this.primer) {
                 // Si es la primera enlace, cambiarla al siguente enlace
@@ -176,4 +178,3 @@ final public class ListaEnlazadaCircular {
         }
     }
 }
-

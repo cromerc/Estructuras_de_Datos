@@ -34,6 +34,7 @@ public class TextFieldLimited extends TextField {
      * Lista de estilos aplicable.
      * @return List: La lista de estilos.
      */
+    @SuppressWarnings("unused")
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
         return TextFieldLimited.StyleableProperties.STYLEABLES;
     }
@@ -93,6 +94,7 @@ public class TextFieldLimited extends TextField {
      * Asignar un valor maximo de caracters permitidio en el TextFieldLimited.
      * @param value int: La cantidad maxima.
      */
+    @SuppressWarnings("unused")
     public final void setMaxLength(int value) {
         if (maxLength != null || value > 0) {
             maxLengthProperty().set(value);
@@ -138,6 +140,7 @@ public class TextFieldLimited extends TextField {
                 }
 
                 @Override
+                @SuppressWarnings("unchecked")
                 public StyleableProperty<Number> getStyleableProperty(TextFieldLimited node) {
                     return (StyleableProperty<Number>) node.maxLengthProperty();
                 }
