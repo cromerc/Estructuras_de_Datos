@@ -300,7 +300,7 @@ public class ListaEnlazdaController implements Initializable {
                 if (enlace != null) {
                     generarGrafico();
                     grafico = new Grafico(scene);
-                    grafico.destacer(enlace.getLlave(), Grafico.RECTANGULO);
+                    grafico.destacar(enlace.getLlave(), Grafico.RECTANGULO);
                 }
                 else {
                     errorNoEsta();

@@ -219,7 +219,7 @@ public class ArrayController implements Initializable {
                 if (encontrado != -1) {
                     generarGrafico();
                     grafico = new Grafico(scene);
-                    grafico.destacer(encontrado, Grafico.RECTANGULO);
+                    grafico.destacar(encontrado, Grafico.RECTANGULO);
                 }
                 else {
                     errorNoEsta();

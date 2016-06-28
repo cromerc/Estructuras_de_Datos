@@ -232,7 +232,7 @@ public class Grafico {
      * Crear un animacion de transicion usando colores que cambian.
      * @param rectangle Rectangle: El objeto que desea animar.
      * @param text Text: El texto que desea animar.
-     * @param colorBackground Color: Color del fondo de destacer.
+     * @param colorBackground Color: Color del fondo de destacar.
      * @param colorText Color: Color del texto.
      * @return PauseTransition: La transition creado con los elementos y colores.
      */
@@ -249,7 +249,7 @@ public class Grafico {
      * Crear un animacion de transicion usando colores que cambian.
      * @param circle Circle: El objeto que desea animar.
      * @param text Text: El texto que desea animar.
-     * @param colorBackground Color: Color del fondo de destacer.
+     * @param colorBackground Color: Color del fondo de destacar.
      * @param colorText Color: Color del texto.
      * @return PauseTransition: La transition creado con los elementos y colores.
      */
@@ -265,9 +265,9 @@ public class Grafico {
     /**
      * Destacar un elemento
      * @param valor int: El indice a destacar.
-     * @param tipo int: El tipo de objeto a destacer, {@value #RECTANGULO} o {@value #CIRCULO}
+     * @param tipo int: El tipo de objeto a destacar, {@value #RECTANGULO} o {@value #CIRCULO}
      */
-    public void destacer(int valor, int tipo) {
+    public void destacar(int valor, int tipo) {
         if (tipo != RECTANGULO && tipo != CIRCULO) {
             return;
         }

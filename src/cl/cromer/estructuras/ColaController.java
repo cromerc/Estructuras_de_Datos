@@ -193,7 +193,7 @@ public class ColaController implements Initializable {
         int encontrado = cola.peek();
         if (encontrado != Integer.MIN_VALUE) {
             generarGrafico();
-            grafico.destacer(0, Grafico.RECTANGULO);
+            grafico.destacar(0, Grafico.RECTANGULO);
         }
         else {
             errorVacia();
