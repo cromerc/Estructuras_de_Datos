@@ -152,6 +152,7 @@ public class SeleccionController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("seleccionYaOrdenado"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 

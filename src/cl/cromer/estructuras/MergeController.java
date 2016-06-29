@@ -152,6 +152,7 @@ public class MergeController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("mergeYaOrdenado"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 

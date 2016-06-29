@@ -138,6 +138,7 @@ public class PilaController implements Initializable {
                     dialog.setTitle(resourceBundle.getString("error"));
                     dialog.setContentText(resourceBundle.getString("pilaLlena"));
                     dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+                    Main.setIcon(dialog, getClass());
                     dialog.show();
                 }
             }
@@ -209,6 +210,7 @@ public class PilaController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("pilaNoValor"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 
@@ -221,6 +223,7 @@ public class PilaController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("pilaVacia"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 

@@ -152,6 +152,7 @@ public class ShellController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("shellYaOrdenado"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 

@@ -148,6 +148,7 @@ public class ArrayController implements Initializable {
                         dialog.setContentText(resourceBundle.getString("arrayValorExiste"));
                     }
                     dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+                    Main.setIcon(dialog, getClass());
                     dialog.show();
                 }
             }
@@ -245,6 +246,7 @@ public class ArrayController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("arrayNoValor"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 
@@ -257,6 +259,7 @@ public class ArrayController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("arrayNoEsta"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 

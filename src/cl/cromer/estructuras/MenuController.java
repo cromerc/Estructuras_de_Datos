@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -221,6 +222,7 @@ public class MenuController extends VBox implements Initializable {
         dialog.getDialogPane().getButtonTypes().add(botonCancelar);
         dialog.getDialogPane().getButtonTypes().add(botonCambiar);
         dialog.getDialogPane().setPrefSize(400, 120);
+        Main.setIcon(dialog, getClass());
 
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == botonCambiar) {
@@ -249,6 +251,7 @@ public class MenuController extends VBox implements Initializable {
         dialog.getDialogPane().getButtonTypes().add(botonCancelar);
         dialog.getDialogPane().getButtonTypes().add(botonCambiar);
         dialog.getDialogPane().setPrefSize(400, 120);
+        Main.setIcon(dialog, getClass());
 
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == botonCambiar) {
@@ -274,6 +277,7 @@ public class MenuController extends VBox implements Initializable {
         dialog.setTitle(resourceBundle.getString("acerca"));
         dialog.setContentText(resourceBundle.getString("credito"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 

@@ -138,6 +138,7 @@ public class ColaController implements Initializable {
                     dialog.setTitle(resourceBundle.getString("error"));
                     dialog.setContentText(resourceBundle.getString("colaLlena"));
                     dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+                    Main.setIcon(dialog, getClass());
                     dialog.show();
                 }
             }
@@ -209,6 +210,7 @@ public class ColaController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("colaNoValor"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 
@@ -221,6 +223,7 @@ public class ColaController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("colaVacia"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 

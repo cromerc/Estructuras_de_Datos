@@ -189,6 +189,7 @@ public class ListaEnlazdaController implements Initializable {
                     dialog.setTitle(resourceBundle.getString("error"));
                     dialog.setContentText(resourceBundle.getString("listaLlaveExiste"));
                     dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+                    Main.setIcon(dialog, getClass());
                     dialog.show();
                 }
             }
@@ -326,6 +327,7 @@ public class ListaEnlazdaController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("listaNoValor"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 
@@ -338,6 +340,7 @@ public class ListaEnlazdaController implements Initializable {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(resourceBundle.getString("listaNoEsta"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, getClass());
         dialog.show();
     }
 
