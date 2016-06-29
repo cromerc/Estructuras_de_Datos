@@ -17,23 +17,27 @@ import java.util.logging.Level;
 
 /**
  * Esta clase es para controlar todos la interfaz de Pila.
+ *
  * @author Chris Cromer
  */
 public class PilaController implements Initializable {
     /**
      * La caja para ingresar textos.
      */
-    @FXML private TextFieldLimited valorPila;
+    @FXML
+    private TextFieldLimited valorPila;
 
     /**
      * Donde poner el contenido de array.
      */
-    @FXML private VBox contenidoPila;
+    @FXML
+    private VBox contenidoPila;
 
     /**
      * Donde va el codigo a mostrar a la pantalla.
      */
-    @FXML private Text codigoPila;
+    @FXML
+    private Text codigoPila;
 
     /**
      * La escena donde está cosas graficas.
@@ -57,7 +61,8 @@ public class PilaController implements Initializable {
 
     /**
      * Inicializar todos los datos y dibujar las graficas.
-     * @param location URL: El URL de fxml en uso.
+     *
+     * @param location       URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -168,8 +173,12 @@ public class PilaController implements Initializable {
         codigoPila.setText(codigoTexto);
 
         if (pila.size() > 0) {
-            pila.pop();
-            generarGrafico();
+            if (!pila.pop()) {
+                errorVacia();
+            }
+            else {
+                generarGrafico();
+            }
         }
         else {
             errorVacia();

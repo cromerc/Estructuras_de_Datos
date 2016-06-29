@@ -17,28 +17,33 @@ import java.util.logging.Level;
 
 /**
  * Esta clase es para controlar todos la interfaz de ListaEnlazada.
+ *
  * @author Chris Cromer
  */
 public class ListaEnlazdaController implements Initializable {
     /**
      * La caja para ingresar el valor.
      */
-    @FXML private TextFieldLimited valorLista;
+    @FXML
+    private TextFieldLimited valorLista;
 
     /**
      * Donde poner el contenido de lista.
      */
-    @FXML private VBox contenidoLista;
+    @FXML
+    private VBox contenidoLista;
 
     /**
      * Donde poner el contenido de lista circular.
      */
-    @FXML private VBox contenidoListaCircular;
+    @FXML
+    private VBox contenidoListaCircular;
 
     /**
      * Donde va el codigo a mostrar a la pantalla.
      */
-    @FXML private Text codigoLista;
+    @FXML
+    private Text codigoLista;
 
     /**
      * La escena donde está cosas graficas.
@@ -77,7 +82,8 @@ public class ListaEnlazdaController implements Initializable {
 
     /**
      * Inicializar todos los datos y dibujar las graficas.
-     * @param location URL: El URL de fxml en uso.
+     *
+     * @param location       URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -401,36 +407,38 @@ public class ListaEnlazdaController implements Initializable {
 
     /**
      * Dibujarlo con una flecha.
+     *
      * @param enlace Object: El enlace que tiene la llave y valor.
      */
     private void dibujarSimple(Enlace enlace, boolean sinFlecha) {
         contenidoLista.getChildren().addAll(
-            Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave()))
+                Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave()))
         );
         if (!sinFlecha) {
             contenidoLista.getChildren().addAll(
-                Grafico.crearLineaVertical(),
-                Grafico.crearFlechaAbajo()
+                    Grafico.crearLineaVertical(),
+                    Grafico.crearFlechaAbajo()
             );
         }
     }
 
     /**
      * Dibujarlo con dos flechas.
+     *
      * @param enlace El enlace que tiene la llave y valor.
      */
     private void dibujarDoble(Enlace enlace, boolean primer) {
         if (primer) {
             contenidoLista.getChildren().addAll(
-                Grafico.crearFlechaArriba(),
-                Grafico.crearLineaVertical()
+                    Grafico.crearFlechaArriba(),
+                    Grafico.crearLineaVertical()
             );
         }
         contenidoLista.getChildren().addAll(
-            Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave())),
-            Grafico.crearFlechaArriba(),
-            Grafico.crearLineaVertical(),
-            Grafico.crearFlechaAbajo()
+                Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave())),
+                Grafico.crearFlechaArriba(),
+                Grafico.crearLineaVertical(),
+                Grafico.crearFlechaAbajo()
         );
     }
 }

@@ -18,6 +18,7 @@ import java.util.logging.Level;
  * Creado como proyecto semestral para la asignatura de estructuras de datos por la profesora Karina Rojas y el profesor Jorge Elgueta.
  * Creado en 2016-1
  * Se necesita java 8 instalado.
+ *
  * @author Chris Cromer
  * @version 1.0.0
  */
@@ -29,6 +30,7 @@ public class Main extends Application {
 
     /**
      * Inicilizar el logeo y lanzar la interfaz grafica.
+     *
      * @param args String[]: Argumentos desde la consola.
      */
     public static void main(String[] args) {
@@ -39,8 +41,14 @@ public class Main extends Application {
         launch(args);
     }
 
+    static public void setIcon(Dialog dialog, Class classe) {
+        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(classe.getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
+    }
+
     /**
      * Crear el stage y la scene para la aplicación grafica.
+     *
      * @param stage El primer stage donde va todas las cosas visuales.
      */
     @Override
@@ -66,10 +74,5 @@ public class Main extends Application {
         stage.setMinWidth(768);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
         stage.show();
-    }
-
-    static public void setIcon(Dialog dialog, Class classe) {
-        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(classe.getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
     }
 }

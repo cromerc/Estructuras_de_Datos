@@ -16,18 +16,21 @@ import java.util.Scanner;
 
 /**
  * Esta clase es para controlar todos la interfaz de Merge.
+ *
  * @author Chris Cromer
  */
 public class MergeController implements Initializable {
     /**
      * Donde poner el contenido de array.
      */
-    @FXML private HBox contenidoMerge;
+    @FXML
+    private HBox contenidoMerge;
 
     /**
      * Donde va el codigo a mostrar a la pantalla.
      */
-    @FXML private Text codigoMerge;
+    @FXML
+    private Text codigoMerge;
 
     /**
      * La escena donde está cosas graficas.
@@ -46,7 +49,8 @@ public class MergeController implements Initializable {
 
     /**
      * Inicializar todos los datos y dibujar las graficas.
-     * @param location URL: El URL de fxml en uso.
+     *
+     * @param location       URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override

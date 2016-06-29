@@ -17,23 +17,27 @@ import java.util.logging.Level;
 
 /**
  * Esta clase es para controlar todos la interfaz de Cola.
+ *
  * @author Chris Cromer
  */
 public class ColaController implements Initializable {
     /**
      * La caja para ingresar textos.
      */
-    @FXML private TextFieldLimited valorCola;
+    @FXML
+    private TextFieldLimited valorCola;
 
     /**
      * Donde poner el contenido de array.
      */
-    @FXML private VBox contenidoCola;
+    @FXML
+    private VBox contenidoCola;
 
     /**
      * Donde va el codigo a mostrar a la pantalla.
      */
-    @FXML private Text codigoCola;
+    @FXML
+    private Text codigoCola;
 
     /**
      * La escena donde está cosas graficas.
@@ -57,7 +61,8 @@ public class ColaController implements Initializable {
 
     /**
      * Inicializar todos los datos y dibujar las graficas.
-     * @param location URL: El URL de fxml en uso.
+     *
+     * @param location       URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -168,8 +173,12 @@ public class ColaController implements Initializable {
         codigoCola.setText(codigoTexto);
 
         if (cola.size() > 0) {
-            cola.pop();
-            generarGrafico();
+            if (!cola.pop()) {
+                errorVacia();
+            }
+            else {
+                generarGrafico();
+            }
         }
         else {
             errorVacia();

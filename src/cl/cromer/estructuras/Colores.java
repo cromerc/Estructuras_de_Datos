@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 
 /**
  * Rotación de colores.
+ *
  * @author Chris Cromer
  */
 public class Colores {
@@ -64,7 +65,7 @@ public class Colores {
                 texto = Color.BLACK;
                 fondo = Color.GREEN;
                 break;
-            case 6 :
+            case 6:
                 color = 7;
                 texto = Color.BLACK;
                 fondo = Color.ORANGE;
@@ -78,6 +79,7 @@ public class Colores {
 
     /**
      * Devolver el color del texto actual.
+     *
      * @return Color: Color del texto.
      */
     public Color getTexto() {
@@ -86,6 +88,7 @@ public class Colores {
 
     /**
      * Devolver el color del fondo actual.
+     *
      * @return Color: Color del fondo.
      */
     public Color getFondo() {

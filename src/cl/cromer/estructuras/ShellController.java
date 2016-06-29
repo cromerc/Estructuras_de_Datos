@@ -16,18 +16,21 @@ import java.util.Scanner;
 
 /**
  * Esta clase es para controlar todos la interfaz de Shell.
+ *
  * @author Chris Cromer
  */
 public class ShellController implements Initializable {
     /**
      * Donde poner el contenido de array.
      */
-    @FXML private HBox contenidoShell;
+    @FXML
+    private HBox contenidoShell;
 
     /**
      * Donde va el codigo a mostrar a la pantalla.
      */
-    @FXML private Text codigoShell;
+    @FXML
+    private Text codigoShell;
 
     /**
      * La escena donde está cosas graficas.
@@ -46,7 +49,8 @@ public class ShellController implements Initializable {
 
     /**
      * Inicializar todos los datos y dibujar las graficas.
-     * @param location URL: El URL de fxml en uso.
+     *
+     * @param location       URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override

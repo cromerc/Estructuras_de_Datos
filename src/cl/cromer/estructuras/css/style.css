@@ -12,10 +12,6 @@
     -fx-text-fill: #2d3e4c;
 }
 
-.text-field-limited {
-    -fx-max-length: 3;
-}
-
 .scroll-pane {
-    -fx-background-color:transparent;
+    -fx-background-color: transparent;
 }

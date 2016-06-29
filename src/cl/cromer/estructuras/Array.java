@@ -2,13 +2,14 @@ package cl.cromer.estructuras;
 
 /**
  * Crear una estructura de dato de tipo array.
+ *
  * @author Chris Cromer
  */
 final public class Array {
     /**
      * El array.
      */
-    private String array[];
+    final private String array[];
 
     /**
      * La cantidad de elementos en el array.
@@ -22,6 +23,7 @@ final public class Array {
 
     /**
      * Crear el array con el tamaño pasador por argumento.
+     *
      * @param tamano int: El tamaño del array a crear.
      */
     public Array(int tamano) {
@@ -32,6 +34,7 @@ final public class Array {
 
     /**
      * Devolver la cantidad de elementos en el array.
+     *
      * @return int: Devolver la cantidad de elementos en el array.
      */
     public int size() {
@@ -40,6 +43,7 @@ final public class Array {
 
     /**
      * Dovolver si el tipo es ordenado o no.
+     *
      * @return boolean: Si el tipo de array es ordenado.
      */
     public boolean isOrdered() {
@@ -48,6 +52,7 @@ final public class Array {
 
     /**
      * Cambiar el tipo de array entre ordenado o simple.
+     *
      * @param ordered boolean: Si es verdad, es de tipo ordenado, sino el tipo es simple.
      */
     public void setOrdered(boolean ordered) {
@@ -56,6 +61,7 @@ final public class Array {
 
     /**
      * Insertar un valor al array.
+     *
      * @param valor int: El valor a insertar.
      * @return boolean: Verdad si fue exitoso, sino falso.
      */
@@ -76,6 +82,7 @@ final public class Array {
 
     /**
      * Eliminar un valor del array si existe.
+     *
      * @param valor int: El valor a eliminar.
      * @return boolean: Verdad si fue encontrado y borrado, sino falso.
      */
@@ -85,7 +92,7 @@ final public class Array {
             if (array[i] != null && array[i].equals(String.valueOf(valor))) {
                 // Eliminar el valor
                 array[i] = null;
-                borrado=true;
+                borrado = true;
                 size--;
                 if (ordered) {
                     for (int j = i; j < array.length; j++) {
@@ -94,7 +101,7 @@ final public class Array {
                             array[j] = array[j + 1];
                         }
                     }
-                    array[array.length-1] = null;
+                    array[array.length - 1] = null;
                 }
                 else {
                     break;
@@ -106,6 +113,7 @@ final public class Array {
 
     /**
      * Buscar si existe un valor dentro el array.
+     *
      * @param valor int: Valor a buscar.
      * @return int: Devuelve el indice donde fue encontrado, o -1 si no fue encontrado.
      */
@@ -122,6 +130,7 @@ final public class Array {
 
     /**
      * Devolver el valor que está guardado en cada indice del array. Se usa para construir la grafica.
+     *
      * @param indice int: El indice que desea ver.
      * @return String: El valor que está en dicho indice.
      */
@@ -136,6 +145,7 @@ final public class Array {
 
     /**
      * Ordenar el array usando burbuja.
+     *
      * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
      * @return boolean: Verdad si algo cambió, sino falso.
      */
@@ -144,10 +154,10 @@ final public class Array {
 
         for (int i = size() - 1; i > 1; i--) {
             for (int j = 0; j < i; j++) {
-                if (Integer.valueOf(array[j]) > Integer.valueOf(array[j+1])) {
+                if (Integer.valueOf(array[j]) > Integer.valueOf(array[j + 1])) {
                     String temp = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = temp;
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                     cambio = true;
                     if (paso) {
                         return true;
@@ -161,6 +171,7 @@ final public class Array {
 
     /**
      * Ordenar el array usando inserción.
+     *
      * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
      * @return boolean: Verdad si algo cambió, sino falso.
      */
@@ -170,8 +181,8 @@ final public class Array {
         for (int i = 1; i < size(); i++) {
             String temp = array[i];
             int j = i;
-            while (j > 0 && Integer.valueOf(array[j-1]) >= Integer.valueOf(temp)) {
-                array[j] = array[j-1];
+            while (j > 0 && Integer.valueOf(array[j - 1]) >= Integer.valueOf(temp)) {
+                array[j] = array[j - 1];
                 --j;
                 cambio = true;
             }
@@ -186,6 +197,7 @@ final public class Array {
 
     /**
      * Ordenar el array usando selección.
+     *
      * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
      * @return boolean: Verdad si algo cambió, sino falso.
      */
@@ -213,6 +225,7 @@ final public class Array {
 
     /**
      * Ordenar el array usando shell.
+     *
      * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
      * @return boolean: Verdad si algo cambió, sino falso.
      */
@@ -228,11 +241,11 @@ final public class Array {
         }
 
         while (h > 0) {
-            for (i=h; i < size(); i++) {
+            for (i = h; i < size(); i++) {
                 temp = array[i];
                 j = i;
-                while (j > h-1 && Integer.valueOf(array[j-h]) >=  Integer.valueOf(temp)) {
-                    array[j] = array[j-h];
+                while (j > h - 1 && Integer.valueOf(array[j - h]) >= Integer.valueOf(temp)) {
+                    array[j] = array[j - h];
                     j -= h;
                     cambio = true;
                 }
@@ -241,7 +254,7 @@ final public class Array {
                     return true;
                 }
             }
-            h = (h-1) / 3;
+            h = (h - 1) / 3;
         }
 
         return cambio;
@@ -249,6 +262,7 @@ final public class Array {
 
     /**
      * Ordenar el array usando quick.
+     *
      * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
      * @return boolean: Verdad si algo cambió, sino falso.
      */
@@ -267,9 +281,10 @@ final public class Array {
 
     /**
      * Metodo recursivo para ordenar using quick sort.
+     *
      * @param izquerda int: La posición del quick desded la izquerda.
-     * @param derecha int: La posición del quick desded la derecha..
-     * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
+     * @param derecha  int: La posición del quick desded la derecha..
+     * @param paso     boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
      * @return boolean: Verdad si algo cambió, sino falso.
      */
     private boolean recurenciaQuick(int izquerda, int derecha, boolean paso) {
@@ -294,21 +309,24 @@ final public class Array {
 
     /**
      * Particionar el array desded la izquerda y derecho usando un pivot.
+     *
      * @param izquerda int: La posición del quick desde la izquerda.
-     * @param derecha int: La posición del quick desde la derecha.
-     * @param pivot String: El valor a comparar con los otros.
+     * @param derecha  int: La posición del quick desde la derecha.
+     * @param pivot    String: El valor a comparar con los otros.
      * @return ParticionarResult: Los resultados de particionar.
      */
     private ParticionarResult particionar(int izquerda, int derecha, String pivot) {
         boolean cambio = false;
 
-        int punteroIzquerda = izquerda-1;
+        int punteroIzquerda = izquerda - 1;
         int punteroDerecha = derecha;
         while (true) {
             //noinspection StatementWithEmptyBody
-            while (Integer.valueOf(array[++punteroIzquerda]) < Integer.valueOf(pivot));
+            while (Integer.valueOf(array[++punteroIzquerda]) < Integer.valueOf(pivot)) {
+            }
             //noinspection StatementWithEmptyBody
-            while (punteroDerecha > 0 && Integer.valueOf(array[--punteroDerecha]) > Integer.valueOf(pivot));
+            while (punteroDerecha > 0 && Integer.valueOf(array[--punteroDerecha]) > Integer.valueOf(pivot)) {
+            }
 
             if (punteroIzquerda >= punteroDerecha) {
                 break;
@@ -324,52 +342,12 @@ final public class Array {
         array[punteroIzquerda] = array[derecha];
         array[derecha] = temp;
 
-        return  new ParticionarResult(cambio, punteroIzquerda);
-    }
-
-    /**
-     * Esta clase contiene los resultados de Partricionar.
-     */
-    final public class ParticionarResult {
-        /**
-         * Si habia algun cambio.
-         */
-        private boolean cambio;
-
-        /**
-         * La parte izquerda que cambió.
-         */
-        private int punteroIzquerda;
-
-        /**
-         * Inicializar.
-         * @param cambio boolean: Si habia un cambio o no.
-         * @param punteroIzquerda: El valor desde la izquerda donde fue un cambio.
-         */
-        public ParticionarResult(boolean cambio, int punteroIzquerda) {
-            this.cambio = cambio;
-            this.punteroIzquerda = punteroIzquerda;
-        }
-
-        /**
-         * Devolver el cambio.
-         * @return boolean: Devolver el valor de cambio.
-         */
-        public boolean getCambio() {
-            return cambio;
-        }
-
-        /**
-         * Devolver el puntero izquerda.
-         * @return int: Devolver el valor de puntero.
-         */
-        public int getPunteroIzquerda() {
-            return punteroIzquerda;
-        }
+        return new ParticionarResult(cambio, punteroIzquerda);
     }
 
     /**
      * Ordenar el array usando merge.
+     *
      * @param paso boolean: Si es verdad, solo hago en paso del ordenamiento, sino ordenear todos los elementos.
      * @return boolean: Verdad si algo cambió, sino falso.
      */
@@ -389,10 +367,11 @@ final public class Array {
 
     /**
      * El metodo recursivo para ordenar con merge.
-     * @param temp String[]: El array temporario para trabajar.
+     *
+     * @param temp     String[]: El array temporario para trabajar.
      * @param izquerda int: El lado izquerda.
-     * @param derecha int: El lado derecha.
-     * @param paso boolean: Verdad si es paso por paso.
+     * @param derecha  int: El lado derecha.
+     * @param paso     boolean: Verdad si es paso por paso.
      * @return boolean: Devolver si algo cambió.
      */
     private boolean recurenciaMerge(String[] temp, int izquerda, int derecha, boolean paso) {
@@ -420,11 +399,12 @@ final public class Array {
 
     /**
      * Este metodo hace los cambios al array.
-     * @param temp String[]: El array temporario para trabajar.
+     *
+     * @param temp         String[]: El array temporario para trabajar.
      * @param prevIzquerda int: El valor previo de la izquerda.
-     * @param prevMedio int: El valor previo al medio.
-     * @param prevDerecha int: El valor previo de la derecha.
-     * @param paso boolean: Si es paso por paso.
+     * @param prevMedio    int: El valor previo al medio.
+     * @param prevDerecha  int: El valor previo de la derecha.
+     * @param paso         boolean: Si es paso por paso.
      * @return boolean: Devolver si algo cambió.
      */
     private boolean merge(String[] temp, int prevIzquerda, int prevMedio, int prevDerecha, boolean paso) {
@@ -459,5 +439,49 @@ final public class Array {
             }
         }
         return cambio;
+    }
+
+    /**
+     * Esta clase contiene los resultados de Partricionar.
+     */
+    final public class ParticionarResult {
+        /**
+         * Si habia algun cambio.
+         */
+        final private boolean cambio;
+
+        /**
+         * La parte izquerda que cambió.
+         */
+        final private int punteroIzquerda;
+
+        /**
+         * Inicializar.
+         *
+         * @param cambio           boolean: Si habia un cambio o no.
+         * @param punteroIzquerda: El valor desde la izquerda donde fue un cambio.
+         */
+        public ParticionarResult(boolean cambio, int punteroIzquerda) {
+            this.cambio = cambio;
+            this.punteroIzquerda = punteroIzquerda;
+        }
+
+        /**
+         * Devolver el cambio.
+         *
+         * @return boolean: Devolver el valor de cambio.
+         */
+        public boolean getCambio() {
+            return cambio;
+        }
+
+        /**
+         * Devolver el puntero izquerda.
+         *
+         * @return int: Devolver el valor de puntero.
+         */
+        public int getPunteroIzquerda() {
+            return punteroIzquerda;
+        }
     }
 }

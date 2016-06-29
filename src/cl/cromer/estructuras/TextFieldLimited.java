@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Crear un TextField especial que tiene un maximo de digitos que puede ingresar. Se extiene a TextField.
+ *
  * @author Chris Cromer
  */
 public class TextFieldLimited extends TextField {
@@ -32,6 +33,7 @@ public class TextFieldLimited extends TextField {
 
     /**
      * Lista de estilos aplicable.
+     *
      * @return List: La lista de estilos.
      */
     @SuppressWarnings("unused")
@@ -41,9 +43,10 @@ public class TextFieldLimited extends TextField {
 
     /**
      * Reemplazar el texto basado en cambios de teclado, no deja ingresar mas text si length es mayor al maximo.
+     *
      * @param start int: Donde empece el cambio.
-     * @param end int: Donde termina.
-     * @param text String: Texto a cambiar.
+     * @param end   int: Donde termina.
+     * @param text  String: Texto a cambiar.
      */
     @Override
     public void replaceText(int start, int end, String text) {
@@ -62,6 +65,7 @@ public class TextFieldLimited extends TextField {
 
     /**
      * Reemplazar un selección de texto.
+     *
      * @param text String: El texto a reemplazar.
      */
     @Override
@@ -84,6 +88,7 @@ public class TextFieldLimited extends TextField {
 
     /**
      * Devolver la cantidad maxima si está asignado.
+     *
      * @return int: Cantidad de caracters.
      */
     public final int getMaxLength() {
@@ -92,6 +97,7 @@ public class TextFieldLimited extends TextField {
 
     /**
      * Asignar un valor maximo de caracters permitidio en el TextFieldLimited.
+     *
      * @param value int: La cantidad maxima.
      */
     @SuppressWarnings("unused")
@@ -103,6 +109,7 @@ public class TextFieldLimited extends TextField {
 
     /**
      * JavaFX FXML field property por tamaño maximo
+     *
      * @return IntegerProperty: Property.
      */
     public final IntegerProperty maxLengthProperty() {
@@ -132,20 +139,20 @@ public class TextFieldLimited extends TextField {
      * CSS por FXML con un maximo tamaño
      */
     private static class StyleableProperties {
-        private static final CssMetaData<TextFieldLimited,Number> MAX_LENGTH =
-            new CssMetaData<TextFieldLimited,Number>("-fx-max-length", SizeConverter.getInstance(), 0) {
-                @Override
-                public boolean isSettable(TextFieldLimited node) {
-                    return node.maxLength == null || !node.maxLength.isBound();
-                }
+        private static final CssMetaData<TextFieldLimited, Number> MAX_LENGTH =
+                new CssMetaData<TextFieldLimited, Number>("-fx-max-length", SizeConverter.getInstance(), 0) {
+                    @Override
+                    public boolean isSettable(TextFieldLimited node) {
+                        return node.maxLength == null || !node.maxLength.isBound();
+                    }
 
-                @Override
-                @SuppressWarnings("unchecked")
-                public StyleableProperty<Number> getStyleableProperty(TextFieldLimited node) {
-                    return (StyleableProperty<Number>) node.maxLengthProperty();
-                }
+                    @Override
+                    @SuppressWarnings("unchecked")
+                    public StyleableProperty<Number> getStyleableProperty(TextFieldLimited node) {
+                        return (StyleableProperty<Number>) node.maxLengthProperty();
+                    }
 
-            };
+                };
 
         private static final List<CssMetaData<? extends Styleable, ?>> STYLEABLES;
 

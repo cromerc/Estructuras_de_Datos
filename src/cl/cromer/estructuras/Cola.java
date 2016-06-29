@@ -2,6 +2,7 @@ package cl.cromer.estructuras;
 
 /**
  * Crear una estructura de dato de tipo cola.
+ *
  * @author Chris Cromer
  */
 final public class Cola {
@@ -25,6 +26,7 @@ final public class Cola {
 
     /**
      * Devolver la cantidad de elementos que están en la cola.
+     *
      * @return int: La cantidad de elementos.
      */
     public int size() {
@@ -33,6 +35,7 @@ final public class Cola {
 
     /**
      * Push un valor en la cola encima.
+     *
      * @param valor int: El valor a push.
      */
     public void push(int valor) {
@@ -56,11 +59,12 @@ final public class Cola {
 
     /**
      * Pop un valor del principio de la cola.
+     *
      * @return boolean: Verdad si fue exitoso.
      */
     public boolean pop() {
         if (this.cola != null) {
-            String cola[] = new String[this.cola.length -1];
+            String cola[] = new String[this.cola.length - 1];
             // Nueva array sin el valor del primer
             System.arraycopy(this.cola, 1, cola, 0, cola.length);
             this.cola = cola;
@@ -74,6 +78,7 @@ final public class Cola {
 
     /**
      * Peek al valor que está al principio de la cola.
+     *
      * @return int: El valor que está al principio de la cola.
      */
     public int peek() {
@@ -87,6 +92,7 @@ final public class Cola {
 
     /**
      * Devolver el valor que está en un indice de la cola.
+     *
      * @param indice int: El indice que desea devolver.
      * @return String: El valor que está guardado en el indice.
      */

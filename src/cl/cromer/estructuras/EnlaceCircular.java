@@ -2,6 +2,7 @@ package cl.cromer.estructuras;
 
 /**
  * Esta clase es de tipo de enlace circular.
+ *
  * @author Chris Cromer
  */
 final public class EnlaceCircular implements Enlace {
@@ -24,6 +25,7 @@ final public class EnlaceCircular implements Enlace {
 
     /**
      * Devolver la llave.
+     *
      * @return int: La llave.
      */
     public int getLlave() {
@@ -32,6 +34,7 @@ final public class EnlaceCircular implements Enlace {
 
     /**
      * Cambiar el valor de la llave.
+     *
      * @param llave int: El valor de la llave.
      */
     public void setLlave(int llave) {
@@ -40,6 +43,7 @@ final public class EnlaceCircular implements Enlace {
 
     /**
      * Devolver el siguente enlace.
+     *
      * @return EnlaceCircular: El enlace a devolver.
      */
     public EnlaceCircular getSiguente() {
@@ -48,6 +52,7 @@ final public class EnlaceCircular implements Enlace {
 
     /**
      * Cambiar el siguiente enlace.
+     *
      * @param siguente Object: El siguente enlace nuevo de tipo {@link EnlaceCircular}.
      */
     public void setSiguente(Object siguente) {
@@ -56,6 +61,7 @@ final public class EnlaceCircular implements Enlace {
 
     /**
      * Devolver el enlace previo.
+     *
      * @return EnlaceCircular: El enlace previo.
      */
     public EnlaceCircular getPrevio() {
@@ -64,6 +70,7 @@ final public class EnlaceCircular implements Enlace {
 
     /**
      * Dummy metodo para usar interface {@link Enlace}
+     *
      * @param previo Object: El enlace previo nuevo de tipo {@link EnlaceCircular}.
      */
     public void setPrevio(Object previo) {

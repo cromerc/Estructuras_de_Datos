@@ -8,6 +8,7 @@ import java.util.logging.SimpleFormatter;
 
 /**
  * Esta clase es para configurar el logeo de la aplicación.
+ *
  * @author Chris Cromer
  */
 public class Logs {
@@ -41,7 +42,8 @@ public class Logs {
 
     /**
      * Agregar un log al logger.
-     * @param level Level: El tipo de error o mensaje que ha sido generado.
+     *
+     * @param level   Level: El tipo de error o mensaje que ha sido generado.
      * @param mensaje String: El mensaje de lo que pasó.
      */
     static public void log(Level level, String mensaje) {

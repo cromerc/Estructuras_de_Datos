@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -26,7 +28,8 @@ public class MenuController extends VBox implements Initializable {
     /**
      * La barra del menu.
      */
-    @FXML private MenuBar menuBar;
+    @FXML
+    private MenuBar menuBar;
 
     /**
      * Los idiomas.
@@ -35,7 +38,8 @@ public class MenuController extends VBox implements Initializable {
 
     /**
      * Inicialicar el menu con el idioma.
-     * @param location URL: Tiene URL de FXML en uso.
+     *
+     * @param location        URL: Tiene URL de FXML en uso.
      * @param resourceBundle: Tiene los idiomas.
      */
     @Override
@@ -50,10 +54,10 @@ public class MenuController extends VBox implements Initializable {
     protected void menuArraySimple() {
         ArrayTipos arrayTipos = new ArrayTipos(ArrayTipos.SIMPLE);
         loadStage(
-            resourceBundle.getString("tituloArraySimple"),
-            "/cl/cromer/estructuras/fxml/array.fxml",
-            "/cl/cromer/estructuras/css/style.css",
-            arrayTipos
+                resourceBundle.getString("tituloArraySimple"),
+                "/cl/cromer/estructuras/fxml/array.fxml",
+                "/cl/cromer/estructuras/css/style.css",
+                arrayTipos
         );
     }
 
@@ -64,10 +68,10 @@ public class MenuController extends VBox implements Initializable {
     protected void menuArrayOrdenado() {
         ArrayTipos arrayTipos = new ArrayTipos(ArrayTipos.ORDENADO);
         loadStage(
-            resourceBundle.getString("tituloArrayOrdenado"),
-            "/cl/cromer/estructuras/fxml/array.fxml",
-            "/cl/cromer/estructuras/css/style.css",
-            arrayTipos
+                resourceBundle.getString("tituloArrayOrdenado"),
+                "/cl/cromer/estructuras/fxml/array.fxml",
+                "/cl/cromer/estructuras/css/style.css",
+                arrayTipos
         );
     }
 
@@ -77,9 +81,9 @@ public class MenuController extends VBox implements Initializable {
     @FXML
     protected void menuBurbuja() {
         loadStage(
-            resourceBundle.getString("tituloBurbuja"),
-            "/cl/cromer/estructuras/fxml/burbuja.fxml",
-            "/cl/cromer/estructuras/css/style.css"
+                resourceBundle.getString("tituloBurbuja"),
+                "/cl/cromer/estructuras/fxml/burbuja.fxml",
+                "/cl/cromer/estructuras/css/style.css"
         );
     }
 
@@ -89,9 +93,9 @@ public class MenuController extends VBox implements Initializable {
     @FXML
     protected void menuInsercion() {
         loadStage(
-            resourceBundle.getString("tituloInsercion"),
-            "/cl/cromer/estructuras/fxml/insercion.fxml",
-            "/cl/cromer/estructuras/css/style.css"
+                resourceBundle.getString("tituloInsercion"),
+                "/cl/cromer/estructuras/fxml/insercion.fxml",
+                "/cl/cromer/estructuras/css/style.css"
         );
     }
 
@@ -101,9 +105,9 @@ public class MenuController extends VBox implements Initializable {
     @FXML
     protected void menuSeleccion() {
         loadStage(
-            resourceBundle.getString("tituloSeleccion"),
-            "/cl/cromer/estructuras/fxml/seleccion.fxml",
-            "/cl/cromer/estructuras/css/style.css"
+                resourceBundle.getString("tituloSeleccion"),
+                "/cl/cromer/estructuras/fxml/seleccion.fxml",
+                "/cl/cromer/estructuras/css/style.css"
         );
     }
 
@@ -113,9 +117,9 @@ public class MenuController extends VBox implements Initializable {
     @FXML
     protected void menuShell() {
         loadStage(
-            resourceBundle.getString("tituloShell"),
-            "/cl/cromer/estructuras/fxml/shell.fxml",
-            "/cl/cromer/estructuras/css/style.css"
+                resourceBundle.getString("tituloShell"),
+                "/cl/cromer/estructuras/fxml/shell.fxml",
+                "/cl/cromer/estructuras/css/style.css"
         );
     }
 
@@ -125,9 +129,9 @@ public class MenuController extends VBox implements Initializable {
     @FXML
     protected void menuQuick() {
         loadStage(
-            resourceBundle.getString("tituloQuick"),
-            "/cl/cromer/estructuras/fxml/quick.fxml",
-            "/cl/cromer/estructuras/css/style.css"
+                resourceBundle.getString("tituloQuick"),
+                "/cl/cromer/estructuras/fxml/quick.fxml",
+                "/cl/cromer/estructuras/css/style.css"
         );
     }
 
@@ -137,9 +141,9 @@ public class MenuController extends VBox implements Initializable {
     @FXML
     protected void menuMerge() {
         loadStage(
-            resourceBundle.getString("tituloMerge"),
-            "/cl/cromer/estructuras/fxml/merge.fxml",
-            "/cl/cromer/estructuras/css/style.css"
+                resourceBundle.getString("tituloMerge"),
+                "/cl/cromer/estructuras/fxml/merge.fxml",
+                "/cl/cromer/estructuras/css/style.css"
         );
     }
 
@@ -150,10 +154,10 @@ public class MenuController extends VBox implements Initializable {
     protected void menuListaEnlazadaSimple() {
         ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(SIMPLE);
         loadStage(
-            resourceBundle.getString("tituloListaEnlazadaSimple"),
-            "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
-            "/cl/cromer/estructuras/css/style.css",
-            listaEnlazadaTipos
+                resourceBundle.getString("tituloListaEnlazadaSimple"),
+                "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
+                "/cl/cromer/estructuras/css/style.css",
+                listaEnlazadaTipos
         );
     }
 
@@ -164,10 +168,10 @@ public class MenuController extends VBox implements Initializable {
     protected void menuListaEnlazadaCircular() {
         ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(ListaEnlazadaTipos.CIRCULAR);
         loadStage(
-            resourceBundle.getString("tituloListaEnlazadaCircular"),
-            "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
-            "/cl/cromer/estructuras/css/style.css",
-            listaEnlazadaTipos
+                resourceBundle.getString("tituloListaEnlazadaCircular"),
+                "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
+                "/cl/cromer/estructuras/css/style.css",
+                listaEnlazadaTipos
         );
     }
 
@@ -178,10 +182,10 @@ public class MenuController extends VBox implements Initializable {
     protected void menuListaEnlazadaDoble() {
         ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA);
         loadStage(
-            resourceBundle.getString("tituloListaEnlazadaDoble"),
-            "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
-            "/cl/cromer/estructuras/css/style.css",
-            listaEnlazadaTipos
+                resourceBundle.getString("tituloListaEnlazadaDoble"),
+                "/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
+                "/cl/cromer/estructuras/css/style.css",
+                listaEnlazadaTipos
         );
     }
 
@@ -191,9 +195,9 @@ public class MenuController extends VBox implements Initializable {
     @FXML
     protected void menuPila() {
         loadStage(
-            resourceBundle.getString("tituloPila"),
-            "/cl/cromer/estructuras/fxml/pila.fxml",
-            "/cl/cromer/estructuras/css/style.css"
+                resourceBundle.getString("tituloPila"),
+                "/cl/cromer/estructuras/fxml/pila.fxml",
+                "/cl/cromer/estructuras/css/style.css"
         );
     }
 
@@ -203,9 +207,9 @@ public class MenuController extends VBox implements Initializable {
     @FXML
     protected void menuCola() {
         loadStage(
-            resourceBundle.getString("tituloCola"),
-            "/cl/cromer/estructuras/fxml/cola.fxml",
-            "/cl/cromer/estructuras/css/style.css"
+                resourceBundle.getString("tituloCola"),
+                "/cl/cromer/estructuras/fxml/cola.fxml",
+                "/cl/cromer/estructuras/css/style.css"
         );
     }
 
@@ -231,9 +235,9 @@ public class MenuController extends VBox implements Initializable {
             ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
 
             loadStage(
-                "/cl/cromer/estructuras/fxml/main.fxml",
-                "/cl/cromer/estructuras/css/style.css",
-                resourceBundle
+                    "/cl/cromer/estructuras/fxml/main.fxml",
+                    "/cl/cromer/estructuras/css/style.css",
+                    resourceBundle
             );
         }
     }
@@ -260,9 +264,9 @@ public class MenuController extends VBox implements Initializable {
             ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
 
             loadStage(
-                "/cl/cromer/estructuras/fxml/main.fxml",
-                "/cl/cromer/estructuras/css/style.css",
-                resourceBundle
+                    "/cl/cromer/estructuras/fxml/main.fxml",
+                    "/cl/cromer/estructuras/css/style.css",
+                    resourceBundle
             );
         }
     }
@@ -283,9 +287,10 @@ public class MenuController extends VBox implements Initializable {
 
     /**
      * Cargar el fxml, css y titulo.
+     *
      * @param title String: El titulo de la escena.
-     * @param fxml String: El archivo de fxml.
-     * @param css String: El archivo de css.
+     * @param fxml  String: El archivo de fxml.
+     * @param css   String: El archivo de css.
      */
     private void loadStage(String title, String fxml, String css) {
         Scene scene = menuBar.getScene();
@@ -308,8 +313,9 @@ public class MenuController extends VBox implements Initializable {
 
     /**
      * Cargar el fxml y css.
-     * @param fxml String: El archivo de fxml.
-     * @param css String: El archivo de css.
+     *
+     * @param fxml           String: El archivo de fxml.
+     * @param css            String: El archivo de css.
      * @param resourceBundle ResourceBundle: El idioma nuevo para cambiarlo.
      */
     private void loadStage(String fxml, String css, ResourceBundle resourceBundle) {
@@ -333,9 +339,10 @@ public class MenuController extends VBox implements Initializable {
 
     /**
      * Cargar el fxml, css y titulo.
-     * @param title String: El titulo de la escena.
-     * @param fxml String: El archivo de fxml.
-     * @param css String: El archivo de css.
+     *
+     * @param title  String: El titulo de la escena.
+     * @param fxml   String: El archivo de fxml.
+     * @param css    String: El archivo de css.
      * @param object Object: El objeto a pasar a la nueva escena.
      */
     private void loadStage(String title, String fxml, String css, Object object) {

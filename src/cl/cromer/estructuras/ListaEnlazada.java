@@ -2,6 +2,7 @@ package cl.cromer.estructuras;
 
 /**
  * Crear una estructura de dato de tipo lista enlazada.
+ *
  * @author Chris Cromer
  */
 final public class ListaEnlazada {
@@ -29,6 +30,7 @@ final public class ListaEnlazada {
 
     /**
      * Devolver la cantidad de enlaces que están en la lista.
+     *
      * @return int: La cantidad.
      */
     public int size() {
@@ -37,6 +39,7 @@ final public class ListaEnlazada {
 
     /**
      * Devolver el tipo de lista.
+     *
      * @return int: El tipo.
      */
     public int getTipo() {
@@ -45,6 +48,7 @@ final public class ListaEnlazada {
 
     /**
      * Cambiar el tipo de lista.
+     *
      * @param tipo int: El tipo a cambiar.
      */
     public void setTipo(int tipo) {
@@ -53,6 +57,7 @@ final public class ListaEnlazada {
 
     /**
      * Buscar una llave en la lista.
+     *
      * @param llave int: La llave a buscar.
      * @return Enlace: El enlace que contiene la llave buscada.
      */
@@ -82,6 +87,7 @@ final public class ListaEnlazada {
 
     /**
      * Insertar una llave en la lista.
+     *
      * @param llave int: La llave a insertar.
      * @return boolean: Verdad si fue insertado, sino falso.
      */
@@ -106,6 +112,7 @@ final public class ListaEnlazada {
 
     /**
      * Eliminar un enlace de la lista.
+     *
      * @param llave int: La llave a eliminar.
      * @return boolean: Verdad si fue borrado, sino falso.
      */
@@ -149,6 +156,7 @@ final public class ListaEnlazada {
 
     /**
      * Devolver un enlace con su llave y valor.
+     *
      * @param indice int: El indice que desea ver.
      * @return Enlace: El enlace a devolver.
      */

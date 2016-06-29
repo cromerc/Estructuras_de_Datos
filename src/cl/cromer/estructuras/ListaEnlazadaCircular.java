@@ -2,6 +2,7 @@ package cl.cromer.estructuras;
 
 /**
  * Crear una estructura de dato de tipo lista enlazada circular.
+ *
  * @author Chris Cromer
  */
 final public class ListaEnlazadaCircular {
@@ -34,6 +35,7 @@ final public class ListaEnlazadaCircular {
 
     /**
      * Devolver la cantidad de enlaces que están en la lista.
+     *
      * @return int: La cantidad.
      */
     public int size() {
@@ -42,6 +44,7 @@ final public class ListaEnlazadaCircular {
 
     /**
      * Devolver el tipo de lista.
+     *
      * @return int: El tipo de lista.
      */
     public int getTipo() {
@@ -50,6 +53,7 @@ final public class ListaEnlazadaCircular {
 
     /**
      * Cambiar el tipo de lista.
+     *
      * @param tipo int: El tipo a cambiar.
      */
     public void setTipo(int tipo) {
@@ -58,6 +62,7 @@ final public class ListaEnlazadaCircular {
 
     /**
      * Buscar una llave en la lista.
+     *
      * @param llave int: La llave a buscar.
      * @return Enlace: El enlace que contiene la llave.
      */
@@ -88,6 +93,7 @@ final public class ListaEnlazadaCircular {
 
     /**
      * Insertar una llave en la lista.
+     *
      * @param llave int: La llave a insertar.
      * @return boolean: Verdad si fue insertado, falso si ya existe la llave.
      */
@@ -116,6 +122,7 @@ final public class ListaEnlazadaCircular {
 
     /**
      * Eliminar un enlace de la lista.
+     *
      * @param llave int: La llave a elminiar.
      * @return boolean: Verdad se fue eliminado, falso si no estaba en la lista.
      */
@@ -160,6 +167,7 @@ final public class ListaEnlazadaCircular {
 
     /**
      * Devolver un enlace con su llave y valor.
+     *
      * @param indice int: El indice que desea ver.
      * @return Enlace: El enlace a devolver.
      */

@@ -16,6 +16,7 @@ import javafx.util.Duration;
 
 /**
  * Esta clase es para trabajar con graficos.
+ *
  * @author Chris Cromer
  */
 public class Grafico {
@@ -28,39 +29,34 @@ public class Grafico {
      * Tipo de dibujo circular.
      */
     static final public int CIRCULO = 1;
-
+    /**
+     * La escena donde está cosas graficas.
+     */
+    final private Scene scene;
     /**
      * Contiene la animación de destacar.
      */
     private SequentialTransition blinkTransition;
-
     /**
      * El valor de cual caja está destacado actualmente
      */
     private int destacado;
-
     /**
      * El tipo de objeto que está destacado.
      */
     private int tipo;
-
     /**
      * El color original de fondo para volver cuando no es destacado.
      */
     private Color destacadoBG;
-
     /**
      * El color original de text para volver cuando no es destacado.
      */
     private Color destacadoFG;
 
     /**
-     * La escena donde está cosas graficas.
-     */
-    private Scene scene;
-
-    /**
      * Graficar una escena.
+     *
      * @param scene La scene a destacar.
      */
     public Grafico(Scene scene) {
@@ -70,14 +66,15 @@ public class Grafico {
 
     /**
      * Crear una flecha que apunta por abajo.
+     *
      * @return StackPane: Devolver el stackpane que contiene la flecha.
      */
     public static StackPane crearFlechaAbajo() {
         Polygon polygon = new Polygon();
         polygon.getPoints().addAll(
-            0.0, 0.0,
-            10.0, 0.0,
-            5.0, 10.0
+                0.0, 0.0,
+                10.0, 0.0,
+                5.0, 10.0
         );
 
         StackPane stackPane = new StackPane();
@@ -87,14 +84,15 @@ public class Grafico {
 
     /**
      * Crear una flecha que apunta por arriba.
+     *
      * @return StackPane: Devolver el stackpane que contiene la flecha.
      */
     public static StackPane crearFlechaArriba() {
         Polygon polygon = new Polygon();
         polygon.getPoints().addAll(
-            5.0, 0.0,
-            0.0, 10.0,
-            10.0, 10.0
+                5.0, 0.0,
+                0.0, 10.0,
+                10.0, 10.0
         );
 
         StackPane stackPane = new StackPane();
@@ -104,6 +102,7 @@ public class Grafico {
 
     /**
      * Crear una linea vertical.
+     *
      * @return StackPane: Devolver el stackpane que contiene la linea vertical.
      */
     public static StackPane crearLineaVertical() {
@@ -120,6 +119,7 @@ public class Grafico {
 
     /**
      * Crear la linea circular con flecha.
+     *
      * @param cajas int: La cantidad de cajas que están.
      * @return StackPane: Devolver el stackpane que contiene la linea horizontal.
      */
@@ -135,9 +135,9 @@ public class Grafico {
 
         Polygon flechaDerecha = new Polygon();
         flechaDerecha.getPoints().addAll(
-            10.0, 15.0,
-            20.0, 20.0,
-            10.0, 25.0
+                10.0, 15.0,
+                20.0, 20.0,
+                10.0, 25.0
         );
 
         Line vertical = new Line();
@@ -159,8 +159,9 @@ public class Grafico {
 
     /**
      * Crear un rectangulo con texto adentro.
+     *
      * @param colores Colores: Los colores para dar color al rectangulo.
-     * @param label String: El texto por el ID de fxml.
+     * @param label   String: El texto por el ID de fxml.
      * @return StackPane: Devolver el stackpane que contiene el rectangulo y texto.
      */
     public static StackPane crearCaja(Colores colores, String label) {
@@ -181,9 +182,10 @@ public class Grafico {
 
     /**
      * Crear un rectangulo con texto adentro.
+     *
      * @param colores Colores: Los colores para dar color al rectangulo.
-     * @param label String: El texto por el ID de fxml.
-     * @param texto String: El texto a colocar dentro el rectangulo.
+     * @param label   String: El texto por el ID de fxml.
+     * @param texto   String: El texto a colocar dentro el rectangulo.
      * @return StackPane: Devolver el stackpane que contiene el rectangulo y texto.
      */
     public static StackPane crearCaja(Colores colores, String label, String texto) {
@@ -204,68 +206,46 @@ public class Grafico {
     }
 
     /**
-     * Crear un rectangulo con texto adentro.
-     * @param colores Colores: Los colores para dar color al rectangulo.
-     * @param label String: El texto por el ID de fxml.
-     * @param texto String: El texto a colocar dentro el rectangulo.
-     * @param tamano int: El tamaño del rectangulo.
-     * @return StackPane: Devolver el stackpane que contiene el rectangulo y texto.
-     */
-    public static StackPane crearCaja(Colores colores, String label, String texto, int tamano) {
-        Rectangle rectangle = new Rectangle();
-        rectangle.setHeight(tamano);
-        rectangle.setWidth(tamano);
-        rectangle.setFill(colores.getFondo());
-        rectangle.setStroke(Color.BLACK);
-        rectangle.setId("border_" + label);
-        Text text = new Text();
-        text.setId("caja_" + label);
-        text.setStroke(colores.getTexto());
-        text.setText(texto);
-
-        StackPane stackPane = new StackPane();
-        stackPane.getChildren().addAll(rectangle, text);
-        return stackPane;
-    }
-
-    /**
      * Crear un animacion de transicion usando colores que cambian.
-     * @param rectangle Rectangle: El objeto que desea animar.
-     * @param text Text: El texto que desea animar.
+     *
+     * @param rectangle       Rectangle: El objeto que desea animar.
+     * @param text            Text: El texto que desea animar.
      * @param colorBackground Color: Color del fondo de destacar.
-     * @param colorText Color: Color del texto.
+     * @param colorText       Color: Color del texto.
      * @return PauseTransition: La transition creado con los elementos y colores.
      */
-    private static PauseTransition createPauseTransition(Rectangle rectangle , Text text, Color colorBackground, Color colorText) {
+    private static PauseTransition createPauseTransition(Rectangle rectangle, Text text, Color colorBackground, Color colorText) {
         PauseTransition changeColor = new PauseTransition(new Duration(100));
         changeColor.setOnFinished(actionEvent -> {
             rectangle.setFill(colorBackground);
             text.setStroke(colorText);
         });
-        return changeColor ;
+        return changeColor;
     }
 
     /**
      * Crear un animacion de transicion usando colores que cambian.
-     * @param circle Circle: El objeto que desea animar.
-     * @param text Text: El texto que desea animar.
+     *
+     * @param circle          Circle: El objeto que desea animar.
+     * @param text            Text: El texto que desea animar.
      * @param colorBackground Color: Color del fondo de destacar.
-     * @param colorText Color: Color del texto.
+     * @param colorText       Color: Color del texto.
      * @return PauseTransition: La transition creado con los elementos y colores.
      */
-    private static PauseTransition createPauseTransition(Circle circle , Text text, Color colorBackground, Color colorText) {
+    private static PauseTransition createPauseTransition(Circle circle, Text text, Color colorBackground, Color colorText) {
         PauseTransition changeColor = new PauseTransition(new Duration(100));
         changeColor.setOnFinished(actionEvent -> {
             circle.setFill(colorBackground);
             text.setStroke(colorText);
         });
-        return changeColor ;
+        return changeColor;
     }
 
     /**
      * Destacar un elemento
+     *
      * @param valor int: El indice a destacar.
-     * @param tipo int: El tipo de objeto a destacar, {@value #RECTANGULO} o {@value #CIRCULO}
+     * @param tipo  int: El tipo de objeto a destacar, {@value #RECTANGULO} o {@value #CIRCULO}
      */
     public void destacar(int valor, int tipo) {
         if (tipo != RECTANGULO && tipo != CIRCULO) {

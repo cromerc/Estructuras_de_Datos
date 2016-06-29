@@ -2,6 +2,7 @@ package cl.cromer.estructuras;
 
 /**
  * Esta clase contiene los tipos de listas enlazadas.
+ *
  * @author Chris Cromer
  */
 final public class ListaEnlazadaTipos {
@@ -21,10 +22,11 @@ final public class ListaEnlazadaTipos {
     /**
      * El tipo elegido.
      */
-    private int tipo;
+    final private int tipo;
 
     /**
      * Inicilizar el tipo de lista enlazada.
+     *
      * @param tipo int: El tipo de lista enlazada, {@value #SIMPLE}, {@value #CIRCULAR} o {@value #DOBLEMENTE_ENLAZADA}
      */
     public ListaEnlazadaTipos(int tipo) {
@@ -45,6 +47,7 @@ final public class ListaEnlazadaTipos {
 
     /**
      * Devolver el tipo de lista enlazada.
+     *
      * @return int: El tipo.
      */
     public int getTipo() {

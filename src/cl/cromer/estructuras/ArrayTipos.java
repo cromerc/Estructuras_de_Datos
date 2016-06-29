@@ -2,6 +2,7 @@ package cl.cromer.estructuras;
 
 /**
  * Esta clase contiene los tipos de array.
+ *
  * @author Chris Cromer
  */
 final public class ArrayTipos {
@@ -17,10 +18,11 @@ final public class ArrayTipos {
     /**
      * El tipo que está elegido.
      */
-    private int tipo;
+    final private int tipo;
 
     /**
      * Inicilizar el tipo.
+     *
      * @param tipo int: Tipo de array, {@value #SIMPLE} o {@value #ORDENADO}
      */
     public ArrayTipos(int tipo) {
@@ -38,6 +40,7 @@ final public class ArrayTipos {
 
     /**
      * Devolver el tipo.
+     *
      * @return int: El tipo de array.
      */
     public int getTipo() {

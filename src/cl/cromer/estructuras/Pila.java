@@ -2,6 +2,7 @@ package cl.cromer.estructuras;
 
 /**
  * Crear una estructura de dato de tipo pila.
+ *
  * @author Chris Cromer
  */
 final public class Pila {
@@ -25,6 +26,7 @@ final public class Pila {
 
     /**
      * Devolver la cantidad de elementos en la pila.
+     *
      * @return int: La cantidad de elementos.
      */
     public int size() {
@@ -33,6 +35,7 @@ final public class Pila {
 
     /**
      * Push un valor en la pila encima.
+     *
      * @param valor int: El valor a push.
      */
     public void push(int valor) {
@@ -56,11 +59,12 @@ final public class Pila {
 
     /**
      * Pop un valor de encima de la pila.
+     *
      * @return boolean: Verdad si fue exitoso.
      */
     public boolean pop() {
         if (this.pila != null && size() > 0) {
-            String pila[] = new String[this.pila.length -1];
+            String pila[] = new String[this.pila.length - 1];
             System.arraycopy(this.pila, 0, pila, 0, pila.length);
             this.pila = pila;
             size--;
@@ -73,11 +77,12 @@ final public class Pila {
 
     /**
      * Peek al valor que está encima de la pila.
+     *
      * @return int: El valor que está encima de la pila.
      */
     public int peek() {
         if (pila != null && size() > 0) {
-            return Integer.valueOf(pila[pila.length -1]);
+            return Integer.valueOf(pila[pila.length - 1]);
         }
         else {
             return Integer.MIN_VALUE;
@@ -86,6 +91,7 @@ final public class Pila {
 
     /**
      * Devolver el valor que está en un indice de la pila.
+     *
      * @param indice int: El indice que desea devolver.
      * @return String: El valor que está guardado en el indice.
      */

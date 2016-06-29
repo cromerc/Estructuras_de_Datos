@@ -3,7 +3,9 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -15,6 +17,7 @@ import java.util.logging.Level;
 
 /**
  * Esta clase es para controlar todos la interfaz de Array.
+ *
  * @author Chris Cromer
  */
 public class ArrayController implements Initializable {
@@ -22,17 +25,20 @@ public class ArrayController implements Initializable {
     /**
      * La caja para ingresar textos.
      */
-    @FXML private TextFieldLimited valorArray;
+    @FXML
+    private TextFieldLimited valorArray;
 
     /**
      * Donde poner el contenido de array.
      */
-    @FXML private VBox contenidoArray;
+    @FXML
+    private VBox contenidoArray;
 
     /**
      * Donde va el codigo a mostrar a la pantalla.
      */
-    @FXML private Text codigoArray;
+    @FXML
+    private Text codigoArray;
 
     /**
      * La escena donde está cosas graficas.
@@ -56,7 +62,8 @@ public class ArrayController implements Initializable {
 
     /**
      * Inicializar todos los datos y dibujar las graficas.
-     * @param location URL: El URL de fxml en uso.
+     *
+     * @param location       URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -126,7 +133,7 @@ public class ArrayController implements Initializable {
         }
 
         // Mostrar el codigo
-        String tipo = (array.isOrdered())?"Ordenado":"Simple";
+        String tipo = (array.isOrdered()) ? "Ordenado" : "Simple";
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
         codigoArray.setText(codigoTexto);
 
@@ -173,7 +180,7 @@ public class ArrayController implements Initializable {
         }
 
         // Mostrar el codigo
-        String tipo = (array.isOrdered())?"Ordenado":"Simple";
+        String tipo = (array.isOrdered()) ? "Ordenado" : "Simple";
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/eliminar")).useDelimiter("\\Z").next();
         codigoArray.setText(codigoTexto);
 
@@ -210,7 +217,7 @@ public class ArrayController implements Initializable {
         }
 
         // Mostrar el codigo
-        String tipo = (array.isOrdered())?"Ordenado":"Simple";
+        String tipo = (array.isOrdered()) ? "Ordenado" : "Simple";
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/buscar")).useDelimiter("\\Z").next();
         codigoArray.setText(codigoTexto);
 
