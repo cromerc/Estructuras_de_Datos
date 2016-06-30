@@ -73,7 +73,7 @@ final public class ListaEnlazadaCircular {
             int i = 0;
             while (lista.getLlave() != llave && i < size()) {
                 // Buscar en la sigenute enlace hasta el final.
-                lista = (Enlace) lista.getSiguente();
+                lista = (Enlace) lista.getSiguiente();
                 i++;
             }
             if (lista.getLlave() == llave) {
@@ -107,9 +107,9 @@ final public class ListaEnlazadaCircular {
             }
 
             enlace.setLlave(llave);
-            enlace.setSiguente(primer);
+            enlace.setSiguiente(primer);
             primer = enlace;
-            ultimo.setSiguente(primer);
+            ultimo.setSiguiente(primer);
 
             size++;
             return true;
@@ -134,10 +134,10 @@ final public class ListaEnlazadaCircular {
             int i = 0;
             while (lista.getLlave() != llave && i < size()) {
                 // Buscar hasta la llave es encontraddo
-                if (lista.getSiguente() != null) {
-                    // Buscar en la sigenute enlace
+                if (lista.getSiguiente() != null) {
+                    // Buscar en la siguiente enlace
                     previo = lista;
-                    lista = (Enlace) lista.getSiguente();
+                    lista = (Enlace) lista.getSiguiente();
                 }
                 i++;
             }
@@ -149,12 +149,12 @@ final public class ListaEnlazadaCircular {
 
             // Se encontró
             if (lista == this.primer) {
-                // Si es la primera enlace, cambiarla al siguente enlace
-                this.primer = (Enlace) this.primer.getSiguente();
+                // Si es la primera enlace, cambiarla al sigueinte enlace
+                this.primer = (Enlace) this.primer.getSiguiente();
             }
             else {
                 // Sino cortar esta enlace de la lista
-                previo.setSiguente(lista.getSiguente());
+                previo.setSiguiente(lista.getSiguiente());
             }
             size--;
             return true;
@@ -176,7 +176,7 @@ final public class ListaEnlazadaCircular {
             int i = size();
             Enlace lista = this.primer;
             while (i > indice + 1) {
-                lista = (Enlace) lista.getSiguente();
+                lista = (Enlace) lista.getSiguiente();
                 i--;
             }
             return lista;

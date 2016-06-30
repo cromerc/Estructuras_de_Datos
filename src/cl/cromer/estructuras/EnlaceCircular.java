@@ -12,15 +12,15 @@ final public class EnlaceCircular implements Enlace {
     private int llave;
 
     /**
-     * El siguente enlace.
+     * El siguiente enlace.
      */
-    private EnlaceCircular siguente;
+    private EnlaceCircular siguiente;
 
     /**
      * Incializar.
      */
     public EnlaceCircular() {
-        siguente = null;
+        siguiente = null;
     }
 
     /**
@@ -42,21 +42,21 @@ final public class EnlaceCircular implements Enlace {
     }
 
     /**
-     * Devolver el siguente enlace.
+     * Devolver el siguiente enlace.
      *
      * @return EnlaceCircular: El enlace a devolver.
      */
-    public EnlaceCircular getSiguente() {
-        return siguente;
+    public EnlaceCircular getSiguiente() {
+        return siguiente;
     }
 
     /**
      * Cambiar el siguiente enlace.
      *
-     * @param siguente Object: El siguente enlace nuevo de tipo {@link EnlaceCircular}.
+     * @param siguiente Object: El siguiente enlace nuevo de tipo {@link EnlaceCircular}.
      */
-    public void setSiguente(Object siguente) {
-        this.siguente = (EnlaceCircular) siguente;
+    public void setSiguiente(Object siguiente) {
+        this.siguiente = (EnlaceCircular) siguiente;
     }
 
     /**

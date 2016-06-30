@@ -12,9 +12,9 @@ final public class EnlaceNormal implements Enlace {
     private int llave;
 
     /**
-     * El siguente enlace.
+     * El siguiente enlace.
      */
-    private EnlaceNormal siguente;
+    private EnlaceNormal siguiente;
 
     /**
      * El enlace previo por doble enlazada.
@@ -25,7 +25,7 @@ final public class EnlaceNormal implements Enlace {
      * Incializar.
      */
     public EnlaceNormal() {
-        siguente = null;
+        siguiente = null;
         previo = null;
     }
 
@@ -48,21 +48,21 @@ final public class EnlaceNormal implements Enlace {
     }
 
     /**
-     * Devolver el siguente enlace.
+     * Devolver el siguiente enlace.
      *
      * @return EnlaceNormal: El enlace a devolver.
      */
-    public EnlaceNormal getSiguente() {
-        return siguente;
+    public EnlaceNormal getSiguiente() {
+        return siguiente;
     }
 
     /**
      * Cambiar el siguiente enlace.
      *
-     * @param siguente Object: El siguente enlace nuevo de tipo {@link EnlaceNormal}.
+     * @param siguiente Object: El siguiente enlace nuevo de tipo {@link EnlaceNormal}.
      */
-    public void setSiguente(Object siguente) {
-        this.siguente = (EnlaceNormal) siguente;
+    public void setSiguiente(Object siguiente) {
+        this.siguiente = (EnlaceNormal) siguiente;
     }
 
     /**

@@ -67,9 +67,9 @@ final public class ListaEnlazada {
             Enlace lista = this.lista;
             while (lista.getLlave() != llave) {
                 // Buscar hasta la llave es encontrado
-                if (lista.getSiguente() != null) {
-                    // Buscar en la sigenute enlace
-                    lista = (Enlace) lista.getSiguente();
+                if (lista.getSiguiente() != null) {
+                    // Buscar en la siguiente enlace
+                    lista = (Enlace) lista.getSiguiente();
                 }
                 else {
                     // No se encuentra
@@ -96,7 +96,7 @@ final public class ListaEnlazada {
             // Crear una enlace y agregarla a la lista
             Enlace nuevo = new EnlaceNormal();
             nuevo.setLlave(llave);
-            nuevo.setSiguente(lista);
+            nuevo.setSiguiente(lista);
             if (lista != null) {
                 lista.setPrevio(nuevo);
             }
@@ -123,10 +123,10 @@ final public class ListaEnlazada {
             Enlace previo = lista;
             while (lista.getLlave() != llave) {
                 // Buscar hasta la llave es encontraddo
-                if (lista.getSiguente() != null) {
-                    // Buscar en la sigenute enlace
+                if (lista.getSiguiente() != null) {
+                    // Buscar en la siguiente enlace
                     previo = lista;
-                    lista = (Enlace) lista.getSiguente();
+                    lista = (Enlace) lista.getSiguiente();
                 }
                 else {
                     // No se encuentra
@@ -135,15 +135,15 @@ final public class ListaEnlazada {
             }
             // Se encontró
             if (lista == this.lista) {
-                // Si es la primera enlace, cambiarla al siguente enlace
-                this.lista = (Enlace) this.lista.getSiguente();
+                // Si es la primera enlace, cambiarla al siguiente enlace
+                this.lista = (Enlace) this.lista.getSiguiente();
                 if (this.lista.getPrevio() != null) {
                     this.lista.setPrevio(null);
                 }
             }
             else {
                 // Sino cortar esta enlace de la lista
-                previo.setSiguente(lista.getSiguente());
+                previo.setSiguiente(lista.getSiguiente());
             }
             size--;
             return true;
@@ -165,7 +165,7 @@ final public class ListaEnlazada {
             int i = size();
             Enlace lista = this.lista;
             while (i > indice + 1) {
-                lista = (Enlace) lista.getSiguente();
+                lista = (Enlace) lista.getSiguiente();
                 i--;
             }
             return lista;
@@ -175,4 +175,3 @@ final public class ListaEnlazada {
         }
     }
 }
-

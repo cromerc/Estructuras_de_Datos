@@ -25,14 +25,14 @@ interface Enlace {
      *
      * @return Object: El enlace a devolver.
      */
-    Object getSiguente();
+    Object getSiguiente();
 
     /**
      * Cambiar el siguiente enlace.
      *
-     * @param siguente Object: El siguente enlace nuevo.
+     * @param siguiente Object: El siguiente enlace nuevo.
      */
-    void setSiguente(Object siguente);
+    void setSiguiente(Object siguiente);
 
     /**
      * Devolver el enlace previo.
