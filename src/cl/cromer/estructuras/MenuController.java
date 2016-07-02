@@ -237,7 +237,7 @@ public class MenuController extends VBox implements Initializable {
         dialog.setContentText(resourceBundle.getString("cambiarIdiomaMensaje"));
         dialog.getDialogPane().getButtonTypes().add(botonCancelar);
         dialog.getDialogPane().getButtonTypes().add(botonCambiar);
-        dialog.getDialogPane().setPrefSize(400, 120);
+        dialog.getDialogPane().getScene().getWindow().sizeToScene();
         Main.setIcon(dialog, getClass());
 
         Optional<ButtonType> result = dialog.showAndWait();
@@ -266,7 +266,7 @@ public class MenuController extends VBox implements Initializable {
         dialog.setContentText(resourceBundle.getString("cambiarIdiomaMensaje"));
         dialog.getDialogPane().getButtonTypes().add(botonCancelar);
         dialog.getDialogPane().getButtonTypes().add(botonCambiar);
-        dialog.getDialogPane().setPrefSize(400, 120);
+        dialog.getDialogPane().getScene().getWindow().sizeToScene();
         Main.setIcon(dialog, getClass());
 
         Optional<ButtonType> result = dialog.showAndWait();
@@ -293,6 +293,7 @@ public class MenuController extends VBox implements Initializable {
         dialog.setTitle(resourceBundle.getString("acerca"));
         dialog.setContentText(resourceBundle.getString("credito"));
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        dialog.getDialogPane().getScene().getWindow().sizeToScene();
         Main.setIcon(dialog, getClass());
         dialog.show();
     }

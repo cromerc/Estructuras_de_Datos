@@ -54,6 +54,7 @@ public class Main extends Application {
         dialog.setTitle(resourceBundle.getString("error"));
         dialog.setContentText(mensaje);
         dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        dialog.getDialogPane().getScene().getWindow().sizeToScene();
         Main.setIcon(dialog, Main.class);
         dialog.show();
     }
