@@ -3,9 +3,6 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -138,23 +135,17 @@ public class ColaController implements Initializable {
                     generarGrafico();
                 }
                 else {
-                    ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-                    Dialog<String> dialog = new Dialog<>();
-                    dialog.setTitle(resourceBundle.getString("error"));
-                    dialog.setContentText(resourceBundle.getString("colaLlena"));
-                    dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-                    Main.setIcon(dialog, getClass());
-                    dialog.show();
+                    Main.mostrarError(resourceBundle.getString("colaLlena"), resourceBundle);
                 }
             }
             catch (NumberFormatException exception) {
                 // El error no es fatal, sigue
                 Logs.log(Level.WARNING, "No es tipo int.");
-                errorNoValor();
+                Main.mostrarError(resourceBundle.getString("colaNoValor"), resourceBundle);
             }
         }
         else {
-            errorNoValor();
+            Main.mostrarError(resourceBundle.getString("colaNoValor"), resourceBundle);
         }
     }
 
@@ -174,14 +165,14 @@ public class ColaController implements Initializable {
 
         if (cola.size() > 0) {
             if (!cola.pop()) {
-                errorVacia();
+                Main.mostrarError(resourceBundle.getString("colaVacia"), resourceBundle);
             }
             else {
                 generarGrafico();
             }
         }
         else {
-            errorVacia();
+            Main.mostrarError(resourceBundle.getString("colaVacia"), resourceBundle);
         }
     }
 
@@ -207,34 +198,8 @@ public class ColaController implements Initializable {
             grafico.destacar("#texto_" + 0, Grafico.TEXTO);
         }
         else {
-            errorVacia();
+            Main.mostrarError(resourceBundle.getString("colaVacia"), resourceBundle);
         }
-    }
-
-    /**
-     * Se muestra un error si la persona no ingresa un valor en el TextField.
-     */
-    private void errorNoValor() {
-        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("colaNoValor"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();
-    }
-
-    /**
-     * Error cuando la pila está vacía.
-     */
-    private void errorVacia() {
-        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("colaVacia"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();
     }
 
     /**

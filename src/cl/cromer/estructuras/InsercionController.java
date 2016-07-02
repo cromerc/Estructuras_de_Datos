@@ -3,9 +3,6 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
@@ -121,7 +118,7 @@ public class InsercionController implements Initializable {
         codigoInsercion.setText(codigoTexto);
 
         if (!array.insercion(true)) {
-            errorYaOrdenado();
+            Main.mostrarError(resourceBundle.getString("insercionYaOrdenado"), resourceBundle);
         }
 
         generarGrafico();
@@ -141,23 +138,10 @@ public class InsercionController implements Initializable {
         codigoInsercion.setText(codigoTexto);
 
         if (!array.insercion(false)) {
-            errorYaOrdenado();
+            Main.mostrarError(resourceBundle.getString("insercionYaOrdenado"), resourceBundle);
         }
 
         generarGrafico();
-    }
-
-    /**
-     * Se muestra un error si el array ya está ordenado.
-     */
-    private void errorYaOrdenado() {
-        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("insercionYaOrdenado"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();
     }
 
     /**

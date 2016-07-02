@@ -3,9 +3,6 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -146,28 +143,22 @@ public class HashTableController implements Initializable {
                     generarGrafico();
                 }
                 else {
-                    ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-                    Dialog<String> dialog = new Dialog<>();
-                    dialog.setTitle(resourceBundle.getString("error"));
                     if (hashTable.size() == 10) {
-                        dialog.setContentText(resourceBundle.getString("tablaHashLleno"));
+                        Main.mostrarError(resourceBundle.getString("tablaHashLleno"), resourceBundle);
                     }
                     else {
-                        dialog.setContentText(resourceBundle.getString("tablaHashLlaveExiste"));
+                        Main.mostrarError(resourceBundle.getString("tablaHashLlaveExiste"), resourceBundle);
                     }
-                    dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-                    Main.setIcon(dialog, getClass());
-                    dialog.show();
                 }
             }
             catch (NumberFormatException exception) {
                 // El error no es fatal, sigue
                 Logs.log(Level.WARNING, "No es tipo int.");
-                errorNoLlave();
+                Main.mostrarError(resourceBundle.getString("tablaHashNoLlave"), resourceBundle);
             }
         }
         else {
-            Main.error(resourceBundle.getString("tablaHashNoLlave"), resourceBundle);
+            Main.mostrarError(resourceBundle.getString("tablaHashNoLlave"), resourceBundle);
         }
     }
 
@@ -194,17 +185,17 @@ public class HashTableController implements Initializable {
                     generarGrafico();
                 }
                 else {
-                    errorNoEsta();
+                    Main.mostrarError(resourceBundle.getString("tablaHashNoEsta"), resourceBundle);
                 }
             }
             else {
-                errorNoLlave();
+                Main.mostrarError(resourceBundle.getString("tablaHashNoLlave"), resourceBundle);
             }
         }
         catch (NumberFormatException exception) {
             // El error no es fatal, sigue
             Logs.log(Level.WARNING, "No es tipo int.");
-            errorNoLlave();
+            Main.mostrarError(resourceBundle.getString("tablaHashNoLlave"), resourceBundle);
         }
     }
 
@@ -237,45 +228,18 @@ public class HashTableController implements Initializable {
                     grafico.destacar("#valor_texto_" + hashItem.getIndice(), Grafico.TEXTO);
                 }
                 else {
-                    errorNoEsta();
+                    Main.mostrarError(resourceBundle.getString("tablaHashNoEsta"), resourceBundle);
                 }
             }
             else {
-                errorNoLlave();
+                Main.mostrarError(resourceBundle.getString("tablaHashNoLlave"), resourceBundle);
             }
         }
         catch (NumberFormatException exception) {
             // El error no es fatal, sigue
             Logs.log(Level.WARNING, "No es tipo int.");
-            errorNoLlave();
+            Main.mostrarError(resourceBundle.getString("tablaHashNoLlave"), resourceBundle);
         }
-    }
-
-    /**
-     * Se muestra un error si la persona no ingresa un valor en el TextField.
-     */
-    private void errorNoLlave() {
-
-        /*ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("tablaHashNoLlave"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();*/
-    }
-
-    /**
-     * Error cuando el valor no está en el hashTable.
-     */
-    private void errorNoEsta() {
-        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("tablaHashNoEsta"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();
     }
 
     /**

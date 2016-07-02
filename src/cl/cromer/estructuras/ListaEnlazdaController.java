@@ -3,9 +3,6 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -190,23 +187,17 @@ public class ListaEnlazdaController implements Initializable {
                     generarGrafico();
                 }
                 else {
-                    ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-                    Dialog<String> dialog = new Dialog<>();
-                    dialog.setTitle(resourceBundle.getString("error"));
-                    dialog.setContentText(resourceBundle.getString("listaLlaveExiste"));
-                    dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-                    Main.setIcon(dialog, getClass());
-                    dialog.show();
+                    Main.mostrarError(resourceBundle.getString("listaLlaveExiste"), resourceBundle);
                 }
             }
             catch (NumberFormatException exception) {
                 // El error no es fatal, sigue
                 Logs.log(Level.WARNING, "No es tipo int.");
-                errorNoValor();
+                Main.mostrarError(resourceBundle.getString("listaNoValor"), resourceBundle);
             }
         }
         else {
-            errorNoValor();
+            Main.mostrarError(resourceBundle.getString("listaNoValor"), resourceBundle);
         }
     }
 
@@ -252,17 +243,17 @@ public class ListaEnlazdaController implements Initializable {
                     generarGrafico();
                 }
                 else {
-                    errorNoEsta();
+                    Main.mostrarError(resourceBundle.getString("listaNoEsta"), resourceBundle);
                 }
             }
             else {
-                errorNoValor();
+                Main.mostrarError(resourceBundle.getString("listaNoValor"), resourceBundle);
             }
         }
         catch (NumberFormatException exception) {
             // El error no es fatal, sigue
             Logs.log(Level.WARNING, "No es tipo int.");
-            errorNoValor();
+            Main.mostrarError(resourceBundle.getString("listaNoValor"), resourceBundle);
         }
     }
 
@@ -311,44 +302,18 @@ public class ListaEnlazdaController implements Initializable {
                     grafico.destacar("#texto_" + enlace.getLlave(), Grafico.TEXTO);
                 }
                 else {
-                    errorNoEsta();
+                    Main.mostrarError(resourceBundle.getString("listaNoEsta"), resourceBundle);
                 }
             }
             else {
-                errorNoValor();
+                Main.mostrarError(resourceBundle.getString("listaNoValor"), resourceBundle);
             }
         }
         catch (NumberFormatException exception) {
             // El error no es fatal, sigue
             Logs.log(Level.WARNING, "No es tipo int.");
-            errorNoValor();
+            Main.mostrarError(resourceBundle.getString("listaNoValor"), resourceBundle);
         }
-    }
-
-    /**
-     * Se muestra un error si la persona no ingresa un valor y una llave en los TextField.
-     */
-    private void errorNoValor() {
-        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("listaNoValor"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();
-    }
-
-    /**
-     * Error cuando la llave no está en la lista.
-     */
-    private void errorNoEsta() {
-        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("listaNoEsta"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();
     }
 
     /**

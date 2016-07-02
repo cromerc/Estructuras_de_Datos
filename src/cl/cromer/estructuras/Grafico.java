@@ -411,18 +411,34 @@ public class Grafico {
             this.sequentialTransition = sequentialTransition;
         }
 
+        /**
+         * Devolver el tipo de elemento destacado.
+         * @return int: El tipo destacado.
+         */
         public int getTipo() {
             return tipo;
         }
 
+        /**
+         * Devolver el ID de elemento destacado.
+         * @return String: El ID destacado.
+         */
         public String getId() {
             return id;
         }
 
+        /**
+         * Devolver el color anterior antes que fue destacado.
+         * @return Color: El color anterior.
+         */
         public Color getColor() {
             return color;
         }
 
+        /**
+         * Devolver la animación que es en uso con el elemento.
+         * @return SequentialTransition: La animación.
+         */
         public SequentialTransition getSequentialTransition() {
             return sequentialTransition;
         }

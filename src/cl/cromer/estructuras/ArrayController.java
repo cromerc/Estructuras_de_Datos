@@ -3,9 +3,6 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -145,28 +142,22 @@ public class ArrayController implements Initializable {
                     generarGrafico();
                 }
                 else {
-                    ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-                    Dialog<String> dialog = new Dialog<>();
-                    dialog.setTitle(resourceBundle.getString("error"));
                     if (array.size() == 10) {
-                        dialog.setContentText(resourceBundle.getString("arrayLleno"));
+                        Main.mostrarError(resourceBundle.getString("arrayLleno"), resourceBundle);
                     }
                     else {
-                        dialog.setContentText(resourceBundle.getString("arrayValorExiste"));
+                        Main.mostrarError(resourceBundle.getString("arrayValorExiste"), resourceBundle);
                     }
-                    dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-                    Main.setIcon(dialog, getClass());
-                    dialog.show();
                 }
             }
             catch (NumberFormatException exception) {
                 // El error no es fatal, sigue
                 Logs.log(Level.WARNING, "No es tipo int.");
-                errorNoValor();
+                Main.mostrarError(resourceBundle.getString("arrayNoValor"), resourceBundle);
             }
         }
         else {
-            errorNoValor();
+            Main.mostrarError(resourceBundle.getString("arrayNoValor"), resourceBundle);
         }
     }
 
@@ -192,17 +183,17 @@ public class ArrayController implements Initializable {
                     generarGrafico();
                 }
                 else {
-                    errorNoEsta();
+                    Main.mostrarError(resourceBundle.getString("arrayNoEsta"), resourceBundle);
                 }
             }
             else {
-                errorNoValor();
+                Main.mostrarError(resourceBundle.getString("arrayNoValor"), resourceBundle);
             }
         }
         catch (NumberFormatException exception) {
             // El error no es fatal, sigue
             Logs.log(Level.WARNING, "No es tipo int.");
-            errorNoValor();
+            Main.mostrarError(resourceBundle.getString("arrayNoValor"), resourceBundle);
         }
     }
 
@@ -231,44 +222,18 @@ public class ArrayController implements Initializable {
                     grafico.destacar("#texto_" + encontrado, Grafico.TEXTO);
                 }
                 else {
-                    errorNoEsta();
+                    Main.mostrarError(resourceBundle.getString("arrayNoEsta"), resourceBundle);
                 }
             }
             else {
-                errorNoValor();
+                Main.mostrarError(resourceBundle.getString("arrayNoValor"), resourceBundle);
             }
         }
         catch (NumberFormatException exception) {
             // El error no es fatal, sigue
             Logs.log(Level.WARNING, "No es tipo int.");
-            errorNoValor();
+            Main.mostrarError(resourceBundle.getString("arrayNoValor"), resourceBundle);
         }
-    }
-
-    /**
-     * Se muestra un error si la persona no ingresa un valor en el TextField.
-     */
-    private void errorNoValor() {
-        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("arrayNoValor"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();
-    }
-
-    /**
-     * Error cuando el valor no está en el array.
-     */
-    private void errorNoEsta() {
-        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("arrayNoEsta"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();
     }
 
     /**

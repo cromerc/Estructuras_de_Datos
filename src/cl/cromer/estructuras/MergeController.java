@@ -3,9 +3,6 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
@@ -121,7 +118,7 @@ public class MergeController implements Initializable {
         codigoMerge.setText(codigoTexto);
 
         if (!array.merge(true)) {
-            errorYaOrdenado();
+            Main.mostrarError(resourceBundle.getString("mergeYaOrdenado"), resourceBundle);
         }
 
         generarGrafico();
@@ -141,23 +138,10 @@ public class MergeController implements Initializable {
         codigoMerge.setText(codigoTexto);
 
         if (!array.merge(false)) {
-            errorYaOrdenado();
+            Main.mostrarError(resourceBundle.getString("mergeYaOrdenado"), resourceBundle);
         }
 
         generarGrafico();
-    }
-
-    /**
-     * Se muestra un error si el array ya está ordenado.
-     */
-    private void errorYaOrdenado() {
-        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("mergeYaOrdenado"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();
     }
 
     /**

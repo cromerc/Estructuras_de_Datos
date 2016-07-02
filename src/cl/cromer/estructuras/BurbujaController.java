@@ -121,7 +121,7 @@ public class BurbujaController implements Initializable {
         codigoBurbuja.setText(codigoTexto);
 
         if (!array.burbuja(true)) {
-            errorYaOrdenado();
+            Main.mostrarError(resourceBundle.getString("burbujaYaOrdenado"), resourceBundle);
         }
 
         generarGrafico();
@@ -141,23 +141,10 @@ public class BurbujaController implements Initializable {
         codigoBurbuja.setText(codigoTexto);
 
         if (!array.burbuja(false)) {
-            errorYaOrdenado();
+            Main.mostrarError(resourceBundle.getString("burbujaYaOrdenado"), resourceBundle);
         }
 
         generarGrafico();
-    }
-
-    /**
-     * Se muestra un error si el array ya está ordenado.
-     */
-    private void errorYaOrdenado() {
-        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle(resourceBundle.getString("error"));
-        dialog.setContentText(resourceBundle.getString("burbujaYaOrdenado"));
-        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
-        Main.setIcon(dialog, getClass());
-        dialog.show();
     }
 
     /**

@@ -35,7 +35,7 @@ public class Main extends Application {
      *
      * @param args String[]: Argumentos desde la consola.
      */
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         if (DEBUG) {
             new Logs();
         }
@@ -43,12 +43,24 @@ public class Main extends Application {
         launch(args);
     }
 
-    static public void setIcon(Dialog dialog, Class classe) {
+    /**
+     * Cambiar el icono de una ventana.
+     *
+     * @param dialog Dialog: El Dialog a cambiar.
+     * @param clase Class: La clase usado para abrir el Stream.
+     */
+    static public void setIcon(Dialog dialog, Class clase) {
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(classe.getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
+        stage.getIcons().add(new Image(clase.getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
     }
 
-    static public void error(String mensaje, ResourceBundle resourceBundle) {
+    /**
+     * Mostrar una ventana con mensaje en la pantalla.
+     *
+     * @param mensaje String: El mensaje a mostrar.
+     * @param resourceBundle ResourceBundle: Contiene el idioma actual.
+     */
+    static public void mostrarError(String mensaje, ResourceBundle resourceBundle) {
         ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle(resourceBundle.getString("error"));
@@ -62,7 +74,7 @@ public class Main extends Application {
     /**
      * Crear el stage y la scene para la aplicación grafica.
      *
-     * @param stage El primer stage donde va todas las cosas visuales.
+     * @param stage Stage: El primer stage donde va todas las cosas visuales.
      */
     @Override
     public void start(Stage stage) {
