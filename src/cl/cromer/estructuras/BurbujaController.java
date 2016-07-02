@@ -3,14 +3,10 @@ package cl.cromer.estructuras;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -54,6 +50,7 @@ public class BurbujaController implements Initializable {
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
+    @SuppressWarnings("Duplicates")
     public void initialize(URL location, ResourceBundle resourceBundle) {
         this.resourceBundle = resourceBundle;
 
@@ -61,21 +58,12 @@ public class BurbujaController implements Initializable {
 
         Colores colores = new Colores();
 
-        Random random = new Random();
-        int maximo = 99;
-        int minimo = 0;
-        int rango = maximo - minimo + 1;
-
         array = new Array(10);
         array.setOrdered(true);
+        array.llenar();
 
         for (int i = 0; i < 10; i++) {
-            int numero = random.nextInt(rango) + minimo;
-            while (array.buscar(numero) != -1) {
-                numero = random.nextInt(rango) + minimo;
-            }
-            array.insertar(numero);
-            contenidoBurbuja.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(i), String.valueOf(numero)));
+            contenidoBurbuja.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(i), String.valueOf(array.getIndice(i))));
             colores.siguinteColor();
         }
     }
@@ -89,22 +77,26 @@ public class BurbujaController implements Initializable {
             initializeScene();
         }
 
-        array = new Array(10);
-        array.setOrdered(true);
-
-        Random random = new Random();
-        int maximo = 99;
-        int minimo = 0;
-        int rango = maximo - minimo + 1;
-
-        for (int i = array.size(); i < 10; i++) {
-            int numero = random.nextInt(rango) + minimo;
-            while (array.buscar(numero) != -1) {
-                numero = random.nextInt(rango) + minimo;
-            }
-            array.insertar(numero);
-        }
+        array.nuevo();
+        array.llenar();
         generarGrafico();
+    }
+
+    /**
+     * Crear el array de tamaño 10.
+     */
+    private void initializeScene() {
+        scene = contenidoBurbuja.getScene();
+    }
+
+    /**
+     * Poner los valores en el grafico.
+     */
+    private void generarGrafico() {
+        for (int i = 0; i < 10; i++) {
+            Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
+            text.setText(array.getIndice(i));
+        }
     }
 
     /**
@@ -145,22 +137,5 @@ public class BurbujaController implements Initializable {
         }
 
         generarGrafico();
-    }
-
-    /**
-     * Crear el array de tamaño 10.
-     */
-    private void initializeScene() {
-        scene = contenidoBurbuja.getScene();
-    }
-
-    /**
-     * Poner los valores en el grafico.
-     */
-    private void generarGrafico() {
-        for (int i = 0; i < 10; i++) {
-            Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
-            text.setText(array.getIndice(i));
-        }
     }
 }

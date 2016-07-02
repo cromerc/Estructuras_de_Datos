@@ -19,6 +19,7 @@ public class HashTable {
      * @param string String: El string a hashear.
      * @return int: El hash a devolver.
      */
+    @SuppressWarnings("unused")
     public int hashMejor(String string) {
         int intLength = string.length() / 4;
         int sum = 0;
@@ -39,22 +40,6 @@ public class HashTable {
         }
 
         return (Math.abs(sum) % tamano);
-    }
-
-    /**
-     * Este metodo crea un hash usando una llave.
-     * @param string String: El string a hashear.
-     * @return int: El hash a devolver.
-     */
-    public int hash(String string) {
-        int  hash = 31;
-        for (int i = 0; i < string.length(); i++) {
-            hash = hash * 31 + string.charAt(i);
-        }
-        if (hash < 0) {
-            hash = hash * -1;
-        }
-        return hash % tamano;
     }
 
     public boolean insertar(String llave, int valor) {
@@ -78,6 +63,24 @@ public class HashTable {
             size++;
             return true;
         }
+    }
+
+    /**
+     * Este metodo crea un hash usando una llave.
+     *
+     * @param string String: El string a hashear.
+     *
+     * @return int: El hash a devolver.
+     */
+    public int hash(String string) {
+        int hash = 31;
+        for (int i = 0; i < string.length(); i++) {
+            hash = hash * 31 + string.charAt(i);
+        }
+        if (hash < 0) {
+            hash = hash * - 1;
+        }
+        return hash % tamano;
     }
 
     public boolean eliminar(String llave) {

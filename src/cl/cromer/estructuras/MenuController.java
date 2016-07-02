@@ -62,6 +62,38 @@ public class MenuController extends VBox implements Initializable {
     }
 
     /**
+     * Cargar el fxml, css y titulo.
+     *
+     * @param title  String: El titulo de la escena.
+     * @param fxml   String: El archivo de fxml.
+     * @param css    String: El archivo de css.
+     * @param object Object: El objeto a pasar a la nueva escena.
+     */
+    private void loadStage(String title, String fxml, String css, Object object) {
+        Scene scene = menuBar.getScene();
+        Stage stage = (Stage) scene.getWindow();
+
+        openFXML(fxml, scene, stage);
+
+        scene.getStylesheets().add(css);
+        scene.setUserData(object);
+        stage.setScene(scene);
+        stage.setTitle(this.resourceBundle.getString("titulo") + " - " + title);
+    }
+
+    private void openFXML(String fxml, Scene scene, Stage stage) {
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource(fxml), this.resourceBundle);
+            scene.setRoot(parent);
+        }
+        catch (IOException exception) {
+            // Este error es fatal, hay que cerrar la aplicación.
+            Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
+            stage.close();
+        }
+    }
+
+    /**
      * Click en Array Ordenado.
      */
     @FXML
@@ -85,6 +117,24 @@ public class MenuController extends VBox implements Initializable {
                 "/cl/cromer/estructuras/fxml/burbuja.fxml",
                 "/cl/cromer/estructuras/css/style.css"
         );
+    }
+
+    /**
+     * Cargar el fxml, css y titulo.
+     *
+     * @param title String: El titulo de la escena.
+     * @param fxml  String: El archivo de fxml.
+     * @param css   String: El archivo de css.
+     */
+    private void loadStage(String title, String fxml, String css) {
+        Scene scene = menuBar.getScene();
+        Stage stage = (Stage) scene.getWindow();
+
+        openFXML(fxml, scene, stage);
+
+        scene.getStylesheets().add(css);
+        stage.setScene(scene);
+        stage.setTitle(this.resourceBundle.getString("titulo") + " - " + title);
     }
 
     /**
@@ -255,6 +305,32 @@ public class MenuController extends VBox implements Initializable {
     }
 
     /**
+     * Cargar el fxml y css.
+     *
+     * @param fxml           String: El archivo de fxml.
+     * @param css            String: El archivo de css.
+     * @param resourceBundle ResourceBundle: El idioma nuevo para cambiarlo.
+     */
+    private void loadStage(String fxml, String css, ResourceBundle resourceBundle) {
+        Scene scene = menuBar.getScene();
+        Stage stage = (Stage) scene.getWindow();
+
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource(fxml), resourceBundle);
+            scene.setRoot(parent);
+        }
+        catch (IOException exception) {
+            // Este error es fatal, hay que cerrar la aplicación.
+            Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
+            stage.close();
+        }
+
+        scene.getStylesheets().add(css);
+        stage.setScene(scene);
+        stage.setTitle(resourceBundle.getString("titulo"));
+    }
+
+    /**
      * Click en Español.
      */
     @FXML
@@ -296,85 +372,5 @@ public class MenuController extends VBox implements Initializable {
         dialog.getDialogPane().getScene().getWindow().sizeToScene();
         Main.setIcon(dialog, getClass());
         dialog.show();
-    }
-
-    /**
-     * Cargar el fxml, css y titulo.
-     *
-     * @param title String: El titulo de la escena.
-     * @param fxml  String: El archivo de fxml.
-     * @param css   String: El archivo de css.
-     */
-    private void loadStage(String title, String fxml, String css) {
-        Scene scene = menuBar.getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        try {
-            Parent parent = FXMLLoader.load(getClass().getResource(fxml), resourceBundle);
-            scene.setRoot(parent);
-        }
-        catch (IOException exception) {
-            // Este error es fatal, hay que cerrar la aplicación.
-            Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
-            stage.close();
-        }
-
-        scene.getStylesheets().add(css);
-        stage.setScene(scene);
-        stage.setTitle(resourceBundle.getString("titulo") + " - " + title);
-    }
-
-    /**
-     * Cargar el fxml y css.
-     *
-     * @param fxml           String: El archivo de fxml.
-     * @param css            String: El archivo de css.
-     * @param resourceBundle ResourceBundle: El idioma nuevo para cambiarlo.
-     */
-    private void loadStage(String fxml, String css, ResourceBundle resourceBundle) {
-        Scene scene = menuBar.getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        try {
-            Parent parent = FXMLLoader.load(getClass().getResource(fxml), resourceBundle);
-            scene.setRoot(parent);
-        }
-        catch (IOException exception) {
-            // Este error es fatal, hay que cerrar la aplicación.
-            Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
-            stage.close();
-        }
-
-        scene.getStylesheets().add(css);
-        stage.setScene(scene);
-        stage.setTitle(resourceBundle.getString("titulo"));
-    }
-
-    /**
-     * Cargar el fxml, css y titulo.
-     *
-     * @param title  String: El titulo de la escena.
-     * @param fxml   String: El archivo de fxml.
-     * @param css    String: El archivo de css.
-     * @param object Object: El objeto a pasar a la nueva escena.
-     */
-    private void loadStage(String title, String fxml, String css, Object object) {
-        Scene scene = menuBar.getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        try {
-            Parent parent = FXMLLoader.load(getClass().getResource(fxml), resourceBundle);
-            scene.setRoot(parent);
-        }
-        catch (IOException exception) {
-            // Este error es fatal, hay que cerrar la aplicación.
-            Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
-            stage.close();
-        }
-
-        scene.getStylesheets().add(css);
-        scene.setUserData(object);
-        stage.setScene(scene);
-        stage.setTitle(resourceBundle.getString("titulo") + " - " + title);
     }
 }

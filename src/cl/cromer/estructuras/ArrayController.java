@@ -7,7 +7,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -85,19 +84,32 @@ public class ArrayController implements Initializable {
             initializeArray();
         }
 
-        Random random = new Random();
-        int maximo = 99;
-        int minimo = 0;
-        int rango = maximo - minimo + 1;
-
-        for (int i = array.size(); i < 10; i++) {
-            int numero = random.nextInt(rango) + minimo;
-            while (array.buscar(numero) != -1) {
-                numero = random.nextInt(rango) + minimo;
-            }
-            array.insertar(numero);
-        }
+        array.llenar();
         generarGrafico();
+    }
+
+    /**
+     * Crear el array de tamaño 10. La scene está usado para saber si es de tipo ordenado o simple segun el ménu.
+     */
+    private void initializeArray() {
+        scene = contenidoArray.getScene();
+        grafico = new Grafico(scene);
+        this.array = new Array(10);
+        ArrayTipos arrayTipos = (ArrayTipos) scene.getUserData();
+        if (arrayTipos.getTipo() == ArrayTipos.ORDENADO) {
+            this.array.setOrdered(true);
+        }
+    }
+
+    /**
+     * Poner los valores en el grafico.
+     */
+    private void generarGrafico() {
+        grafico.removerDestacar();
+        for (int i = 0; i < 10; i++) {
+            Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
+            text.setText(array.getIndice(i));
+        }
     }
 
     /**
@@ -233,30 +245,6 @@ public class ArrayController implements Initializable {
             // El error no es fatal, sigue
             Logs.log(Level.WARNING, "No es tipo int.");
             Main.mostrarError(resourceBundle.getString("arrayNoValor"), resourceBundle);
-        }
-    }
-
-    /**
-     * Crear el array de tamaño 10. La scene está usado para saber si es de tipo ordenado o simple segun el ménu.
-     */
-    private void initializeArray() {
-        scene = contenidoArray.getScene();
-        grafico = new Grafico(scene);
-        this.array = new Array(10);
-        ArrayTipos arrayTipos = (ArrayTipos) scene.getUserData();
-        if (arrayTipos.getTipo() == ArrayTipos.ORDENADO) {
-            this.array.setOrdered(true);
-        }
-    }
-
-    /**
-     * Poner los valores en el grafico.
-     */
-    private void generarGrafico() {
-        grafico.removerDestacar();
-        for (int i = 0; i < 10; i++) {
-            Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
-            text.setText(array.getIndice(i));
         }
     }
 }

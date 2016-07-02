@@ -126,14 +126,57 @@ public class ListaEnlazdaController implements Initializable {
     }
 
     /**
-     * Vaciar la lista de todos los valores.
+     * Crear una lista vacia.
      */
-    @FXML
-    protected void botonVaciar() {
-        if (scene == null) {
-            initializeLista();
-        }
+    private void initializeLista() {
+        scene = contenidoLista.getScene();
+        grafico = new Grafico(scene);
+        listaEnlazadaTipos = (ListaEnlazadaTipos) scene.getUserData();
+        nuevaLista();
+    }
 
+    /**
+     * Poner los valores en el grafico.
+     */
+    private void generarGrafico() {
+        grafico.removerDestacar();
+        colores = new Colores();
+        contenidoLista.getChildren().clear();
+        contenidoListaCircular.getChildren().clear();
+
+        if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+            for (int i = 0; i < listaEnlazada.size(); i++) {
+                Enlace enlace = listaEnlazada.getIndice(i);
+                if (listaEnlazada.getTipo() == ListaEnlazadaTipos.SIMPLE) {
+                    dibujarSimple(enlace, false);
+                }
+                else if (listaEnlazada.getTipo() == ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA) {
+                    if (i != listaEnlazada.size() - 1) {
+                        dibujarDoble(enlace, (i == 0));
+                    }
+                    else {
+                        dibujarSimple(enlace, false);
+                    }
+                }
+                colores.siguinteColor();
+            }
+        }
+        else {
+            for (int i = 0; i < listaEnlazadaCircular.size(); i++) {
+                Enlace enlace = listaEnlazadaCircular.getIndice(i);
+                dibujarSimple(enlace, (i == listaEnlazadaCircular.size() - 1));
+                colores.siguinteColor();
+            }
+            if (listaEnlazadaCircular.size() > 0) {
+                contenidoListaCircular.getChildren().addAll(Grafico.crearLineaCircular(listaEnlazadaCircular.size()));
+            }
+        }
+    }
+
+    /**
+     * Crear una nueva lista enlazada.
+     */
+    private void nuevaLista() {
         if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
             listaEnlazada = new ListaEnlazada();
             listaEnlazada.setTipo(listaEnlazadaTipos.getTipo());
@@ -142,6 +185,57 @@ public class ListaEnlazdaController implements Initializable {
             listaEnlazadaCircular = new ListaEnlazadaCircular();
             listaEnlazadaCircular.setTipo(ListaEnlazadaTipos.SIMPLE);
         }
+    }
+
+    /**
+     * Dibujarlo con una flecha.
+     *
+     * @param enlace Enlace: El enlace que tiene la llave y valor.
+     * @param sinFlecha boolean: Verdad si necesita dibujar una flecha.
+     */
+    private void dibujarSimple(Enlace enlace, boolean sinFlecha) {
+        contenidoLista.getChildren().addAll(
+                Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave()))
+        );
+        if (! sinFlecha) {
+            contenidoLista.getChildren().addAll(
+                    Grafico.crearLineaVertical(),
+                    Grafico.crearFlechaAbajo()
+            );
+        }
+    }
+
+    /**
+     * Dibujarlo con dos flechas.
+     *
+     * @param enlace Enlace: El enlace que tiene la llave y valor.
+     * @param primer boolean: Verdad si es el primer elemento de la lista.
+     */
+    private void dibujarDoble(Enlace enlace, boolean primer) {
+        if (primer) {
+            contenidoLista.getChildren().addAll(
+                    Grafico.crearFlechaArriba(),
+                    Grafico.crearLineaVertical()
+            );
+        }
+        contenidoLista.getChildren().addAll(
+                Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave())),
+                Grafico.crearFlechaArriba(),
+                Grafico.crearLineaVertical(),
+                Grafico.crearFlechaAbajo()
+        );
+    }
+
+    /**
+     * Vaciar la lista de todos los valores.
+     */
+    @FXML
+    protected void botonVaciar() {
+        if (scene == null) {
+            initializeLista();
+        }
+
+        nuevaLista();
         generarGrafico();
     }
 
@@ -154,20 +248,7 @@ public class ListaEnlazdaController implements Initializable {
             initializeLista();
         }
 
-        String tipo;
-        switch (listaEnlazadaTipos.getTipo()) {
-            case ListaEnlazadaTipos.SIMPLE:
-                tipo = "Simple";
-                break;
-            case ListaEnlazadaTipos.CIRCULAR:
-                tipo = "Circular";
-                break;
-            case ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA:
-                tipo = "Doble";
-                break;
-            default:
-                tipo = "Simple";
-        }
+        String tipo = getTipoString();
 
         // Mostrar el codigo
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/listaEnlazada" + tipo + "/insertar")).useDelimiter("\\Z").next();
@@ -201,15 +282,7 @@ public class ListaEnlazdaController implements Initializable {
         }
     }
 
-    /**
-     * Eliminar un valor de la lista si existe y mostrar el codigo en la pantalla.
-     */
-    @FXML
-    protected void botonEliminar() {
-        if (scene == null) {
-            initializeLista();
-        }
-
+    private String getTipoString() {
         String tipo;
         switch (listaEnlazadaTipos.getTipo()) {
             case ListaEnlazadaTipos.SIMPLE:
@@ -224,6 +297,19 @@ public class ListaEnlazdaController implements Initializable {
             default:
                 tipo = "Simple";
         }
+        return tipo;
+    }
+
+    /**
+     * Eliminar un valor de la lista si existe y mostrar el codigo en la pantalla.
+     */
+    @FXML
+    protected void botonEliminar() {
+        if (scene == null) {
+            initializeLista();
+        }
+
+        String tipo = getTipoString();
 
         // Mostrar el codigo
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/listaEnlazada" + tipo + "/eliminar")).useDelimiter("\\Z").next();
@@ -267,20 +353,7 @@ public class ListaEnlazdaController implements Initializable {
             initializeLista();
         }
 
-        String tipo;
-        switch (listaEnlazadaTipos.getTipo()) {
-            case ListaEnlazadaTipos.SIMPLE:
-                tipo = "Simple";
-                break;
-            case ListaEnlazadaTipos.CIRCULAR:
-                tipo = "Circular";
-                break;
-            case ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA:
-                tipo = "Doble";
-                break;
-            default:
-                tipo = "Simple";
-        }
+        String tipo = getTipoString();
 
         // Mostrar el codigo
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/listaEnlazada" + tipo + "/buscar")).useDelimiter("\\Z").next();
@@ -314,99 +387,5 @@ public class ListaEnlazdaController implements Initializable {
             Logs.log(Level.WARNING, "No es tipo int.");
             Main.mostrarError(resourceBundle.getString("listaNoValor"), resourceBundle);
         }
-    }
-
-    /**
-     * Crear una lista vacia.
-     */
-    private void initializeLista() {
-        scene = contenidoLista.getScene();
-        grafico = new Grafico(scene);
-        listaEnlazadaTipos = (ListaEnlazadaTipos) scene.getUserData();
-        if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
-            listaEnlazada = new ListaEnlazada();
-            listaEnlazada.setTipo(listaEnlazadaTipos.getTipo());
-        }
-        else {
-            listaEnlazadaCircular = new ListaEnlazadaCircular();
-            listaEnlazadaCircular.setTipo(ListaEnlazadaTipos.SIMPLE);
-        }
-    }
-
-    /**
-     * Poner los valores en el grafico.
-     */
-    private void generarGrafico() {
-        grafico.removerDestacar();
-        colores = new Colores();
-        contenidoLista.getChildren().clear();
-        contenidoListaCircular.getChildren().clear();
-
-        if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
-            for (int i = 0; i < listaEnlazada.size(); i++) {
-                Enlace enlace = listaEnlazada.getIndice(i);
-                if (listaEnlazada.getTipo() == ListaEnlazadaTipos.SIMPLE) {
-                    dibujarSimple(enlace, false);
-                }
-                else if (listaEnlazada.getTipo() == ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA) {
-                    if (i != listaEnlazada.size() - 1) {
-                        dibujarDoble(enlace, (i == 0));
-                    }
-                    else {
-                        dibujarSimple(enlace, false);
-                    }
-                }
-                colores.siguinteColor();
-            }
-        }
-        else {
-            for (int i = 0; i < listaEnlazadaCircular.size(); i++) {
-                Enlace enlace = listaEnlazadaCircular.getIndice(i);
-                dibujarSimple(enlace, (i == listaEnlazadaCircular.size() - 1));
-                colores.siguinteColor();
-            }
-            if (listaEnlazadaCircular.size() > 0) {
-                contenidoListaCircular.getChildren().addAll(Grafico.crearLineaCircular(listaEnlazadaCircular.size()));
-            }
-        }
-    }
-
-    /**
-     * Dibujarlo con una flecha.
-     *
-     * @param enlace Enlace: El enlace que tiene la llave y valor.
-     * @param sinFlecha boolean: Verdad si necesita dibujar una flecha.
-     */
-    private void dibujarSimple(Enlace enlace, boolean sinFlecha) {
-        contenidoLista.getChildren().addAll(
-                Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave()))
-        );
-        if (!sinFlecha) {
-            contenidoLista.getChildren().addAll(
-                    Grafico.crearLineaVertical(),
-                    Grafico.crearFlechaAbajo()
-            );
-        }
-    }
-
-    /**
-     * Dibujarlo con dos flechas.
-     *
-     * @param enlace Enlace: El enlace que tiene la llave y valor.
-     * @param primer boolean: Verdad si es el primer elemento de la lista.
-     */
-    private void dibujarDoble(Enlace enlace, boolean primer) {
-        if (primer) {
-            contenidoLista.getChildren().addAll(
-                    Grafico.crearFlechaArriba(),
-                    Grafico.crearLineaVertical()
-            );
-        }
-        contenidoLista.getChildren().addAll(
-                Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave())),
-                Grafico.crearFlechaArriba(),
-                Grafico.crearLineaVertical(),
-                Grafico.crearFlechaAbajo()
-        );
     }
 }

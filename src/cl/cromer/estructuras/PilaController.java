@@ -7,7 +7,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -87,16 +86,19 @@ public class PilaController implements Initializable {
             grafico = new Grafico(scene);
         }
 
-        Random random = new Random();
-        int maximo = 99;
-        int minimo = 0;
-        int rango = maximo - minimo + 1;
-
-        for (int i = pila.size(); i < 10; i++) {
-            int numero = random.nextInt(rango) + minimo;
-            pila.push(numero);
-        }
+        pila.llenar();
         generarGrafico();
+    }
+
+    /**
+     * Poner los valores en el grafico.
+     */
+    private void generarGrafico() {
+        grafico.removerDestacar();
+        for (int i = 0; i < 10; i++) {
+            Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
+            text.setText(pila.getIndice(i));
+        }
     }
 
     /**
@@ -199,17 +201,6 @@ public class PilaController implements Initializable {
         }
         else {
             Main.mostrarError(resourceBundle.getString("pilaVacia"), resourceBundle);
-        }
-    }
-
-    /**
-     * Poner los valores en el grafico.
-     */
-    private void generarGrafico() {
-        grafico.removerDestacar();
-        for (int i = 0; i < 10; i++) {
-            Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
-            text.setText(pila.getIndice(i));
         }
     }
 }

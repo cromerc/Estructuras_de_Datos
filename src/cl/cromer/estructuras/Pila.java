@@ -1,5 +1,7 @@
 package cl.cromer.estructuras;
 
+import java.util.Random;
+
 /**
  * Crear una estructura de dato de tipo pila.
  *
@@ -25,39 +27,6 @@ final public class Pila {
     }
 
     /**
-     * Devolver la cantidad de elementos en la pila.
-     *
-     * @return int: La cantidad de elementos.
-     */
-    public int size() {
-        return size;
-    }
-
-    /**
-     * Push un valor en la pila encima.
-     *
-     * @param valor int: El valor a push.
-     */
-    public void push(int valor) {
-        if (this.pila != null) {
-            String pila[] = new String[this.pila.length + 1];
-            int i;
-            for (i = 0; i < this.pila.length; i++) {
-                pila[i] = this.pila[i];
-            }
-            pila[i] = String.valueOf(valor);
-            this.pila = pila;
-            size++;
-        }
-        else {
-            String pila[] = new String[1];
-            pila[0] = String.valueOf(valor);
-            this.pila = pila;
-            size++;
-        }
-    }
-
-    /**
      * Pop un valor de encima de la pila.
      *
      * @return boolean: Verdad si fue exitoso.
@@ -73,6 +42,15 @@ final public class Pila {
         else {
             return false;
         }
+    }
+
+    /**
+     * Devolver la cantidad de elementos en la pila.
+     *
+     * @return int: La cantidad de elementos.
+     */
+    public int size() {
+        return size;
     }
 
     /**
@@ -101,6 +79,46 @@ final public class Pila {
         }
         else {
             return null;
+        }
+    }
+
+    /**
+     * Llenar la pila con valores al azar.
+     */
+    @SuppressWarnings("Duplicates")
+    public void llenar() {
+        Random random = new Random();
+        int maximo = 99;
+        int minimo = 0;
+        int rango = maximo - minimo + 1;
+
+        for (int i = size(); i < 10; i++) {
+            int numero = random.nextInt(rango) + minimo;
+            push(numero);
+        }
+    }
+
+    /**
+     * Push un valor en la pila encima.
+     *
+     * @param valor int: El valor a push.
+     */
+    public void push(int valor) {
+        if (this.pila != null) {
+            String pila[] = new String[this.pila.length + 1];
+            int i;
+            for (i = 0; i < this.pila.length; i++) {
+                pila[i] = this.pila[i];
+            }
+            pila[i] = String.valueOf(valor);
+            this.pila = pila;
+            size++;
+        }
+        else {
+            String pila[] = new String[1];
+            pila[0] = String.valueOf(valor);
+            this.pila = pila;
+            size++;
         }
     }
 }
