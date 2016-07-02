@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -44,6 +46,16 @@ public class Main extends Application {
     static public void setIcon(Dialog dialog, Class classe) {
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(classe.getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
+    }
+
+    static public void error(String mensaje, ResourceBundle resourceBundle) {
+        ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle(resourceBundle.getString("error"));
+        dialog.setContentText(mensaje);
+        dialog.getDialogPane().getButtonTypes().add(botonCerrar);
+        Main.setIcon(dialog, Main.class);
+        dialog.show();
     }
 
     /**

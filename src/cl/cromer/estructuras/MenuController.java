@@ -214,6 +214,18 @@ public class MenuController extends VBox implements Initializable {
     }
 
     /**
+     * Click en Hash Table.
+     */
+    @FXML
+    protected void menuHashTable() {
+        loadStage(
+            resourceBundle.getString("tituloTablaHash"),
+            "/cl/cromer/estructuras/fxml/hashTable.fxml",
+            "/cl/cromer/estructuras/css/style.css"
+        );
+    }
+
+    /**
      * Click en Ingles.
      */
     @FXML

@@ -203,7 +203,8 @@ public class PilaController implements Initializable {
         int encontrado = pila.peek();
         if (encontrado != Integer.MIN_VALUE) {
             generarGrafico();
-            grafico.destacar(pila.size() - 1, Grafico.RECTANGULO);
+            grafico.destacar("#caja_" + (pila.size() - 1), Grafico.RECTANGULO);
+            grafico.destacar("#texto_" + (pila.size() - 1), Grafico.TEXTO);
         }
         else {
             errorVacia();
@@ -242,7 +243,7 @@ public class PilaController implements Initializable {
     private void generarGrafico() {
         grafico.removerDestacar();
         for (int i = 0; i < 10; i++) {
-            Text text = (Text) scene.lookup("#caja_" + String.valueOf(i));
+            Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
             text.setText(pila.getIndice(i));
         }
     }

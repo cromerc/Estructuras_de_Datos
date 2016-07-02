@@ -307,7 +307,8 @@ public class ListaEnlazdaController implements Initializable {
                 if (enlace != null) {
                     generarGrafico();
                     grafico = new Grafico(scene);
-                    grafico.destacar(enlace.getLlave(), Grafico.RECTANGULO);
+                    grafico.destacar("#caja_" + enlace.getLlave(), Grafico.RECTANGULO);
+                    grafico.destacar("#texto_" + enlace.getLlave(), Grafico.TEXTO);
                 }
                 else {
                     errorNoEsta();
@@ -408,7 +409,8 @@ public class ListaEnlazdaController implements Initializable {
     /**
      * Dibujarlo con una flecha.
      *
-     * @param enlace Object: El enlace que tiene la llave y valor.
+     * @param enlace Enlace: El enlace que tiene la llave y valor.
+     * @param sinFlecha boolean: Verdad si necesita dibujar una flecha.
      */
     private void dibujarSimple(Enlace enlace, boolean sinFlecha) {
         contenidoLista.getChildren().addAll(
@@ -425,7 +427,8 @@ public class ListaEnlazdaController implements Initializable {
     /**
      * Dibujarlo con dos flechas.
      *
-     * @param enlace El enlace que tiene la llave y valor.
+     * @param enlace Enlace: El enlace que tiene la llave y valor.
+     * @param primer boolean: Verdad si es el primer elemento de la lista.
      */
     private void dibujarDoble(Enlace enlace, boolean primer) {
         if (primer) {

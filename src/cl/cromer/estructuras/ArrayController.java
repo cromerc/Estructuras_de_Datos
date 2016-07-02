@@ -227,7 +227,8 @@ public class ArrayController implements Initializable {
                 if (encontrado != -1) {
                     generarGrafico();
                     grafico = new Grafico(scene);
-                    grafico.destacar(encontrado, Grafico.RECTANGULO);
+                    grafico.destacar("#caja_" + encontrado, Grafico.RECTANGULO);
+                    grafico.destacar("#texto_" + encontrado, Grafico.TEXTO);
                 }
                 else {
                     errorNoEsta();
@@ -289,7 +290,7 @@ public class ArrayController implements Initializable {
     private void generarGrafico() {
         grafico.removerDestacar();
         for (int i = 0; i < 10; i++) {
-            Text text = (Text) scene.lookup("#caja_" + String.valueOf(i));
+            Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
             text.setText(array.getIndice(i));
         }
     }

@@ -172,7 +172,7 @@ public class MergeController implements Initializable {
      */
     private void generarGrafico() {
         for (int i = 0; i < 10; i++) {
-            Text text = (Text) scene.lookup("#caja_" + String.valueOf(i));
+            Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
             text.setText(array.getIndice(i));
         }
     }

@@ -35,7 +35,7 @@
             <MenuItem text="%dirigidos"/>
             <MenuItem text="%noDirigidos"/>
         </Menu>
-        <MenuItem text="%tablaHash"/>
+        <MenuItem text="%tablaHash" onAction="#menuHashTable"/>
     </Menu>
     <Menu text="%idioma">
         <MenuItem onAction="#menuIngles" text="%ingles"/>

@@ -203,7 +203,8 @@ public class ColaController implements Initializable {
         int encontrado = cola.peek();
         if (encontrado != Integer.MIN_VALUE) {
             generarGrafico();
-            grafico.destacar(0, Grafico.RECTANGULO);
+            grafico.destacar("#caja_" + 0, Grafico.RECTANGULO);
+            grafico.destacar("#texto_" + 0, Grafico.TEXTO);
         }
         else {
             errorVacia();
@@ -242,7 +243,7 @@ public class ColaController implements Initializable {
     private void generarGrafico() {
         grafico.removerDestacar();
         for (int i = 0; i < 10; i++) {
-            Text text = (Text) scene.lookup("#caja_" + String.valueOf(i));
+            Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
             text.setText(cola.getIndice(i));
         }
     }
