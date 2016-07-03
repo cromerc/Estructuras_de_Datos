@@ -1,8 +1,9 @@
 package cl.cromer.estructuras;
 
 public class HashTable {
-    private HashItem hashArray[];
-    private int tamano;
+    final private HashItem hashArray[];
+
+    final private int tamano;
     private int size;
 
     public HashTable(int tamano) {

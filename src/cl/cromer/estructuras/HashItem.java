@@ -1,9 +1,11 @@
 package cl.cromer.estructuras;
 
 public class HashItem {
+    final private String llave;
+
+    final private int valor;
+
     private int indice;
-    private String llave;
-    private int valor;
 
     public HashItem(String llave, int valor) {
         this.llave = llave;

@@ -48,7 +48,7 @@ public class Grafico {
     /**
      * Los elementos destacados.
      */
-    private List<Destacados> destacados;
+    final private List<Destacados> destacados;
 
     /**
      * Graficar una escena.
@@ -258,45 +258,6 @@ public class Grafico {
     }
 
     /**
-     * Crear un animacion de transicion usando colores que cambian.
-     *
-     * @param rectangle       Rectangle: El objeto que desea animar.
-     * @param colorBackground Color: Color del fondo de destacar.
-     * @return PauseTransition: La transition creado con los elementos y colores.
-     */
-    private static PauseTransition createPauseTransition(Rectangle rectangle, Color colorBackground) {
-        PauseTransition changeColor = new PauseTransition(new Duration(DURACION));
-        changeColor.setOnFinished(actionEvent -> rectangle.setFill(colorBackground));
-        return changeColor;
-    }
-
-    /**
-     * Crear un animacion de transicion usando colores que cambian.
-     *
-     * @param circle          Circle: El objeto que desea animar.
-     * @param colorBackground Color: Color del fondo de destacar.
-     * @return PauseTransition: La transition creado con los elementos y colores.
-     */
-    private static PauseTransition createPauseTransition(Circle circle, Color colorBackground) {
-        PauseTransition changeColor = new PauseTransition(new Duration(DURACION));
-        changeColor.setOnFinished(actionEvent -> circle.setFill(colorBackground));
-        return changeColor;
-    }
-
-    /**
-     * Crear un animacion de transicion usando colores que cambian.
-     *
-     * @param text            Text: El texto que desea animar.
-     * @param colorText       Color: Color del texto.
-     * @return PauseTransition: La transition creado con los elementos y colores.
-     */
-    private static PauseTransition createPauseTransition(Text text, Color colorText) {
-        PauseTransition changeColor = new PauseTransition(new Duration(DURACION));
-        changeColor.setOnFinished(actionEvent -> text.setStroke(colorText));
-        return changeColor;
-    }
-
-    /**
      * Destacar un elemento
      *
      * @param id int: El indice a destacar.
@@ -349,6 +310,48 @@ public class Grafico {
     }
 
     /**
+     * Crear un animacion de transicion usando colores que cambian.
+     *
+     * @param rectangle Rectangle: El objeto que desea animar.
+     * @param colorBackground Color: Color del fondo de destacar.
+     *
+     * @return PauseTransition: La transition creado con los elementos y colores.
+     */
+    private static PauseTransition createPauseTransition(Rectangle rectangle, Color colorBackground) {
+        PauseTransition changeColor = new PauseTransition(new Duration(DURACION));
+        changeColor.setOnFinished(actionEvent -> rectangle.setFill(colorBackground));
+        return changeColor;
+    }
+
+    /**
+     * Crear un animacion de transicion usando colores que cambian.
+     *
+     * @param circle Circle: El objeto que desea animar.
+     * @param colorBackground Color: Color del fondo de destacar.
+     *
+     * @return PauseTransition: La transition creado con los elementos y colores.
+     */
+    private static PauseTransition createPauseTransition(Circle circle, Color colorBackground) {
+        PauseTransition changeColor = new PauseTransition(new Duration(DURACION));
+        changeColor.setOnFinished(actionEvent -> circle.setFill(colorBackground));
+        return changeColor;
+    }
+
+    /**
+     * Crear un animacion de transicion usando colores que cambian.
+     *
+     * @param text Text: El texto que desea animar.
+     * @param colorText Color: Color del texto.
+     *
+     * @return PauseTransition: La transition creado con los elementos y colores.
+     */
+    private static PauseTransition createPauseTransition(Text text, Color colorText) {
+        PauseTransition changeColor = new PauseTransition(new Duration(DURACION));
+        changeColor.setOnFinished(actionEvent -> text.setStroke(colorText));
+        return changeColor;
+    }
+
+    /**
      * Remover todos los elementos destacados.
      */
     public void removerDestacar() {
@@ -383,19 +386,22 @@ public class Grafico {
         /**
          * El tipo de objeto que está destacado.
          */
-        private int tipo;
+        final private int tipo;
+
         /**
          * El id del elemento destacado.
          */
-        private String id;
+        final private String id;
+
         /**
          * El color anterior del elemento destacado.
          */
-        private Color color;
+        final private Color color;
+
         /**
          * La animación del elemento destacado.
          */
-        private SequentialTransition sequentialTransition;
+        final private SequentialTransition sequentialTransition;
 
         /**
          * Inicilizar.

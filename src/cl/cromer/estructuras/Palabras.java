@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Palabras {
-    List<String> palabras;
+    final private List<String> palabras;
 
     public Palabras() {
         palabras = new ArrayList<>();
