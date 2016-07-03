@@ -3,287 +3,333 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="3484.925" y="1056.0">cl.cromer.estructuras.InsercionController</node>
-    <node x="4385.925" y="1056.0">cl.cromer.estructuras.ShellController</node>
-    <node x="5247.925" y="1056.0">cl.cromer.estructuras.QuickController</node>
-    <node x="860.5750000000003" y="164.0">cl.cromer.estructuras.EnlaceNormal</node>
-    <node x="535.3250000000003" y="164.0">cl.cromer.estructuras.EnlaceCircular</node>
-    <node x="1834.0395833333332" y="1014.0">cl.cromer.estructuras.ColaController</node>
-    <node x="3113.841666666667" y="142.0">cl.cromer.estructuras.Colores</node>
-    <node x="245.25" y="527.5">cl.cromer.estructuras.ListaEnlazadaTipos</node>
-    <node x="761.7503472222224" y="0.0">cl.cromer.estructuras.Enlace</node>
-    <node x="1841.3416666666667" y="496.0">cl.cromer.estructuras.Cola</node>
-    <node x="543.3250000000003" y="474.5">cl.cromer.estructuras.ListaEnlazadaCircular</node>
-    <node x="0.0" y="951.0">cl.cromer.estructuras.MenuController</node>
-    <node x="4807.925" y="1056.0">cl.cromer.estructuras.BurbujaController</node>
-    <node x="883.3250000000003" y="485.0">cl.cromer.estructuras.ListaEnlazada</node>
-    <node x="2396.925" y="1014.0">cl.cromer.estructuras.PilaController</node>
-    <node x="3933.925" y="1056.0">cl.cromer.estructuras.SeleccionController</node>
-    <node x="0.0" y="1488.0">cl.cromer.estructuras.Logs</node>
-    <node x="4124.925" y="380.0">cl.cromer.estructuras.Array</node>
-    <node x="2677.7479166666667" y="496.0">cl.cromer.estructuras.Pila</node>
-    <node x="2142.747916666667" y="380.5">cl.cromer.estructuras.Grafico</node>
-    <node x="4228.425" y="174.5">cl.cromer.estructuras.Array.ParticionarResult</node>
-    <node x="1477.3416666666667" y="506.0">cl.cromer.estructuras.TextFieldLimited</node>
-    <node x="2925.925" y="1003.5">cl.cromer.estructuras.ArrayController</node>
-    <node x="652.6750000000004" y="951.0">cl.cromer.estructuras.ListaEnlazdaController</node>
-    <node x="5.5" y="1653.0">cl.cromer.estructuras.Main</node>
-    <node x="1308.6750000000002" y="1161.5">cl.cromer.estructuras.TextFieldLimited.StyleableProperties</node>
+    <node x="0.0" y="1179.5">cl.cromer.estructuras.InsercionController</node>
+    <node x="3097.0" y="1242.5">cl.cromer.estructuras.Grafico.Destacados</node>
+    <node x="1267.0" y="1179.5">cl.cromer.estructuras.ShellController</node>
+    <node x="429.0" y="1179.5">cl.cromer.estructuras.QuickController</node>
+    <node x="5332.99375949254" y="164.0">cl.cromer.estructuras.EnlaceNormal</node>
+    <node x="4595.666666666667" y="1127.0">cl.cromer.estructuras.HashTableController</node>
+    <node x="5653.74375949254" y="164.0">cl.cromer.estructuras.EnlaceCircular</node>
+    <node x="3660.291666666667" y="1148.0">cl.cromer.estructuras.ColaController</node>
+    <node x="2310.791666666667" y="142.0">cl.cromer.estructuras.Colores</node>
+    <node x="6062.583333333333" y="568.5">cl.cromer.estructuras.ListaEnlazadaTipos</node>
+    <node x="4867.916666666667" y="505.5">cl.cromer.estructuras.HashTable</node>
+    <node x="5626.1441369606" y="0.0">cl.cromer.estructuras.Enlace</node>
+    <node x="3749.666666666667" y="526.5">cl.cromer.estructuras.Cola</node>
+    <node x="5661.74375949254" y="515.5">cl.cromer.estructuras.ListaEnlazadaCircular</node>
+    <node x="5895.833333333333" y="1043.0">cl.cromer.estructuras.MenuController</node>
+    <node x="1669.0000000000002" y="1179.5">cl.cromer.estructuras.BurbujaController</node>
+    <node x="5355.74375949254" y="526.0">cl.cromer.estructuras.ListaEnlazada</node>
+    <node x="2608.0" y="1148.0">cl.cromer.estructuras.PilaController</node>
+    <node x="835.0" y="1179.5">cl.cromer.estructuras.SeleccionController</node>
+    <node x="14.5" y="1622.0">cl.cromer.estructuras.Logs</node>
+    <node x="986.0" y="400.0">cl.cromer.estructuras.Array</node>
+    <node x="2622.875" y="526.5">cl.cromer.estructuras.Pila</node>
+    <node x="5000.063474939695" y="164.0">cl.cromer.estructuras.HashItem</node>
+    <node x="3232.666666666667" y="421.5">cl.cromer.estructuras.Grafico</node>
+    <node x="1109.5" y="174.5">cl.cromer.estructuras.Array.ParticionarResult</node>
+    <node x="4091.666666666667" y="547.0">cl.cromer.estructuras.TextFieldLimited</node>
+    <node x="5192.658333333333" y="1053.5">cl.cromer.estructuras.ListaEnlazdaController</node>
+    <node x="2089.0" y="1137.5">cl.cromer.estructuras.ArrayController</node>
+    <node x="4159.666666666667" y="1274.5">cl.cromer.estructuras.TextFieldLimited.StyleableProperties</node>
+    <node x="0.0" y="1787.0">cl.cromer.estructuras.Main</node>
   </nodes>
   <notes />
   <edges>
     <edge source="cl.cromer.estructuras.ListaEnlazdaController" target="cl.cromer.estructuras.TextFieldLimited">
-      <point x="159.0" y="-246.0" />
-      <point x="1129.6750000000004" y="881.0" />
-      <point x="1506.0083333333334" y="881.0" />
-      <point x="-143.33333333333334" y="89.5" />
+      <point x="-164.0" y="-256.5" />
+      <point x="5356.658333333333" y="923.0" />
+      <point x="4411.0952380952385" y="923.0" />
+      <point x="147.42857142857156" y="89.5" />
     </edge>
     <edge source="cl.cromer.estructuras.MenuController" target="cl.cromer.estructuras.ListaEnlazadaTipos">
-      <point x="0.0" y="-246.0" />
-      <point x="-49.25" y="68.0" />
+      <point x="0.0" y="-267.0" />
+      <point x="49.25" y="68.0" />
     </edge>
     <edge source="cl.cromer.estructuras.PilaController" target="cl.cromer.estructuras.TextFieldLimited">
-      <point x="-212.08333333333326" y="-183.0" />
-      <point x="2439.3416666666667" y="881.0" />
-      <point x="1735.3416666666667" y="881.0" />
-      <point x="86.00000000000006" y="89.5" />
+      <point x="195.41666666666652" y="-162.0" />
+      <point x="3037.916666666667" y="1013.0" />
+      <point x="4165.380952380952" y="1013.0" />
+      <point x="-98.28571428571468" y="89.5" />
     </edge>
     <edge source="cl.cromer.estructuras.ListaEnlazdaController" target="cl.cromer.estructuras.ListaEnlazadaCircular">
-      <point x="-159.0000000000001" y="-246.0" />
-      <point x="811.6750000000002" y="931.0" />
-      <point x="783.3250000000003" y="931.0" />
-      <point x="80.0" y="121.0" />
-    </edge>
-    <edge source="cl.cromer.estructuras.PilaController" target="cl.cromer.estructuras.Colores">
-      <point x="212.08333333333348" y="-183.0" />
-      <point x="2863.508333333333" y="931.0" />
-      <point x="3016.9181134259265" y="931.0" />
-      <point x="3016.9181134259265" y="360.0" />
-      <point x="3217.341666666667" y="360.0" />
-      <point x="-23.0" y="79.0" />
+      <point x="164.0" y="-256.5" />
+      <point x="5684.658333333333" y="1023.0" />
+      <point x="5741.74375949254" y="1023.0" />
+      <point x="-80.0" y="121.0" />
     </edge>
     <edge source="cl.cromer.estructuras.InsercionController" target="cl.cromer.estructuras.Colores">
-      <point x="-143.0" y="-141.0" />
-      <point x="3556.425" y="360.0" />
-      <point x="3263.341666666667" y="360.0" />
-      <point x="23.0" y="79.0" />
+      <point x="-136.33333333333348" y="-130.5" />
+      <point x="68.16666666666652" y="963.0" />
+      <point x="211.18997029393358" y="963.0" />
+      <point x="211.18997029393358" y="330.0" />
+      <point x="2321.333333333333" y="330.0" />
+      <point x="-115.95833333333348" y="79.0" />
+    </edge>
+    <edge source="cl.cromer.estructuras.PilaController" target="cl.cromer.estructuras.Colores">
+      <point x="-195.41666666666652" y="-162.0" />
+      <point x="2647.083333333334" y="933.0" />
+      <point x="2545.0858036272666" y="933.0" />
+      <point x="2545.0858036272666" y="380.0" />
+      <point x="2447.833333333333" y="380.0" />
+      <point x="10.541666666666515" y="79.0" />
+    </edge>
+    <edge source="cl.cromer.estructuras.HashTableController" target="cl.cromer.estructuras.Grafico">
+      <point x="-229.58333333333303" y="-183.0" />
+      <point x="4641.583333333334" y="973.0" />
+      <point x="3595.8589743589746" y="973.0" />
+      <point x="114.69230769230762" y="215.0" />
     </edge>
     <edge source="cl.cromer.estructuras.Main" target="cl.cromer.estructuras.Logs">
-      <point x="0.0" y="-46.5" />
+      <point x="0.0" y="-67.5" />
       <point x="0.0" y="57.5" />
     </edge>
     <edge source="cl.cromer.estructuras.SeleccionController" target="cl.cromer.estructuras.Array">
-      <point x="0.0" y="-141.0" />
-      <point x="4149.925" y="921.0" />
-      <point x="4311.3" y="921.0" />
-      <point x="-62.12500000000003" y="215.5" />
-    </edge>
-    <edge source="cl.cromer.estructuras.ListaEnlazdaController" target="cl.cromer.estructuras.ListaEnlazadaTipos">
-      <point x="-286.20000000000016" y="-246.0" />
-      <point x="684.4750000000004" y="931.0" />
-      <point x="393.0" y="931.0" />
-      <point x="49.25" y="68.0" />
+      <point x="0.0" y="-130.5" />
+      <point x="1041.0" y="1013.0" />
+      <point x="1187.375" y="1013.0" />
+      <point x="-67.125" y="236.5" />
     </edge>
     <edge source="cl.cromer.estructuras.BurbujaController" target="cl.cromer.estructuras.Array">
-      <point x="0.0" y="-141.0" />
-      <point x="5017.925" y="901.0" />
-      <point x="4518.383333333333" y="901.0" />
-      <point x="144.95833333333314" y="215.5" />
+      <point x="-133.3333333333337" y="-130.5" />
+      <point x="1735.6666666666665" y="1003.0" />
+      <point x="1366.375" y="1003.0" />
+      <point x="111.875" y="236.5" />
+    </edge>
+    <edge source="cl.cromer.estructuras.ListaEnlazdaController" target="cl.cromer.estructuras.ListaEnlazadaTipos">
+      <point x="295.1999999999998" y="-256.5" />
+      <point x="5815.858333333333" y="1023.0" />
+      <point x="6111.833333333333" y="1023.0" />
+      <point x="-49.25" y="68.0" />
     </edge>
     <edge source="cl.cromer.estructuras.Array.ParticionarResult" target="cl.cromer.estructuras.Array">
       <point x="72.5" y="46.5" />
-      <point x="4445.925" y="360.0" />
-      <point x="4497.675" y="360.0" />
-      <point x="124.25" y="-215.5" />
+      <point x="1327.0" y="320.0" />
+      <point x="1388.75" y="320.0" />
+      <point x="134.25" y="-236.5" />
+    </edge>
+    <edge source="cl.cromer.estructuras.Grafico.Destacados" target="cl.cromer.estructuras.Grafico">
+      <point x="-153.66666666666652" y="-67.5" />
+      <point x="3173.833333333334" y="983.0" />
+      <point x="3404.705128205128" y="983.0" />
+      <point x="-76.46153846153857" y="215.0" />
     </edge>
     <edge source="cl.cromer.estructuras.ListaEnlazadaCircular" target="cl.cromer.estructuras.EnlaceCircular">
       <point x="-80.0" y="-121.0" />
-      <point x="623.3250000000003" y="360.0" />
-      <point x="643.8250000000003" y="360.0" />
+      <point x="5741.74375949254" y="380.0" />
+      <point x="5762.24375949254" y="380.0" />
       <point x="0.0" y="57.0" />
     </edge>
-    <edge source="cl.cromer.estructuras.ListaEnlazdaController" target="cl.cromer.estructuras.Colores">
-      <point x="31.799999999999955" y="-246.0" />
-      <point x="1002.4750000000004" y="861.0" />
-      <point x="1179.8250000000003" y="861.0" />
-      <point x="1179.8250000000003" y="320.0" />
-      <point x="3125.341666666667" y="320.0" />
-      <point x="-115.0" y="79.0" />
-    </edge>
     <edge source="cl.cromer.estructuras.ShellController" target="cl.cromer.estructuras.Colores">
-      <point x="134.00000000000023" y="-141.0" />
-      <point x="4720.925" y="931.0" />
-      <point x="4706.070833333333" y="931.0" />
-      <point x="4706.070833333333" y="340.0" />
-      <point x="3309.341666666667" y="340.0" />
-      <point x="69.0" y="79.0" />
+      <point x="127.33333333333326" y="-130.5" />
+      <point x="1586.3125" y="360.0" />
+      <point x="2384.583333333333" y="360.0" />
+      <point x="-52.708333333333485" y="79.0" />
     </edge>
     <edge source="cl.cromer.estructuras.ArrayController" target="cl.cromer.estructuras.Array">
-      <point x="224.58333333333326" y="-193.5" />
-      <point x="3420.008333333333" y="891.0" />
-      <point x="4187.05" y="891.0" />
-      <point x="-186.375" y="215.5" />
+      <point x="-207.91666666666652" y="-172.5" />
+      <point x="2130.583333333334" y="983.0" />
+      <point x="1455.875" y="983.0" />
+      <point x="201.375" y="236.5" />
+    </edge>
+    <edge source="cl.cromer.estructuras.ListaEnlazdaController" target="cl.cromer.estructuras.Colores">
+      <point x="-98.39999999999964" y="-256.5" />
+      <point x="5422.258333333333" y="913.0" />
+      <point x="5302.508333333333" y="913.0" />
+      <point x="5302.508333333333" y="340.0" />
+      <point x="2532.166666666667" y="340.0" />
+      <point x="94.875" y="79.0" />
     </edge>
     <edge source="cl.cromer.estructuras.Grafico" target="cl.cromer.estructuras.Colores">
       <point x="0.0" y="-215.0" />
-      <point x="2400.247916666667" y="350.0" />
-      <point x="3194.341666666667" y="350.0" />
-      <point x="-46.0" y="79.0" />
+      <point x="3481.166666666667" y="370.0" />
+      <point x="2468.916666666667" y="370.0" />
+      <point x="31.625" y="79.0" />
     </edge>
     <edge source="cl.cromer.estructuras.ArrayController" target="cl.cromer.estructuras.Grafico">
-      <point x="-134.75" y="-193.5" />
-      <point x="3060.675" y="841.0" />
-      <point x="2561.185416666667" y="841.0" />
-      <point x="160.9375" y="215.0" />
+      <point x="41.583333333333485" y="-172.5" />
+      <point x="2380.083333333334" y="943.0" />
+      <point x="3251.7820512820517" y="943.0" />
+      <point x="-229.38461538461524" y="215.0" />
+    </edge>
+    <edge source="cl.cromer.estructuras.HashTableController" target="cl.cromer.estructuras.TextFieldLimited">
+      <point x="-45.91666666666697" y="-183.0" />
+      <point x="4825.25" y="953.0" />
+      <point x="4361.952380952382" y="953.0" />
+      <point x="98.28571428571468" y="89.5" />
     </edge>
     <edge source="cl.cromer.estructuras.ColaController" target="cl.cromer.estructuras.TextFieldLimited">
-      <point x="-214.16666666666674" y="-183.0" />
-      <point x="1876.8729166666667" y="891.0" />
-      <point x="1678.0083333333334" y="891.0" />
-      <point x="28.666666666666686" y="89.5" />
+      <point x="197.49999999999955" y="-162.0" />
+      <point x="4094.791666666667" y="1023.0" />
+      <point x="4214.52380952381" y="1023.0" />
+      <point x="-49.14285714285688" y="89.5" />
     </edge>
     <edge source="cl.cromer.estructuras.ListaEnlazada" target="cl.cromer.estructuras.Enlace">
-      <point x="71.5" y="-110.5" />
-      <point x="1097.8250000000003" y="360.0" />
-      <point x="1085.0750000000003" y="360.0" />
-      <point x="1085.0750000000003" y="112.0" />
-      <point x="886.0003472222224" y="112.0" />
-      <point x="53.25" y="46.0" />
+      <point x="71.49999999999977" y="-110.5" />
+      <point x="5570.24375949254" y="380.0" />
+      <point x="5557.49375949254" y="380.0" />
+      <point x="5557.49375949254" y="122.0" />
+      <point x="5679.3941369606" y="122.0" />
+      <point x="-17.75" y="46.0" />
     </edge>
     <edge source="cl.cromer.estructuras.QuickController" target="cl.cromer.estructuras.Array">
-      <point x="-2.8421709430404007E-14" y="-141.0" />
-      <point x="5450.925" y="881.0" />
-      <point x="4601.216666666667" y="881.0" />
-      <point x="227.7916666666664" y="215.5" />
+      <point x="0.0" y="-130.5" />
+      <point x="622.0" y="993.0" />
+      <point x="1097.875" y="993.0" />
+      <point x="-156.625" y="236.5" />
+    </edge>
+    <edge source="cl.cromer.estructuras.QuickController" target="cl.cromer.estructuras.Colores">
+      <point x="-128.66666666666652" y="-130.5" />
+      <point x="493.3333333333335" y="340.0" />
+      <point x="2342.416666666667" y="340.0" />
+      <point x="-94.875" y="79.0" />
     </edge>
     <edge source="cl.cromer.estructuras.ListaEnlazada" target="cl.cromer.estructuras.EnlaceNormal">
       <point x="-71.5" y="-110.5" />
-      <point x="954.8250000000003" y="360.0" />
-      <point x="967.5750000000003" y="360.0" />
+      <point x="5427.24375949254" y="380.0" />
+      <point x="5439.99375949254" y="380.0" />
       <point x="0.0" y="57.0" />
-    </edge>
-    <edge source="cl.cromer.estructuras.QuickController" target="cl.cromer.estructuras.Colores">
-      <point x="135.33333333333348" y="-141.0" />
-      <point x="5586.258333333333" y="871.0" />
-      <point x="5423.949363425927" y="871.0" />
-      <point x="5423.949363425927" y="320.0" />
-      <point x="3355.341666666667" y="320.0" />
-      <point x="115.0" y="79.0" />
     </edge>
     <edge source="cl.cromer.estructuras.ListaEnlazadaCircular" target="cl.cromer.estructuras.Enlace">
       <point x="80.0" y="-121.0" />
-      <point x="783.3250000000003" y="360.0" />
-      <point x="762.8250000000003" y="360.0" />
-      <point x="762.8250000000003" y="122.0" />
-      <point x="815.0003472222224" y="122.0" />
-      <point x="-17.75" y="46.0" />
+      <point x="5901.74375949254" y="380.0" />
+      <point x="5881.24375949254" y="380.0" />
+      <point x="5881.24375949254" y="112.0" />
+      <point x="5750.3941369606" y="112.0" />
+      <point x="53.25" y="46.0" />
     </edge>
     <edge source="cl.cromer.estructuras.ColaController" target="cl.cromer.estructuras.Cola">
-      <point x="-128.5" y="-183.0" />
-      <point x="1962.5395833333332" y="891.0" />
-      <point x="1909.0916666666667" y="891.0" />
-      <point x="-67.75" y="99.5" />
+      <point x="-39.500000000000455" y="-162.0" />
+      <point x="3857.791666666667" y="993.0" />
+      <point x="3822.416666666667" y="993.0" />
+      <point x="-72.75" y="110.0" />
     </edge>
     <edge source="cl.cromer.estructuras.ArrayController" target="cl.cromer.estructuras.TextFieldLimited">
-      <point x="-224.58333333333326" y="-193.5" />
-      <point x="2970.8416666666667" y="851.0" />
-      <point x="1792.6750000000002" y="851.0" />
-      <point x="143.33333333333343" y="89.5" />
+      <point x="207.91666666666652" y="-172.5" />
+      <point x="2546.416666666667" y="1003.0" />
+      <point x="4116.238095238095" y="1003.0" />
+      <point x="-147.42857142857156" y="89.5" />
     </edge>
     <edge source="cl.cromer.estructuras.ShellController" target="cl.cromer.estructuras.Array">
-      <point x="0.0" y="-141.0" />
-      <point x="4586.925" y="921.0" />
-      <point x="4435.55" y="921.0" />
-      <point x="62.124999999999886" y="215.5" />
+      <point x="0.0" y="-130.5" />
+      <point x="1458.0" y="1013.0" />
+      <point x="1321.625" y="1013.0" />
+      <point x="67.125" y="236.5" />
     </edge>
     <edge source="cl.cromer.estructuras.ArrayController" target="cl.cromer.estructuras.Colores">
-      <point x="44.91666666666674" y="-193.5" />
-      <point x="0.0" y="79.0" />
+      <point x="-41.583333333333485" y="-172.5" />
+      <point x="2296.916666666667" y="380.0" />
+      <point x="2426.75" y="380.0" />
+      <point x="-10.541666666666515" y="79.0" />
     </edge>
     <edge source="cl.cromer.estructuras.EnlaceCircular" target="cl.cromer.estructuras.Enlace">
       <point x="0.0" y="-57.0" />
-      <point x="643.8250000000003" y="112.0" />
-      <point x="779.5003472222224" y="112.0" />
-      <point x="-53.25" y="46.0" />
+      <point x="5762.24375949254" y="122.0" />
+      <point x="5714.8941369606" y="122.0" />
+      <point x="17.75" y="46.0" />
     </edge>
     <edge source="cl.cromer.estructuras.ListaEnlazdaController" target="cl.cromer.estructuras.Grafico">
-      <point x="286.20000000000005" y="-246.0" />
-      <point x="1256.8750000000005" y="911.0" />
-      <point x="2239.310416666667" y="911.0" />
-      <point x="-160.9375" y="215.0" />
+      <point x="-295.1999999999998" y="-256.5" />
+      <point x="5225.458333333333" y="943.0" />
+      <point x="3672.3205128205127" y="943.0" />
+      <point x="191.1538461538462" y="215.0" />
     </edge>
     <edge source="cl.cromer.estructuras.ColaController" target="cl.cromer.estructuras.Colores">
-      <point x="42.83333333333326" y="-183.0" />
-      <point x="2133.8729166666667" y="891.0" />
-      <point x="2122.8416666666667" y="891.0" />
-      <point x="2122.8416666666667" y="340.0" />
-      <point x="3171.341666666667" y="340.0" />
-      <point x="-69.0" y="79.0" />
+      <point x="118.49999999999955" y="-162.0" />
+      <point x="4015.791666666667" y="993.0" />
+      <point x="4051.166666666667" y="993.0" />
+      <point x="4051.166666666667" y="360.0" />
+      <point x="2490.0" y="360.0" />
+      <point x="52.70833333333303" y="79.0" />
     </edge>
     <edge source="cl.cromer.estructuras.SeleccionController" target="cl.cromer.estructuras.Colores">
-      <point x="-144.0" y="-141.0" />
-      <point x="4005.925" y="871.0" />
-      <point x="4030.7791666666667" y="871.0" />
-      <point x="4030.7791666666667" y="350.0" />
-      <point x="3286.341666666667" y="350.0" />
-      <point x="46.0" y="79.0" />
-    </edge>
-    <edge source="cl.cromer.estructuras.PilaController" target="cl.cromer.estructuras.Pila">
-      <point x="127.25" y="-183.0" />
-      <point x="2778.675" y="921.0" />
-      <point x="2877.9979166666667" y="921.0" />
-      <point x="66.75" y="99.5" />
-    </edge>
-    <edge source="cl.cromer.estructuras.BurbujaController" target="cl.cromer.estructuras.Colores">
-      <point x="140.0" y="-141.0" />
-      <point x="5157.925" y="330.0" />
-      <point x="3332.341666666667" y="330.0" />
-      <point x="92.0" y="79.0" />
+      <point x="-137.33333333333348" y="-130.5" />
+      <point x="903.6666666666665" y="963.0" />
+      <point x="912.6875" y="963.0" />
+      <point x="912.6875" y="350.0" />
+      <point x="2363.5" y="350.0" />
+      <point x="-73.79166666666652" y="79.0" />
     </edge>
     <edge source="cl.cromer.estructuras.ListaEnlazdaController" target="cl.cromer.estructuras.ListaEnlazada">
-      <point x="-31.800000000000068" y="-246.0" />
-      <point x="938.8750000000005" y="851.0" />
-      <point x="1097.8250000000003" y="851.0" />
-      <point x="71.5" y="110.5" />
+      <point x="32.80000000000018" y="-256.5" />
+      <point x="5553.458333333333" y="893.0" />
+      <point x="5427.24375949254" y="893.0" />
+      <point x="-71.5" y="110.5" />
+    </edge>
+    <edge source="cl.cromer.estructuras.PilaController" target="cl.cromer.estructuras.Pila">
+      <point x="-39.083333333333485" y="-162.0" />
+      <point x="2803.416666666667" y="933.0" />
+      <point x="2838.125" y="933.0" />
+      <point x="71.75" y="110.0" />
+    </edge>
+    <edge source="cl.cromer.estructuras.BurbujaController" target="cl.cromer.estructuras.Colores">
+      <point x="133.33333333333303" y="-130.5" />
+      <point x="2002.3333333333333" y="370.0" />
+      <point x="2405.666666666667" y="370.0" />
+      <point x="-31.625" y="79.0" />
     </edge>
     <edge source="cl.cromer.estructuras.Array" target="cl.cromer.estructuras.Array.ParticionarResult">
-      <point x="-124.25" y="-215.5" />
-      <point x="4249.175" y="360.0" />
-      <point x="4300.925" y="360.0" />
+      <point x="-134.25" y="-236.5" />
+      <point x="1120.25" y="320.0" />
+      <point x="1182.0" y="320.0" />
       <point x="-72.5" y="46.5" />
     </edge>
+    <edge source="cl.cromer.estructuras.HashTableController" target="cl.cromer.estructuras.HashTable">
+      <point x="229.58333333333303" y="-183.0" />
+      <point x="5100.75" y="1023.0" />
+      <point x="5160.416666666667" y="1023.0" />
+      <point x="97.5" y="131.0" />
+    </edge>
     <edge source="cl.cromer.estructuras.InsercionController" target="cl.cromer.estructuras.Array">
-      <point x="143.0" y="-141.0" />
-      <point x="3842.425" y="911.0" />
-      <point x="4269.883333333333" y="911.0" />
-      <point x="-103.54166666666669" y="215.5" />
+      <point x="-2.8421709430404007E-14" y="-130.5" />
+      <point x="204.5" y="973.0" />
+      <point x="1008.375" y="973.0" />
+      <point x="-246.125" y="236.5" />
+    </edge>
+    <edge source="cl.cromer.estructuras.Grafico" target="cl.cromer.estructuras.Grafico.Destacados">
+      <point x="0.0" y="215.0" />
+      <point x="153.66666666666652" y="-67.5" />
     </edge>
     <edge source="cl.cromer.estructuras.ColaController" target="cl.cromer.estructuras.Grafico">
-      <point x="128.5" y="-183.0" />
-      <point x="2219.539583333333" y="921.0" />
-      <point x="2303.685416666667" y="921.0" />
-      <point x="-96.5625" y="215.0" />
+      <point x="-118.50000000000045" y="-162.0" />
+      <point x="3778.791666666667" y="983.0" />
+      <point x="3557.628205128205" y="983.0" />
+      <point x="76.46153846153857" y="215.0" />
     </edge>
-    <edge source="cl.cromer.estructuras.TextFieldLimited.StyleableProperties" target="cl.cromer.estructuras.TextFieldLimited">
-      <point x="-104.0" y="-35.5" />
-      <point x="1412.6750000000002" y="891.0" />
-      <point x="1563.3416666666667" y="891.0" />
-      <point x="-86.0" y="89.5" />
+    <edge source="cl.cromer.estructuras.HashTable" target="cl.cromer.estructuras.HashItem">
+      <point x="-97.5" y="-131.0" />
+      <point x="4965.416666666667" y="380.0" />
+      <point x="5062.063474939695" y="380.0" />
+      <point x="-62.0" y="57.0" />
     </edge>
     <edge source="cl.cromer.estructuras.EnlaceNormal" target="cl.cromer.estructuras.Enlace">
       <point x="0.0" y="-57.0" />
-      <point x="967.5750000000003" y="122.0" />
-      <point x="850.5003472222224" y="122.0" />
-      <point x="17.75" y="46.0" />
+      <point x="5439.99375949254" y="112.0" />
+      <point x="5643.8941369606" y="112.0" />
+      <point x="-53.25" y="46.0" />
+    </edge>
+    <edge source="cl.cromer.estructuras.TextFieldLimited.StyleableProperties" target="cl.cromer.estructuras.TextFieldLimited">
+      <point x="104.0" y="-35.5" />
+      <point x="4471.666666666667" y="1023.0" />
+      <point x="4312.809523809524" y="1023.0" />
+      <point x="49.14285714285688" y="89.5" />
+    </edge>
+    <edge source="cl.cromer.estructuras.HashTableController" target="cl.cromer.estructuras.Colores">
+      <point x="45.91666666666697" y="-183.0" />
+      <point x="4917.083333333334" y="1023.0" />
+      <point x="4857.416666666667" y="1023.0" />
+      <point x="4857.416666666667" y="350.0" />
+      <point x="2511.083333333333" y="350.0" />
+      <point x="73.79166666666652" y="79.0" />
     </edge>
     <edge source="cl.cromer.estructuras.PilaController" target="cl.cromer.estructuras.Grafico">
-      <point x="-42.41666666666674" y="-183.0" />
-      <point x="2609.008333333333" y="861.0" />
-      <point x="2496.810416666667" y="861.0" />
-      <point x="96.5625" y="215.0" />
+      <point x="117.25" y="-162.0" />
+      <point x="2959.75" y="973.0" />
+      <point x="3366.4743589743593" y="973.0" />
+      <point x="-114.69230769230762" y="215.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.276876982728234" x="2827.0000000000005" y="873.0" />
+  <settings layout="Hierarchic Group" zoom="0.2400305576776165" x="3262.5" y="961.0" />
   <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
