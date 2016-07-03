@@ -1,0 +1,17 @@
+public class HashItem {
+	final private String llave;
+	final private int valor;
+
+	public HashItem(String llave, int valor) {
+		this.llave = llave;
+		this.valor = valor;
+	}
+
+	public String getLlave() {
+		return llave;
+	}
+
+	public int getValor() {
+		return valor;
+	}
+}

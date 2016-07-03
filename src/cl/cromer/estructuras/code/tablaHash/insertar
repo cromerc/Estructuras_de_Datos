@@ -1,0 +1,40 @@
+public void insertar(String llave, int valor) {
+    // Crear un HashItem que contiene la llave y valor.
+    HashItem hashItem = new HashItem(llave, valor);
+    int hashIndice = hash(hashItem.getLlave());
+    int i = 0;
+    // Buscar un indice vacio.
+    while (hashArray[hashIndice] != null && hashArray[hashIndice].getLlave() != null && i < tamano) {
+        if (hashArray[hashIndice].getLlave().equals(llave)) {
+            //La llave ya existe.
+            return;
+        }
+        hashIndice++;
+        // Si hashIndice es mayor que el tamaño maximo, hay que empezar desde 0.
+        hashIndice = hashIndice % tamano;
+        i++;
+    }
+
+    if (i != 10) {
+        // Insertar el HashItem en el array.
+        hashArray[hashIndice] = hashItem;
+    }
+}
+
+public class HashItem {
+	final private String llave;
+	final private int valor;
+
+	public HashItem(String llave, int valor) {
+		this.llave = llave;
+		this.valor = valor;
+	}
+
+	public String getLlave() {
+		return llave;
+	}
+
+	public int getValor() {
+		return valor;
+	}
+}

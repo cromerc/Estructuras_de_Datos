@@ -12,11 +12,11 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 /**
- * Esta clase es para controlar todos la interfaz de HashTable.
+ * Esta clase es para controlar todos la interfaz de TablaHash.
  *
  * @author Chris Cromer
  */
-public class HashTableController implements Initializable {
+public class TablaHashController implements Initializable {
     /**
      * La caja para ingresar la llave.
      */
@@ -30,7 +30,7 @@ public class HashTableController implements Initializable {
     private TextFieldLimited valorHashTable;
 
     /**
-     * Donde poner el contenido de hashTable.
+     * Donde poner el contenido de tablaHash.
      */
     @FXML
     private VBox contenidoHashTable;
@@ -52,9 +52,9 @@ public class HashTableController implements Initializable {
     private ResourceBundle resourceBundle;
 
     /**
-     * El hashTable usado en la aplicación.
+     * El tablaHash usado en la aplicación.
      */
-    private HashTable hashTable;
+    private TablaHash tablaHash;
 
     /**
      * Grafico rectangulos.
@@ -81,7 +81,7 @@ public class HashTableController implements Initializable {
     }
 
     /**
-     * Llenar el hashTable con numeros al azar.
+     * Llenar el tablaHash con numeros al azar.
      */
     @FXML
     protected void botonLlenar() {
@@ -98,8 +98,8 @@ public class HashTableController implements Initializable {
 
         for (int i = 0; i < 10; i++) {
             int numero = random.nextInt(rango) + minimo;
-            while (! hashTable.insertar(palabras.getPalabra(), numero)) {
-                if (hashTable.size() == 10) {
+            while (! tablaHash.insertar(palabras.getPalabra(), numero)) {
+                if (tablaHash.size() == 10) {
                     break;
                 }
             }
@@ -108,12 +108,12 @@ public class HashTableController implements Initializable {
     }
 
     /**
-     * Crear el hashTable de tamaño 10.
+     * Crear el tablaHash de tamaño 10.
      */
     private void initializeHashTable() {
         scene = contenidoHashTable.getScene();
         grafico = new Grafico(scene);
-        this.hashTable = new HashTable(10);
+        this.tablaHash = new TablaHash(10);
     }
 
     /**
@@ -122,13 +122,13 @@ public class HashTableController implements Initializable {
     private void generarGrafico() {
         grafico.removerDestacar();
         for (int i = 0; i < 10; i++) {
-            if (hashTable.getIndice(i) != null) {
+            if (tablaHash.getIndice(i) != null) {
                 Text text = (Text) scene.lookup("#indice_texto_" + String.valueOf(i));
                 text.setText(String.valueOf(i));
                 text = (Text) scene.lookup("#llave_texto_" + String.valueOf(i));
-                text.setText(hashTable.getIndice(i).getLlave());
+                text.setText(tablaHash.getIndice(i).getLlave());
                 text = (Text) scene.lookup("#valor_texto_" + String.valueOf(i));
-                text.setText(String.valueOf(hashTable.getIndice(i).getValor()));
+                text.setText(String.valueOf(tablaHash.getIndice(i).getValor()));
             }
             else {
                 Text text = (Text) scene.lookup("#indice_texto_" + String.valueOf(i));
@@ -142,7 +142,7 @@ public class HashTableController implements Initializable {
     }
 
     /**
-     * Vaciar el hashTable de todos los valores.
+     * Vaciar el tablaHash de todos los valores.
      */
     @FXML
     protected void botonVaciar() {
@@ -150,12 +150,12 @@ public class HashTableController implements Initializable {
             initializeHashTable();
         }
 
-        hashTable = new HashTable(10);
+        tablaHash = new TablaHash(10);
         generarGrafico();
     }
 
     /**
-     * Insertar un valor al hashTable y mostrar el codigo en la pantalla.
+     * Insertar un valor al tablaHash y mostrar el codigo en la pantalla.
      */
     @FXML
     protected void botonInsertar() {
@@ -164,20 +164,20 @@ public class HashTableController implements Initializable {
         }
 
         // Mostrar el codigo
-        /*String tipo = (hashTable.isOrdered()) ? "Ordenado" : "Simple";
-		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/hashTable" + tipo + "/insertar")).useDelimiter("\\Z").next();
+        /*String tipo = (tablaHash.isOrdered()) ? "Ordenado" : "Simple";
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/tablaHash" + tipo + "/insertar")).useDelimiter("\\Z").next();
 		codigoHashTable.setText(codigoTexto);*/
 
         if (llaveHashTable.getText() != null && ! llaveHashTable.getText().trim().equals("") && valorHashTable.getText() != null && ! valorHashTable.getText().trim().equals("")) {
             try {
-                boolean exito = hashTable.insertar(llaveHashTable.getText().trim(), Integer.valueOf(valorHashTable.getText()));
+                boolean exito = tablaHash.insertar(llaveHashTable.getText().trim(), Integer.valueOf(valorHashTable.getText()));
                 if (exito) {
                     llaveHashTable.setText("");
                     valorHashTable.setText("");
                     generarGrafico();
                 }
                 else {
-                    if (hashTable.size() == 10) {
+                    if (tablaHash.size() == 10) {
                         Main.mostrarError(resourceBundle.getString("tablaHashLleno"), resourceBundle);
                     }
                     else {
@@ -197,7 +197,7 @@ public class HashTableController implements Initializable {
     }
 
     /**
-     * Eliminar un valor del hashTable si existe y mostrar el codigo en la pantalla.
+     * Eliminar un valor del tablaHash si existe y mostrar el codigo en la pantalla.
      */
     @FXML
     protected void botonEliminar() {
@@ -206,13 +206,13 @@ public class HashTableController implements Initializable {
         }
 
         // Mostrar el codigo
-        /*String tipo = (hashTable.isOrdered()) ? "Ordenado" : "Simple";
-		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/hashTable" + tipo + "/eliminar")).useDelimiter("\\Z").next();
+        /*String tipo = (tablaHash.isOrdered()) ? "Ordenado" : "Simple";
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/tablaHash" + tipo + "/eliminar")).useDelimiter("\\Z").next();
 		codigoHashTable.setText(codigoTexto);*/
 
         try {
             if (llaveHashTable.getText() != null && ! llaveHashTable.getText().trim().equals("")) {
-                boolean exito = hashTable.eliminar(llaveHashTable.getText());
+                boolean exito = tablaHash.eliminar(llaveHashTable.getText());
                 if (exito) {
                     llaveHashTable.setText("");
                     valorHashTable.setText("");
@@ -234,7 +234,7 @@ public class HashTableController implements Initializable {
     }
 
     /**
-     * Buscar si existe un elemento en el hashTable y mostrar el codigo en la pantalla
+     * Buscar si existe un elemento en el tablaHash y mostrar el codigo en la pantalla
      * Si existe el valor destacarlo.
      */
     @FXML
@@ -244,13 +244,13 @@ public class HashTableController implements Initializable {
         }
 
         // Mostrar el codigo
-        /*String tipo = (hashTable.isOrdered()) ? "Ordenado" : "Simple";
-		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/hashTable" + tipo + "/buscar")).useDelimiter("\\Z").next();
+        /*String tipo = (tablaHash.isOrdered()) ? "Ordenado" : "Simple";
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/tablaHash" + tipo + "/buscar")).useDelimiter("\\Z").next();
 		codigoHashTable.setText(codigoTexto);*/
 
         try {
             if (llaveHashTable.getText() != null && ! llaveHashTable.getText().trim().equals("")) {
-                HashItem hashItem = hashTable.buscar(llaveHashTable.getText());
+                HashItem hashItem = tablaHash.buscar(llaveHashTable.getText());
                 if (hashItem != null) {
                     generarGrafico();
                     grafico = new Grafico(scene);

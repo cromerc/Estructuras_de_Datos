@@ -5,7 +5,7 @@ package cl.cromer.estructuras;
  *
  * @author Chris Cromer
  */
-public class HashTable {
+public class TablaHash {
 	/**
 	 * El array donde están todos los elementos de la tabla hash.
 	 */
@@ -26,7 +26,7 @@ public class HashTable {
 	 *
 	 * @param tamano int: El tamaño maximo de la tabla hash.
 	 */
-	public HashTable(int tamano) {
+	public TablaHash(int tamano) {
 		this.tamano = tamano;
 		hashArray = new HashItem[tamano];
 	}
