@@ -1,30 +1,68 @@
 package cl.cromer.estructuras;
 
+/**
+ * La estructura de un elemento de una Tabla Hash.
+ */
 public class HashItem {
-    final private String llave;
+	/**
+	 * La llave.
+	 */
+	final private String llave;
 
-    final private int valor;
+	/**
+	 * El valor.
+	 */
+	final private int valor;
 
-    private int indice;
+	/**
+	 * Donde el elemento está en el array.
+	 */
+	private int indice;
 
-    public HashItem(String llave, int valor) {
-        this.llave = llave;
-        this.valor = valor;
-    }
+	/**
+	 * Inicilizar.
+	 *
+	 * @param llave String: La llave del elemento.
+	 * @param valor int: El valor del elemento.
+	 */
+	public HashItem(String llave, int valor) {
+		this.llave = llave;
+		this.valor = valor;
+	}
 
-    public String getLlave() {
-        return llave;
-    }
+	/**
+	 * Devolver la llave del elemento.
+	 *
+	 * @return String: La llave.
+	 */
+	public String getLlave() {
+		return llave;
+	}
 
-    public int getValor() {
-        return valor;
-    }
+	/**
+	 * Devolver el valor del elemento.
+	 *
+	 * @return int: El valor.
+	 */
+	public int getValor() {
+		return valor;
+	}
 
-    public int getIndice() {
-        return indice;
-    }
+	/**
+	 * Devolver el indice del elemento.
+	 *
+	 * @return int: El indice.
+	 */
+	public int getIndice() {
+		return indice;
+	}
 
-    public void setIndice(int indice) {
-        this.indice = indice;
-    }
+	/**
+	 * Cambiar el indice.
+	 *
+	 * @param indice int: El indice.
+	 */
+	public void setIndice(int indice) {
+		this.indice = indice;
+	}
 }

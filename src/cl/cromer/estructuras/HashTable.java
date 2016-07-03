@@ -1,23 +1,50 @@
 package cl.cromer.estructuras;
 
+/**
+ * Esta clase es tipo de estructura de dato Tabla Hash.
+ *
+ * @author Chris Cromer
+ */
 public class HashTable {
-    final private HashItem hashArray[];
+	/**
+	 * El array donde están todos los elementos de la tabla hash.
+	 */
+	final private HashItem hashArray[];
 
-    final private int tamano;
-    private int size;
+	/**
+	 * El tamaño maximo de la tabla hash.
+	 */
+	final private int tamano;
 
-    public HashTable(int tamano) {
+	/**
+	 * Cantidad de elementos que están en la tabla hash.
+	 */
+	private int size;
+
+	/**
+	 * Inicilizar.
+	 *
+	 * @param tamano int: El tamaño maximo de la tabla hash.
+	 */
+	public HashTable(int tamano) {
         this.tamano = tamano;
         hashArray = new HashItem[tamano];
     }
 
-    public int size() {
+	/**
+	 * Devolver la cantidad de elementos que están en la tabla.
+	 *
+	 * @return int: La cantidad.
+	 */
+	public int size() {
         return size;
     }
 
     /**
      * Este metodo crea un hash muy único.
+     *
      * @param string String: El string a hashear.
+     *
      * @return int: El hash a devolver.
      */
     @SuppressWarnings("unused")
@@ -43,7 +70,15 @@ public class HashTable {
         return (Math.abs(sum) % tamano);
     }
 
-    public boolean insertar(String llave, int valor) {
+	/**
+	 * Insertar una llave y valor en la tabla hash.
+	 *
+	 * @param llave String: La llave para identificar un elemento.
+	 * @param valor int: El valor a insertar.
+	 *
+	 * @return boolean: Verdad si fue insertado, sino está llena la tabla hash.
+	 */
+	public boolean insertar(String llave, int valor) {
         HashItem hashItem = new HashItem(llave, valor);
         int hashIndice = hash(hashItem.getLlave());
         int i = 0;
@@ -84,14 +119,22 @@ public class HashTable {
         return hash % tamano;
     }
 
-    public boolean eliminar(String llave) {
+	/**
+	 * Eliminar un elemento de la tabla hash.
+	 *
+	 * @param llave String: La llave a elminar.
+	 *
+	 * @return boolean: Verdad si fue borrado, sino no existiá.
+	 */
+	public boolean eliminar(String llave) {
         HashItem hashItem = new HashItem(llave, 0);
         int hashIndice = hash(hashItem.getLlave());
         int i = 0;
         while (hashArray[hashIndice] != null && hashArray[hashIndice].getLlave() != null && i < tamano) {
             if (hashArray[hashIndice].getLlave().equals(llave)) {
                 hashArray[hashIndice] = null;
-                return true;
+	            size--;
+	            return true;
             }
             hashIndice++;
             hashIndice = hashIndice % tamano;
@@ -100,7 +143,14 @@ public class HashTable {
         return false;
     }
 
-    public HashItem buscar(String llave) {
+	/**
+	 * Buscar una llave en la tabla hash.
+	 *
+	 * @param llave String: La llave a buscar.
+	 *
+	 * @return HashItem: Devolver el elemento que contine la llave.
+	 */
+	public HashItem buscar(String llave) {
         for (int i = 0; i < tamano; i++) {
             if (hashArray[i] != null && hashArray[i].getLlave().equals(llave)) {
                 return hashArray[i];
@@ -113,6 +163,7 @@ public class HashTable {
      * Devolver el valor que está guardado en cada indice. Se usa para construir la grafica.
      *
      * @param indice int: El indice que desea ver.
+     *
      * @return String: El valor que está en dicho indice.
      */
     public HashItem getIndice(int indice) {
