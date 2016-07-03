@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Permissions: sandbox
+Codebase: *.cromer.cl 127.0.0.1
 JavaFX-Version: 8.0
 Class-Path: /cl/cromer/estructuras
 Created-By: Chris Cromer
 Main-Class: cl.cromer.estructuras.Main
-
+Application-Name: Estructuras de Datos

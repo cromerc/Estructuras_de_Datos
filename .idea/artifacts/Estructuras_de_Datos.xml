@@ -27,10 +27,17 @@
               <option name="name" value="Class-Path" />
               <option name="value" value="/cl/cromer/estructuras" />
             </JavaFxManifestAttribute>
+            <JavaFxManifestAttribute>
+              <option name="name" value="Codebase" />
+              <option name="value" value="*.cromer.cl 127.0.0.1" />
+            </JavaFxManifestAttribute>
+            <JavaFxManifestAttribute>
+              <option name="name" value="Application-Name" />
+              <option name="value" value="Estructuras de Datos" />
+            </JavaFxManifestAttribute>
           </list>
         </option>
-        <option name="description" value="" />
-        <option name="enabledSigning" value="true" />
+        <option name="description" value="Esta aplicación muestra varios tipos de estrucuras de datos visualmente." />
         <option name="height" value="768" />
         <option name="htmlParamFile" value="" />
         <option name="keystore" value="" />

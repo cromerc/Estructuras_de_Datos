@@ -1,0 +1,8 @@
+.text {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}

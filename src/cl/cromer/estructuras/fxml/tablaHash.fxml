@@ -18,6 +18,8 @@
                     <Button text="%insertar" onAction="#botonInsertar"/>
                     <Button text="%eliminar" onAction="#botonEliminar"/>
                     <Button text="%buscar" onAction="#botonBuscar"/>
+                </HBox>
+                <HBox alignment="CENTER" spacing="10">
                     <Text text="%llave"/>
                     <TextFieldLimited fx:id="llaveHashTable" maxLength="10" prefWidth="100"/>
                     <Text text="%valor"/>

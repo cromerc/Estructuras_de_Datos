@@ -83,23 +83,6 @@ public class ShellController implements Initializable {
 	}
 
 	/**
-	 * Crear el array de tamaño 10.
-	 */
-	private void initializeScene() {
-		scene = contenidoShell.getScene();
-	}
-
-	/**
-	 * Poner los valores en el grafico.
-	 */
-	private void generarGrafico() {
-		for (int i = 0; i < 10; i++) {
-			Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
-			text.setText(array.getIndice(i));
-		}
-	}
-
-	/**
 	 * Ordenarlo paso por paso.
 	 */
 	@FXML
@@ -137,5 +120,22 @@ public class ShellController implements Initializable {
 		}
 
 		generarGrafico();
+	}
+
+	/**
+	 * Crear el array de tamaño 10.
+	 */
+	private void initializeScene() {
+		scene = contenidoShell.getScene();
+	}
+
+	/**
+	 * Poner los valores en el grafico.
+	 */
+	private void generarGrafico() {
+		for (int i = 0; i < 10; i++) {
+			Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
+			text.setText(array.getIndice(i));
+		}
 	}
 }

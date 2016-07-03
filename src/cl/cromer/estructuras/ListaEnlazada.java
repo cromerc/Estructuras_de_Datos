@@ -73,37 +73,6 @@ final public class ListaEnlazada {
 	}
 
 	/**
-	 * Buscar una llave en la lista.
-	 *
-	 * @param llave int: La llave a buscar.
-	 *
-	 * @return Enlace: El enlace que contiene la llave buscada.
-	 */
-	public Enlace buscar(int llave) {
-		if (this.lista != null) {
-			// La lista no es vacia
-			Enlace lista = this.lista;
-			while (lista.getLlave() != llave) {
-				// Buscar hasta la llave es encontrado
-				if (lista.getSiguiente() != null) {
-					// Buscar en la siguiente enlace
-					lista = (Enlace) lista.getSiguiente();
-				}
-				else {
-					// No se encuentra
-					return null;
-				}
-			}
-			// Se encontró
-			return lista;
-		}
-		else {
-			// La lista es vacia, nada para buscar
-			return null;
-		}
-	}
-
-	/**
 	 * Eliminar un enlace de la lista.
 	 *
 	 * @param llave int: La llave a eliminar.
@@ -145,6 +114,37 @@ final public class ListaEnlazada {
 		else {
 			// La lista es vacia, no hay nada para eliminar
 			return false;
+		}
+	}
+
+	/**
+	 * Buscar una llave en la lista.
+	 *
+	 * @param llave int: La llave a buscar.
+	 *
+	 * @return Enlace: El enlace que contiene la llave buscada.
+	 */
+	public Enlace buscar(int llave) {
+		if (this.lista != null) {
+			// La lista no es vacia
+			Enlace lista = this.lista;
+			while (lista.getLlave() != llave) {
+				// Buscar hasta la llave es encontrado
+				if (lista.getSiguiente() != null) {
+					// Buscar en la siguiente enlace
+					lista = (Enlace) lista.getSiguiente();
+				}
+				else {
+					// No se encuentra
+					return null;
+				}
+			}
+			// Se encontró
+			return lista;
+		}
+		else {
+			// La lista es vacia, nada para buscar
+			return null;
 		}
 	}
 

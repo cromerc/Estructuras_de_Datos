@@ -27,6 +27,30 @@ final public class Cola {
 	}
 
 	/**
+	 * Push un valor en la cola encima.
+	 *
+	 * @param valor int: El valor a push.
+	 */
+	public void push(int valor) {
+		if (this.cola != null) {
+			String cola[] = new String[this.cola.length + 1];
+			int i;
+			for (i = 0; i < this.cola.length; i++) {
+				cola[i] = this.cola[i];
+			}
+			cola[i] = String.valueOf(valor);
+			this.cola = cola;
+			size++;
+		}
+		else {
+			String pila[] = new String[1];
+			pila[0] = String.valueOf(valor);
+			this.cola = pila;
+			size++;
+		}
+	}
+
+	/**
 	 * Pop un valor del principio de la cola.
 	 *
 	 * @return boolean: Verdad si fue exitoso.
@@ -60,6 +84,22 @@ final public class Cola {
 	}
 
 	/**
+	 * Llenar la cola con valores al azar.
+	 */
+	@SuppressWarnings("Duplicates")
+	public void llenar() {
+		Random random = new Random();
+		int maximo = 99;
+		int minimo = 0;
+		int rango = maximo - minimo + 1;
+
+		for (int i = size(); i < 10; i++) {
+			int numero = random.nextInt(rango) + minimo;
+			push(numero);
+		}
+	}
+
+	/**
 	 * Devolver la cantidad de elementos que están en la cola.
 	 *
 	 * @return int: La cantidad de elementos.
@@ -81,46 +121,6 @@ final public class Cola {
 		}
 		else {
 			return null;
-		}
-	}
-
-	/**
-	 * Llenar la cola con valores al azar.
-	 */
-	@SuppressWarnings("Duplicates")
-	public void llenar() {
-		Random random = new Random();
-		int maximo = 99;
-		int minimo = 0;
-		int rango = maximo - minimo + 1;
-
-		for (int i = size(); i < 10; i++) {
-			int numero = random.nextInt(rango) + minimo;
-			push(numero);
-		}
-	}
-
-	/**
-	 * Push un valor en la cola encima.
-	 *
-	 * @param valor int: El valor a push.
-	 */
-	public void push(int valor) {
-		if (this.cola != null) {
-			String cola[] = new String[this.cola.length + 1];
-			int i;
-			for (i = 0; i < this.cola.length; i++) {
-				cola[i] = this.cola[i];
-			}
-			cola[i] = String.valueOf(valor);
-			this.cola = cola;
-			size++;
-		}
-		else {
-			String pila[] = new String[1];
-			pila[0] = String.valueOf(valor);
-			this.cola = pila;
-			size++;
 		}
 	}
 }

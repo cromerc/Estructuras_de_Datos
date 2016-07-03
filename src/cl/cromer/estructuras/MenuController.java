@@ -56,41 +56,9 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloArraySimple"),
 				"/cl/cromer/estructuras/fxml/array.fxml",
-				"/cl/cromer/estructuras/css/style.css",
+				"/cl/cromer/estructuras/css/main.css",
 				arrayTipos
 		);
-	}
-
-	/**
-	 * Cargar el fxml, css y titulo.
-	 *
-	 * @param title String: El titulo de la escena.
-	 * @param fxml String: El archivo de fxml.
-	 * @param css String: El archivo de css.
-	 * @param object Object: El objeto a pasar a la nueva escena.
-	 */
-	private void loadStage(String title, String fxml, String css, Object object) {
-		Scene scene = menuBar.getScene();
-		Stage stage = (Stage) scene.getWindow();
-
-		openFXML(fxml, scene, stage);
-
-		scene.getStylesheets().add(css);
-		scene.setUserData(object);
-		stage.setScene(scene);
-		stage.setTitle(this.resourceBundle.getString("titulo") + " - " + title);
-	}
-
-	private void openFXML(String fxml, Scene scene, Stage stage) {
-		try {
-			Parent parent = FXMLLoader.load(getClass().getResource(fxml), this.resourceBundle);
-			scene.setRoot(parent);
-		}
-		catch (IOException exception) {
-			// Este error es fatal, hay que cerrar la aplicación.
-			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
-			stage.close();
-		}
 	}
 
 	/**
@@ -102,7 +70,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloArrayOrdenado"),
 				"/cl/cromer/estructuras/fxml/array.fxml",
-				"/cl/cromer/estructuras/css/style.css",
+				"/cl/cromer/estructuras/css/main.css",
 				arrayTipos
 		);
 	}
@@ -115,26 +83,8 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloBurbuja"),
 				"/cl/cromer/estructuras/fxml/burbuja.fxml",
-				"/cl/cromer/estructuras/css/style.css"
+				"/cl/cromer/estructuras/css/main.css"
 		);
-	}
-
-	/**
-	 * Cargar el fxml, css y titulo.
-	 *
-	 * @param title String: El titulo de la escena.
-	 * @param fxml String: El archivo de fxml.
-	 * @param css String: El archivo de css.
-	 */
-	private void loadStage(String title, String fxml, String css) {
-		Scene scene = menuBar.getScene();
-		Stage stage = (Stage) scene.getWindow();
-
-		openFXML(fxml, scene, stage);
-
-		scene.getStylesheets().add(css);
-		stage.setScene(scene);
-		stage.setTitle(this.resourceBundle.getString("titulo") + " - " + title);
 	}
 
 	/**
@@ -145,7 +95,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloInsercion"),
 				"/cl/cromer/estructuras/fxml/insercion.fxml",
-				"/cl/cromer/estructuras/css/style.css"
+				"/cl/cromer/estructuras/css/main.css"
 		);
 	}
 
@@ -157,7 +107,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloSeleccion"),
 				"/cl/cromer/estructuras/fxml/seleccion.fxml",
-				"/cl/cromer/estructuras/css/style.css"
+				"/cl/cromer/estructuras/css/main.css"
 		);
 	}
 
@@ -169,7 +119,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloShell"),
 				"/cl/cromer/estructuras/fxml/shell.fxml",
-				"/cl/cromer/estructuras/css/style.css"
+				"/cl/cromer/estructuras/css/main.css"
 		);
 	}
 
@@ -181,7 +131,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloQuick"),
 				"/cl/cromer/estructuras/fxml/quick.fxml",
-				"/cl/cromer/estructuras/css/style.css"
+				"/cl/cromer/estructuras/css/main.css"
 		);
 	}
 
@@ -193,7 +143,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloMerge"),
 				"/cl/cromer/estructuras/fxml/merge.fxml",
-				"/cl/cromer/estructuras/css/style.css"
+				"/cl/cromer/estructuras/css/main.css"
 		);
 	}
 
@@ -206,7 +156,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloListaEnlazadaSimple"),
 				"/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
-				"/cl/cromer/estructuras/css/style.css",
+				"/cl/cromer/estructuras/css/main.css",
 				listaEnlazadaTipos
 		);
 	}
@@ -220,7 +170,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloListaEnlazadaCircular"),
 				"/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
-				"/cl/cromer/estructuras/css/style.css",
+				"/cl/cromer/estructuras/css/main.css",
 				listaEnlazadaTipos
 		);
 	}
@@ -234,7 +184,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloListaEnlazadaDoble"),
 				"/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
-				"/cl/cromer/estructuras/css/style.css",
+				"/cl/cromer/estructuras/css/main.css",
 				listaEnlazadaTipos
 		);
 	}
@@ -247,7 +197,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloPila"),
 				"/cl/cromer/estructuras/fxml/pila.fxml",
-				"/cl/cromer/estructuras/css/style.css"
+				"/cl/cromer/estructuras/css/main.css"
 		);
 	}
 
@@ -259,7 +209,7 @@ public class MenuController extends VBox implements Initializable {
 		loadStage(
 				resourceBundle.getString("tituloCola"),
 				"/cl/cromer/estructuras/fxml/cola.fxml",
-				"/cl/cromer/estructuras/css/style.css"
+				"/cl/cromer/estructuras/css/main.css"
 		);
 	}
 
@@ -270,8 +220,8 @@ public class MenuController extends VBox implements Initializable {
 	protected void menuHashTable() {
 		loadStage(
 				resourceBundle.getString("tituloTablaHash"),
-				"/cl/cromer/estructuras/fxml/hashTable.fxml",
-				"/cl/cromer/estructuras/css/style.css"
+				"/cl/cromer/estructuras/fxml/tablaHash.fxml",
+				"/cl/cromer/estructuras/css/main.css"
 		);
 	}
 
@@ -296,38 +246,8 @@ public class MenuController extends VBox implements Initializable {
 			Locale locale = new Locale("en", "EN");
 			ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
 
-			loadStage(
-					"/cl/cromer/estructuras/fxml/main.fxml",
-					"/cl/cromer/estructuras/css/style.css",
-					resourceBundle
-			);
+			loadStage(resourceBundle);
 		}
-	}
-
-	/**
-	 * Cargar el fxml y css.
-	 *
-	 * @param fxml String: El archivo de fxml.
-	 * @param css String: El archivo de css.
-	 * @param resourceBundle ResourceBundle: El idioma nuevo para cambiarlo.
-	 */
-	private void loadStage(String fxml, String css, ResourceBundle resourceBundle) {
-		Scene scene = menuBar.getScene();
-		Stage stage = (Stage) scene.getWindow();
-
-		try {
-			Parent parent = FXMLLoader.load(getClass().getResource(fxml), resourceBundle);
-			scene.setRoot(parent);
-		}
-		catch (IOException exception) {
-			// Este error es fatal, hay que cerrar la aplicación.
-			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
-			stage.close();
-		}
-
-		scene.getStylesheets().add(css);
-		stage.setScene(scene);
-		stage.setTitle(resourceBundle.getString("titulo"));
 	}
 
 	/**
@@ -351,11 +271,7 @@ public class MenuController extends VBox implements Initializable {
 			Locale locale = new Locale("es", "ES");
 			ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
 
-			loadStage(
-					"/cl/cromer/estructuras/fxml/main.fxml",
-					"/cl/cromer/estructuras/css/style.css",
-					resourceBundle
-			);
+			loadStage(resourceBundle);
 		}
 	}
 
@@ -372,5 +288,79 @@ public class MenuController extends VBox implements Initializable {
 		dialog.getDialogPane().getScene().getWindow().sizeToScene();
 		Main.setIcon(dialog, getClass());
 		dialog.show();
+	}
+
+	/**
+	 * Cargar el fxml, css y titulo.
+	 *
+	 * @param title String: El titulo de la escena.
+	 * @param fxml String: El archivo de fxml.
+	 * @param css String: El archivo de css.
+	 */
+	private void loadStage(String title, String fxml, String css) {
+		Scene scene = menuBar.getScene();
+		Stage stage = (Stage) scene.getWindow();
+
+		openFXML(fxml, scene, stage);
+
+		scene.getStylesheets().add(css);
+		stage.setScene(scene);
+		stage.setTitle(this.resourceBundle.getString("titulo") + " - " + title);
+	}
+
+	/**
+	 * Cargar el fxml, css y titulo y pasar un objeto a la escena nueva.
+	 *
+	 * @param title String: El titulo de la escena.
+	 * @param fxml String: El archivo de fxml.
+	 * @param css String: El archivo de css.
+	 * @param object Object: El objeto a pasar a la nueva escena.
+	 */
+	private void loadStage(String title, String fxml, String css, Object object) {
+		Scene scene = menuBar.getScene();
+		Stage stage = (Stage) scene.getWindow();
+
+		openFXML(fxml, scene, stage);
+
+		scene.getStylesheets().add(css);
+		scene.setUserData(object);
+		stage.setScene(scene);
+		stage.setTitle(this.resourceBundle.getString("titulo") + " - " + title);
+	}
+
+	/**
+	 * Cargar el fxml y css cuando el idioma cambia.
+	 *
+	 * @param resourceBundle ResourceBundle: El idioma nuevo para cambiarlo.
+	 */
+	private void loadStage(ResourceBundle resourceBundle) {
+		Scene scene = menuBar.getScene();
+		Stage stage = (Stage) scene.getWindow();
+
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("/cl/cromer/estructuras/fxml/main.fxml"), resourceBundle);
+			scene.setRoot(parent);
+		}
+		catch (IOException exception) {
+			// Este error es fatal, hay que cerrar la aplicación.
+			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
+			stage.close();
+		}
+
+		scene.getStylesheets().add("/cl/cromer/estructuras/css/main.css");
+		stage.setScene(scene);
+		stage.setTitle(resourceBundle.getString("titulo"));
+	}
+
+	private void openFXML(String fxml, Scene scene, Stage stage) {
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource(fxml), this.resourceBundle);
+			scene.setRoot(parent);
+		}
+		catch (IOException exception) {
+			// Este error es fatal, hay que cerrar la aplicación.
+			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
+			stage.close();
+		}
 	}
 }

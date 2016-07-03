@@ -91,17 +91,6 @@ public class ColaController implements Initializable {
 	}
 
 	/**
-	 * Poner los valores en el grafico.
-	 */
-	private void generarGrafico() {
-		grafico.removerDestacar();
-		for (int i = 0; i < 10; i++) {
-			Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
-			text.setText(cola.getIndice(i));
-		}
-	}
-
-	/**
 	 * Vaciar la cola de todos los valores.
 	 */
 	@FXML
@@ -201,6 +190,17 @@ public class ColaController implements Initializable {
 		}
 		else {
 			Main.mostrarError(resourceBundle.getString("colaVacia"), resourceBundle);
+		}
+	}
+
+	/**
+	 * Poner los valores en el grafico.
+	 */
+	private void generarGrafico() {
+		grafico.removerDestacar();
+		for (int i = 0; i < 10; i++) {
+			Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
+			text.setText(cola.getIndice(i));
 		}
 	}
 }

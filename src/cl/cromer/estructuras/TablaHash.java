@@ -32,22 +32,12 @@ public class TablaHash {
 	}
 
 	/**
-	 * Devolver la cantidad de elementos que están en la tabla.
-	 *
-	 * @return int: La cantidad.
-	 */
-	public int size() {
-		return size;
-	}
-
-	/**
 	 * Este metodo crea un hash muy único.
 	 *
 	 * @param string String: El string a hashear.
 	 *
 	 * @return int: El hash a devolver.
 	 */
-	@SuppressWarnings("unused")
 	public int hashMejor(String string) {
 		int intLength = string.length() / 4;
 		int sum = 0;
@@ -71,6 +61,25 @@ public class TablaHash {
 	}
 
 	/**
+	 * Este metodo crea un hash usando una llave.
+	 *
+	 * @param string String: El string a hashear.
+	 *
+	 * @return int: El hash a devolver.
+	 */
+	@SuppressWarnings("unused")
+	public int hash(String string) {
+		int hash = 31;
+		for (int i = 0; i < string.length(); i++) {
+			hash = hash * 31 + string.charAt(i);
+		}
+		if (hash < 0) {
+			hash = hash * - 1;
+		}
+		return hash % tamano;
+	}
+
+	/**
 	 * Insertar una llave y valor en la tabla hash.
 	 *
 	 * @param llave String: La llave para identificar un elemento.
@@ -80,7 +89,7 @@ public class TablaHash {
 	 */
 	public boolean insertar(String llave, int valor) {
 		HashItem hashItem = new HashItem(llave, valor);
-		int hashIndice = hash(hashItem.getLlave());
+		int hashIndice = hashMejor(hashItem.getLlave());
 		int i = 0;
 		while (hashArray[hashIndice] != null && hashArray[hashIndice].getLlave() != null && i < tamano) {
 			if (hashArray[hashIndice].getLlave().equals(llave)) {
@@ -102,24 +111,6 @@ public class TablaHash {
 	}
 
 	/**
-	 * Este metodo crea un hash usando una llave.
-	 *
-	 * @param string String: El string a hashear.
-	 *
-	 * @return int: El hash a devolver.
-	 */
-	public int hash(String string) {
-		int hash = 31;
-		for (int i = 0; i < string.length(); i++) {
-			hash = hash * 31 + string.charAt(i);
-		}
-		if (hash < 0) {
-			hash = hash * - 1;
-		}
-		return hash % tamano;
-	}
-
-	/**
 	 * Eliminar un elemento de la tabla hash.
 	 *
 	 * @param llave String: La llave a elminar.
@@ -128,7 +119,7 @@ public class TablaHash {
 	 */
 	public boolean eliminar(String llave) {
 		HashItem hashItem = new HashItem(llave, 0);
-		int hashIndice = hash(hashItem.getLlave());
+		int hashIndice = hashMejor(hashItem.getLlave());
 		int i = 0;
 		while (hashArray[hashIndice] != null && hashArray[hashIndice].getLlave() != null && i < tamano) {
 			if (hashArray[hashIndice].getLlave().equals(llave)) {
@@ -157,6 +148,15 @@ public class TablaHash {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Devolver la cantidad de elementos que están en la tabla.
+	 *
+	 * @return int: La cantidad.
+	 */
+	public int size() {
+		return size;
 	}
 
 	/**

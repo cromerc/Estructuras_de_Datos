@@ -53,6 +53,28 @@ final public class Array {
 	}
 
 	/**
+	 * Insertar un valor al array.
+	 *
+	 * @param valor int: El valor a insertar.
+	 *
+	 * @return boolean: Verdad si fue exitoso, sino falso.
+	 */
+	public boolean insertar(int valor) {
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] == null) {
+				array[i] = String.valueOf(valor);
+				size++;
+				return true;
+			}
+			else if (array[i].equals(String.valueOf(valor))) {
+				// Ya existe el valor en el array
+				return false;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Eliminar un valor del array si existe.
 	 *
 	 * @param valor int: El valor a eliminar.
@@ -85,18 +107,29 @@ final public class Array {
 	}
 
 	/**
-	 * Devolver el valor que está guardado en cada indice del array. Se usa para construir la grafica.
+	 * Buscar si existe un valor dentro el array.
 	 *
-	 * @param indice int: El indice que desea ver.
+	 * @param valor int: Valor a buscar.
 	 *
-	 * @return String: El valor que está en dicho indice.
+	 * @return int: Devuelve el indice donde fue encontrado, o -1 si no fue encontrado.
 	 */
-	public String getIndice(int indice) {
-		if (indice >= 0 && indice < array.length) {
-			return array[indice];
+	public int buscar(int valor) {
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] != null && array[i].equals(String.valueOf(valor))) {
+				// Se encontró
+				return i;
+			}
 		}
-		else {
-			return null;
+		// No se encontró
+		return - 1;
+	}
+
+	/**
+	 * Borrar el array para que sea como nuevo.
+	 */
+	public void nuevo() {
+		for (int i = 0; i < size(); i++) {
+			array[i] = null;
 		}
 	}
 
@@ -119,61 +152,28 @@ final public class Array {
 	}
 
 	/**
+	 * Devolver el valor que está guardado en cada indice del array. Se usa para construir la grafica.
+	 *
+	 * @param indice int: El indice que desea ver.
+	 *
+	 * @return String: El valor que está en dicho indice.
+	 */
+	public String getIndice(int indice) {
+		if (indice >= 0 && indice < array.length) {
+			return array[indice];
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Devolver la cantidad de elementos en el array.
 	 *
 	 * @return int: Devolver la cantidad de elementos en el array.
 	 */
 	public int size() {
 		return size;
-	}
-
-	/**
-	 * Buscar si existe un valor dentro el array.
-	 *
-	 * @param valor int: Valor a buscar.
-	 *
-	 * @return int: Devuelve el indice donde fue encontrado, o -1 si no fue encontrado.
-	 */
-	public int buscar(int valor) {
-		for (int i = 0; i < array.length; i++) {
-			if (array[i] != null && array[i].equals(String.valueOf(valor))) {
-				// Se encontró
-				return i;
-			}
-		}
-		// No se encontró
-		return - 1;
-	}
-
-	/**
-	 * Insertar un valor al array.
-	 *
-	 * @param valor int: El valor a insertar.
-	 *
-	 * @return boolean: Verdad si fue exitoso, sino falso.
-	 */
-	public boolean insertar(int valor) {
-		for (int i = 0; i < array.length; i++) {
-			if (array[i] == null) {
-				array[i] = String.valueOf(valor);
-				size++;
-				return true;
-			}
-			else if (array[i].equals(String.valueOf(valor))) {
-				// Ya existe el valor en el array
-				return false;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Borrar el array.
-	 */
-	public void nuevo() {
-		for (int i = 0; i < size(); i++) {
-			array[i] = null;
-		}
 	}
 
 	/**

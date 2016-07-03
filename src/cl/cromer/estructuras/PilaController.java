@@ -91,17 +91,6 @@ public class PilaController implements Initializable {
 	}
 
 	/**
-	 * Poner los valores en el grafico.
-	 */
-	private void generarGrafico() {
-		grafico.removerDestacar();
-		for (int i = 0; i < 10; i++) {
-			Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
-			text.setText(pila.getIndice(i));
-		}
-	}
-
-	/**
 	 * Vaciar la pila de todos los valores.
 	 */
 	@FXML
@@ -201,6 +190,17 @@ public class PilaController implements Initializable {
 		}
 		else {
 			Main.mostrarError(resourceBundle.getString("pilaVacia"), resourceBundle);
+		}
+	}
+
+	/**
+	 * Poner los valores en el grafico.
+	 */
+	private void generarGrafico() {
+		grafico.removerDestacar();
+		for (int i = 0; i < 10; i++) {
+			Text text = (Text) scene.lookup("#texto_" + String.valueOf(i));
+			text.setText(pila.getIndice(i));
 		}
 	}
 }

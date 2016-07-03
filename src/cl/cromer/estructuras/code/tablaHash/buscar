@@ -1,3 +1,28 @@
+public HashItem buscar(String llave) {
+    for (int i = 0; i < tamano; i++) {
+        // Buscar la llave en los elementos del array.
+        if (hashArray[i] != null && hashArray[i].getLlave().equals(llave)) {
+            // Encontró la llave, devuelve el HashItem que la contiene.
+            return hashArray[i];
+        }
+    }
+    // No se encontró.
+    return null;
+}
+
+public int hash(String string) {
+    // Multiplicar por un numero primo(31) para generar mejor hashes.
+    int hash = 31;
+    for (int i = 0; i < string.length(); i++) {
+        // Suma usando cada char del string.
+        hash = hash * 31 + string.charAt(i);
+    }
+    if (hash < 0) {
+        hash = hash * - 1;
+    }
+    return hash % tamano;
+}
+
 public class HashItem {
 	final private String llave;
 	final private int valor;

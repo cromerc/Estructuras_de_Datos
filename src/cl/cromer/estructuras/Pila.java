@@ -27,6 +27,30 @@ final public class Pila {
 	}
 
 	/**
+	 * Push un valor en la pila encima.
+	 *
+	 * @param valor int: El valor a push.
+	 */
+	public void push(int valor) {
+		if (this.pila != null) {
+			String pila[] = new String[this.pila.length + 1];
+			int i;
+			for (i = 0; i < this.pila.length; i++) {
+				pila[i] = this.pila[i];
+			}
+			pila[i] = String.valueOf(valor);
+			this.pila = pila;
+			size++;
+		}
+		else {
+			String pila[] = new String[1];
+			pila[0] = String.valueOf(valor);
+			this.pila = pila;
+			size++;
+		}
+	}
+
+	/**
 	 * Pop un valor de encima de la pila.
 	 *
 	 * @return boolean: Verdad si fue exitoso.
@@ -45,15 +69,6 @@ final public class Pila {
 	}
 
 	/**
-	 * Devolver la cantidad de elementos en la pila.
-	 *
-	 * @return int: La cantidad de elementos.
-	 */
-	public int size() {
-		return size;
-	}
-
-	/**
 	 * Peek al valor que está encima de la pila.
 	 *
 	 * @return int: El valor que está encima de la pila.
@@ -65,6 +80,15 @@ final public class Pila {
 		else {
 			return Integer.MIN_VALUE;
 		}
+	}
+
+	/**
+	 * Devolver la cantidad de elementos en la pila.
+	 *
+	 * @return int: La cantidad de elementos.
+	 */
+	public int size() {
+		return size;
 	}
 
 	/**
@@ -96,30 +120,6 @@ final public class Pila {
 		for (int i = size(); i < 10; i++) {
 			int numero = random.nextInt(rango) + minimo;
 			push(numero);
-		}
-	}
-
-	/**
-	 * Push un valor en la pila encima.
-	 *
-	 * @param valor int: El valor a push.
-	 */
-	public void push(int valor) {
-		if (this.pila != null) {
-			String pila[] = new String[this.pila.length + 1];
-			int i;
-			for (i = 0; i < this.pila.length; i++) {
-				pila[i] = this.pila[i];
-			}
-			pila[i] = String.valueOf(valor);
-			this.pila = pila;
-			size++;
-		}
-		else {
-			String pila[] = new String[1];
-			pila[0] = String.valueOf(valor);
-			this.pila = pila;
-			size++;
 		}
 	}
 }

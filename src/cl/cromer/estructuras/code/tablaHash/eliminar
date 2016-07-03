@@ -1,3 +1,33 @@
+public void eliminar(String llave) {
+    HashItem hashItem = new HashItem(llave, 0);
+    int hashIndice = hash(hashItem.getLlave());
+    int i = 0;
+    // Buscar hasta que encuentra la llave.
+    while (hashArray[hashIndice] != null && hashArray[hashIndice].getLlave() != null && i < tamano) {
+        if (hashArray[hashIndice].getLlave().equals(llave)) {
+            // Encontró la llave, borrarla.
+            hashArray[hashIndice] = null;
+            return;
+        }
+        hashIndice++;
+        hashIndice = hashIndice % tamano;
+        i++;
+    }
+}
+
+public int hash(String string) {
+    // Multiplicar por un numero primo(31) para generar mejor hashes.
+    int hash = 31;
+    for (int i = 0; i < string.length(); i++) {
+        // Suma usando cada char del string.
+        hash = hash * 31 + string.charAt(i);
+    }
+    if (hash < 0) {
+        hash = hash * - 1;
+    }
+    return hash % tamano;
+}
+
 public class HashItem {
 	final private String llave;
 	final private int valor;

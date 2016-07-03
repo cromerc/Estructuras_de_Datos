@@ -31,6 +31,36 @@ public class Main extends Application {
 	static final public boolean DEBUG = false;
 
 	/**
+	 * Crear el stage y la scene para la aplicación grafica.
+	 *
+	 * @param stage Stage: El primer stage donde va todas las cosas visuales.
+	 */
+	@Override
+	public void start(Stage stage) {
+		Locale locale = new Locale("es", "ES");
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
+
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("/cl/cromer/estructuras/fxml/main.fxml"), ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale));
+			stage.setTitle(resourceBundle.getString("titulo"));
+			Scene scene = new Scene(parent, 1024, 768);
+			scene.getStylesheets().add("/cl/cromer/estructuras/css/main.css");
+			stage.setScene(scene);
+		}
+		catch (IOException exception) {
+			// Este error es fatal, hay que cerrar la aplicación.
+			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
+			stage.close();
+		}
+
+		//stage.setMaximized(true);
+		stage.setMinHeight(640);
+		stage.setMinWidth(768);
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
+		stage.show();
+	}
+
+	/**
 	 * Inicilizar el logeo y lanzar la interfaz grafica.
 	 *
 	 * @param args String[]: Argumentos desde la consola.
@@ -41,6 +71,17 @@ public class Main extends Application {
 		}
 
 		launch(args);
+	}
+
+	/**
+	 * Cambiar el icono de una ventana.
+	 *
+	 * @param dialog Dialog: El Dialog a cambiar.
+	 * @param clase Class: La clase usado para abrir el Stream.
+	 */
+	static public void setIcon(Dialog dialog, Class clase) {
+		Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(clase.getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
 	}
 
 	/**
@@ -58,46 +99,5 @@ public class Main extends Application {
 		dialog.getDialogPane().getScene().getWindow().sizeToScene();
 		Main.setIcon(dialog, Main.class);
 		dialog.show();
-	}
-
-	/**
-	 * Cambiar el icono de una ventana.
-	 *
-	 * @param dialog Dialog: El Dialog a cambiar.
-	 * @param clase Class: La clase usado para abrir el Stream.
-	 */
-	static public void setIcon(Dialog dialog, Class clase) {
-		Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-		stage.getIcons().add(new Image(clase.getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
-	}
-
-	/**
-	 * Crear el stage y la scene para la aplicación grafica.
-	 *
-	 * @param stage Stage: El primer stage donde va todas las cosas visuales.
-	 */
-	@Override
-	public void start(Stage stage) {
-		Locale locale = new Locale("es", "ES");
-		ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
-
-		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("/cl/cromer/estructuras/fxml/main.fxml"), ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale));
-			stage.setTitle(resourceBundle.getString("titulo"));
-			Scene scene = new Scene(parent, 1024, 768);
-			scene.getStylesheets().add("/cl/cromer/estructuras/css/style.css");
-			stage.setScene(scene);
-		}
-		catch (IOException exception) {
-			// Este error es fatal, hay que cerrar la aplicación.
-			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
-			stage.close();
-		}
-
-		//stage.setMaximized(true);
-		stage.setMinHeight(640);
-		stage.setMinWidth(768);
-		stage.getIcons().add(new Image(getClass().getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
-		stage.show();
 	}
 }

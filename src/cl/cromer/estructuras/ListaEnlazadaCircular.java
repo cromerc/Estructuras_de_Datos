@@ -83,47 +83,6 @@ final public class ListaEnlazadaCircular {
 	}
 
 	/**
-	 * Buscar una llave en la lista.
-	 *
-	 * @param llave int: La llave a buscar.
-	 *
-	 * @return Enlace: El enlace que contiene la llave.
-	 */
-	public Enlace buscar(int llave) {
-		if (this.primer != null) {
-			// La lista no es vacia
-			Enlace lista = this.primer;
-			int i = 0;
-			while (lista.getLlave() != llave && i < size()) {
-				// Buscar en la sigenute enlace hasta el final.
-				lista = (Enlace) lista.getSiguiente();
-				i++;
-			}
-			if (lista.getLlave() == llave) {
-				// Devoler el enlace encontrado.
-				return lista;
-			}
-			else {
-				// No se encontró.
-				return null;
-			}
-		}
-		else {
-			// La lista es vacia, nada para buscar
-			return null;
-		}
-	}
-
-	/**
-	 * Devolver la cantidad de enlaces que están en la lista.
-	 *
-	 * @return int: La cantidad.
-	 */
-	public int size() {
-		return size;
-	}
-
-	/**
 	 * Eliminar un enlace de la lista.
 	 *
 	 * @param llave int: La llave a elminiar.
@@ -167,6 +126,47 @@ final public class ListaEnlazadaCircular {
 			// La lista es vacia, no hay nada para eliminar
 			return false;
 		}
+	}
+
+	/**
+	 * Buscar una llave en la lista.
+	 *
+	 * @param llave int: La llave a buscar.
+	 *
+	 * @return Enlace: El enlace que contiene la llave.
+	 */
+	public Enlace buscar(int llave) {
+		if (this.primer != null) {
+			// La lista no es vacia
+			Enlace lista = this.primer;
+			int i = 0;
+			while (lista.getLlave() != llave && i < size()) {
+				// Buscar en la sigenute enlace hasta el final.
+				lista = (Enlace) lista.getSiguiente();
+				i++;
+			}
+			if (lista.getLlave() == llave) {
+				// Devoler el enlace encontrado.
+				return lista;
+			}
+			else {
+				// No se encontró.
+				return null;
+			}
+		}
+		else {
+			// La lista es vacia, nada para buscar
+			return null;
+		}
+	}
+
+	/**
+	 * Devolver la cantidad de enlaces que están en la lista.
+	 *
+	 * @return int: La cantidad.
+	 */
+	public int size() {
+		return size;
 	}
 
 	/**
