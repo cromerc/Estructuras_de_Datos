@@ -59,7 +59,7 @@ public class ArrayController implements Initializable {
     /**
      * Inicializar todos los datos y dibujar las graficas.
      *
-     * @param location       URL: El URL de fxml en uso.
+     * @param location URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -146,7 +146,7 @@ public class ArrayController implements Initializable {
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
         codigoArray.setText(codigoTexto);
 
-        if (valorArray.getText() != null && !valorArray.getText().trim().equals("")) {
+        if (valorArray.getText() != null && ! valorArray.getText().trim().equals("")) {
             try {
                 boolean exito = array.insertar(Integer.valueOf(valorArray.getText()));
                 if (exito) {
@@ -188,7 +188,7 @@ public class ArrayController implements Initializable {
         codigoArray.setText(codigoTexto);
 
         try {
-            if (valorArray.getText() != null && !valorArray.getText().trim().equals("")) {
+            if (valorArray.getText() != null && ! valorArray.getText().trim().equals("")) {
                 boolean exito = array.eliminar(Integer.valueOf(valorArray.getText()));
                 if (exito) {
                     valorArray.setText("");
@@ -225,9 +225,9 @@ public class ArrayController implements Initializable {
         codigoArray.setText(codigoTexto);
 
         try {
-            if (valorArray.getText() != null && !valorArray.getText().trim().equals("")) {
+            if (valorArray.getText() != null && ! valorArray.getText().trim().equals("")) {
                 int encontrado = array.buscar(Integer.valueOf(valorArray.getText()));
-                if (encontrado != -1) {
+                if (encontrado != - 1) {
                     generarGrafico();
                     grafico = new Grafico(scene);
                     grafico.destacar("#caja_" + encontrado, Grafico.RECTANGULO);
@@ -246,5 +246,5 @@ public class ArrayController implements Initializable {
             Logs.log(Level.WARNING, "No es tipo int.");
             Main.mostrarError(resourceBundle.getString("arrayNoValor"), resourceBundle);
         }
-    }
+	}
 }

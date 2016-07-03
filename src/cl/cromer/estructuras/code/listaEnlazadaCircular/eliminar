@@ -1,57 +1,57 @@
 public void eliminar(int llave) {
-    if (primer != null) {
-        // Crear una lista temporario para trabajar
-        Enlace lista = this.primer;
-        // Guardar el enlace previo
-        Enlace previo = lista;
-        // Solo busca mientras que i es menor que la cantidad de enlaces
-        int i = 0;
-        while (lista.getLlave() != llave && i < elementos) {
-            // Buscar hasta la llave es encontraddo
-            if (lista.getSiguente() != null) {
-                // Buscar en el sigenute enlace
-                previo = lista;
-                lista = lista.getSiguente();
-            }
-            i++
-        }
+	if (primer != null) {
+		// Crear una lista temporario para trabajar
+		Enlace lista = this.primer;
+		// Guardar el enlace previo
+		Enlace previo = lista;
+		// Solo busca mientras que i es menor que la cantidad de enlaces
+		int i = 0;
+		while (lista.getLlave() != llave && i < elementos) {
+			// Buscar hasta la llave es encontraddo
+			if (lista.getSiguente() != null) {
+				// Buscar en el sigenute enlace
+				previo = lista;
+				lista = lista.getSiguente();
+			}
+			i++
+		}
 
-        if (lista.getLlave != llave) {
-            // No se encontró
-            return;
-        }
+		if (lista.getLlave != llave) {
+			// No se encontró
+			return;
+		}
 
-        // Se encontró
-        if (lista == this.lista) {
-            // Si es el primer enlace, cambiarlo al siguente enlace
-            this.lista = this.lista.getSiguente();
-        }
-        else {
-            // Sino cortar este enlace de la lista
-            previo.setSiguente(lista.getSiguente());
-        }
-        elementos--;
-    }
+		// Se encontró
+		if (lista == this.lista) {
+			// Si es el primer enlace, cambiarlo al siguente enlace
+			this.lista = this.lista.getSiguente();
+		}
+		else {
+			// Sino cortar este enlace de la lista
+			previo.setSiguente(lista.getSiguente());
+		}
+		elementos--;
+	}
 }
 
 final public class Enlace {
-    private int llave;
-    private Enlace siguente;
+	private int llave;
+	private Enlace siguente;
 
-    public Enlace(Enlace siguiente, int llave) {
-        this.siguente = siguente;
-        this.llave = llave;
-    }
+	public Enlace(Enlace siguiente, int llave) {
+		this.siguente = siguente;
+		this.llave = llave;
+	}
 
-    public int getLlave() {
-        return llave;
-    }
+	public int getLlave() {
+		return llave;
+	}
 
-    public Enlace getSiguente() {
-        return siguente;
-    }
+	public Enlace getSiguente() {
+		return siguente;
+	}
 
-    public void setSiguente(Enlace siguente) {
-        this.siguente = siguente;
-    }
+	public void setSiguente(Enlace siguente) {
+		this.siguente = siguente;
+	}
 }

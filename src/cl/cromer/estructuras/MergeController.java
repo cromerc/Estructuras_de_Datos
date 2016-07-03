@@ -46,7 +46,7 @@ public class MergeController implements Initializable {
     /**
      * Inicializar todos los datos y dibujar las graficas.
      *
-     * @param location       URL: El URL de fxml en uso.
+     * @param location URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -112,7 +112,7 @@ public class MergeController implements Initializable {
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/merge/ordenar")).useDelimiter("\\Z").next();
         codigoMerge.setText(codigoTexto);
 
-        if (!array.merge(true)) {
+        if (! array.merge(true)) {
             Main.mostrarError(resourceBundle.getString("mergeYaOrdenado"), resourceBundle);
         }
 
@@ -132,10 +132,10 @@ public class MergeController implements Initializable {
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/merge/ordenar")).useDelimiter("\\Z").next();
         codigoMerge.setText(codigoTexto);
 
-        if (!array.merge(false)) {
+        if (! array.merge(false)) {
             Main.mostrarError(resourceBundle.getString("mergeYaOrdenado"), resourceBundle);
         }
 
-        generarGrafico();
+		generarGrafico();
     }
 }

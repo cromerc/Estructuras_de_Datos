@@ -46,7 +46,7 @@ public class InsercionController implements Initializable {
     /**
      * Inicializar todos los datos y dibujar las graficas.
      *
-     * @param location       URL: El URL de fxml en uso.
+     * @param location URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -112,7 +112,7 @@ public class InsercionController implements Initializable {
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/insercion/ordenar")).useDelimiter("\\Z").next();
         codigoInsercion.setText(codigoTexto);
 
-        if (!array.insercion(true)) {
+        if (! array.insercion(true)) {
             Main.mostrarError(resourceBundle.getString("insercionYaOrdenado"), resourceBundle);
         }
 
@@ -132,10 +132,10 @@ public class InsercionController implements Initializable {
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/insercion/ordenar")).useDelimiter("\\Z").next();
         codigoInsercion.setText(codigoTexto);
 
-        if (!array.insercion(false)) {
+        if (! array.insercion(false)) {
             Main.mostrarError(resourceBundle.getString("insercionYaOrdenado"), resourceBundle);
         }
 
-        generarGrafico();
+		generarGrafico();
     }
 }

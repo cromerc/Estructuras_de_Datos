@@ -64,7 +64,7 @@ public class HashTableController implements Initializable {
     /**
      * Inicializar todos los datos y dibujar las graficas.
      *
-     * @param location       URL: El URL de fxml en uso.
+     * @param location URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -98,13 +98,47 @@ public class HashTableController implements Initializable {
 
         for (int i = 0; i < 10; i++) {
             int numero = random.nextInt(rango) + minimo;
-            while (!hashTable.insertar(palabras.getPalabra(), numero)) {
+            while (! hashTable.insertar(palabras.getPalabra(), numero)) {
                 if (hashTable.size() == 10) {
                     break;
                 }
             }
         }
         generarGrafico();
+    }
+
+    /**
+     * Crear el hashTable de tamaño 10.
+     */
+    private void initializeHashTable() {
+        scene = contenidoHashTable.getScene();
+        grafico = new Grafico(scene);
+        this.hashTable = new HashTable(10);
+    }
+
+    /**
+     * Poner los valores en el grafico.
+     */
+    private void generarGrafico() {
+        grafico.removerDestacar();
+        for (int i = 0; i < 10; i++) {
+            if (hashTable.getIndice(i) != null) {
+                Text text = (Text) scene.lookup("#indice_texto_" + String.valueOf(i));
+                text.setText(String.valueOf(i));
+                text = (Text) scene.lookup("#llave_texto_" + String.valueOf(i));
+                text.setText(hashTable.getIndice(i).getLlave());
+                text = (Text) scene.lookup("#valor_texto_" + String.valueOf(i));
+                text.setText(String.valueOf(hashTable.getIndice(i).getValor()));
+            }
+            else {
+                Text text = (Text) scene.lookup("#indice_texto_" + String.valueOf(i));
+                text.setText("");
+                text = (Text) scene.lookup("#llave_texto_" + String.valueOf(i));
+                text.setText("");
+                text = (Text) scene.lookup("#valor_texto_" + String.valueOf(i));
+                text.setText("");
+            }
+        }
     }
 
     /**
@@ -131,10 +165,10 @@ public class HashTableController implements Initializable {
 
         // Mostrar el codigo
         /*String tipo = (hashTable.isOrdered()) ? "Ordenado" : "Simple";
-        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/hashTable" + tipo + "/insertar")).useDelimiter("\\Z").next();
-        codigoHashTable.setText(codigoTexto);*/
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/hashTable" + tipo + "/insertar")).useDelimiter("\\Z").next();
+		codigoHashTable.setText(codigoTexto);*/
 
-        if (llaveHashTable.getText() != null && !llaveHashTable.getText().trim().equals("") && valorHashTable.getText() != null && !valorHashTable.getText().trim().equals("")) {
+        if (llaveHashTable.getText() != null && ! llaveHashTable.getText().trim().equals("") && valorHashTable.getText() != null && ! valorHashTable.getText().trim().equals("")) {
             try {
                 boolean exito = hashTable.insertar(llaveHashTable.getText().trim(), Integer.valueOf(valorHashTable.getText()));
                 if (exito) {
@@ -173,11 +207,11 @@ public class HashTableController implements Initializable {
 
         // Mostrar el codigo
         /*String tipo = (hashTable.isOrdered()) ? "Ordenado" : "Simple";
-        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/hashTable" + tipo + "/eliminar")).useDelimiter("\\Z").next();
-        codigoHashTable.setText(codigoTexto);*/
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/hashTable" + tipo + "/eliminar")).useDelimiter("\\Z").next();
+		codigoHashTable.setText(codigoTexto);*/
 
         try {
-            if (llaveHashTable.getText() != null && !llaveHashTable.getText().trim().equals("")) {
+            if (llaveHashTable.getText() != null && ! llaveHashTable.getText().trim().equals("")) {
                 boolean exito = hashTable.eliminar(llaveHashTable.getText());
                 if (exito) {
                     llaveHashTable.setText("");
@@ -211,11 +245,11 @@ public class HashTableController implements Initializable {
 
         // Mostrar el codigo
         /*String tipo = (hashTable.isOrdered()) ? "Ordenado" : "Simple";
-        String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/hashTable" + tipo + "/buscar")).useDelimiter("\\Z").next();
-        codigoHashTable.setText(codigoTexto);*/
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/hashTable" + tipo + "/buscar")).useDelimiter("\\Z").next();
+		codigoHashTable.setText(codigoTexto);*/
 
         try {
-            if (llaveHashTable.getText() != null && !llaveHashTable.getText().trim().equals("")) {
+            if (llaveHashTable.getText() != null && ! llaveHashTable.getText().trim().equals("")) {
                 HashItem hashItem = hashTable.buscar(llaveHashTable.getText());
                 if (hashItem != null) {
                     generarGrafico();
@@ -240,39 +274,5 @@ public class HashTableController implements Initializable {
             Logs.log(Level.WARNING, "No es tipo int.");
             Main.mostrarError(resourceBundle.getString("tablaHashNoLlave"), resourceBundle);
         }
-    }
-
-    /**
-     * Crear el hashTable de tamaño 10.
-     */
-    private void initializeHashTable() {
-        scene = contenidoHashTable.getScene();
-        grafico = new Grafico(scene);
-        this.hashTable = new HashTable(10);
-    }
-
-    /**
-     * Poner los valores en el grafico.
-     */
-    private void generarGrafico() {
-        grafico.removerDestacar();
-        for (int i = 0; i < 10; i++) {
-            if (hashTable.getIndice(i) != null) {
-                Text text = (Text) scene.lookup("#indice_texto_" + String.valueOf(i));
-                text.setText(String.valueOf(i));
-                text = (Text) scene.lookup("#llave_texto_" + String.valueOf(i));
-                text.setText(hashTable.getIndice(i).getLlave());
-                text = (Text) scene.lookup("#valor_texto_" + String.valueOf(i));
-                text.setText(String.valueOf(hashTable.getIndice(i).getValor()));
-            }
-            else {
-                Text text = (Text) scene.lookup("#indice_texto_" + String.valueOf(i));
-                text.setText("");
-                text = (Text) scene.lookup("#llave_texto_" + String.valueOf(i));
-                text.setText("");
-                text = (Text) scene.lookup("#valor_texto_" + String.valueOf(i));
-                text.setText("");
-            }
-        }
-    }
+	}
 }

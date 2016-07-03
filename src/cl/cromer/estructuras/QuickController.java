@@ -46,7 +46,7 @@ public class QuickController implements Initializable {
     /**
      * Inicializar todos los datos y dibujar las graficas.
      *
-     * @param location       URL: El URL de fxml en uso.
+     * @param location URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -112,7 +112,7 @@ public class QuickController implements Initializable {
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/quick/ordenar")).useDelimiter("\\Z").next();
         codigoQuick.setText(codigoTexto);
 
-        if (!array.quick(true)) {
+        if (! array.quick(true)) {
             Main.mostrarError(resourceBundle.getString("quickYaOrdenado"), resourceBundle);
         }
 
@@ -132,10 +132,10 @@ public class QuickController implements Initializable {
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/quick/ordenar")).useDelimiter("\\Z").next();
         codigoQuick.setText(codigoTexto);
 
-        if (!array.quick(false)) {
+        if (! array.quick(false)) {
             Main.mostrarError(resourceBundle.getString("quickYaOrdenado"), resourceBundle);
         }
 
-        generarGrafico();
+		generarGrafico();
     }
 }

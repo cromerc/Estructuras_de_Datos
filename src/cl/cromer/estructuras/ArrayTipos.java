@@ -6,44 +6,45 @@ package cl.cromer.estructuras;
  * @author Chris Cromer
  */
 final public class ArrayTipos {
-    /**
-     * Tipo de array simple.
-     */
-    static final public int SIMPLE = 0;
-    /**
-     * Tipo de array ordenado.
-     */
-    static final public int ORDENADO = 1;
+	/**
+	 * Tipo de array simple.
+	 */
+	static final public int SIMPLE = 0;
 
-    /**
-     * El tipo que está elegido.
-     */
-    final private int tipo;
+	/**
+	 * Tipo de array ordenado.
+	 */
+	static final public int ORDENADO = 1;
 
-    /**
-     * Inicilizar el tipo.
-     *
-     * @param tipo int: Tipo de array, {@value #SIMPLE} o {@value #ORDENADO}
-     */
-    public ArrayTipos(int tipo) {
-        switch (tipo) {
-            case SIMPLE:
-                this.tipo = SIMPLE;
-                break;
-            case ORDENADO:
-                this.tipo = ORDENADO;
-                break;
-            default:
-                this.tipo = SIMPLE;
-        }
-    }
+	/**
+	 * El tipo que está elegido.
+	 */
+	final private int tipo;
 
-    /**
-     * Devolver el tipo.
-     *
-     * @return int: El tipo de array.
-     */
-    public int getTipo() {
-        return tipo;
-    }
+	/**
+	 * Inicilizar el tipo.
+	 *
+	 * @param tipo int: Tipo de array, {@value #SIMPLE} o {@value #ORDENADO}
+	 */
+	public ArrayTipos(int tipo) {
+		switch (tipo) {
+			case SIMPLE:
+				this.tipo = SIMPLE;
+				break;
+			case ORDENADO:
+				this.tipo = ORDENADO;
+				break;
+			default:
+				this.tipo = SIMPLE;
+		}
+	}
+
+	/**
+	 * Devolver el tipo.
+	 *
+	 * @return int: El tipo de array.
+	 */
+	public int getTipo() {
+		return tipo;
+	}
 }

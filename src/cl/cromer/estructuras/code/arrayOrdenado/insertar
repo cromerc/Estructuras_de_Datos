@@ -1,13 +1,13 @@
 public boolean insertar(int valor) {
-    for (int i = 0; i < array.length; i++) {
-        if (array[i] == 0) {
-            array[i] = valor;
-            return true;
-        }
-        else if (array[i] == valor) {
-            // Ya existe el valor en el array
-            return false;
-        }
-    }
-    return false;
+	for (int i = 0; i < array.length; i++) {
+		if (array[i] == 0) {
+			array[i] = valor;
+			return true;
+		}
+		else if (array[i] == valor) {
+			// Ya existe el valor en el array
+			return false;
+		}
+	}
+	return false;
 }

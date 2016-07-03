@@ -1,4 +1,4 @@
 public int peek() {
-    // Devolver el valor encima
-    return this.pila[encima];
+	// Devolver el valor encima
+	return this.pila[encima];
 }

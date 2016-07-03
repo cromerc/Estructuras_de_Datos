@@ -1,6 +1,6 @@
 public void push(int valor) {
-    // Sumar el final.
-    final++;
-    // Insertar el valor
-    this.pila[final] = valor;
+	// Sumar el final.
+	final++;
+	// Insertar el valor
+	this.pila[final] = valor;
 }

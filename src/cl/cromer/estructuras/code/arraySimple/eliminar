@@ -1,12 +1,12 @@
 public boolean eliminar(int valor) {
-    boolean borrado = false;
-    for (int i = 0; i < array.length; i++) {
-        if (array[i] != 0 && array[i] == valor) {
-            // Eliminar el valor
-            array[i] = 0;
-            borrado=true;
-            break;
-        }
-    }
-    return borrado;
+	boolean borrado = false;
+	for (int i = 0; i < array.length; i++) {
+		if (array[i] != 0 && array[i] == valor) {
+			// Eliminar el valor
+			array[i] = 0;
+			borrado=true;
+			break;
+		}
+	}
+	return borrado;
 }

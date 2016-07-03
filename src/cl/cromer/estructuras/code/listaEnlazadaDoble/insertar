@@ -1,43 +1,43 @@
 public void insertar(int llave) {
-    if (buscar(llave) == null) {
-        // Crear un enlace nuevo
-        Enlace nuevo = new Enlace(lista, llave);
-        if (lista != null) {
-            // El previo es el nuevo.
-            lista.setPrevio(nuevo);
-        }
-        // Agregar el enlace a la lista
-        lista = nuevo;
-    }
+	if (buscar(llave) == null) {
+		// Crear un enlace nuevo
+		Enlace nuevo = new Enlace(lista, llave);
+		if (lista != null) {
+			// El previo es el nuevo.
+			lista.setPrevio(nuevo);
+		}
+		// Agregar el enlace a la lista
+		lista = nuevo;
+	}
 }
 
 final public class Enlace {
-    private int llave;
-    private Enlace siguente;
-    private Enlace previo;
+	private int llave;
+	private Enlace siguente;
+	private Enlace previo;
 
-    public Enlace(Enlace siguiente, int llave) {
-        this.siguente = siguente;
-        this.llave = llave;
-    }
+	public Enlace(Enlace siguiente, int llave) {
+		this.siguente = siguente;
+		this.llave = llave;
+	}
 
-    public int getLlave() {
-        return llave;
-    }
+	public int getLlave() {
+		return llave;
+	}
 
-    public Enlace getSiguente() {
-        return siguente;
-    }
+	public Enlace getSiguente() {
+		return siguente;
+	}
 
-    public void setSiguente(Enlace siguente) {
-        this.siguente = siguente;
-    }
+	public void setSiguente(Enlace siguente) {
+		this.siguente = siguente;
+	}
 
-    public Enlace getPrevio() {
-        return previo;
-    }
+	public Enlace getPrevio() {
+		return previo;
+	}
 
-    public void setPrevio(Enlace previo) {
-        this.previo = previo;
-    }
+	public void setPrevio(Enlace previo) {
+		this.previo = previo;
+	}
 }

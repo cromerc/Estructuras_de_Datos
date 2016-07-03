@@ -46,7 +46,7 @@ public class BurbujaController implements Initializable {
     /**
      * Inicializar todos los datos y dibujar las graficas.
      *
-     * @param location       URL: El URL de fxml en uso.
+     * @param location URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -112,7 +112,7 @@ public class BurbujaController implements Initializable {
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/burbuja/ordenar")).useDelimiter("\\Z").next();
         codigoBurbuja.setText(codigoTexto);
 
-        if (!array.burbuja(true)) {
+        if (! array.burbuja(true)) {
             Main.mostrarError(resourceBundle.getString("burbujaYaOrdenado"), resourceBundle);
         }
 
@@ -132,10 +132,10 @@ public class BurbujaController implements Initializable {
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/burbuja/ordenar")).useDelimiter("\\Z").next();
         codigoBurbuja.setText(codigoTexto);
 
-        if (!array.burbuja(false)) {
+        if (! array.burbuja(false)) {
             Main.mostrarError(resourceBundle.getString("burbujaYaOrdenado"), resourceBundle);
         }
 
-        generarGrafico();
+		generarGrafico();
     }
 }

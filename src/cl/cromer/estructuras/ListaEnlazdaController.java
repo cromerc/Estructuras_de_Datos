@@ -80,7 +80,7 @@ public class ListaEnlazdaController implements Initializable {
     /**
      * Inicializar todos los datos y dibujar las graficas.
      *
-     * @param location       URL: El URL de fxml en uso.
+     * @param location URL: El URL de fxml en uso.
      * @param resourceBundle ResourceBundle: Tiene datos de idioma.
      */
     @Override
@@ -254,7 +254,7 @@ public class ListaEnlazdaController implements Initializable {
         String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/listaEnlazada" + tipo + "/insertar")).useDelimiter("\\Z").next();
         codigoLista.setText(codigoTexto);
 
-        if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
+        if (valorLista.getText() != null && ! valorLista.getText().trim().equals("")) {
             try {
                 boolean exito;
                 if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
@@ -316,7 +316,7 @@ public class ListaEnlazdaController implements Initializable {
         codigoLista.setText(codigoTexto);
 
         try {
-            if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
+            if (valorLista.getText() != null && ! valorLista.getText().trim().equals("")) {
                 boolean exito;
                 if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
                     exito = listaEnlazada.eliminar(Integer.valueOf(valorLista.getText()));
@@ -360,7 +360,7 @@ public class ListaEnlazdaController implements Initializable {
         codigoLista.setText(codigoTexto);
 
         try {
-            if (valorLista.getText() != null && !valorLista.getText().trim().equals("")) {
+            if (valorLista.getText() != null && ! valorLista.getText().trim().equals("")) {
                 Enlace enlace;
                 if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
                     enlace = listaEnlazada.buscar(Integer.valueOf(valorLista.getText()));
@@ -386,6 +386,6 @@ public class ListaEnlazdaController implements Initializable {
             // El error no es fatal, sigue
             Logs.log(Level.WARNING, "No es tipo int.");
             Main.mostrarError(resourceBundle.getString("listaNoValor"), resourceBundle);
-        }
-    }
+		}
+	}
 }

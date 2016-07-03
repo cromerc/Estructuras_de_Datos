@@ -1,47 +1,47 @@
 public Enlace buscar(int llave) {
-    if (this.primer != null) {
-        // La lista no es vacia
-        Enlace lista = this.primer;
-        int i = 0;
-        while (lista.getLlave() != llave && i < elementos) {
-            // Buscar hasta la llave es encontrado
-            lista = lista.getSiguente();
-            i++;
-        }
+	if (this.primer != null) {
+		// La lista no es vacia
+		Enlace lista = this.primer;
+		int i = 0;
+		while (lista.getLlave() != llave && i < elementos) {
+			// Buscar hasta la llave es encontrado
+			lista = lista.getSiguente();
+			i++;
+		}
 
-        if (lista.getLlave() == llave) {
-            // Devoler el enlace encontrado.
-            return lista;
-        }
-        else {
-            // No se encontró.
-            return null;
-        }
-    }
-    else {
-        // La lista es vacia, devolver null
-        return null;
-    }
+		if (lista.getLlave() == llave) {
+			// Devoler el enlace encontrado.
+			return lista;
+		}
+		else {
+			// No se encontró.
+			return null;
+		}
+	}
+	else {
+		// La lista es vacia, devolver null
+		return null;
+	}
 }
 
 final public class Enlace {
-    private int llave;
-    private Enlace siguente;
+	private int llave;
+	private Enlace siguente;
 
-    public Enlace(Enlace siguiente, int llave) {
-        this.siguente = siguente;
-        this.llave = llave;
-    }
+	public Enlace(Enlace siguiente, int llave) {
+		this.siguente = siguente;
+		this.llave = llave;
+	}
 
-    public int getLlave() {
-        return llave;
-    }
+	public int getLlave() {
+		return llave;
+	}
 
-    public Enlace getSiguente() {
-        return siguente;
-    }
+	public Enlace getSiguente() {
+		return siguente;
+	}
 
-    public void setSiguente(Enlace siguente) {
-        this.siguente = siguente;
-    }
+	public void setSiguente(Enlace siguente) {
+		this.siguente = siguente;
+	}
 }
