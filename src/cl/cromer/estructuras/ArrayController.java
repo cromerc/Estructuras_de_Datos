@@ -231,8 +231,8 @@ public class ArrayController implements Initializable {
 		scene = contenidoArray.getScene();
 		grafico = new Grafico(scene);
 		this.array = new Array(10);
-		ArrayTipos arrayTipos = (ArrayTipos) scene.getUserData();
-		if (arrayTipos.getTipo() == ArrayTipos.ORDENADO) {
+		Array.Tipos arrayTipos = (Array.Tipos) scene.getUserData();
+		if (arrayTipos.getTipo() == Array.Tipos.ORDENADO) {
 			this.array.setOrdered(true);
 		}
 	}

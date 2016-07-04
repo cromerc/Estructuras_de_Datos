@@ -4,17 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.util.Queue;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.Stack;
-import java.util.logging.Level;
 
 /**
  * Esta clase es para controlar todos la interfaz de Arbol.
@@ -127,7 +122,7 @@ public class ArbolController implements Initializable {
 		contenidoArbol.setGridLinesVisible(true);
 		grafico = new Grafico(scene);
 		//this.arbol = new Arbol();
-		ArbolTipos arbolTipos = (ArbolTipos) scene.getUserData();
+		Arbol.Tipos tipos = (Arbol.Tipos) scene.getUserData();
 	}
 
 	/**
@@ -164,6 +159,7 @@ public class ArbolController implements Initializable {
 		boolean filaVacio = false;
 		int x = medio;
 		int y = 0;
+		Colores colores = new Colores();
 		while (!filaVacio) {
 			Stack localStack = new Stack();
 			filaVacio = true;
@@ -180,7 +176,8 @@ public class ArbolController implements Initializable {
 					text = new Text();
 					text.setText(String.valueOf(temp.getValor()));
 					text.setId(x + "_" + y);
-					contenidoArbol.add(text, x, y);
+					contenidoArbol.add(Grafico.crearCirculo(colores, x + "_" + y), x, y);
+					colores.siguinteColor();
 					localStack.push(temp.getIzquerda());
 					localStack.push(temp.getDerecha());
 

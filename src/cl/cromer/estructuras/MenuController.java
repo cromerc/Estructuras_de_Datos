@@ -19,8 +19,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-import static cl.cromer.estructuras.ListaEnlazadaTipos.SIMPLE;
-
 /**
  * Controlar las acciones cuando una opción es elegido en el menu.
  */
@@ -52,7 +50,7 @@ public class MenuController extends VBox implements Initializable {
 	 */
 	@FXML
 	protected void menuArraySimple() {
-		ArrayTipos arrayTipos = new ArrayTipos(ArrayTipos.SIMPLE);
+		Array.Tipos arrayTipos = new Array.Tipos(Array.Tipos.SIMPLE);
 		loadStage(
 				resourceBundle.getString("tituloArraySimple"),
 				"/cl/cromer/estructuras/fxml/array.fxml",
@@ -66,7 +64,7 @@ public class MenuController extends VBox implements Initializable {
 	 */
 	@FXML
 	protected void menuArrayOrdenado() {
-		ArrayTipos arrayTipos = new ArrayTipos(ArrayTipos.ORDENADO);
+		Array.Tipos arrayTipos = new Array.Tipos(Array.Tipos.ORDENADO);
 		loadStage(
 				resourceBundle.getString("tituloArrayOrdenado"),
 				"/cl/cromer/estructuras/fxml/array.fxml",
@@ -152,7 +150,7 @@ public class MenuController extends VBox implements Initializable {
 	 */
 	@FXML
 	protected void menuListaEnlazadaSimple() {
-		ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(SIMPLE);
+		ListaEnlazada.Tipos listaEnlazadaTipos = new ListaEnlazada.Tipos(ListaEnlazada.Tipos.SIMPLE);
 		loadStage(
 				resourceBundle.getString("tituloListaEnlazadaSimple"),
 				"/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
@@ -166,7 +164,7 @@ public class MenuController extends VBox implements Initializable {
 	 */
 	@FXML
 	protected void menuListaEnlazadaCircular() {
-		ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(ListaEnlazadaTipos.CIRCULAR);
+		ListaEnlazada.Tipos listaEnlazadaTipos = new ListaEnlazada.Tipos(ListaEnlazada.Tipos.CIRCULAR);
 		loadStage(
 				resourceBundle.getString("tituloListaEnlazadaCircular"),
 				"/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
@@ -180,7 +178,7 @@ public class MenuController extends VBox implements Initializable {
 	 */
 	@FXML
 	protected void menuListaEnlazadaDoble() {
-		ListaEnlazadaTipos listaEnlazadaTipos = new ListaEnlazadaTipos(ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA);
+		ListaEnlazada.Tipos listaEnlazadaTipos = new ListaEnlazada.Tipos(ListaEnlazada.Tipos.DOBLEMENTE_ENLAZADA);
 		loadStage(
 				resourceBundle.getString("tituloListaEnlazadaDoble"),
 				"/cl/cromer/estructuras/fxml/listaEnlazada.fxml",
@@ -218,7 +216,7 @@ public class MenuController extends VBox implements Initializable {
 	 */
 	@FXML
 	protected void menuArbolGeneral() {
-		ArbolTipos arbolTipos = new ArbolTipos(ArbolTipos.GENERAL);
+		Arbol.Tipos arbolTipos = new Arbol.Tipos(Arbol.Tipos.GENERAL);
 		loadStage(
 				resourceBundle.getString("tituloCola"),
 				"/cl/cromer/estructuras/fxml/arbol.fxml",

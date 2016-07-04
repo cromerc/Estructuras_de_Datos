@@ -65,7 +65,7 @@ public class ListaEnlazdaController implements Initializable {
 	/**
 	 * Tipo de lista enlazada a trabajar.
 	 */
-	private ListaEnlazadaTipos listaEnlazadaTipos;
+	private ListaEnlazada.Tipos listaEnlazadaTipos;
 
 	/**
 	 * Grafico rectangulos y lineas.
@@ -104,7 +104,7 @@ public class ListaEnlazdaController implements Initializable {
 		int minimo = 0;
 		int rango = maximo - minimo + 1;
 
-		if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+		if (listaEnlazadaTipos.getTipo() != ListaEnlazada.Tipos.CIRCULAR) {
 			for (listaEnlazada.size(); listaEnlazada.size() < 5; ) {
 				int numero = random.nextInt(rango) + minimo;
 				while (listaEnlazada.buscar(numero) != null) {
@@ -156,7 +156,7 @@ public class ListaEnlazdaController implements Initializable {
 		if (valorLista.getText() != null && ! valorLista.getText().trim().equals("")) {
 			try {
 				boolean exito;
-				if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+				if (listaEnlazadaTipos.getTipo() != ListaEnlazada.Tipos.CIRCULAR) {
 					exito = listaEnlazada.insertar(Integer.valueOf(valorLista.getText()));
 				}
 				else {
@@ -199,7 +199,7 @@ public class ListaEnlazdaController implements Initializable {
 		try {
 			if (valorLista.getText() != null && ! valorLista.getText().trim().equals("")) {
 				boolean exito;
-				if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+				if (listaEnlazadaTipos.getTipo() != ListaEnlazada.Tipos.CIRCULAR) {
 					exito = listaEnlazada.eliminar(Integer.valueOf(valorLista.getText()));
 				}
 				else {
@@ -243,7 +243,7 @@ public class ListaEnlazdaController implements Initializable {
 		try {
 			if (valorLista.getText() != null && ! valorLista.getText().trim().equals("")) {
 				ListaEnlace listaEnlace;
-				if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+				if (listaEnlazadaTipos.getTipo() != ListaEnlazada.Tipos.CIRCULAR) {
 					listaEnlace = listaEnlazada.buscar(Integer.valueOf(valorLista.getText()));
 				}
 				else {
@@ -276,20 +276,20 @@ public class ListaEnlazdaController implements Initializable {
 	private void initializeLista() {
 		scene = contenidoLista.getScene();
 		grafico = new Grafico(scene);
-		listaEnlazadaTipos = (ListaEnlazadaTipos) scene.getUserData();
+		listaEnlazadaTipos = (ListaEnlazada.Tipos) scene.getUserData();
 		nuevaLista();
 	}
 
 	private String getTipoString() {
 		String tipo;
 		switch (listaEnlazadaTipos.getTipo()) {
-			case ListaEnlazadaTipos.SIMPLE:
+			case ListaEnlazada.Tipos.SIMPLE:
 				tipo = "Simple";
 				break;
-			case ListaEnlazadaTipos.CIRCULAR:
+			case ListaEnlazada.Tipos.CIRCULAR:
 				tipo = "Circular";
 				break;
-			case ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA:
+			case ListaEnlazada.Tipos.DOBLEMENTE_ENLAZADA:
 				tipo = "Doble";
 				break;
 			default:
@@ -307,13 +307,13 @@ public class ListaEnlazdaController implements Initializable {
 		contenidoLista.getChildren().clear();
 		contenidoListaCircular.getChildren().clear();
 
-		if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+		if (listaEnlazadaTipos.getTipo() != ListaEnlazada.Tipos.CIRCULAR) {
 			for (int i = 0; i < listaEnlazada.size(); i++) {
 				ListaEnlace listaEnlace = listaEnlazada.getIndice(i);
-				if (listaEnlazada.getTipo() == ListaEnlazadaTipos.SIMPLE) {
+				if (listaEnlazada.getTipo() == ListaEnlazada.Tipos.SIMPLE) {
 					dibujarSimple(listaEnlace, false);
 				}
-				else if (listaEnlazada.getTipo() == ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA) {
+				else if (listaEnlazada.getTipo() == ListaEnlazada.Tipos.DOBLEMENTE_ENLAZADA) {
 					if (i != listaEnlazada.size() - 1) {
 						dibujarDoble(listaEnlace, (i == 0));
 					}
@@ -340,13 +340,13 @@ public class ListaEnlazdaController implements Initializable {
 	 * Crear una nueva lista enlazada.
 	 */
 	private void nuevaLista() {
-		if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
+		if (listaEnlazadaTipos.getTipo() != ListaEnlazada.Tipos.CIRCULAR) {
 			listaEnlazada = new ListaEnlazada();
 			listaEnlazada.setTipo(listaEnlazadaTipos.getTipo());
 		}
 		else {
 			listaEnlazadaCircular = new ListaEnlazadaCircular();
-			listaEnlazadaCircular.setTipo(ListaEnlazadaTipos.SIMPLE);
+			listaEnlazadaCircular.setTipo(ListaEnlazada.Tipos.SIMPLE);
 		}
 	}
 
