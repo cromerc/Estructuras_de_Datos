@@ -1,11 +1,11 @@
 package cl.cromer.estructuras;
 
 /**
- * Esta interfaz es para los 2 tipos de enlace, {@link EnlaceNormal} y {@link EnlaceCircular}.
+ * Esta interfaz es para los 2 tipos de enlace, {@link ListaEnlaceNormal} y {@link ListaEnlaceCircular}.
  *
  * @author Chris Cromer
  */
-interface Enlace {
+interface ListaEnlace {
 	/**
 	 * Devolver la llave.
 	 *

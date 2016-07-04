@@ -24,7 +24,7 @@
         <MenuItem text="%pila" onAction="#menuPila"/>
         <MenuItem text="%cola" onAction="#menuCola"/>
         <Menu text="%arboles">
-            <MenuItem text="%general"/>
+            <MenuItem text="%general" onAction="#menuArbolGeneral"/>
             <MenuItem text="%binario"/>
             <MenuItem text="%busquedaBinario"/>
             <MenuItem text="%AVL"/>

@@ -5,7 +5,7 @@ package cl.cromer.estructuras;
  *
  * @author Chris Cromer
  */
-final public class EnlaceNormal implements Enlace {
+final public class ListaEnlaceNormal implements ListaEnlace {
 	/**
 	 * La llave.
 	 */
@@ -14,17 +14,17 @@ final public class EnlaceNormal implements Enlace {
 	/**
 	 * El siguiente enlace.
 	 */
-	private EnlaceNormal siguiente;
+	private ListaEnlaceNormal siguiente;
 
 	/**
 	 * El enlace previo por doble enlazada.
 	 */
-	private EnlaceNormal previo;
+	private ListaEnlaceNormal previo;
 
 	/**
 	 * Incializar.
 	 */
-	public EnlaceNormal() {
+	public ListaEnlaceNormal() {
 		siguiente = null;
 		previo = null;
 	}
@@ -50,36 +50,36 @@ final public class EnlaceNormal implements Enlace {
 	/**
 	 * Devolver el siguiente enlace.
 	 *
-	 * @return EnlaceNormal: El enlace a devolver.
+	 * @return ListaEnlaceNormal: El enlace a devolver.
 	 */
-	public EnlaceNormal getSiguiente() {
+	public ListaEnlaceNormal getSiguiente() {
 		return siguiente;
 	}
 
 	/**
 	 * Cambiar el siguiente enlace.
 	 *
-	 * @param siguiente Object: El siguiente enlace nuevo de tipo {@link EnlaceNormal}.
+	 * @param siguiente Object: El siguiente enlace nuevo de tipo {@link ListaEnlaceNormal}.
 	 */
 	public void setSiguiente(Object siguiente) {
-		this.siguiente = (EnlaceNormal) siguiente;
+		this.siguiente = (ListaEnlaceNormal) siguiente;
 	}
 
 	/**
 	 * Devolver el enlace previo.
 	 *
-	 * @return EnlaceNormal: El enlace previo.
+	 * @return ListaEnlaceNormal: El enlace previo.
 	 */
-	public EnlaceNormal getPrevio() {
+	public ListaEnlaceNormal getPrevio() {
 		return previo;
 	}
 
 	/**
 	 * Cambiar el previo enlace.
 	 *
-	 * @param previo Object: El enlace previo nuevo de tipo {@link EnlaceNormal}.
+	 * @param previo Object: El enlace previo nuevo de tipo {@link ListaEnlaceNormal}.
 	 */
 	public void setPrevio(Object previo) {
-		this.previo = (EnlaceNormal) previo;
+		this.previo = (ListaEnlaceNormal) previo;
 	}
 }

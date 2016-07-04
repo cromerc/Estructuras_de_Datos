@@ -1,10 +1,10 @@
 public void insertar(int llave) {
 	if (buscar(llave) == null) {
-		// Crear un enlace nuevo
+		// Crear un listaEnlace nuevo
 		Enlace nuevo = new Enlace(primer, llave);
 
 		if (primer == null) {
-			// Si el primer enlace es null, el ul
+			// Si el primer listaEnlace es null, el ul
 			ultimo = nuevo;
 		}
 

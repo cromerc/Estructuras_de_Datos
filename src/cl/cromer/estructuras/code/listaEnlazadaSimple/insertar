@@ -1,8 +1,8 @@
 public void insertar(int llave) {
 	if (buscar(llave) == null) {
-		// Crear un enlace nuevo
+		// Crear un listaEnlace nuevo
 		Enlace nuevo = new Enlace(lista, llave);
-		// Agregar el enlace a la lista
+		// Agregar el listaEnlace a la lista
 		lista = nuevo;
 	}
 }

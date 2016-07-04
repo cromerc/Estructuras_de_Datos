@@ -9,12 +9,12 @@ final public class ListaEnlazadaCircular {
 	/**
 	 * El primer enlace.
 	 */
-	private Enlace primer;
+	private ListaEnlace primer;
 
 	/**
 	 * El ultimo enlace.
 	 */
-	private Enlace ultimo;
+	private ListaEnlace ultimo;
 
 	/**
 	 * La cantidad de enlaces que hay.
@@ -61,16 +61,16 @@ final public class ListaEnlazadaCircular {
 	 */
 	public boolean insertar(int llave) {
 		if (buscar(llave) == null) {
-			// Crear una enlace y agregarla a la lista
-			Enlace enlace = new EnlaceCircular();
+			// Crear una listaEnlace y agregarla a la lista
+			ListaEnlace listaEnlace = new ListaEnlaceCircular();
 
 			if (primer == null) {
-				ultimo = enlace;
+				ultimo = listaEnlace;
 			}
 
-			enlace.setLlave(llave);
-			enlace.setSiguiente(primer);
-			primer = enlace;
+			listaEnlace.setLlave(llave);
+			listaEnlace.setSiguiente(primer);
+			primer = listaEnlace;
 			ultimo.setSiguiente(primer);
 
 			size++;
@@ -92,15 +92,15 @@ final public class ListaEnlazadaCircular {
 	public boolean eliminar(int llave) {
 		if (primer != null) {
 			// La lista no es vacia
-			Enlace lista = this.primer;
-			Enlace previo = lista;
+			ListaEnlace lista = this.primer;
+			ListaEnlace previo = lista;
 			int i = 0;
 			while (lista.getLlave() != llave && i < size()) {
 				// Buscar hasta la llave es encontraddo
 				if (lista.getSiguiente() != null) {
 					// Buscar en la siguiente enlace
 					previo = lista;
-					lista = (Enlace) lista.getSiguiente();
+					lista = (ListaEnlace) lista.getSiguiente();
 				}
 				i++;
 			}
@@ -113,7 +113,7 @@ final public class ListaEnlazadaCircular {
 			// Se encontró
 			if (lista == this.primer) {
 				// Si es la primera enlace, cambiarla al sigueinte enlace
-				this.primer = (Enlace) this.primer.getSiguiente();
+				this.primer = (ListaEnlace) this.primer.getSiguiente();
 			}
 			else {
 				// Sino cortar esta enlace de la lista
@@ -133,16 +133,16 @@ final public class ListaEnlazadaCircular {
 	 *
 	 * @param llave int: La llave a buscar.
 	 *
-	 * @return Enlace: El enlace que contiene la llave.
+	 * @return ListaEnlace: El enlace que contiene la llave.
 	 */
-	public Enlace buscar(int llave) {
+	public ListaEnlace buscar(int llave) {
 		if (this.primer != null) {
 			// La lista no es vacia
-			Enlace lista = this.primer;
+			ListaEnlace lista = this.primer;
 			int i = 0;
 			while (lista.getLlave() != llave && i < size()) {
 				// Buscar en la sigenute enlace hasta el final.
-				lista = (Enlace) lista.getSiguiente();
+				lista = (ListaEnlace) lista.getSiguiente();
 				i++;
 			}
 			if (lista.getLlave() == llave) {
@@ -174,14 +174,14 @@ final public class ListaEnlazadaCircular {
 	 *
 	 * @param indice int: El indice que desea ver.
 	 *
-	 * @return Enlace: El enlace a devolver.
+	 * @return ListaEnlace: El enlace a devolver.
 	 */
-	public Enlace getIndice(int indice) {
+	public ListaEnlace getIndice(int indice) {
 		if (primer != null && indice >= 0 && indice < size()) {
 			int i = size();
-			Enlace lista = this.primer;
+			ListaEnlace lista = this.primer;
 			while (i > indice + 1) {
-				lista = (Enlace) lista.getSiguiente();
+				lista = (ListaEnlace) lista.getSiguiente();
 				i--;
 			}
 			return lista;

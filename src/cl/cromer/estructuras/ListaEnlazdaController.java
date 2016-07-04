@@ -242,18 +242,18 @@ public class ListaEnlazdaController implements Initializable {
 
 		try {
 			if (valorLista.getText() != null && ! valorLista.getText().trim().equals("")) {
-				Enlace enlace;
+				ListaEnlace listaEnlace;
 				if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
-					enlace = listaEnlazada.buscar(Integer.valueOf(valorLista.getText()));
+					listaEnlace = listaEnlazada.buscar(Integer.valueOf(valorLista.getText()));
 				}
 				else {
-					enlace = listaEnlazadaCircular.buscar(Integer.valueOf(valorLista.getText()));
+					listaEnlace = listaEnlazadaCircular.buscar(Integer.valueOf(valorLista.getText()));
 				}
-				if (enlace != null) {
+				if (listaEnlace != null) {
 					generarGrafico();
 					grafico = new Grafico(scene);
-					grafico.destacar("#caja_" + enlace.getLlave(), Grafico.RECTANGULO);
-					grafico.destacar("#texto_" + enlace.getLlave(), Grafico.TEXTO);
+					grafico.destacar("#caja_" + listaEnlace.getLlave(), Grafico.RECTANGULO);
+					grafico.destacar("#texto_" + listaEnlace.getLlave(), Grafico.TEXTO);
 				}
 				else {
 					Main.mostrarError(resourceBundle.getString("listaNoEsta"), resourceBundle);
@@ -309,16 +309,16 @@ public class ListaEnlazdaController implements Initializable {
 
 		if (listaEnlazadaTipos.getTipo() != ListaEnlazadaTipos.CIRCULAR) {
 			for (int i = 0; i < listaEnlazada.size(); i++) {
-				Enlace enlace = listaEnlazada.getIndice(i);
+				ListaEnlace listaEnlace = listaEnlazada.getIndice(i);
 				if (listaEnlazada.getTipo() == ListaEnlazadaTipos.SIMPLE) {
-					dibujarSimple(enlace, false);
+					dibujarSimple(listaEnlace, false);
 				}
 				else if (listaEnlazada.getTipo() == ListaEnlazadaTipos.DOBLEMENTE_ENLAZADA) {
 					if (i != listaEnlazada.size() - 1) {
-						dibujarDoble(enlace, (i == 0));
+						dibujarDoble(listaEnlace, (i == 0));
 					}
 					else {
-						dibujarSimple(enlace, false);
+						dibujarSimple(listaEnlace, false);
 					}
 				}
 				colores.siguinteColor();
@@ -326,8 +326,8 @@ public class ListaEnlazdaController implements Initializable {
 		}
 		else {
 			for (int i = 0; i < listaEnlazadaCircular.size(); i++) {
-				Enlace enlace = listaEnlazadaCircular.getIndice(i);
-				dibujarSimple(enlace, (i == listaEnlazadaCircular.size() - 1));
+				ListaEnlace listaEnlace = listaEnlazadaCircular.getIndice(i);
+				dibujarSimple(listaEnlace, (i == listaEnlazadaCircular.size() - 1));
 				colores.siguinteColor();
 			}
 			if (listaEnlazadaCircular.size() > 0) {
@@ -353,12 +353,12 @@ public class ListaEnlazdaController implements Initializable {
 	/**
 	 * Dibujarlo con una flecha.
 	 *
-	 * @param enlace Enlace: El enlace que tiene la llave y valor.
+	 * @param listaEnlace ListaEnlace: El listaEnlace que tiene la llave y valor.
 	 * @param sinFlecha boolean: Verdad si necesita dibujar una flecha.
 	 */
-	private void dibujarSimple(Enlace enlace, boolean sinFlecha) {
+	private void dibujarSimple(ListaEnlace listaEnlace, boolean sinFlecha) {
 		contenidoLista.getChildren().addAll(
-				Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave()))
+				Grafico.crearCaja(colores, String.valueOf(listaEnlace.getLlave()), String.valueOf(listaEnlace.getLlave()))
 		);
 		if (! sinFlecha) {
 			contenidoLista.getChildren().addAll(
@@ -371,10 +371,10 @@ public class ListaEnlazdaController implements Initializable {
 	/**
 	 * Dibujarlo con dos flechas.
 	 *
-	 * @param enlace Enlace: El enlace que tiene la llave y valor.
+	 * @param listaEnlace ListaEnlace: El listaEnlace que tiene la llave y valor.
 	 * @param primer boolean: Verdad si es el primer elemento de la lista.
 	 */
-	private void dibujarDoble(Enlace enlace, boolean primer) {
+	private void dibujarDoble(ListaEnlace listaEnlace, boolean primer) {
 		if (primer) {
 			contenidoLista.getChildren().addAll(
 					Grafico.crearFlechaArriba(),
@@ -382,7 +382,7 @@ public class ListaEnlazdaController implements Initializable {
 			);
 		}
 		contenidoLista.getChildren().addAll(
-				Grafico.crearCaja(colores, String.valueOf(enlace.getLlave()), String.valueOf(enlace.getLlave())),
+				Grafico.crearCaja(colores, String.valueOf(listaEnlace.getLlave()), String.valueOf(listaEnlace.getLlave())),
 				Grafico.crearFlechaArriba(),
 				Grafico.crearLineaVertical(),
 				Grafico.crearFlechaAbajo()

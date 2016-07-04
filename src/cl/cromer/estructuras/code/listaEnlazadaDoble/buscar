@@ -5,7 +5,7 @@ public Enlace buscar(int llave) {
 		while (lista.getLlave() != llave) {
 			// Buscar hasta la llave es encontraddo
 			if (lista.getSiguente() != null) {
-				// Buscar en el sigenute enlace
+				// Buscar en el sigenute listaEnlace
 				lista = lista.getSiguente();
 			}
 			else {
@@ -13,7 +13,7 @@ public Enlace buscar(int llave) {
 				return null;
 			}
 		}
-		// Se encontró, devolver el enlace
+		// Se encontró, devolver el listaEnlace
 		return lista;
 	}
 	else {

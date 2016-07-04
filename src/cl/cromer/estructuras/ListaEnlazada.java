@@ -9,7 +9,7 @@ final public class ListaEnlazada {
 	/**
 	 * El enlace principal de la lista.
 	 */
-	private Enlace lista;
+	private ListaEnlace lista;
 
 	/**
 	 * La cantidad de enlaces que están en la lista.
@@ -56,7 +56,7 @@ final public class ListaEnlazada {
 	public boolean insertar(int llave) {
 		if (buscar(llave) == null) {
 			// Crear una enlace y agregarla a la lista
-			Enlace nuevo = new EnlaceNormal();
+			ListaEnlace nuevo = new ListaEnlaceNormal();
 			nuevo.setLlave(llave);
 			nuevo.setSiguiente(lista);
 			if (lista != null) {
@@ -82,14 +82,14 @@ final public class ListaEnlazada {
 	public boolean eliminar(int llave) {
 		if (lista != null) {
 			// La lista no es vacia
-			Enlace lista = this.lista;
-			Enlace previo = lista;
+			ListaEnlace lista = this.lista;
+			ListaEnlace previo = lista;
 			while (lista.getLlave() != llave) {
 				// Buscar hasta la llave es encontraddo
 				if (lista.getSiguiente() != null) {
 					// Buscar en la siguiente enlace
 					previo = lista;
-					lista = (Enlace) lista.getSiguiente();
+					lista = (ListaEnlace) lista.getSiguiente();
 				}
 				else {
 					// No se encuentra
@@ -99,7 +99,7 @@ final public class ListaEnlazada {
 			// Se encontró
 			if (lista == this.lista) {
 				// Si es la primera enlace, cambiarla al siguiente enlace
-				this.lista = (Enlace) this.lista.getSiguiente();
+				this.lista = (ListaEnlace) this.lista.getSiguiente();
 				if (this.lista.getPrevio() != null) {
 					this.lista.setPrevio(null);
 				}
@@ -122,17 +122,17 @@ final public class ListaEnlazada {
 	 *
 	 * @param llave int: La llave a buscar.
 	 *
-	 * @return Enlace: El enlace que contiene la llave buscada.
+	 * @return ListaEnlace: El enlace que contiene la llave buscada.
 	 */
-	public Enlace buscar(int llave) {
+	public ListaEnlace buscar(int llave) {
 		if (this.lista != null) {
 			// La lista no es vacia
-			Enlace lista = this.lista;
+			ListaEnlace lista = this.lista;
 			while (lista.getLlave() != llave) {
 				// Buscar hasta la llave es encontrado
 				if (lista.getSiguiente() != null) {
 					// Buscar en la siguiente enlace
-					lista = (Enlace) lista.getSiguiente();
+					lista = (ListaEnlace) lista.getSiguiente();
 				}
 				else {
 					// No se encuentra
@@ -153,14 +153,14 @@ final public class ListaEnlazada {
 	 *
 	 * @param indice int: El indice que desea ver.
 	 *
-	 * @return Enlace: El enlace a devolver.
+	 * @return ListaEnlace: El enlace a devolver.
 	 */
-	public Enlace getIndice(int indice) {
+	public ListaEnlace getIndice(int indice) {
 		if (lista != null && indice >= 0 && indice < size()) {
 			int i = size();
-			Enlace lista = this.lista;
+			ListaEnlace lista = this.lista;
 			while (i > indice + 1) {
-				lista = (Enlace) lista.getSiguiente();
+				lista = (ListaEnlace) lista.getSiguiente();
 				i--;
 			}
 			return lista;

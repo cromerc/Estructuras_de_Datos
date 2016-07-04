@@ -214,6 +214,20 @@ public class MenuController extends VBox implements Initializable {
 	}
 
 	/**
+	 * Click en Arbol General.
+	 */
+	@FXML
+	protected void menuArbolGeneral() {
+		ArbolTipos arbolTipos = new ArbolTipos(ArbolTipos.GENERAL);
+		loadStage(
+				resourceBundle.getString("tituloCola"),
+				"/cl/cromer/estructuras/fxml/arbol.fxml",
+				"/cl/cromer/estructuras/css/main.css",
+		        arbolTipos
+		);
+	}
+
+	/**
 	 * Click en Hash Table.
 	 */
 	@FXML
@@ -344,6 +358,7 @@ public class MenuController extends VBox implements Initializable {
 		catch (IOException exception) {
 			// Este error es fatal, hay que cerrar la aplicación.
 			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
+			Logs.log(Level.SEVERE, exception.getMessage());
 			stage.close();
 		}
 
@@ -360,6 +375,7 @@ public class MenuController extends VBox implements Initializable {
 		catch (IOException exception) {
 			// Este error es fatal, hay que cerrar la aplicación.
 			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
+			Logs.log(Level.SEVERE, exception.getMessage());
 			stage.close();
 		}
 	}

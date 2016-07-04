@@ -5,7 +5,7 @@ package cl.cromer.estructuras;
  *
  * @author Chris Cromer
  */
-final public class EnlaceCircular implements Enlace {
+final public class ListaEnlaceCircular implements ListaEnlace {
 	/**
 	 * La llave.
 	 */
@@ -14,12 +14,12 @@ final public class EnlaceCircular implements Enlace {
 	/**
 	 * El siguiente enlace.
 	 */
-	private EnlaceCircular siguiente;
+	private ListaEnlaceCircular siguiente;
 
 	/**
 	 * Incializar.
 	 */
-	public EnlaceCircular() {
+	public ListaEnlaceCircular() {
 		siguiente = null;
 	}
 
@@ -44,34 +44,34 @@ final public class EnlaceCircular implements Enlace {
 	/**
 	 * Devolver el siguiente enlace.
 	 *
-	 * @return EnlaceCircular: El enlace a devolver.
+	 * @return ListaEnlaceCircular: El enlace a devolver.
 	 */
-	public EnlaceCircular getSiguiente() {
+	public ListaEnlaceCircular getSiguiente() {
 		return siguiente;
 	}
 
 	/**
 	 * Cambiar el siguiente enlace.
 	 *
-	 * @param siguiente Object: El siguiente enlace nuevo de tipo {@link EnlaceCircular}.
+	 * @param siguiente Object: El siguiente enlace nuevo de tipo {@link ListaEnlaceCircular}.
 	 */
 	public void setSiguiente(Object siguiente) {
-		this.siguiente = (EnlaceCircular) siguiente;
+		this.siguiente = (ListaEnlaceCircular) siguiente;
 	}
 
 	/**
 	 * Devolver el enlace previo.
 	 *
-	 * @return EnlaceCircular: El enlace previo.
+	 * @return ListaEnlaceCircular: El enlace previo.
 	 */
-	public EnlaceCircular getPrevio() {
+	public ListaEnlaceCircular getPrevio() {
 		return null;
 	}
 
 	/**
-	 * Dummy metodo para usar interface {@link Enlace}
+	 * Dummy metodo para usar interface {@link ListaEnlace}
 	 *
-	 * @param previo Object: El enlace previo nuevo de tipo {@link EnlaceCircular}.
+	 * @param previo Object: El enlace previo nuevo de tipo {@link ListaEnlaceCircular}.
 	 */
 	public void setPrevio(Object previo) {
 	}

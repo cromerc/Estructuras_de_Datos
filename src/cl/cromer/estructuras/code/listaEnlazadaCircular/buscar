@@ -10,7 +10,7 @@ public Enlace buscar(int llave) {
 		}
 
 		if (lista.getLlave() == llave) {
-			// Devoler el enlace encontrado.
+			// Devoler el listaEnlace encontrado.
 			return lista;
 		}
 		else {

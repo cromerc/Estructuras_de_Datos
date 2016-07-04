@@ -28,7 +28,7 @@ public class Main extends Application {
 	/**
 	 * Estado de depuración.
 	 */
-	static final public boolean DEBUG = false;
+	static final public boolean DEBUG = true;
 
 	/**
 	 * Crear el stage y la scene para la aplicación grafica.
@@ -50,6 +50,7 @@ public class Main extends Application {
 		catch (IOException exception) {
 			// Este error es fatal, hay que cerrar la aplicación.
 			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
+			Logs.log(Level.SEVERE, exception.getMessage());
 			stage.close();
 		}
 

@@ -172,7 +172,7 @@ public class Grafico {
 		rectangle.setHeight(40);
 		rectangle.setWidth(40);
 		rectangle.setFill(colores.getFondo());
-		rectangle.setStroke(Color.BLACK);
+		rectangle.setStroke(colores.getBorder());
 		rectangle.setId("caja_" + label);
 		Text text = new Text();
 		text.setId("texto_" + label);
@@ -197,7 +197,7 @@ public class Grafico {
 		rectangle.setHeight(40);
 		rectangle.setWidth(40);
 		rectangle.setFill(colores.getFondo());
-		rectangle.setStroke(Color.BLACK);
+		rectangle.setStroke(colores.getBorder());
 		rectangle.setId("caja_" + label);
 		Text text = new Text();
 		text.setId("texto_" + label);
@@ -206,6 +206,22 @@ public class Grafico {
 
 		StackPane stackPane = new StackPane();
 		stackPane.getChildren().addAll(rectangle, text);
+		return stackPane;
+	}
+
+	public static StackPane crearCirculo(Colores colores, String label) {
+		Circle circle = new Circle();
+		circle.setRadius(20);
+		circle.setFill(colores.getFondo());
+		circle.setStroke(colores.getBorder());
+		circle.setId("circulo_" + label);
+
+		Text text = new Text();
+		text.setId("texto_" + label);
+		text.setStroke(colores.getTexto());
+
+		StackPane stackPane = new StackPane();
+		stackPane.getChildren().addAll(circle, text);
 		return stackPane;
 	}
 
@@ -222,7 +238,7 @@ public class Grafico {
 		rectangle.setHeight(40);
 		rectangle.setWidth(40);
 		rectangle.setFill(colores.getFondo());
-		rectangle.setStroke(Color.BLACK);
+		rectangle.setStroke(colores.getBorder());
 		rectangle.setId("indice_caja_" + label);
 		Text text = new Text();
 		text.setId("indice_texto_" + label);
@@ -235,7 +251,7 @@ public class Grafico {
 		rectangle.setHeight(40);
 		rectangle.setWidth(120);
 		rectangle.setFill(colores.getFondo());
-		rectangle.setStroke(Color.BLACK);
+		rectangle.setStroke(colores.getBorder());
 		rectangle.setId("llave_caja_" + label);
 		text = new Text();
 		text.setId("llave_texto_" + label);
@@ -248,7 +264,7 @@ public class Grafico {
 		rectangle.setHeight(40);
 		rectangle.setWidth(40);
 		rectangle.setFill(colores.getFondo());
-		rectangle.setStroke(Color.BLACK);
+		rectangle.setStroke(colores.getBorder());
 		rectangle.setId("valor_caja_" + label);
 		text = new Text();
 		text.setId("valor_texto_" + label);

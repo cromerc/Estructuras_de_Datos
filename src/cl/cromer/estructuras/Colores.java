@@ -29,6 +29,11 @@ public class Colores {
 	private Color fondo;
 
 	/**
+	 * El color de border actual.
+	 */
+	private Color border;
+
+	/**
 	 * Inicializar el primer color.
 	 */
 	public Colores() {
@@ -44,36 +49,43 @@ public class Colores {
 				color = 2;
 				texto = Color.WHITE;
 				fondo = Color.RED;
+				border = Color.BLACK;
 				break;
 			case 2:
 				color = 3;
 				texto = Color.BLACK;
 				fondo = Color.WHITE;
+				border = Color.BLACK;
 				break;
 			case 3:
 				color = 4;
 				texto = Color.BLACK;
 				fondo = Color.PINK;
+				border = Color.BLACK;
 				break;
 			case 4:
 				color = 5;
 				texto = Color.BLACK;
 				fondo = Color.YELLOW;
+				border = Color.BLACK;
 				break;
 			case 5:
 				color = 6;
 				texto = Color.BLACK;
 				fondo = Color.GREEN;
+				border = Color.BLACK;
 				break;
 			case 6:
 				color = 7;
 				texto = Color.BLACK;
 				fondo = Color.ORANGE;
+				border = Color.BLACK;
 				break;
 			default:
 				color = 1;
 				texto = Color.WHITE;
 				fondo = Color.BLUE;
+				border = Color.BLACK;
 		}
 	}
 
@@ -93,5 +105,14 @@ public class Colores {
 	 */
 	public Color getFondo() {
 		return fondo;
+	}
+
+	/**
+	 * Devolver el color del border actual.
+	 *
+	 * @return Color: Color del border.
+	 */
+	public Color getBorder() {
+		return border;
 	}
 }
