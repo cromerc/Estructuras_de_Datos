@@ -8,8 +8,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Stack;
 
 /**
  * Esta clase es para controlar todos la interfaz de Arbol.
@@ -70,11 +70,23 @@ public class ArbolController implements Initializable {
 
 		// TODO: Remove this
 		arbol = new Arbol();
+		/*arbol.insertar(50);
+
+		arbol.insertar(25);
+		arbol.insertar(75);
+
+		arbol.insertar(35);
+		arbol.insertar(15);*/
+
 		arbol.insertar(5);
 		arbol.insertar(4);
 		arbol.insertar(3);
 		arbol.insertar(2);
 		arbol.insertar(1);
+		arbol.insertar(6);
+		arbol.insertar(7);
+		arbol.insertar(8);
+		arbol.insertar(9);
 	}
 
 	/**
@@ -125,10 +137,37 @@ public class ArbolController implements Initializable {
 		Arbol.Tipos tipos = (Arbol.Tipos) scene.getUserData();
 	}
 
+	private void generarGrafico() {
+		grafico.removerDestacar();
+		Node node = contenidoArbol.getChildren().get(0);
+		contenidoArbol.getChildren().clear();
+		contenidoArbol.getChildren().add(0, node);
+
+		List<List<ArbolNodo>> niveles = arbol.getNiveles();
+
+		Colores colores = new Colores();
+		int k = niveles.get(niveles.size() - 1).size();
+		for (int i = niveles.size() - 1; i >= 0 ; i--) {
+			int l = k - niveles.get(i).size();
+			if (i != niveles.size() - 1) {
+				l--;
+			}
+			for (int j = 0; j < niveles.get(i).size(); j++) {
+		        contenidoArbol.add(Grafico.crearCirculo(colores, j + "_" + i), l, i);
+				colores.siguinteColor();
+				if (niveles.get(i).get(j) != null) {
+					Text text = (Text) scene.lookup("#texto_" + j + "_" + i);
+					text.setText(String.valueOf(niveles.get(i).get(j).getValor()));
+				}
+				l++;
+			}
+		}
+	}
+
 	/**
 	 * Poner los valores en el grafico.
 	 */
-	private void generarGrafico() {
+	/*private void generarGrafico() {
 		grafico.removerDestacar();
 		Node node = contenidoArbol.getChildren().get(0);
 		contenidoArbol.getChildren().clear();
@@ -198,5 +237,5 @@ public class ArbolController implements Initializable {
 			while(!localStack.isEmpty())
 				globalStack.push( localStack.pop() );
 		}
-	}
+	}*/
 }

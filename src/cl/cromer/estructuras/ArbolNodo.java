@@ -1,20 +1,26 @@
 package cl.cromer.estructuras;
 
 final public class ArbolNodo {
+	private ArbolNodo padre;
 	private ArbolNodo izquerda;
 	private ArbolNodo derecha;
 	private int valor;
-	private int y;
-	private int x;
-	private Desde desde;
+	private int nivel;
 
-	public ArbolNodo(int valor) {
+	public ArbolNodo(int valor, ArbolNodo padre) {
+		this.padre = padre;
 		this.izquerda = null;
 		this.derecha = null;
 		this.valor = valor;
-		this.y = 0;
-		this.x = 0;
-		this.desde = Desde.RAIZ;
+		this.nivel = 1;
+	}
+
+	public ArbolNodo getPadre() {
+		return padre;
+	}
+
+	public void setPadre(ArbolNodo padre) {
+		this.padre = padre;
 	}
 
 	public ArbolNodo getIzquerda() {
@@ -37,37 +43,11 @@ final public class ArbolNodo {
 		return valor;
 	}
 
-	public int getY() {
-		return y;
+	public int getNivel() {
+		return nivel;
 	}
 
-	public void setY(int y) {
-		if (y >= 0) {
-			this.y = y;
-		}
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		if (x >= 0) {
-			this.x = x;
-		}
-	}
-
-	public Desde getDesde() {
-		return desde;
-	}
-
-	public void setDesde(Desde desde) {
-		this.desde = desde;
-	}
-
-	public enum Desde {
-		RAIZ,
-		IQUERDA,
-		DERECHA
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
 	}
 }

@@ -26,9 +26,9 @@ import java.util.logging.Level;
  */
 public class Main extends Application {
 	/**
-	 * Estado de depuración.
+	 * El logger.
 	 */
-	static final public boolean DEBUG = true;
+	static private Logs logs;
 
 	/**
 	 * Crear el stage y la scene para la aplicación grafica.
@@ -61,14 +61,26 @@ public class Main extends Application {
 		stage.show();
 	}
 
+	@Override
+	public void stop() {
+		try {
+			super.stop();
+		}
+		catch (Exception exception) {
+			Logs.log(Level.SEVERE, exception);
+		}
+
+		logs.close();
+	}
+
 	/**
 	 * Inicilizar el logeo y lanzar la interfaz grafica.
 	 *
 	 * @param args String[]: Argumentos desde la consola.
 	 */
 	public static void main(String args[]) {
-		if (DEBUG) {
-			new Logs();
+		if (Logs.DEBUG) {
+			logs = new Logs();
 		}
 
 		launch(args);
@@ -81,8 +93,14 @@ public class Main extends Application {
 	 * @param clase Class: La clase usado para abrir el Stream.
 	 */
 	static public void setIcon(Dialog dialog, Class clase) {
-		Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-		stage.getIcons().add(new Image(clase.getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
+		try {
+			Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+			stage.getIcons().add(new Image(clase.getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
+		}
+		catch (Exception exception) {
+			// El icono no está, no es tan critico.
+			Logs.log(Level.WARNING, exception);
+		}
 	}
 
 	/**
