@@ -355,7 +355,6 @@ public class MenuController extends VBox implements Initializable {
 		}
 		catch (IOException exception) {
 			// Este error es fatal, hay que cerrar la aplicación.
-			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
 			Logs.log(Level.SEVERE, exception);
 			stage.close();
 		}
@@ -372,7 +371,6 @@ public class MenuController extends VBox implements Initializable {
 		}
 		catch (IOException exception) {
 			// Este error es fatal, hay que cerrar la aplicación.
-			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
 			Logs.log(Level.SEVERE, exception);
 			stage.close();
 		}

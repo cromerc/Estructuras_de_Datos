@@ -85,7 +85,7 @@ public class Logs {
 				Logger.getLogger(LOGNAME).log(level, mensaje);
 			}
 			else {
-				System.out.println(mensaje);
+				System.out.println(mensaje + "\n");
 			}
 		}
 	}

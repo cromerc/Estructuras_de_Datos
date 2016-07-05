@@ -49,8 +49,7 @@ public class Main extends Application {
 		}
 		catch (IOException exception) {
 			// Este error es fatal, hay que cerrar la aplicación.
-			Logs.log(Level.SEVERE, "No se pudo abrir el archivo de fxml.");
-			Logs.log(Level.SEVERE, exception.getMessage());
+			Logs.log(Level.SEVERE, exception);
 			stage.close();
 		}
 
@@ -69,7 +68,6 @@ public class Main extends Application {
 		catch (Exception exception) {
 			Logs.log(Level.SEVERE, exception);
 		}
-
 		logs.close();
 	}
 
