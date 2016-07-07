@@ -76,6 +76,22 @@ public class Logs {
 	/**
 	 * Agregar un log al logger con un mensaje.
 	 *
+	 * @param mensaje String: El mensaje de lo que pasó.
+	 */
+	static public void log(String mensaje) {
+		if (DEBUG) {
+			if (DEBUG_TIPO == DEBUG_TIPOS.ARCHIVO) {
+				Logger.getLogger(LOGNAME).log(Level.INFO, mensaje);
+			}
+			else {
+				System.out.println(mensaje + "\n");
+			}
+		}
+	}
+
+	/**
+	 * Agregar un log al logger con un mensaje.
+	 *
 	 * @param level Level: El tipo de error o mensaje que ha sido generado.
 	 * @param mensaje String: El mensaje de lo que pasó.
 	 */

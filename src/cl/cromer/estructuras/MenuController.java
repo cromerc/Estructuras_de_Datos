@@ -218,10 +218,22 @@ public class MenuController extends VBox implements Initializable {
 	protected void menuArbolGeneral() {
 		Arbol.Tipos arbolTipos = new Arbol.Tipos(Arbol.Tipos.GENERAL);
 		loadStage(
-				resourceBundle.getString("tituloCola"),
+				resourceBundle.getString("tituloArbolGeneral"),
 				"/cl/cromer/estructuras/fxml/arbol.fxml",
 				"/cl/cromer/estructuras/css/main.css",
 		        arbolTipos
+		);
+	}
+
+	/**
+	 * Click en Grafo No Dirigidos.
+	 */
+	@FXML
+	protected void menuGrafoNoDirigidos() {
+		loadStage(
+				resourceBundle.getString("tituloGrafoNoDirigido"),
+				"/cl/cromer/estructuras/fxml/grafo.fxml",
+				"/cl/cromer/estructuras/css/main.css"
 		);
 	}
 
@@ -250,6 +262,8 @@ public class MenuController extends VBox implements Initializable {
 		dialog.getDialogPane().getButtonTypes().add(botonCancelar);
 		dialog.getDialogPane().getButtonTypes().add(botonCambiar);
 		dialog.getDialogPane().getScene().getWindow().sizeToScene();
+		dialog.getDialogPane().setPrefHeight(125);
+		dialog.getDialogPane().setPrefWidth(400);
 		Main.setIcon(dialog, getClass());
 
 		Optional<ButtonType> result = dialog.showAndWait();
@@ -275,6 +289,8 @@ public class MenuController extends VBox implements Initializable {
 		dialog.getDialogPane().getButtonTypes().add(botonCancelar);
 		dialog.getDialogPane().getButtonTypes().add(botonCambiar);
 		dialog.getDialogPane().getScene().getWindow().sizeToScene();
+		dialog.getDialogPane().setPrefHeight(125);
+		dialog.getDialogPane().setPrefWidth(400);
 		Main.setIcon(dialog, getClass());
 
 		Optional<ButtonType> result = dialog.showAndWait();

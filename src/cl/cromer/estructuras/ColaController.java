@@ -131,7 +131,6 @@ public class ColaController implements Initializable {
 			}
 			catch (NumberFormatException exception) {
 				// El error no es fatal, sigue
-				Logs.log(Level.WARNING, "No es tipo int.");
 				Main.mostrarError(resourceBundle.getString("colaNoValor"), resourceBundle);
 			}
 		}

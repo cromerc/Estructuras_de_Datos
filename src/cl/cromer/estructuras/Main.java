@@ -114,6 +114,7 @@ public class Main extends Application {
 		dialog.setContentText(mensaje);
 		dialog.getDialogPane().getButtonTypes().add(botonCerrar);
 		dialog.getDialogPane().getScene().getWindow().sizeToScene();
+		dialog.getDialogPane().setPrefWidth(mensaje.length() * 8);
 		Main.setIcon(dialog, Main.class);
 		dialog.show();
 	}

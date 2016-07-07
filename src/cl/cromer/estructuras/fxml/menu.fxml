@@ -33,7 +33,7 @@
         </Menu>
         <Menu text="%grafos">
             <MenuItem text="%dirigidos"/>
-            <MenuItem text="%noDirigidos"/>
+            <MenuItem text="%noDirigidos" onAction="#menuGrafoNoDirigidos"/>
         </Menu>
         <MenuItem text="%tablaHash" onAction="#menuHashTable"/>
     </Menu>

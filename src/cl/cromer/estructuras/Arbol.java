@@ -8,7 +8,6 @@ public class Arbol {
 	private ArbolNodo arbol;
 	private int size;
 	private int altura;
-	private int ancho;
 	private List<List<ArbolNodo>> niveles;
 
 	public enum PrimerLado {
@@ -19,14 +18,12 @@ public class Arbol {
 	public Arbol() {
 		this.arbol = null;
 		this.altura = 0;
-		this.ancho = 0;
 		this.niveles = new ArrayList<>();
 	}
 
 	public boolean insertar(int valor) {
 		if (this.arbol == null) {
 			arbol = new ArbolNodo(valor, null);
-			setAncho(1);
 			setAltura(1);
 			return true;
 		}
@@ -51,16 +48,13 @@ public class Arbol {
 						nuevo.setPadre(padre);
 						padre.setIzquerda(nuevo);
 						size++;
-						if (primerLado == PrimerLado.IZQUERDA) {
-							setAncho(getAncho() + 1);
-						}
 						setAltura(getAlturaRecursivo(arbol));
 
 						niveles = new ArrayList<>();
-						for (int i = 0; i < getAltura(); i++) {
+						for (int i = 0; i <= getAltura(); i++) {
 							niveles.add(new ArrayList<>());
 						}
-						getNivelesRecursivo(arbol);
+						calcularNiveles(arbol, 0);
 
 						return true;
 					}
@@ -75,16 +69,13 @@ public class Arbol {
 						nuevo.setPadre(padre);
 						padre.setDerecha(nuevo);
 						size++;
-						if (primerLado == PrimerLado.DERECHA) {
-							setAncho(getAncho() + 1);
-						}
 						setAltura(getAlturaRecursivo(arbol));
 
 						niveles = new ArrayList<>();
-						for (int i = 0; i < getAltura(); i++) {
+						for (int i = 0; i <= getAltura(); i++) {
 							niveles.add(new ArrayList<>());
 						}
-						getNivelesRecursivo(arbol);
+						calcularNiveles(arbol, 0);
 
 						return true;
 					}
@@ -113,15 +104,6 @@ public class Arbol {
 		return niveles;
 	}
 
-	public int getAncho() {
-		return ancho;
-	}
-
-	public void setAncho(int ancho) {
-		//this.ancho = ancho;
-		this.ancho = (int) Math.pow(2, altura - 1) - 1;
-	}
-
 	public int getAlturaRecursivo(ArbolNodo nodo) {
 		if (nodo == null) {
 			return 0;
@@ -130,53 +112,32 @@ public class Arbol {
 			int alturaIzquerda = getAlturaRecursivo(nodo.getIzquerda());
 			int alturaDercha = getAlturaRecursivo(nodo.getDerecha());
 			if (alturaIzquerda > alturaDercha) {
-				nodo.setNivel(alturaIzquerda);
 				return (alturaIzquerda + 1);
 			}
 			else {
-				nodo.setNivel(alturaDercha);
 				return (alturaDercha + 1);
 			}
 		}
 	}
 
-	public int getNivelesRecursivo(ArbolNodo nodo) {
-		if (nodo == null) {
-			return 0;
+	public void calcularNiveles(ArbolNodo nodo, int nivel) {
+		try {
+			if (nodo != null) {
+				nodo.setNivel(nivel);
+				niveles.get(nivel).add(nodo);
+				nivel++;
+				calcularNiveles(nodo.getIzquerda(), nivel);
+				calcularNiveles(nodo.getDerecha(), nivel);
+			}
+			else if (nivel != getAltura()) {
+				niveles.get(nivel).add(null);
+				nivel++;
+				calcularNiveles(null, nivel);
+				calcularNiveles(null, nivel);
+			}
 		}
-		else {
-			try {
-				int alturaIzquerda = getNivelesRecursivo(nodo.getIzquerda());
-				int alturaDerecha = getNivelesRecursivo(nodo.getDerecha());
-				if (alturaIzquerda > alturaDerecha) {
-					if (!niveles.get(niveles.size() - alturaIzquerda - 1).contains(nodo)) {
-						niveles.get(niveles.size() - alturaIzquerda - 1).add(nodo);
-					}
-					if (nodo.getDerecha() == null) {
-						niveles.get(niveles.size() - nodo.getNivel() - 1).add(null);
-					}
-					if (nodo.getIzquerda() == null) {
-						niveles.get(niveles.size() - nodo.getNivel() - 1).add(null);
-					}
-					return (alturaIzquerda + 1);
-				}
-				else {
-					if (!niveles.get(niveles.size() - alturaDerecha - 1).contains(nodo)) {
-						niveles.get(niveles.size() - alturaDerecha - 1).add(nodo);
-					}
-					if (nodo.getDerecha() == null) {
-						niveles.get(niveles.size() - nodo.getNivel() - 1).add(null);
-					}
-					if (nodo.getIzquerda() == null) {
-						niveles.get(niveles.size() - nodo.getNivel() - 1).add(null);
-					}
-					return (alturaDerecha + 1);
-				}
-			}
-			catch (Exception exception) {
-				Logs.log(Level.SEVERE, exception);
-				return 0;
-			}
+		catch (Exception exception) {
+			Logs.log(Level.SEVERE, exception);
 		}
 	}
 

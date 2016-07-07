@@ -115,7 +115,6 @@ public class ArbolController implements Initializable {
 			}
 			catch (NumberFormatException exception) {
 				// El error no es fatal, sigue
-				Logs.log(Level.WARNING, "No es tipo int.");
 				Main.mostrarError(resourceBundle.getString("arbolNoValor"), resourceBundle);
 			}
 		}
@@ -145,21 +144,31 @@ public class ArbolController implements Initializable {
 
 		List<List<ArbolNodo>> niveles = arbol.getNiveles();
 
-		Colores colores = new Colores();
-		int k = niveles.get(niveles.size() - 1).size();
-		for (int i = niveles.size() - 1; i >= 0 ; i--) {
-			int l = k - niveles.get(i).size();
-			if (i != niveles.size() - 1) {
-				l--;
+		int altura = arbol.getAltura() - 1;
+		int ancho = (int) Math.pow(2, altura) + (int) ((Math.pow(2, altura)) - 1);
+		System.out.println(ancho);
+
+		Text text;
+		for (int i = 0; i < altura; i++) {
+			contenidoArbol.addRow(i);
+			for (int j = 0; j < ancho; j++) {
+				contenidoArbol.addColumn(j);
+				text = new Text();
+				text.setText(" ");
+				text.setId(j + "_" + i);
+				contenidoArbol.add(text, j, i);
 			}
+		}
+
+		Colores colores = new Colores();
+		for (int i = niveles.size() - 1; i >= 0 ; i--) {
 			for (int j = 0; j < niveles.get(i).size(); j++) {
-		        contenidoArbol.add(Grafico.crearCirculo(colores, j + "_" + i), l, i);
+		        contenidoArbol.add(Grafico.crearCirculo(colores, j + "_" + i), j, i);
 				colores.siguinteColor();
 				if (niveles.get(i).get(j) != null) {
-					Text text = (Text) scene.lookup("#texto_" + j + "_" + i);
+					text = (Text) scene.lookup("#texto_" + j + "_" + i);
 					text.setText(String.valueOf(niveles.get(i).get(j).getValor()));
 				}
-				l++;
 			}
 		}
 	}
