@@ -5,6 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcType;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -397,6 +399,29 @@ public class GrafoController implements Initializable {
 		}
 
 		graphicsContext.setStroke(colores.getBorder());
+
+
+
+		// Line between 0 and 0.
+		if (nodes[0] != null && grafoNoDirigido.edgeExists(nodes[0], nodes[0])) {
+			graphicsContext.strokeArc(15, 40, 29, 30, 145, 250, ArcType.OPEN);
+		}
+		// Line between 1 and 1.
+		if (nodes[1] != null && grafoNoDirigido.edgeExists(nodes[1], nodes[1])) {
+			graphicsContext.strokeArc(215, 40, 29, 30, 145, 250, ArcType.OPEN);
+		}
+		// Line between 2 and 2.
+		if (nodes[2] != null && grafoNoDirigido.edgeExists(nodes[2], nodes[2])) {
+			graphicsContext.strokeArc(15, 240, 29, 30, 145, 250, ArcType.OPEN);
+		}
+		// Line between 3 and 3.
+		if (nodes[3] != null && grafoNoDirigido.edgeExists(nodes[3], nodes[3])) {
+			graphicsContext.strokeArc(215, 240, 29, 30, 145, 250, ArcType.OPEN);
+		}
+		// Line between 4 and 4.
+		if (nodes[4] != null && grafoNoDirigido.edgeExists(nodes[4], nodes[4])) {
+			graphicsContext.strokeArc(110, 440, 29, 30, 145, 250, ArcType.OPEN);
+		}
 
 		// Line between 0 and 1.
 		if (nodes[0] != null && nodes[1] != null && grafoNoDirigido.edgeExists(nodes[0], nodes[1])) {
