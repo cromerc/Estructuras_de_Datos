@@ -8,6 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 /**
@@ -85,6 +86,50 @@ public class GrafoController implements Initializable {
 		scene = null;
 	}
 
+	@FXML
+	protected void botonLlenar() {
+		if (scene == null) {
+			initializeGrafo();
+		}
+
+		Array array = new Array(5);
+		for (int i = 0; i < 5; i++) {
+			if (nodes[i] != null) {
+				array.insertar(nodes[i].getValue());
+			}
+		}
+
+		for (int i = 0; i < 5; i++) {
+			if (nodes[i] == null) {
+				Random random = new Random();
+				int maximo = 99;
+				int minimo = 0;
+				int rango = maximo - minimo + 1;
+
+				int numero = random.nextInt(rango) + minimo;
+				// Check if value is in array
+				while (array.buscar(numero) != -1) {
+					numero = random.nextInt(rango) + minimo;
+				}
+
+				nodes[i] = new Node(numero);
+				grafoNoDirigido.addNode(nodes[i]);
+			}
+		}
+		generarGrafico();
+	}
+
+	@FXML
+	protected void botonVaciar() {
+		if (scene == null) {
+			initializeGrafo();
+		}
+
+		this.grafoNoDirigido = new GrafoNoDirigido<>();
+		this.nodes = new Node[5];
+		generarGrafico();
+	}
+
 	/**
 	 * Insertar un valor al array y mostrar el codigo en la pantalla.
 	 */
@@ -130,16 +175,63 @@ public class GrafoController implements Initializable {
 			}
 			catch (NumberFormatException exception) {
 				// El error no es fatal, sigue
-				Main.mostrarError(resourceBundle.getString("grafoNoValor"), resourceBundle);
+				Main.mostrarError(resourceBundle.getString("grafoNoNumero"), resourceBundle);
 			}
 		}
 		else {
-			Main.mostrarError(resourceBundle.getString("grafoNoValor"), resourceBundle);
+			Main.mostrarError(resourceBundle.getString("grafoNoNumero"), resourceBundle);
 		}
 	}
 
 	/**
 	 * Insertar un valor al array y mostrar el codigo en la pantalla.
+	 */
+	@FXML
+	protected void botonEliminar() {
+		if (scene == null) {
+			initializeGrafo();
+		}
+
+		// Mostrar el codigo
+		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
+		codigoArray.setText(codigoTexto);*/
+
+		if (valorGrafo.getText() != null && ! valorGrafo.getText().trim().equals("")) {
+			try {
+				int i;
+				for (i = 0; i < 5; i++) {
+					if (nodes[i] != null && nodes[i].getValue() == Integer.valueOf(valorGrafo.getText())) {
+						break;
+					}
+				}
+
+				if (i != 5) {
+					boolean exito = grafoNoDirigido.removeNode(nodes[i]);
+					if (exito) {
+						nodes[i] = null;
+						valorGrafo.setText("");
+						generarGrafico();
+					}
+					else {
+						Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
+					}
+				}
+				else {
+					Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
+				}
+			}
+			catch (NumberFormatException exception) {
+				// El error no es fatal, sigue
+				Main.mostrarError(resourceBundle.getString("grafoNoNumero"), resourceBundle);
+			}
+		}
+		else {
+			Main.mostrarError(resourceBundle.getString("grafoNoNumero"), resourceBundle);
+		}
+	}
+
+	/**
+	 * Insertar un edge al grafo y mostrar el codigo en la pantalla.
 	 */
 	@FXML
 	protected void botonInsertarEdge() {
@@ -148,35 +240,56 @@ public class GrafoController implements Initializable {
 		}
 
 		if (valorNodo1.getText() != null && ! valorNodo1.getText().trim().equals("") && valorNodo2.getText() != null && ! valorNodo2.getText().trim().equals("")) {
-			Node nodo1 = null;
-			Node nodo2 = null;
-			for (int i = 0; i < 5; i++) {
-				if (nodes[i] != null) {
-					if (Integer.valueOf(valorNodo1.getText()) == nodes[i].getValue()) {
-						nodo1 = nodes[i];
-					}
-					if (Integer.valueOf(valorNodo2.getText()) == nodes[i].getValue()) {
-						nodo2 = nodes[i];
-					}
-					if (nodo1 != null && nodo2 != null) {
-						break;
-					}
-				}
-			}
+			Node[] nodos = getNodosEdge();
 
-			if (nodo1 != null && nodo2 != null && grafoNoDirigido.nodeExists(nodo1) && grafoNoDirigido.nodeExists(nodo2) && !grafoNoDirigido.edgeExists(nodo1, nodo2)) {
-				grafoNoDirigido.addEdge(nodo1, nodo2);
+			if (nodos[0] == null || nodos[1] == null || !grafoNoDirigido.nodeExists(nodos[0]) || !grafoNoDirigido.nodeExists(nodos[1])) {
+				Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
+			}
+			else if (grafoNoDirigido.edgeExists(nodos[0], nodos[1])) {
+				Main.mostrarError(resourceBundle.getString("grafoEdgeExiste"), resourceBundle);
+			}
+			else {
+				grafoNoDirigido.addEdge(nodos[0], nodos[1]);
 			}
 		}
 		else {
-			// TODO: Error no nodos
+			Main.mostrarError(resourceBundle.getString("grafoNoNumero"), resourceBundle);
 		}
 
 		generarGrafico();
 	}
 
 	/**
-	 * Crear un arbol nuevo.
+	 * Insertar un edge al grafo y mostrar el codigo en la pantalla.
+	 */
+	@FXML
+	protected void botonEliminarEdge() {
+		if (scene == null) {
+			initializeGrafo();
+		}
+
+		if (valorNodo1.getText() != null && ! valorNodo1.getText().trim().equals("") && valorNodo2.getText() != null && ! valorNodo2.getText().trim().equals("")) {
+			Node[] nodos = getNodosEdge();
+
+			if (nodos[0] == null || nodos[1] == null || !grafoNoDirigido.nodeExists(nodos[0]) || !grafoNoDirigido.nodeExists(nodos[1])) {
+				Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
+			}
+			else if (!grafoNoDirigido.edgeExists(nodos[0], nodos[1])) {
+				Main.mostrarError(resourceBundle.getString("grafoNoEdge"), resourceBundle);
+			}
+			else {
+				grafoNoDirigido.removeEdge(nodos[0], nodos[1]);
+			}
+		}
+		else {
+			Main.mostrarError(resourceBundle.getString("grafoNoEdge"), resourceBundle);
+		}
+
+		generarGrafico();
+	}
+
+	/**
+	 * Crear un grafo nuevo.
 	 */
 	private void initializeGrafo() {
 		scene = contenidoGrafo.getScene();
@@ -185,6 +298,32 @@ public class GrafoController implements Initializable {
 		this.nodes = new Node[5];
 	}
 
+	/**
+	 * Devolver los nodos que existen.
+	 *
+	 * @return Node[]: Los nodos que se busca.
+	 */
+	private Node[] getNodosEdge() {
+		Node[] nodos = new Node[2];
+		for (int i = 0; i < 5; i++) {
+			if (nodes[i] != null) {
+				if (Integer.valueOf(valorNodo1.getText()) == nodes[i].getValue()) {
+					nodos[0] = nodes[i];
+				}
+				if (Integer.valueOf(valorNodo2.getText()) == nodes[i].getValue()) {
+					nodos[1] = nodes[i];
+				}
+				if (nodos[0] != null && nodos[1] != null) {
+					break;
+				}
+			}
+		}
+		return nodos;
+	}
+
+	/**
+	 * Generar la canvas con el grafo.
+	 */
 	private void generarGrafico() {
 		grafico.removerDestacar();
 
@@ -214,7 +353,7 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(210, 10, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			int x = textX(225, String.valueOf(nodes[0].getValue()));
+			int x = textX(225, String.valueOf(nodes[1].getValue()));
 			graphicsContext.strokeText(String.valueOf(nodes[1].getValue()), x, 35);
 		}
 		colores.siguinteColor();
@@ -227,7 +366,7 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(10, 210, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			int x = textX(25, String.valueOf(nodes[0].getValue()));
+			int x = textX(25, String.valueOf(nodes[2].getValue()));
 			graphicsContext.strokeText(String.valueOf(nodes[2].getValue()), x, 235);
 		}
 		colores.siguinteColor();
@@ -240,7 +379,7 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(210, 210, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			int x = textX(225, String.valueOf(nodes[0].getValue()));
+			int x = textX(225, String.valueOf(nodes[3].getValue()));
 			graphicsContext.strokeText(String.valueOf(nodes[3].getValue()), x, 235);
 		}
 		colores.siguinteColor();
@@ -253,7 +392,7 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(105, 410, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			int x = textX(120, String.valueOf(nodes[0].getValue()));
+			int x = textX(120, String.valueOf(nodes[4].getValue()));
 			graphicsContext.strokeText(String.valueOf(nodes[4].getValue()), x, 435);
 		}
 

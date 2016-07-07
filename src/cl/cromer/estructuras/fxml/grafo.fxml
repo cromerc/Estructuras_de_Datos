@@ -13,17 +13,19 @@
 		<HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS" spacing="50">
 			<VBox spacing="10">
 				<HBox alignment="CENTER" spacing="10">
-					<!--<Button text="%llenar" onAction="#botonLlenar"/>-->
-					<!--<Button text="%vaciar" onAction="#botonVaciar"/>-->
+					<Button text="%llenar" onAction="#botonLlenar"/>
+					<Button text="%vaciar" onAction="#botonVaciar"/>
 				</HBox>
 				<HBox alignment="CENTER" spacing="10">
 					<Text text="%grafoNodos"/>
 					<Button text="%insertar" onAction="#botonInsertar"/>
+					<Button text="%eliminar" onAction="#botonEliminar"/>
 					<TextFieldLimited fx:id="valorGrafo" maxLength="3" prefWidth="50"/>
 				</HBox>
 				<HBox alignment="CENTER" spacing="10">
 					<Text text="%grafoEdges"/>
 					<Button text="%insertar" onAction="#botonInsertarEdge"/>
+					<Button text="%eliminar" onAction="#botonEliminarEdge"/>
 					<TextFieldLimited fx:id="valorNodo1" maxLength="3" prefWidth="50"/>
 					<TextFieldLimited fx:id="valorNodo2" maxLength="3" prefWidth="50"/>
 				</HBox>

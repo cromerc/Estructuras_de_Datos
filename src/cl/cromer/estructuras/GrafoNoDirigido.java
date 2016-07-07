@@ -38,6 +38,22 @@ public final class GrafoNoDirigido<T> implements Iterable<T> {
 	}
 
 	/**
+	 * Remove a node from the graph.
+	 *
+	 * @param node The node to remove.
+	 * @return Whether or not the node was removed.
+	 */
+	public boolean removeNode(T node) {
+        /* If the node already exists, don't do anything. */
+		if (!mGraph.containsKey(node))
+			return false;
+
+        /* Otherwise, remove the node. */
+		mGraph.remove(node);
+		return true;
+	}
+
+	/**
 	 * Given a node, returns whether that node exists in the graph.
 	 *
 	 * @param node The node in question.
