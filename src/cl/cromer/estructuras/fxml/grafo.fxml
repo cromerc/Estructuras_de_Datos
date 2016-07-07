@@ -17,9 +17,8 @@
 					<!--<Button text="%vaciar" onAction="#botonVaciar"/>-->
 				</HBox>
 				<HBox alignment="CENTER" spacing="10">
+					<Text text="%grafoNodos"/>
 					<Button text="%insertar" onAction="#botonInsertar"/>
-					<!--<Button text="%pop" onAction="#botonPop"/>-->
-					<!--<Button text="%peek" onAction="#botonPeek"/>-->
 					<TextFieldLimited fx:id="valorGrafo" maxLength="3" prefWidth="50"/>
 				</HBox>
 				<HBox alignment="CENTER" spacing="10">

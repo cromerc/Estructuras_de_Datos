@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import java.util.logging.Level;
 
 /**
  * Esta clase es para controlar todos la interfaz de ListaEnlazada.
@@ -172,7 +171,6 @@ public class ListaEnlazdaController implements Initializable {
 			}
 			catch (NumberFormatException exception) {
 				// El error no es fatal, sigue
-				Logs.log(Level.WARNING, "No es tipo int.");
 				Main.mostrarError(resourceBundle.getString("listaNoValor"), resourceBundle);
 			}
 		}
@@ -219,7 +217,6 @@ public class ListaEnlazdaController implements Initializable {
 		}
 		catch (NumberFormatException exception) {
 			// El error no es fatal, sigue
-			Logs.log(Level.WARNING, "No es tipo int.");
 			Main.mostrarError(resourceBundle.getString("listaNoValor"), resourceBundle);
 		}
 	}

@@ -9,7 +9,6 @@ import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 
 /**
  * Esta clase es para controlar todos la interfaz de Arbol.
@@ -108,7 +107,8 @@ public class GrafoController implements Initializable {
 						break;
 					}
 					else if (nodes[i].getValue() == Integer.valueOf(valorGrafo.getText())) {
-						i = 5;
+						Main.mostrarError(resourceBundle.getString("grafoNodoExiste"), resourceBundle);
+						i = -1;
 						break;
 					}
 				}
@@ -117,24 +117,24 @@ public class GrafoController implements Initializable {
 					// Maximo 5 nodos
 					Main.mostrarError(resourceBundle.getString("grafoLleno"), resourceBundle);
 				}
-				else {
+				else if (i != -1) {
 					boolean exito = grafoNoDirigido.addNode(nodes[i]);
 					if (exito) {
 						valorGrafo.setText("");
 						generarGrafico();
 					}
 					else {
-						Main.mostrarError(resourceBundle.getString("arbolValorExiste"), resourceBundle);
+						Main.mostrarError(resourceBundle.getString("grafoNodoExiste"), resourceBundle);
 					}
 				}
 			}
 			catch (NumberFormatException exception) {
 				// El error no es fatal, sigue
-				Main.mostrarError(resourceBundle.getString("arbolNoValor"), resourceBundle);
+				Main.mostrarError(resourceBundle.getString("grafoNoValor"), resourceBundle);
 			}
 		}
 		else {
-			Main.mostrarError(resourceBundle.getString("arbolNoValor"), resourceBundle);
+			Main.mostrarError(resourceBundle.getString("grafoNoValor"), resourceBundle);
 		}
 	}
 
@@ -148,7 +148,25 @@ public class GrafoController implements Initializable {
 		}
 
 		if (valorNodo1.getText() != null && ! valorNodo1.getText().trim().equals("") && valorNodo2.getText() != null && ! valorNodo2.getText().trim().equals("")) {
+			Node nodo1 = null;
+			Node nodo2 = null;
+			for (int i = 0; i < 5; i++) {
+				if (nodes[i] != null) {
+					if (Integer.valueOf(valorNodo1.getText()) == nodes[i].getValue()) {
+						nodo1 = nodes[i];
+					}
+					if (Integer.valueOf(valorNodo2.getText()) == nodes[i].getValue()) {
+						nodo2 = nodes[i];
+					}
+					if (nodo1 != null && nodo2 != null) {
+						break;
+					}
+				}
+			}
 
+			if (nodo1 != null && nodo2 != null && grafoNoDirigido.nodeExists(nodo1) && grafoNoDirigido.nodeExists(nodo2) && !grafoNoDirigido.edgeExists(nodo1, nodo2)) {
+				grafoNoDirigido.addEdge(nodo1, nodo2);
+			}
 		}
 		else {
 			// TODO: Error no nodos
@@ -196,7 +214,8 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(210, 10, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			graphicsContext.strokeText(String.valueOf(nodes[1].getValue()), 225, 35);
+			int x = textX(225, String.valueOf(nodes[0].getValue()));
+			graphicsContext.strokeText(String.valueOf(nodes[1].getValue()), x, 35);
 		}
 		colores.siguinteColor();
 
@@ -208,7 +227,8 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(10, 210, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			graphicsContext.strokeText(String.valueOf(nodes[2].getValue()), 25, 235);
+			int x = textX(25, String.valueOf(nodes[0].getValue()));
+			graphicsContext.strokeText(String.valueOf(nodes[2].getValue()), x, 235);
 		}
 		colores.siguinteColor();
 
@@ -220,7 +240,8 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(210, 210, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			graphicsContext.strokeText(String.valueOf(nodes[3].getValue()), 225, 235);
+			int x = textX(225, String.valueOf(nodes[0].getValue()));
+			graphicsContext.strokeText(String.valueOf(nodes[3].getValue()), x, 235);
 		}
 		colores.siguinteColor();
 
@@ -232,7 +253,8 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(105, 410, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			graphicsContext.strokeText(String.valueOf(nodes[4].getValue()), 120, 435);
+			int x = textX(120, String.valueOf(nodes[0].getValue()));
+			graphicsContext.strokeText(String.valueOf(nodes[4].getValue()), x, 435);
 		}
 
 		graphicsContext.setStroke(colores.getBorder());
@@ -250,7 +272,7 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeLine(45, 45, 215, 215);
 		}
 		// Line between 0 and 4.
-		if (nodes[0] != null && nodes[1] != null && grafoNoDirigido.edgeExists(nodes[0], nodes[1])) {
+		if (nodes[0] != null && nodes[4] != null && grafoNoDirigido.edgeExists(nodes[0], nodes[4])) {
 			graphicsContext.strokeLine(38, 50, 125, 410);
 		}
 		// Line between 1 and 2.

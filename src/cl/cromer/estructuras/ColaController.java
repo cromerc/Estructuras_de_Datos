@@ -9,7 +9,6 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import java.util.logging.Level;
 
 /**
  * Esta clase es para controlar todos la interfaz de Cola.
