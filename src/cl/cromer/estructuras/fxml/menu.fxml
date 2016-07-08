@@ -32,7 +32,7 @@
             <MenuItem text="%bTree"/>
         </Menu>
         <Menu text="%grafos">
-            <MenuItem text="%dirigidos"/>
+            <MenuItem text="%dirigidos" onAction="#menuGrafoDirigidos"/>
             <MenuItem text="%noDirigidos" onAction="#menuGrafoNoDirigidos"/>
         </Menu>
         <MenuItem text="%tablaHash" onAction="#menuHashTable"/>

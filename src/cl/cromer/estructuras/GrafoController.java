@@ -9,6 +9,7 @@ import javafx.scene.shape.ArcType;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -59,9 +60,19 @@ public class GrafoController implements Initializable {
 	private ResourceBundle resourceBundle;
 
 	/**
-	 * El arbol usado en la aplicación.
+	 * Tipo de grafo.
 	 */
-	private GrafoNoDirigido<Node> grafoNoDirigido;
+	private Grafo.Tipos grafoTipos;
+
+	/**
+	 * El grafo dirigido usado en la aplicación.
+	 */
+	private Grafo.Dirigido<GrafoNodo> dirigido;
+
+	/**
+	 * El grafo no dirigido usado en la aplicación.
+	 */
+	private Grafo.NoDirigido<GrafoNodo> noDirigido;
 
 	/**
 	 * Grafico rectangulos.
@@ -71,7 +82,12 @@ public class GrafoController implements Initializable {
 	/**
 	 * Nodos.
 	 */
-	private Node[] nodes;
+	private GrafoNodo[] grafoNodos;
+
+	/**
+	 * A static weight.
+	 */
+	final static private int WEIGHT = 0;
 
 	/**
 	 * Inicializar todos los datos y dibujar las graficas.
@@ -83,7 +99,7 @@ public class GrafoController implements Initializable {
 	public void initialize(URL location, ResourceBundle resourceBundle) {
 		this.resourceBundle = resourceBundle;
 
-		grafoNoDirigido = null;
+		noDirigido = null;
 		scene = null;
 	}
 
@@ -93,30 +109,53 @@ public class GrafoController implements Initializable {
 			initializeGrafo();
 		}
 
+		Random random = new Random();
+		int maximo = 99;
+		int minimo = 0;
+		int rango = maximo - minimo + 1;
+
 		Array array = new Array(5);
 		for (int i = 0; i < 5; i++) {
-			if (nodes[i] != null) {
-				array.insertar(nodes[i].getValue());
+			if (grafoNodos[i] != null) {
+				array.insertar(grafoNodos[i].getValue());
 			}
 		}
 
-		for (int i = 0; i < 5; i++) {
-			if (nodes[i] == null) {
-				Random random = new Random();
-				int maximo = 99;
-				int minimo = 0;
-				int rango = maximo - minimo + 1;
+		if (grafoTipos.getTipo() == Grafo.Tipos.NO_DIRIGIDO) {
+			for (int i = 0; i < 5; i++) {
+				if (grafoNodos[i] == null) {
 
-				int numero = random.nextInt(rango) + minimo;
-				// Check if value is in array
-				while (array.buscar(numero) != -1) {
-					numero = random.nextInt(rango) + minimo;
+					int numero = random.nextInt(rango) + minimo;
+					// Check if value is in array
+					while (array.buscar(numero) != - 1) {
+						numero = random.nextInt(rango) + minimo;
+					}
+
+					grafoNodos[i] = new GrafoNodo(numero);
+
+					noDirigido.addNode(grafoNodos[i]);
 				}
-
-				nodes[i] = new Node(numero);
-				grafoNoDirigido.addNode(nodes[i]);
 			}
 		}
+		else {
+			for (int i = 0; i < 5; i++) {
+				if (grafoNodos[i] == null) {
+
+					int numero = random.nextInt(rango) + minimo;
+					// Check if value is in array
+					while (array.buscar(numero) != - 1) {
+						numero = random.nextInt(rango) + minimo;
+					}
+
+					grafoNodos[i] = new GrafoNodo(numero);
+
+					Grafo.Vertex<GrafoNodo> vertex = new Grafo.Vertex<>("test");
+					vertex.setData(grafoNodos[i]);
+					dirigido.addVertex(vertex);
+				}
+			}
+		}
+
 		generarGrafico();
 	}
 
@@ -126,8 +165,8 @@ public class GrafoController implements Initializable {
 			initializeGrafo();
 		}
 
-		this.grafoNoDirigido = new GrafoNoDirigido<>();
-		this.nodes = new Node[5];
+		this.noDirigido = new Grafo.NoDirigido<>();
+		this.grafoNodos = new GrafoNodo[5];
 		generarGrafico();
 	}
 
@@ -148,11 +187,11 @@ public class GrafoController implements Initializable {
 			try {
 				int i;
 				for (i = 0; i < 5; i++) {
-					if (nodes[i] == null) {
-						nodes[i] = new Node(Integer.valueOf(valorGrafo.getText()));
+					if (grafoNodos[i] == null) {
+						grafoNodos[i] = new GrafoNodo(Integer.valueOf(valorGrafo.getText()));
 						break;
 					}
-					else if (nodes[i].getValue() == Integer.valueOf(valorGrafo.getText())) {
+					else if (grafoNodos[i].getValue() == Integer.valueOf(valorGrafo.getText())) {
 						Main.mostrarError(resourceBundle.getString("grafoNodoExiste"), resourceBundle);
 						i = -1;
 						break;
@@ -164,7 +203,7 @@ public class GrafoController implements Initializable {
 					Main.mostrarError(resourceBundle.getString("grafoLleno"), resourceBundle);
 				}
 				else if (i != -1) {
-					boolean exito = grafoNoDirigido.addNode(nodes[i]);
+					boolean exito = noDirigido.addNode(grafoNodos[i]);
 					if (exito) {
 						valorGrafo.setText("");
 						generarGrafico();
@@ -201,15 +240,15 @@ public class GrafoController implements Initializable {
 			try {
 				int i;
 				for (i = 0; i < 5; i++) {
-					if (nodes[i] != null && nodes[i].getValue() == Integer.valueOf(valorGrafo.getText())) {
+					if (grafoNodos[i] != null && grafoNodos[i].getValue() == Integer.valueOf(valorGrafo.getText())) {
 						break;
 					}
 				}
 
 				if (i != 5) {
-					boolean exito = grafoNoDirigido.removeNode(nodes[i]);
+					boolean exito = noDirigido.removeNode(grafoNodos[i]);
 					if (exito) {
-						nodes[i] = null;
+						grafoNodos[i] = null;
 						valorGrafo.setText("");
 						generarGrafico();
 					}
@@ -241,16 +280,16 @@ public class GrafoController implements Initializable {
 		}
 
 		if (valorNodo1.getText() != null && ! valorNodo1.getText().trim().equals("") && valorNodo2.getText() != null && ! valorNodo2.getText().trim().equals("")) {
-			Node[] nodos = getNodosEdge();
+			GrafoNodo[] nodos = getNodosEdge();
 
-			if (nodos[0] == null || nodos[1] == null || !grafoNoDirigido.nodeExists(nodos[0]) || !grafoNoDirigido.nodeExists(nodos[1])) {
+			if (nodos[0] == null || nodos[1] == null || ! noDirigido.nodeExists(nodos[0]) || ! noDirigido.nodeExists(nodos[1])) {
 				Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
 			}
-			else if (grafoNoDirigido.edgeExists(nodos[0], nodos[1])) {
+			else if (noDirigido.edgeExists(nodos[0], nodos[1])) {
 				Main.mostrarError(resourceBundle.getString("grafoEdgeExiste"), resourceBundle);
 			}
 			else {
-				grafoNoDirigido.addEdge(nodos[0], nodos[1]);
+				noDirigido.addEdge(nodos[0], nodos[1]);
 			}
 		}
 		else {
@@ -270,16 +309,16 @@ public class GrafoController implements Initializable {
 		}
 
 		if (valorNodo1.getText() != null && ! valorNodo1.getText().trim().equals("") && valorNodo2.getText() != null && ! valorNodo2.getText().trim().equals("")) {
-			Node[] nodos = getNodosEdge();
+			GrafoNodo[] nodos = getNodosEdge();
 
-			if (nodos[0] == null || nodos[1] == null || !grafoNoDirigido.nodeExists(nodos[0]) || !grafoNoDirigido.nodeExists(nodos[1])) {
+			if (nodos[0] == null || nodos[1] == null || ! noDirigido.nodeExists(nodos[0]) || ! noDirigido.nodeExists(nodos[1])) {
 				Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
 			}
-			else if (!grafoNoDirigido.edgeExists(nodos[0], nodos[1])) {
+			else if (! noDirigido.edgeExists(nodos[0], nodos[1])) {
 				Main.mostrarError(resourceBundle.getString("grafoNoEdge"), resourceBundle);
 			}
 			else {
-				grafoNoDirigido.removeEdge(nodos[0], nodos[1]);
+				noDirigido.removeEdge(nodos[0], nodos[1]);
 			}
 		}
 		else {
@@ -295,24 +334,31 @@ public class GrafoController implements Initializable {
 	private void initializeGrafo() {
 		scene = contenidoGrafo.getScene();
 		grafico = new Grafico(scene);
-		this.grafoNoDirigido = new GrafoNoDirigido<>();
-		this.nodes = new Node[5];
+		grafoTipos = (Grafo.Tipos) scene.getUserData();
+		grafoNodos = new GrafoNodo[5];
+
+		if (grafoTipos.getTipo() == Grafo.Tipos.NO_DIRIGIDO) {
+			noDirigido = new Grafo.NoDirigido<>();
+		}
+		else {
+			dirigido = new Grafo.Dirigido<>();
+		}
 	}
 
 	/**
 	 * Devolver los nodos que existen.
 	 *
-	 * @return Node[]: Los nodos que se busca.
+	 * @return GrafoNodo[]: Los nodos que se busca.
 	 */
-	private Node[] getNodosEdge() {
-		Node[] nodos = new Node[2];
+	private GrafoNodo[] getNodosEdge() {
+		GrafoNodo[] nodos = new GrafoNodo[2];
 		for (int i = 0; i < 5; i++) {
-			if (nodes[i] != null) {
-				if (Integer.valueOf(valorNodo1.getText()) == nodes[i].getValue()) {
-					nodos[0] = nodes[i];
+			if (grafoNodos[i] != null) {
+				if (Integer.valueOf(valorNodo1.getText()) == grafoNodos[i].getValue()) {
+					nodos[0] = grafoNodos[i];
 				}
-				if (Integer.valueOf(valorNodo2.getText()) == nodes[i].getValue()) {
-					nodos[1] = nodes[i];
+				if (Integer.valueOf(valorNodo2.getText()) == grafoNodos[i].getValue()) {
+					nodos[1] = grafoNodos[i];
 				}
 				if (nodos[0] != null && nodos[1] != null) {
 					break;
@@ -333,7 +379,7 @@ public class GrafoController implements Initializable {
 		GraphicsContext graphicsContext = contenidoGrafo.getGraphicsContext2D();
 		graphicsContext.clearRect(0, 0, contenidoGrafo.getWidth(), contenidoGrafo.getHeight());
 
-		if (nodes[0] != null) {
+		if (grafoNodos[0] != null) {
 			graphicsContext.setFill(colores.getFondo());
 			graphicsContext.setStroke(colores.getBorder());
 
@@ -341,12 +387,12 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(10, 10, 40, 40);
 
 			graphicsContext.setFill(colores.getTexto());
-			int x = textX(25, String.valueOf(nodes[0].getValue()));
-			graphicsContext.fillText(String.valueOf(nodes[0].getValue()), x, 35);
+			int x = textX(25, String.valueOf(grafoNodos[0].getValue()));
+			graphicsContext.fillText(String.valueOf(grafoNodos[0].getValue()), x, 35);
 		}
 		colores.siguinteColor();
 
-		if (nodes[1] != null) {
+		if (grafoNodos[1] != null) {
 			graphicsContext.setFill(colores.getFondo());
 			graphicsContext.setStroke(colores.getBorder());
 
@@ -354,12 +400,12 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(210, 10, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			int x = textX(225, String.valueOf(nodes[1].getValue()));
-			graphicsContext.strokeText(String.valueOf(nodes[1].getValue()), x, 35);
+			int x = textX(225, String.valueOf(grafoNodos[1].getValue()));
+			graphicsContext.strokeText(String.valueOf(grafoNodos[1].getValue()), x, 35);
 		}
 		colores.siguinteColor();
 
-		if (nodes[2] != null) {
+		if (grafoNodos[2] != null) {
 			graphicsContext.setFill(colores.getFondo());
 			graphicsContext.setStroke(colores.getBorder());
 
@@ -367,12 +413,12 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(10, 210, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			int x = textX(25, String.valueOf(nodes[2].getValue()));
-			graphicsContext.strokeText(String.valueOf(nodes[2].getValue()), x, 235);
+			int x = textX(25, String.valueOf(grafoNodos[2].getValue()));
+			graphicsContext.strokeText(String.valueOf(grafoNodos[2].getValue()), x, 235);
 		}
 		colores.siguinteColor();
 
-		if (nodes[3] != null) {
+		if (grafoNodos[3] != null) {
 			graphicsContext.setFill(colores.getFondo());
 			graphicsContext.setStroke(colores.getBorder());
 
@@ -380,12 +426,12 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(210, 210, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			int x = textX(225, String.valueOf(nodes[3].getValue()));
-			graphicsContext.strokeText(String.valueOf(nodes[3].getValue()), x, 235);
+			int x = textX(225, String.valueOf(grafoNodos[3].getValue()));
+			graphicsContext.strokeText(String.valueOf(grafoNodos[3].getValue()), x, 235);
 		}
 		colores.siguinteColor();
 
-		if (nodes[4] != null) {
+		if (grafoNodos[4] != null) {
 			graphicsContext.setFill(colores.getFondo());
 			graphicsContext.setStroke(colores.getBorder());
 
@@ -393,74 +439,91 @@ public class GrafoController implements Initializable {
 			graphicsContext.strokeOval(105, 410, 40, 40);
 
 			graphicsContext.setStroke(colores.getTexto());
-			int x = textX(120, String.valueOf(nodes[4].getValue()));
-			graphicsContext.strokeText(String.valueOf(nodes[4].getValue()), x, 435);
+			int x = textX(120, String.valueOf(grafoNodos[4].getValue()));
+			graphicsContext.strokeText(String.valueOf(grafoNodos[4].getValue()), x, 435);
 		}
 
 		graphicsContext.setStroke(colores.getBorder());
 
+		if (grafoTipos.getTipo() == Grafo.Tipos.NO_DIRIGIDO) {
+			// Line between 0 and 0.
+			if (grafoNodos[0] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[0])) {
+				graphicsContext.strokeArc(15, 40, 29, 30, 145, 250, ArcType.OPEN);
+			}
+			// Line between 1 and 1.
+			if (grafoNodos[1] != null && noDirigido.edgeExists(grafoNodos[1], grafoNodos[1])) {
+				graphicsContext.strokeArc(215, 40, 29, 30, 145, 250, ArcType.OPEN);
+			}
+			// Line between 2 and 2.
+			if (grafoNodos[2] != null && noDirigido.edgeExists(grafoNodos[2], grafoNodos[2])) {
+				graphicsContext.strokeArc(15, 240, 29, 30, 145, 250, ArcType.OPEN);
+			}
+			// Line between 3 and 3.
+			if (grafoNodos[3] != null && noDirigido.edgeExists(grafoNodos[3], grafoNodos[3])) {
+				graphicsContext.strokeArc(215, 240, 29, 30, 145, 250, ArcType.OPEN);
+			}
+			// Line between 4 and 4.
+			if (grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[4], grafoNodos[4])) {
+				graphicsContext.strokeArc(110, 440, 29, 30, 145, 250, ArcType.OPEN);
+			}
+			// Line between 0 and 1.
+			if (grafoNodos[0] != null && grafoNodos[1] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[1])) {
+				graphicsContext.strokeLine(50, 30, 210, 30);
+			}
+			// Line between 0 and 2.
+			if (grafoNodos[0] != null && grafoNodos[2] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[2])) {
+				graphicsContext.strokeLine(30, 50, 30, 210);
+			}
+			// Line between 0 and 3.
+			if (grafoNodos[0] != null && grafoNodos[3] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[3])) {
+				graphicsContext.strokeLine(45, 45, 215, 215);
+			}
+			// Line between 0 and 4.
+			if (grafoNodos[0] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[4])) {
+				graphicsContext.strokeLine(38, 50, 125, 410);
+			}
+			// Line between 1 and 2.
+			if (grafoNodos[1] != null && grafoNodos[2] != null && noDirigido.edgeExists(grafoNodos[1], grafoNodos[2])) {
+				graphicsContext.strokeLine(45, 215, 215, 45);
+			}
+			// Line between 1 and 3.
+			if (grafoNodos[1] != null && grafoNodos[3] != null && noDirigido.edgeExists(grafoNodos[1], grafoNodos[3])) {
+				graphicsContext.strokeLine(230, 50, 230, 210);
+			}
+			// Line between 1 and 4.
+			if (grafoNodos[1] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[1], grafoNodos[4])) {
+				graphicsContext.strokeLine(221, 50, 125, 410);
+			}
+			// Line between 2 and 3
+			if (grafoNodos[2] != null && grafoNodos[3] != null && noDirigido.edgeExists(grafoNodos[2], grafoNodos[3])) {
+				graphicsContext.strokeLine(50, 230, 210, 230);
+			}
+			// Line between 2 and 4.
+			if (grafoNodos[2] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[2], grafoNodos[4])) {
+				graphicsContext.strokeLine(38, 250, 125, 410);
+			}
+			// Line between 3 and 4.
+			if (grafoNodos[3] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[3], grafoNodos[4])) {
+				graphicsContext.strokeLine(221, 250, 125, 410);
+			}
+		}
+		else {
+			Grafo.Vertex<GrafoNodo> vertex = dirigido.getVertex(0);
 
+			dirigido.addEdge(vertex, vertex, WEIGHT);
+			List<Grafo.Edge<GrafoNodo>> edges = dirigido.getEdges();
+			for (Grafo.Edge<GrafoNodo> edge : edges) {
+				Grafo.Vertex vFrom = edge.getFrom();
+				Grafo.Vertex vTo = edge.getTo();
+				GrafoNodo from = (GrafoNodo) vFrom.getData();
+				GrafoNodo to = (GrafoNodo) vTo.getData();
 
-		// Line between 0 and 0.
-		if (nodes[0] != null && grafoNoDirigido.edgeExists(nodes[0], nodes[0])) {
-			graphicsContext.strokeArc(15, 40, 29, 30, 145, 250, ArcType.OPEN);
-		}
-		// Line between 1 and 1.
-		if (nodes[1] != null && grafoNoDirigido.edgeExists(nodes[1], nodes[1])) {
-			graphicsContext.strokeArc(215, 40, 29, 30, 145, 250, ArcType.OPEN);
-		}
-		// Line between 2 and 2.
-		if (nodes[2] != null && grafoNoDirigido.edgeExists(nodes[2], nodes[2])) {
-			graphicsContext.strokeArc(15, 240, 29, 30, 145, 250, ArcType.OPEN);
-		}
-		// Line between 3 and 3.
-		if (nodes[3] != null && grafoNoDirigido.edgeExists(nodes[3], nodes[3])) {
-			graphicsContext.strokeArc(215, 240, 29, 30, 145, 250, ArcType.OPEN);
-		}
-		// Line between 4 and 4.
-		if (nodes[4] != null && grafoNoDirigido.edgeExists(nodes[4], nodes[4])) {
-			graphicsContext.strokeArc(110, 440, 29, 30, 145, 250, ArcType.OPEN);
-		}
-
-		// Line between 0 and 1.
-		if (nodes[0] != null && nodes[1] != null && grafoNoDirigido.edgeExists(nodes[0], nodes[1])) {
-			graphicsContext.strokeLine(50, 30, 210, 30);
-		}
-		// Line between 0 and 2.
-		if (nodes[0] != null && nodes[2] != null && grafoNoDirigido.edgeExists(nodes[0], nodes[2])) {
-			graphicsContext.strokeLine(30, 50, 30, 210);
-		}
-		// Line between 0 and 3.
-		if (nodes[0] != null && nodes[3] != null && grafoNoDirigido.edgeExists(nodes[0], nodes[3])) {
-			graphicsContext.strokeLine(45, 45, 215, 215);
-		}
-		// Line between 0 and 4.
-		if (nodes[0] != null && nodes[4] != null && grafoNoDirigido.edgeExists(nodes[0], nodes[4])) {
-			graphicsContext.strokeLine(38, 50, 125, 410);
-		}
-		// Line between 1 and 2.
-		if (nodes[1] != null && nodes[2] != null && grafoNoDirigido.edgeExists(nodes[1], nodes[2])) {
-			graphicsContext.strokeLine(45, 215, 215, 45);
-		}
-		// Line between 1 and 3.
-		if (nodes[1] != null && nodes[3] != null && grafoNoDirigido.edgeExists(nodes[1], nodes[3])) {
-			graphicsContext.strokeLine(230, 50, 230, 210);
-		}
-		// Line between 1 and 4.
-		if (nodes[1] != null && nodes[4] != null && grafoNoDirigido.edgeExists(nodes[1], nodes[4])) {
-			graphicsContext.strokeLine(221, 50, 125, 410);
-		}
-		// Line between 2 and 3
-		if (nodes[2] != null && nodes[3] != null && grafoNoDirigido.edgeExists(nodes[2], nodes[3])) {
-			graphicsContext.strokeLine(50, 230, 210, 230);
-		}
-		// Line between 2 and 4.
-		if (nodes[2] != null && nodes[4] != null && grafoNoDirigido.edgeExists(nodes[2], nodes[4])) {
-			graphicsContext.strokeLine(38, 250, 125, 410);
-		}
-		// Line between 3 and 4.
-		if (nodes[3] != null && nodes[4] != null && grafoNoDirigido.edgeExists(nodes[3], nodes[4])) {
-			graphicsContext.strokeLine(221, 250, 125, 410);
+				if (from == grafoNodos[0]) {
+					if (to == from) {
+						graphicsContext.strokeArc(15, 40, 29, 30, 145, 250, ArcType.OPEN);
+					}
+				}
+			}
 		}
 	}
 

@@ -178,7 +178,7 @@ public class ArbolController implements Initializable {
 	 */
 	/*private void generarGrafico() {
 		grafico.removerDestacar();
-		Node node = contenidoArbol.getChildren().get(0);
+		GrafoNodo node = contenidoArbol.getChildren().get(0);
 		contenidoArbol.getChildren().clear();
 		contenidoArbol.getChildren().add(0, node);
 

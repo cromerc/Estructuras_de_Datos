@@ -226,14 +226,30 @@ public class MenuController extends VBox implements Initializable {
 	}
 
 	/**
+	 * Click en Grafo Dirigidos.
+	 */
+	@FXML
+	protected void menuGrafoDirigidos() {
+		Grafo.Tipos grafoTipos = new Grafo.Tipos(Grafo.Tipos.DIRIGIDO);
+		loadStage(
+				resourceBundle.getString("tituloGrafoDirigido"),
+				"/cl/cromer/estructuras/fxml/grafo.fxml",
+				"/cl/cromer/estructuras/css/main.css",
+		        grafoTipos
+		);
+	}
+
+	/**
 	 * Click en Grafo No Dirigidos.
 	 */
 	@FXML
 	protected void menuGrafoNoDirigidos() {
+		Grafo.Tipos grafoTipos = new Grafo.Tipos(Grafo.Tipos.NO_DIRIGIDO);
 		loadStage(
 				resourceBundle.getString("tituloGrafoNoDirigido"),
 				"/cl/cromer/estructuras/fxml/grafo.fxml",
-				"/cl/cromer/estructuras/css/main.css"
+				"/cl/cromer/estructuras/css/main.css",
+		        grafoTipos
 		);
 	}
 
