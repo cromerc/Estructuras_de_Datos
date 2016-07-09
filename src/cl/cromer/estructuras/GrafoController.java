@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.shape.ArcType;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 
 import java.net.URL;
 import java.util.List;
@@ -444,6 +445,7 @@ public class GrafoController implements Initializable {
 		}
 
 		graphicsContext.setStroke(colores.getBorder());
+		graphicsContext.setFill(colores.getBorder());
 
 		if (grafoTipos.getTipo() == Grafo.Tipos.NO_DIRIGIDO) {
 			// Line between 0 and 0.
@@ -508,9 +510,29 @@ public class GrafoController implements Initializable {
 			}
 		}
 		else {
-			Grafo.Vertex<GrafoNodo> vertex = dirigido.getVertex(0);
+			// Todo: Remove this
+			// Self
+			/*dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(0), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(1), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(2), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(3), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(4), dirigido.getVertex(4), WEIGHT);*/
 
-			dirigido.addEdge(vertex, vertex, WEIGHT);
+			// Horizontals
+			/*dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(1), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(0), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(3), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(2), WEIGHT);*/
+
+			// Verticals
+			//dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(2), WEIGHT);
+			//dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(0), WEIGHT);
+			//dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(3), WEIGHT);
+			//dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(1), WEIGHT);
+
+			// Diagonals
+			dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(3), WEIGHT);
+
 			List<Grafo.Edge<GrafoNodo>> edges = dirigido.getEdges();
 			for (Grafo.Edge<GrafoNodo> edge : edges) {
 				Grafo.Vertex vFrom = edge.getFrom();
@@ -523,6 +545,152 @@ public class GrafoController implements Initializable {
 						graphicsContext.strokeArc(15, 40, 29, 30, 145, 250, ArcType.OPEN);
 					}
 				}
+				if (from == grafoNodos[1]) {
+					if (to == from) {
+						graphicsContext.strokeArc(215, 40, 29, 30, 145, 250, ArcType.OPEN);
+					}
+				}
+				if (from == grafoNodos[2]) {
+					if (to == from) {
+						graphicsContext.strokeArc(15, 240, 29, 30, 145, 250, ArcType.OPEN);
+					}
+				}
+				if (from == grafoNodos[3]) {
+					if (to == from) {
+						graphicsContext.strokeArc(215, 240, 29, 30, 145, 250, ArcType.OPEN);
+					}
+				}
+				if (from == grafoNodos[4]) {
+					if (to == from) {
+						graphicsContext.strokeArc(110, 440, 29, 30, 145, 250, ArcType.OPEN);
+					}
+				}
+
+				// Line between 0 and 1.
+				if (from == grafoNodos[0] && to == grafoNodos[1]) {
+					graphicsContext.strokeLine(50, 30, 210, 30);
+					graphicsContext.fillPolygon(
+							new double[] {200.0, 210.0, 200.0},
+							new double[] {25.0, 30.0, 35.0},
+					        3
+					);
+				}
+				// Line between 1 and 0
+				if (from == grafoNodos[1] && to == grafoNodos[0]) {
+					graphicsContext.strokeLine(50, 30, 210, 30);
+					graphicsContext.fillPolygon(
+							new double[] {60.0, 50.0, 60.0},
+							new double[] {25.0, 30.0, 35.0},
+							3
+					);
+				}
+				// Line between 2 and 3
+				if (from == grafoNodos[2] && to == grafoNodos[3]) {
+					graphicsContext.strokeLine(50, 230, 210, 230);
+					graphicsContext.fillPolygon(
+							new double[] {200.0, 210.0, 200.0},
+							new double[] {225.0, 230.0, 235.0},
+							3
+					);
+				}
+				// Line between 3 and 2
+				if (from == grafoNodos[3] && to == grafoNodos[2]) {
+					graphicsContext.strokeLine(50, 230, 210, 230);
+					graphicsContext.fillPolygon(
+							new double[] {60.0, 50.0, 60.0},
+							new double[] {225.0, 230.0, 235.0},
+							3
+					);
+				}
+				// Line between 0 and 2
+				if (from == grafoNodos[0] && to == grafoNodos[2]) {
+					graphicsContext.strokeLine(30, 50, 30, 210);
+					graphicsContext.fillPolygon(
+							new double[] {25.0, 35.0, 30.0},
+							new double[] {200.0, 200.0, 210.0},
+							3
+					);
+				}
+				// Line between 2 and 0
+				if (from == grafoNodos[2] && to == grafoNodos[0]) {
+					graphicsContext.strokeLine(30, 50, 30, 210);
+					graphicsContext.fillPolygon(
+							new double[] {30.0, 25.0, 35.0},
+							new double[] {50.0, 60.0, 60.0},
+							3
+					);
+				}
+				// Line between 1 and 3
+				if (from == grafoNodos[1] && to == grafoNodos[3]) {
+					graphicsContext.strokeLine(230, 50, 230, 210);
+					graphicsContext.fillPolygon(
+							new double[] {225.0, 235.0, 230.0},
+							new double[] {200.0, 200.0, 210.0},
+							3
+					);
+				}
+				// Line between 3 and 1
+				if (from == grafoNodos[3] && to == grafoNodos[1]) {
+					graphicsContext.strokeLine(230, 50, 230, 210);
+					graphicsContext.fillPolygon(
+							new double[] {230.0, 225.0, 235.0},
+							new double[] {50.0, 60.0, 60.0},
+							3
+					);
+				}
+				// Line between 0 and 3
+				if (from == grafoNodos[0] && to == grafoNodos[3]) {
+					graphicsContext.strokeLine(45, 45, 215, 215);
+
+					// Rotation is a pain in the ass.
+					graphicsContext.save();
+					Rotate rotate = new Rotate(315, 213.0, 213.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {208.0, 218.0, 213.0},
+							new double[] {208.0, 208.0, 218.0},
+							3
+					);
+					graphicsContext.restore();
+				}
+
+				/*
+				// Line between 0 and 2.
+				if (grafoNodos[0] != null && grafoNodos[2] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[2])) {
+					graphicsContext.strokeLine(30, 50, 30, 210);
+				}
+				// Line between 0 and 3.
+				if (grafoNodos[0] != null && grafoNodos[3] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[3])) {
+					graphicsContext.strokeLine(45, 45, 215, 215);
+				}
+				// Line between 0 and 4.
+				if (grafoNodos[0] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[4])) {
+					graphicsContext.strokeLine(38, 50, 125, 410);
+				}
+				// Line between 1 and 2.
+				if (grafoNodos[1] != null && grafoNodos[2] != null && noDirigido.edgeExists(grafoNodos[1], grafoNodos[2])) {
+					graphicsContext.strokeLine(45, 215, 215, 45);
+				}
+				// Line between 1 and 3.
+				if (grafoNodos[1] != null && grafoNodos[3] != null && noDirigido.edgeExists(grafoNodos[1], grafoNodos[3])) {
+					graphicsContext.strokeLine(230, 50, 230, 210);
+				}
+				// Line between 1 and 4.
+				if (grafoNodos[1] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[1], grafoNodos[4])) {
+					graphicsContext.strokeLine(221, 50, 125, 410);
+				}
+				// Line between 2 and 3
+				if (grafoNodos[2] != null && grafoNodos[3] != null && noDirigido.edgeExists(grafoNodos[2], grafoNodos[3])) {
+					graphicsContext.strokeLine(50, 230, 210, 230);
+				}
+				// Line between 2 and 4.
+				if (grafoNodos[2] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[2], grafoNodos[4])) {
+					graphicsContext.strokeLine(38, 250, 125, 410);
+				}
+				// Line between 3 and 4.
+				if (grafoNodos[3] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[3], grafoNodos[4])) {
+					graphicsContext.strokeLine(221, 250, 125, 410);
+				}*/
 			}
 		}
 	}

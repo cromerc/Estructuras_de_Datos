@@ -25,11 +25,11 @@
         <MenuItem text="%cola" onAction="#menuCola"/>
         <Menu text="%arboles">
             <MenuItem text="%general" onAction="#menuArbolGeneral"/>
-            <MenuItem text="%binario"/>
+            <!--<MenuItem text="%binario"/>
             <MenuItem text="%busquedaBinario"/>
-            <MenuItem text="%AVL"/>
+            <MenuItem text="%AVL"/>-->
             <MenuItem text="%rojoNegro"/>
-            <MenuItem text="%bTree"/>
+            <!--<MenuItem text="%bTree"/>-->
         </Menu>
         <Menu text="%grafos">
             <MenuItem text="%dirigidos" onAction="#menuGrafoDirigidos"/>
