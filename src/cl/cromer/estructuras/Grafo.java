@@ -264,10 +264,10 @@ public class Grafo {
 		/** Color used to mark nodes after descendants are completely visited */
 		public static final int VISIT_COLOR_BLACK = 3;
 
-		/** Vector<Vertex> of graph verticies */
+		/** Vector of graph verticies */
 		private List<Vertex<T>> verticies;
 
-		/** Vector<Edge> of edges in the graph */
+		/** Vector of edges in the graph */
 		private List<Edge<T>> edges;
 
 		/** The vertex identified as the root of the graph */
@@ -358,15 +358,15 @@ public class Grafo {
 		}
 
 		/**
-		 * Insert a directed, weighted Edge<T> into the graph.
+		 * Insert a directed, weighted Edge into the graph.
 		 *
 		 * @param from -
-		 *          the Edge<T> starting vertex
+		 *          the Edge starting vertex
 		 * @param to -
-		 *          the Edge<T> ending vertex
+		 *          the Edge ending vertex
 		 * @param cost -
-		 *          the Edge<T> weight/cost
-		 * @return true if the Edge<T> was added, false if from already has this Edge<T>
+		 *          the Edge weight/cost
+		 * @return true if the Edge was added, false if from already has this Edge
 		 * @throws IllegalArgumentException
 		 *           if from/to are not verticies in the graph
 		 */
@@ -388,14 +388,14 @@ public class Grafo {
 		}
 
 		/**
-		 * Insert a bidirectional Edge<T> in the graph
+		 * Insert a bidirectional Edge in the graph
 		 *
 		 * @param from -
-		 *          the Edge<T> starting vertex
+		 *          the Edge starting vertex
 		 * @param to -
-		 *          the Edge<T> ending vertex
+		 *          the Edge ending vertex
 		 * @param cost -
-		 *          the Edge<T> weight/cost
+		 *          the Edge weight/cost
 		 * @return true if edges between both nodes were added, false otherwise
 		 * @throws IllegalArgumentException
 		 *           if from/to are not verticies in the graph
@@ -447,13 +447,13 @@ public class Grafo {
 		}
 
 		/**
-		 * Remove an Edge<T> from the graph
+		 * Remove an Edge from the graph
 		 *
 		 * @param from -
-		 *          the Edge<T> starting vertex
+		 *          the Edge starting vertex
 		 * @param to -
-		 *          the Edge<T> ending vertex
-		 * @return true if the Edge<T> exists, false otherwise
+		 *          the Edge ending vertex
+		 * @return true if the Edge exists, false otherwise
 		 */
 		public boolean removeEdge(Vertex<T> from, Vertex<T> to) {
 			Edge<T> e = from.findEdge(to);
@@ -488,31 +488,13 @@ public class Grafo {
 		/**
 		 * Perform a depth first serach using recursion.
 		 *
-		 * @param v -
-		 *          the Vertex to start the search from
-		 * @param visitor -
-		 *          the vistor to inform prior to
-		 * @see Visitor#visit(Dirigido, Vertex)
-		 */
-		public void depthFirstSearch(Vertex<T> v, final Visitor<T> visitor) {
-			VisitorEX<T, RuntimeException> wrapper = (g, v1) -> {
-				if (visitor != null)
-					visitor.visit(g, v1);
-			};
-			this.depthFirstSearch(v, wrapper);
-		}
-
-		/**
-		 * Perform a depth first serach using recursion. The search may be cut short
-		 * if the visitor throws an exception.
+		 * @param <E> Exception
 		 *
-		 * @param <E> -
-		 *          exception
 		 * @param v -
 		 *          the Vertex to start the search from
+		 *
 		 * @param visitor -
 		 *          the vistor to inform prior to
-		 * @see Visitor#visit(Dirigido, Vertex)
 		 * @throws E
 		 *           if visitor.visit throws an exception
 		 */
@@ -700,7 +682,7 @@ public class Grafo {
 	 *
 	 * @author Scott.Stark@jboss.org
 	 * @version $Revision$
-	 * @param <T>
+	 * @param <T> Generic object
 	 */
 	@SuppressWarnings("unused")
 	static final public class Edge<T> {
@@ -813,7 +795,7 @@ public class Grafo {
 	 *
 	 * @author Scott.Stark@jboss.org
 	 * @version $Revision$
-	 * @param <T>
+	 * @param <T> Generic object
 	 */
 	@SuppressWarnings({"unchecked", "unused"})
 	static final public class Vertex<T> {
@@ -1171,7 +1153,7 @@ public class Grafo {
 	 *
 	 * @author Scott.Stark@jboss.org
 	 * @version $Revision$
-	 * @param <T>
+	 * @param <T> Generic object
 	 */
 	public interface Visitor<T> {
 		/**
@@ -1191,8 +1173,8 @@ public class Grafo {
 	 *
 	 * @author Scott.Stark@jboss.org
 	 * @version $Revision$
-	 * @param <T>
-	 * @param <E>
+	 * @param <T> Generic object
+	 * @param <E> Exception
 	 */
 	public interface VisitorEX<T, E extends Exception> {
 		/**
@@ -1211,11 +1193,9 @@ public class Grafo {
 	/**
 	 * A spanning tree visitor callback interface
 	 *
-	 * @see Dirigido#dfsSpanningTree(Vertex, DFSVisitor)
-	 *
 	 * @author Scott.Stark@jboss.org
 	 * @version $Revision$
-	 * @param <T>
+	 * @param <T> Generic object
 	 */
 	public interface DFSVisitor<T> {
 		/**
