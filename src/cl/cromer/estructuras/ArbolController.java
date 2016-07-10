@@ -145,8 +145,8 @@ public class ArbolController implements Initializable {
 		List<List<ArbolNodo>> niveles = arbol.getNiveles();
 
 		int altura = arbol.getAltura() - 1;
+		// Thank you Claudio Gutiérrez
 		int ancho = (int) Math.pow(2, altura) + (int) ((Math.pow(2, altura)) - 1);
-		System.out.println(ancho);
 
 		Text text;
 		for (int i = 0; i < altura; i++) {

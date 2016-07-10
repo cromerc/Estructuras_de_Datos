@@ -1,0 +1,42 @@
+<html>
+	<title>Estructuras de Datos</title>
+	<head>
+		<SCRIPT src="dtjava.js"></SCRIPT>
+		<script>
+			function launchApplication(jnlpfile) {
+				dtjava.launch(            {
+						url : jnlpfile
+					},
+					{
+						javafx : '8.0+'
+					},
+					{}
+				);
+				return false;
+			}
+		</script>
+		<script>
+			function javafxEmbedEstructuras_de_Datos_id() {
+				dtjava.embed(
+					{
+						id : 'Estructuras_de_Datos_id',
+						url : 'Estructuras_de_Datos.jnlp',
+						placeholder : 'javafx-app-placeholder',
+						width : '1024',
+						height : '768'
+					},
+					{
+						javafx : '8.0+'
+					},
+					{}
+				);
+			}
+			<!-- Embed FX application into web page once page is loaded -->
+			dtjava.addOnloadCallback(javafxEmbedEstructuras_de_Datos_id);
+		</script>
+	</head>
+	<body>
+		<!-- Applet will be inserted here -->
+		<div id='javafx-app-placeholder'></div>
+	</body>
+</html>
