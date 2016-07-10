@@ -104,6 +104,9 @@ public class GrafoController implements Initializable {
 		scene = null;
 	}
 
+	/**
+	 * LLenar el grafo con nodos y edges al azar.
+	 */
 	@FXML
 	protected void botonLlenar() {
 		if (scene == null) {
@@ -137,6 +140,11 @@ public class GrafoController implements Initializable {
 					noDirigido.addNode(grafoNodos[i]);
 				}
 			}
+			noDirigido.addEdge(grafoNodos[0], grafoNodos[1]);
+			noDirigido.addEdge(grafoNodos[1], grafoNodos[2]);
+			noDirigido.addEdge(grafoNodos[2], grafoNodos[4]);
+			noDirigido.addEdge(grafoNodos[4], grafoNodos[3]);
+			noDirigido.addEdge(grafoNodos[3], grafoNodos[1]);
 		}
 		else {
 			for (int i = 0; i < 5; i++) {
@@ -150,29 +158,43 @@ public class GrafoController implements Initializable {
 
 					grafoNodos[i] = new GrafoNodo(numero);
 
-					Grafo.Vertex<GrafoNodo> vertex = new Grafo.Vertex<>("test");
+					Grafo.Vertex<GrafoNodo> vertex = new Grafo.Vertex<>(String.valueOf(grafoNodos[i].getValue()));
 					vertex.setData(grafoNodos[i]);
 					dirigido.addVertex(vertex);
 				}
 			}
+			dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(1), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(2), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(4), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(0), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(4), dirigido.getVertex(3), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(1), WEIGHT);
 		}
 
 		generarGrafico();
 	}
 
+	/**
+	 * Eliminar el grafo.
+	 */
 	@FXML
 	protected void botonVaciar() {
 		if (scene == null) {
 			initializeGrafo();
 		}
 
-		this.noDirigido = new Grafo.NoDirigido<>();
+		if (grafoTipos.getTipo() == Grafo.Tipos.NO_DIRIGIDO) {
+			this.noDirigido = new Grafo.NoDirigido<>();
+		}
+		else {
+			this.dirigido = new Grafo.Dirigido<>();
+		}
 		this.grafoNodos = new GrafoNodo[5];
 		generarGrafico();
 	}
 
 	/**
-	 * Insertar un valor al array y mostrar el codigo en la pantalla.
+	 * Insertar un nodo en el grafo.
 	 */
 	@FXML
 	protected void botonInsertar() {
@@ -204,7 +226,15 @@ public class GrafoController implements Initializable {
 					Main.mostrarError(resourceBundle.getString("grafoLleno"), resourceBundle);
 				}
 				else if (i != -1) {
-					boolean exito = noDirigido.addNode(grafoNodos[i]);
+					boolean exito;
+					if (grafoTipos.getTipo() == Grafo.Tipos.NO_DIRIGIDO) {
+						exito = noDirigido.addNode(grafoNodos[i]);
+					}
+					else {
+						Grafo.Vertex<GrafoNodo> vertex = new Grafo.Vertex<>(String.valueOf(grafoNodos[i].getValue()));
+						vertex.setData(grafoNodos[i]);
+						exito = dirigido.addVertex(vertex);
+					}
 					if (exito) {
 						valorGrafo.setText("");
 						generarGrafico();
@@ -225,7 +255,7 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * Insertar un valor al array y mostrar el codigo en la pantalla.
+	 * Eliminar un nodo del grafo.
 	 */
 	@FXML
 	protected void botonEliminar() {
@@ -247,7 +277,19 @@ public class GrafoController implements Initializable {
 				}
 
 				if (i != 5) {
-					boolean exito = noDirigido.removeNode(grafoNodos[i]);
+					boolean exito = false;
+					if (grafoTipos.getTipo() == Grafo.Tipos.NO_DIRIGIDO) {
+						exito = noDirigido.removeNode(grafoNodos[i]);
+					}
+					else {
+						for (int j = 0; j < dirigido.size(); j++) {
+							Grafo.Vertex<GrafoNodo> vertex = dirigido.getVertex(j);
+							if (vertex.getData().getValue() == Integer.valueOf(valorGrafo.getText())) {
+								exito = dirigido.removeVertex(vertex);
+								break;
+							}
+						}
+					}
 					if (exito) {
 						grafoNodos[i] = null;
 						valorGrafo.setText("");
@@ -280,17 +322,31 @@ public class GrafoController implements Initializable {
 			initializeGrafo();
 		}
 
-		if (valorNodo1.getText() != null && ! valorNodo1.getText().trim().equals("") && valorNodo2.getText() != null && ! valorNodo2.getText().trim().equals("")) {
+		if (valorNodo1.getText() != null && !valorNodo1.getText().trim().equals("") && valorNodo2.getText() != null && !valorNodo2.getText().trim().equals("")) {
 			GrafoNodo[] nodos = getNodosEdge();
 
-			if (nodos[0] == null || nodos[1] == null || ! noDirigido.nodeExists(nodos[0]) || ! noDirigido.nodeExists(nodos[1])) {
-				Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
-			}
-			else if (noDirigido.edgeExists(nodos[0], nodos[1])) {
-				Main.mostrarError(resourceBundle.getString("grafoEdgeExiste"), resourceBundle);
+			if (grafoTipos.getTipo() == Grafo.Tipos.NO_DIRIGIDO) {
+				if (nodos[0] == null || nodos[1] == null || !noDirigido.nodeExists(nodos[0]) || !noDirigido.nodeExists(nodos[1])) {
+					Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
+				}
+				else if (noDirigido.edgeExists(nodos[0], nodos[1])) {
+					Main.mostrarError(resourceBundle.getString("grafoEdgeExiste"), resourceBundle);
+				}
+				else {
+					noDirigido.addEdge(nodos[0], nodos[1]);
+				}
 			}
 			else {
-				noDirigido.addEdge(nodos[0], nodos[1]);
+				if (nodos[0] == null || nodos[1] == null || dirigido.findVertexByName(String.valueOf(nodos[0].getValue())) == null || dirigido.findVertexByName(String.valueOf(nodos[1].getValue())) == null) {
+					Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
+				}
+				else if (edgeExists(nodos[0], nodos[1])) {
+					Main.mostrarError(resourceBundle.getString("grafoEdgeExiste"), resourceBundle);
+				}
+				else {
+
+					dirigido.addEdge(dirigido.findVertexByName(String.valueOf(nodos[0].getValue())), dirigido.findVertexByName(String.valueOf(nodos[1].getValue())), WEIGHT);
+				}
 			}
 		}
 		else {
@@ -301,7 +357,7 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * Insertar un edge al grafo y mostrar el codigo en la pantalla.
+	 * Eliminar un edge del grafo y mostrar el codigo en la pantalla.
 	 */
 	@FXML
 	protected void botonEliminarEdge() {
@@ -312,14 +368,27 @@ public class GrafoController implements Initializable {
 		if (valorNodo1.getText() != null && ! valorNodo1.getText().trim().equals("") && valorNodo2.getText() != null && ! valorNodo2.getText().trim().equals("")) {
 			GrafoNodo[] nodos = getNodosEdge();
 
-			if (nodos[0] == null || nodos[1] == null || ! noDirigido.nodeExists(nodos[0]) || ! noDirigido.nodeExists(nodos[1])) {
-				Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
-			}
-			else if (! noDirigido.edgeExists(nodos[0], nodos[1])) {
-				Main.mostrarError(resourceBundle.getString("grafoNoEdge"), resourceBundle);
+			if (grafoTipos.getTipo() == Grafo.Tipos.NO_DIRIGIDO) {
+				if (nodos[0] == null || nodos[1] == null || !noDirigido.nodeExists(nodos[0]) || !noDirigido.nodeExists(nodos[1])) {
+					Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
+				}
+				else if (!noDirigido.edgeExists(nodos[0], nodos[1])) {
+					Main.mostrarError(resourceBundle.getString("grafoNoEdge"), resourceBundle);
+				}
+				else {
+					noDirigido.removeEdge(nodos[0], nodos[1]);
+				}
 			}
 			else {
-				noDirigido.removeEdge(nodos[0], nodos[1]);
+				if (nodos[0] == null || nodos[1] == null || dirigido.findVertexByName(String.valueOf(nodos[0].getValue())) == null || dirigido.findVertexByName(String.valueOf(nodos[1].getValue())) == null) {
+					Main.mostrarError(resourceBundle.getString("grafoNoNodo"), resourceBundle);
+				}
+				else if (!edgeExists(nodos[0], nodos[1])) {
+					Main.mostrarError(resourceBundle.getString("grafoNoEdge"), resourceBundle);
+				}
+				else {
+					dirigido.removeEdge(dirigido.findVertexByName(String.valueOf(nodos[0].getValue())), dirigido.findVertexByName(String.valueOf(nodos[1].getValue())));
+				}
 			}
 		}
 		else {
@@ -367,6 +436,26 @@ public class GrafoController implements Initializable {
 			}
 		}
 		return nodos;
+	}
+
+	/**
+	 * Buscar un grafo dirigido para ver si existe en edge entre los nodos.
+	 *
+	 * @param nodo1 GrafoNodo: El primer nodo a buscar.
+	 * @param nodo2 GrafoNodo: El otro nodo a buscar.
+	 *
+	 * @return boolean: Verdad si existe el edge.
+	 */
+	private boolean edgeExists(GrafoNodo nodo1, GrafoNodo nodo2) {
+		List<Grafo.Edge<GrafoNodo>> edges = dirigido.getEdges();
+		for (Grafo.Edge<GrafoNodo> edge : edges) {
+			Grafo.Vertex<GrafoNodo> vFrom = edge.getFrom();
+			Grafo.Vertex<GrafoNodo> vTo = edge.getTo();
+			if (vFrom.getData() == nodo1 && vTo.getData() == nodo2) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -510,38 +599,12 @@ public class GrafoController implements Initializable {
 			}
 		}
 		else {
-			// Todo: Remove this
-			// Self
-			/*dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(0), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(1), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(2), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(3), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(4), dirigido.getVertex(4), WEIGHT);*/
-
-			// Horizontals
-			/*dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(1), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(0), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(3), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(2), WEIGHT);*/
-
-			// Verticals
-			//dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(2), WEIGHT);
-			//dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(0), WEIGHT);
-			//dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(3), WEIGHT);
-			//dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(1), WEIGHT);
-
-			// Diagonals
-			dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(3), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(0), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(2), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(1), WEIGHT);
-
 			List<Grafo.Edge<GrafoNodo>> edges = dirigido.getEdges();
 			for (Grafo.Edge<GrafoNodo> edge : edges) {
-				Grafo.Vertex vFrom = edge.getFrom();
-				Grafo.Vertex vTo = edge.getTo();
-				GrafoNodo from = (GrafoNodo) vFrom.getData();
-				GrafoNodo to = (GrafoNodo) vTo.getData();
+				Grafo.Vertex<GrafoNodo> vFrom = edge.getFrom();
+				Grafo.Vertex<GrafoNodo> vTo = edge.getTo();
+				GrafoNodo from = vFrom.getData();
+				GrafoNodo to = vTo.getData();
 
 				if (from == grafoNodos[0]) {
 					if (to == from) {
@@ -698,44 +761,118 @@ public class GrafoController implements Initializable {
 					);
 					graphicsContext.restore();
 				}
-
-				/*
-				// Line between 0 and 2.
-				if (grafoNodos[0] != null && grafoNodos[2] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[2])) {
-					graphicsContext.strokeLine(30, 50, 30, 210);
-				}
-				// Line between 0 and 3.
-				if (grafoNodos[0] != null && grafoNodos[3] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[3])) {
-					graphicsContext.strokeLine(45, 45, 215, 215);
-				}
-				// Line between 0 and 4.
-				if (grafoNodos[0] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[0], grafoNodos[4])) {
+				// Line between 0 and 4
+				if (from == grafoNodos[0] && to == grafoNodos[4]) {
 					graphicsContext.strokeLine(38, 50, 125, 410);
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(345, 125.0, 410.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {120.0, 130.0, 125.0},
+							new double[] {400.0, 400.0, 410.0},
+							3
+					);
+					graphicsContext.restore();
 				}
-				// Line between 1 and 2.
-				if (grafoNodos[1] != null && grafoNodos[2] != null && noDirigido.edgeExists(grafoNodos[1], grafoNodos[2])) {
-					graphicsContext.strokeLine(45, 215, 215, 45);
+				// Line between 4 and 0
+				if (from == grafoNodos[4] && to == grafoNodos[0]) {
+					graphicsContext.strokeLine(38, 50, 125, 410);
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(165, 38.0, 50.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {33.0, 43.0, 38.0},
+							new double[] {40.0, 40.0, 50.0},
+							3
+					);
+					graphicsContext.restore();
 				}
-				// Line between 1 and 3.
-				if (grafoNodos[1] != null && grafoNodos[3] != null && noDirigido.edgeExists(grafoNodos[1], grafoNodos[3])) {
-					graphicsContext.strokeLine(230, 50, 230, 210);
-				}
-				// Line between 1 and 4.
-				if (grafoNodos[1] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[1], grafoNodos[4])) {
+				// Line between 1 and 4
+				if (from == grafoNodos[1] && to == grafoNodos[4]) {
 					graphicsContext.strokeLine(221, 50, 125, 410);
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(375, 125.0, 410.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {120.0, 130.0, 125.0},
+							new double[] {400.0, 400.0, 410.0},
+							3
+					);
+					graphicsContext.restore();
 				}
-				// Line between 2 and 3
-				if (grafoNodos[2] != null && grafoNodos[3] != null && noDirigido.edgeExists(grafoNodos[2], grafoNodos[3])) {
-					graphicsContext.strokeLine(50, 230, 210, 230);
+				// Line between 4 and 1
+				if (from == grafoNodos[4] && to == grafoNodos[1]) {
+					graphicsContext.strokeLine(221, 50, 125, 410);
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(195, 222.0, 50.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {217.0, 227.0, 222.0},
+							new double[] {40.0, 40.0, 50.0},
+							3
+					);
+					graphicsContext.restore();
 				}
-				// Line between 2 and 4.
-				if (grafoNodos[2] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[2], grafoNodos[4])) {
+				// Line between 2 and 4
+				if (from == grafoNodos[2] && to == grafoNodos[4]) {
 					graphicsContext.strokeLine(38, 250, 125, 410);
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(330, 125.0, 410.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {120.0, 130.0, 125.0},
+							new double[] {400.0, 400.0, 410.0},
+							3
+					);
+					graphicsContext.restore();
 				}
-				// Line between 3 and 4.
-				if (grafoNodos[3] != null && grafoNodos[4] != null && noDirigido.edgeExists(grafoNodos[3], grafoNodos[4])) {
+				// Line between 4 and 2
+				if (from == grafoNodos[4] && to == grafoNodos[2]) {
+					graphicsContext.strokeLine(38, 250, 125, 410);
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(150, 37.0, 249.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {32.0, 42.0, 37.0},
+							new double[] {239.0, 239.0, 249.0},
+							3
+					);
+					graphicsContext.restore();
+				}
+				// Line between 3 and 4
+				if (from == grafoNodos[3] && to == grafoNodos[4]) {
 					graphicsContext.strokeLine(221, 250, 125, 410);
-				}*/
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(35, 125.0, 410.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {120.0, 130.0, 125.0},
+							new double[] {400.0, 400.0, 410.0},
+							3
+					);
+					graphicsContext.restore();
+				}
+				// Line between 4 and 3
+				if (from == grafoNodos[4] && to == grafoNodos[3]) {
+					graphicsContext.strokeLine(221, 250, 125, 410);
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(210, 221.0, 249.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {216.0, 226.0, 221.0},
+							new double[] {239.0, 239.0, 249.0},
+							3
+					);
+					graphicsContext.restore();
+				}
 			}
 		}
 	}
