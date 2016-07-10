@@ -532,6 +532,9 @@ public class GrafoController implements Initializable {
 
 			// Diagonals
 			dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(3), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(0), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(2), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(1), WEIGHT);
 
 			List<Grafo.Edge<GrafoNodo>> edges = dirigido.getEdges();
 			for (Grafo.Edge<GrafoNodo> edge : edges) {
@@ -649,6 +652,48 @@ public class GrafoController implements Initializable {
 					graphicsContext.fillPolygon(
 							new double[] {208.0, 218.0, 213.0},
 							new double[] {208.0, 208.0, 218.0},
+							3
+					);
+					graphicsContext.restore();
+				}
+				// Line between 3 and 0
+				if (from == grafoNodos[3] && to == grafoNodos[0]) {
+					graphicsContext.strokeLine(45, 45, 215, 215);
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(135, 44.0, 44.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {39.0, 49.0, 44.0},
+							new double[] {34.0, 34.0, 44.0},
+							3
+					);
+					graphicsContext.restore();
+				}
+				// Line between 1 and 2
+				if (from == grafoNodos[1] && to == grafoNodos[2]) {
+					graphicsContext.strokeLine(45, 215, 215, 45);
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(45, 47.0, 213.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {42.0, 52.0, 47.0},
+							new double[] {208.0, 208.0, 218.0},
+							3
+					);
+					graphicsContext.restore();
+				}
+				// Line between 2 and 1
+				if (from == grafoNodos[2] && to == grafoNodos[1]) {
+					graphicsContext.strokeLine(45, 215, 215, 45);
+
+					graphicsContext.save();
+					Rotate rotate = new Rotate(225, 217.0, 43.0);
+					graphicsContext.setTransform(rotate.getMxx(), rotate.getMyx(), rotate.getMxy(), rotate.getMyy(), rotate.getTx(), rotate.getTy());
+					graphicsContext.fillPolygon(
+							new double[] {212.0, 222.0, 217.0},
+							new double[] {33.0, 33.0, 43.0},
 							3
 					);
 					graphicsContext.restore();
