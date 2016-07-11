@@ -28,7 +28,7 @@
             <!--<MenuItem text="%binario"/>
             <MenuItem text="%busquedaBinario"/>
             <MenuItem text="%AVL"/>-->
-            <MenuItem text="%rojoNegro"/>
+            <!--<MenuItem text="%rojoNegro"/>-->
             <!--<MenuItem text="%bTree"/>-->
         </Menu>
         <Menu text="%grafos">

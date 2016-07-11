@@ -2,6 +2,8 @@ package cl.cromer.estructuras;
 
 import javafx.scene.paint.Color;
 
+import java.util.Random;
+
 /**
  * Rotación de colores.
  *
@@ -71,7 +73,7 @@ public class Colores {
 				break;
 			case 5:
 				color = 6;
-				texto = Color.BLACK;
+				texto = Color.WHITE;
 				fondo = Color.GREEN;
 				border = Color.BLACK;
 				break;
@@ -87,6 +89,20 @@ public class Colores {
 				fondo = Color.BLUE;
 				border = Color.BLACK;
 		}
+
+	}
+
+	public void randomColor() {
+		int r = (int)(Math.random() * 256);
+		int g = (int)(Math.random() * 256);
+		int b = (int)(Math.random() * 256);
+		fondo = Color.rgb(r, g, b);
+
+		// Generate a text color that doesn't conflict
+		double a = 1 - (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+		texto = (a > 0.5)?Color.WHITE: Color.BLACK;
+
+		border = Color.BLACK;
 	}
 
 	/**

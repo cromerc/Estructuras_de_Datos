@@ -55,6 +55,7 @@ public class Arbol {
 							niveles.add(new ArrayList<>());
 						}
 						calcularNiveles(arbol, 0);
+						niveles.remove(niveles.size() - 1);
 
 						return true;
 					}
@@ -76,6 +77,7 @@ public class Arbol {
 							niveles.add(new ArrayList<>());
 						}
 						calcularNiveles(arbol, 0);
+						niveles.remove(niveles.size() - 1);
 
 						return true;
 					}
@@ -123,7 +125,6 @@ public class Arbol {
 	public void calcularNiveles(ArbolNodo nodo, int nivel) {
 		try {
 			if (nodo != null) {
-				nodo.setNivel(nivel);
 				niveles.get(nivel).add(nodo);
 				nivel++;
 				calcularNiveles(nodo.getIzquerda(), nivel);

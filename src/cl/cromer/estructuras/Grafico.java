@@ -84,6 +84,70 @@ public class Grafico {
 	}
 
 	/**
+	 * Crear una linea horizontal para conecatar nodos de arboles.
+	 *
+	 * @return Pane: Devolver el pane que contiene la linea.
+	 */
+	public static Pane crearEsquinaDerecha() {
+		Line right = new Line();
+		right.setStartY(21);
+		right.setEndY(21);
+		right.setStartX(20);
+		right.setEndX(40);
+
+		Line up = new Line();
+		up.setStartY(21);
+		up.setEndY(40);
+		up.setStartX(20);
+		up.setEndX(20);
+
+		Pane stackPane = new Pane();
+		stackPane.getChildren().addAll(right, up);
+		return stackPane;
+	}
+
+	/**
+	 * Crear una linea para conectar arboles.
+	 *
+	 * @return Pane: Devolver el pane que contiene las lienas.
+	 */
+	public static Pane crearEsquinaIzquerda() {
+		Line left = new Line();
+		left.setStartY(21);
+		left.setEndY(21);
+		left.setStartX(0);
+		left.setEndX(20);
+
+		Line up = new Line();
+		up.setStartY(21);
+		up.setEndY(40);
+		up.setStartX(20);
+		up.setEndX(20);
+
+		Pane stackPane = new Pane();
+		stackPane.getChildren().addAll(left, up);
+		return stackPane;
+	}
+
+	/**
+	 * Crear una linea para conectar arboles.
+	 *
+	 * @return StackPane: Devolver el pane que contiene las lienas.
+	 */
+	public static StackPane crearLineaHorizontal() {
+		Line line = new Line();
+		line.setStrokeWidth(1.5);
+		line.setStartY(20);
+		line.setEndY(20);
+		line.setStartX(0);
+		line.setEndX(40);
+
+		StackPane stackPane = new StackPane();
+		stackPane.getChildren().addAll(line);
+		return stackPane;
+	}
+
+	/**
 	 * Crear una flecha que apunta por arriba.
 	 *
 	 * @return StackPane: Devolver el stackpane que contiene la flecha.

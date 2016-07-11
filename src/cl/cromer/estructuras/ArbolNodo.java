@@ -5,14 +5,14 @@ final public class ArbolNodo {
 	private ArbolNodo izquerda;
 	private ArbolNodo derecha;
 	private int valor;
-	private int nivel;
+	private int x;
 
 	public ArbolNodo(int valor, ArbolNodo padre) {
 		this.padre = padre;
 		this.izquerda = null;
 		this.derecha = null;
 		this.valor = valor;
-		this.nivel = 1;
+		this.x=0;
 	}
 
 	public ArbolNodo getPadre() {
@@ -43,11 +43,11 @@ final public class ArbolNodo {
 		return valor;
 	}
 
-	public int getNivel() {
-		return nivel;
+	public int getX() {
+		return x;
 	}
 
-	public void setNivel(int nivel) {
-		this.nivel = nivel;
+	public void setX(int x) {
+		this.x = x;
 	}
 }

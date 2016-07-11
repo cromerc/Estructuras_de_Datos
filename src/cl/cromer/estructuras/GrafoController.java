@@ -873,6 +873,8 @@ public class GrafoController implements Initializable {
 					);
 					graphicsContext.restore();
 				}
+
+				// Todo: make this more effecient by removing the extra line draws that overlap
 			}
 		}
 	}
