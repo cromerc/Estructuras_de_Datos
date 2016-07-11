@@ -87,6 +87,13 @@
   <property name="project.jdk.home" value="${jdk.home.1.8}"/>
   <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
   <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Global Libraries -->
+  
+  <path id="library.dtjava.classpath">
+    <pathelement location="/home/cromer/.IntelliJIdea2016.1/config/javascript/extLibs/http_java.com_js_dtjava.js"/>
+  </path>
   <!-- Register Custom Compiler Taskdefs -->
   <property name="javac2.home" value="${idea.home}/lib"/>
   <path id="javac2.classpath">
@@ -123,20 +130,24 @@
   
   <path id="estructuras_de_datos.module.production.classpath">
     <path refid="${module.jdk.classpath.estructuras_de_datos}"/>
+    <path refid="library.dtjava.classpath"/>
   </path>
   
   <path id="estructuras_de_datos.runtime.production.module.classpath">
     <pathelement location="${estructuras_de_datos.output.dir}"/>
+    <path refid="library.dtjava.classpath"/>
   </path>
   
   <path id="estructuras_de_datos.module.classpath">
     <path refid="${module.jdk.classpath.estructuras_de_datos}"/>
     <pathelement location="${estructuras_de_datos.output.dir}"/>
+    <path refid="library.dtjava.classpath"/>
   </path>
   
   <path id="estructuras_de_datos.runtime.module.classpath">
     <pathelement location="${estructuras_de_datos.testoutput.dir}"/>
     <pathelement location="${estructuras_de_datos.output.dir}"/>
+    <path refid="library.dtjava.classpath"/>
   </path>
   
   
