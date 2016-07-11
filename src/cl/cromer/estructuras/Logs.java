@@ -17,7 +17,7 @@ public class Logs {
 	/**
 	 * Estado de depuración.
 	 */
-	static final public boolean DEBUG = true;
+	static final public boolean DEBUG = false;
 
 	/**
 	 * Tipos de depuración.
