@@ -28,7 +28,7 @@ public class Main extends Application {
 	/**
 	 * El logger.
 	 */
-	static private Logs logs;
+	static private Logs logs = null;
 
 	/**
 	 * Crear el stage y la scene para la aplicación grafica.
@@ -68,7 +68,9 @@ public class Main extends Application {
 		catch (Exception exception) {
 			Logs.log(Level.SEVERE, exception);
 		}
-		logs.close();
+		if (logs != null) {
+			logs.close();
+		}
 	}
 
 	/**
