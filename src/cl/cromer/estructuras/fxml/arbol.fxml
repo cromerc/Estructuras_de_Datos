@@ -12,15 +12,28 @@
         <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS" spacing="50">
             <VBox spacing="10">
                 <HBox alignment="CENTER" spacing="10">
-                    <!--<Button text="%llenar" onAction="#botonLlenar"/>-->
-                    <!--<Button text="%vaciar" onAction="#botonVaciar"/>-->
+                    <Button text="%llenar" onAction="#botonLlenar"/>
+                    <Button text="%vaciar" onAction="#botonVaciar"/>
                 </HBox>
                 <HBox alignment="CENTER" spacing="10">
                     <Button text="%insertar" onAction="#botonInsertar"/>
-                    <!--<Button text="%eliminar" onAction="#botonEliminar"/>-->
+                    <Button text="%eliminar" onAction="#botonEliminar"/>
                     <TextFieldLimited fx:id="valorArbol" maxLength="3" prefWidth="50"/>
                 </HBox>
-                <GridPane fx:id="contenidoArbol" alignment="CENTER"/>
+	            <HBox alignment="CENTER" spacing="10">
+		            <Button text="%arbolPreOrden" onAction="#botonPreOrder"/>
+		            <Button text="%arbolInOrden" onAction="#botonInOrder"/>
+		            <Button text="%arbolPostOrden" onAction="#botonPostOrder"/>
+	            </HBox>
+	            <HBox alignment="CENTER" spacing="10">
+		            <Button text="%arbolRotarIzquerda" onAction="#botonRotarIzquerda"/>
+		            <Button text="%arbolRotarDerecha" onAction="#botonRotarDerecha"/>
+		            <TextFieldLimited fx:id="valorRotar" maxLength="3" prefWidth="50" text="10"/>
+	            </HBox>
+	            <HBox fx:id="contenidoOrder" alignment="CENTER"/>
+                <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <GridPane fx:id="contenidoArbol" alignment="TOP_LEFT"/>
+	            </ScrollPane>
             </VBox>
             <StackPane alignment="TOP_LEFT" minWidth="450">
                 <Text fx:id="codigoArbol"/>

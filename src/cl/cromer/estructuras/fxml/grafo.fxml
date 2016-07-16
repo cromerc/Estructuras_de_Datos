@@ -28,6 +28,8 @@
 					<Button text="%eliminar" onAction="#botonEliminarEdge"/>
 					<TextFieldLimited fx:id="valorNodo1" maxLength="3" prefWidth="50"/>
 					<TextFieldLimited fx:id="valorNodo2" maxLength="3" prefWidth="50"/>
+					<Text text="%grafoWeight"/>
+					<TextFieldLimited fx:id="valorWeight" maxLength="3" prefWidth="50"/>
 				</HBox>
 				<Canvas fx:id="contenidoGrafo" width="300" height="500"/>
 			</VBox>

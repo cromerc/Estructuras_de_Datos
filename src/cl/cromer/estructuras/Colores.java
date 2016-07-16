@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import java.util.Random;
 
 /**
- * Rotación de colores.
+ * Rotación y generación de colores.
  *
  * @author Chris Cromer
  */
@@ -89,10 +89,68 @@ public class Colores {
 				fondo = Color.BLUE;
 				border = Color.BLACK;
 		}
-
 	}
 
-	public void randomColor() {
+	/**
+	 * Cambiar el color al siguinte. Si no hay, voler al primer.
+	 */
+	public void colorAleatorio() {
+		Random random = new Random();
+		int maximo = MAX_COLORS;
+		int minimo = 1;
+		int rango = maximo - minimo + 1;
+
+		int color = random.nextInt(rango) + minimo;
+
+		switch (color) {
+			case 1:
+				this.color = 2;
+				texto = Color.WHITE;
+				fondo = Color.RED;
+				border = Color.BLACK;
+				break;
+			case 2:
+				this.color = 3;
+				texto = Color.BLACK;
+				fondo = Color.WHITE;
+				border = Color.BLACK;
+				break;
+			case 3:
+				this.color = 4;
+				texto = Color.BLACK;
+				fondo = Color.PINK;
+				border = Color.BLACK;
+				break;
+			case 4:
+				this.color = 5;
+				texto = Color.BLACK;
+				fondo = Color.YELLOW;
+				border = Color.BLACK;
+				break;
+			case 5:
+				this.color = 6;
+				texto = Color.WHITE;
+				fondo = Color.GREEN;
+				border = Color.BLACK;
+				break;
+			case 6:
+				this.color = 7;
+				texto = Color.BLACK;
+				fondo = Color.ORANGE;
+				border = Color.BLACK;
+				break;
+			default:
+				this.color = 1;
+				texto = Color.WHITE;
+				fondo = Color.BLUE;
+				border = Color.BLACK;
+		}
+	}
+
+	/**
+	 * Generar colores al azar.
+	 */
+	public void randomColorGenrator() {
 		int r = (int)(Math.random() * 256);
 		int g = (int)(Math.random() * 256);
 		int b = (int)(Math.random() * 256);

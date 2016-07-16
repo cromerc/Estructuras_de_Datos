@@ -4,10 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 /**
@@ -23,10 +25,22 @@ public class ArbolController implements Initializable {
 	private TextFieldLimited valorArbol;
 
 	/**
+	 * El nodo a rotar.
+	 */
+	@FXML
+	private TextFieldLimited valorRotar;
+
+	/**
 	 * Donde poner el contenido de array.
 	 */
 	@FXML
 	private GridPane contenidoArbol;
+
+	/**
+	 * El contendido del orden.
+	 */
+	@FXML
+	private HBox contenidoOrder;
 
 	/**
 	 * Donde va el codigo a mostrar a la pantalla.
@@ -50,11 +64,6 @@ public class ArbolController implements Initializable {
 	private Arbol arbol;
 
 	/**
-	 * Grafico rectangulos.
-	 */
-	private Grafico grafico;
-
-	/**
 	 * Inicializar todos los datos y dibujar las graficas.
 	 *
 	 * @param location URL: El URL de fxml en uso.
@@ -66,37 +75,58 @@ public class ArbolController implements Initializable {
 
 		arbol = null;
 		scene = null;
+	}
 
-		// TODO: Remove this
-		arbol = new Arbol();
-		/*arbol.insertar(50);
+	/**
+	 * Llenar un arbol al azar.
+	 */
+	@FXML
+	protected void botonLlenar() {
+		if (scene == null) {
+			initializeArbol();
+		}
 
-		arbol.insertar(25);
-		arbol.insertar(75);
+		/*Random random = new Random();
+		int maximo = 99;
+		int minimo = 0;
+		int rango = maximo - minimo + 1;
 
-		arbol.insertar(35);
-		arbol.insertar(15);*/
+		for (int i = 0; i < 5; i++) {
+			if (arbol.size() >= 5) {
+				break;
+			}
+			int numero = random.nextInt(rango) + minimo;
+			while (!arbol.insertar(numero)) {
+				numero = random.nextInt(rango) + minimo;
+				if (arbol.size() >= 5) {
+					break;
+				}
+			}
+		}*/
 
-		arbol.insertar(5);
-		arbol.insertar(3);
-		arbol.insertar(4);
-		arbol.insertar(2);
-		arbol.insertar(1);
+		arbol.insertar(10);
 		arbol.insertar(8);
-		arbol.insertar(7);
-		arbol.insertar(6);
 		arbol.insertar(9);
-		//arbol.insertar(7);
-
-		/*arbol.insertar(5);
-		arbol.insertar(3);
-		arbol.insertar(4);
-		arbol.insertar(2);
-		arbol.insertar(1);
-		arbol.insertar(6);
 		arbol.insertar(7);
-		arbol.insertar(8);
-		arbol.insertar(9);*/
+		arbol.insertar(12);
+		arbol.insertar(11);
+		arbol.insertar(13);
+
+		generarGrafico();
+	}
+
+
+	/**
+	 * Vaciar el arbol de todos los valores.
+	 */
+	@FXML
+	protected void botonVaciar() {
+		if (scene == null) {
+			initializeArbol();
+		}
+
+		arbol = new Arbol();
+		generarGrafico();
 	}
 
 	/**
@@ -131,21 +161,20 @@ public class ArbolController implements Initializable {
 		else {
 			Main.mostrarError(resourceBundle.getString("arbolNoValor"), resourceBundle);
 		}
-		generarGrafico();
 	}
 
 	/**
 	 * Eliminar un valor del arbol y mostrar el codigo en la pantalla.
 	 */
-	/*@FXML
+	@FXML
 	protected void botonEliminar() {
 		if (scene == null) {
 			initializeArbol();
 		}
 
 		// Mostrar el codigo
-		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-		codigoArray.setText(codigoTexto);
+		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
+		codigoArray.setText(codigoTexto);*/
 
 		if (valorArbol.getText() != null && ! valorArbol.getText().trim().equals("")) {
 			try {
@@ -155,7 +184,7 @@ public class ArbolController implements Initializable {
 					generarGrafico();
 				}
 				else {
-					Main.mostrarError(resourceBundle.getString("arbolValorExiste"), resourceBundle);
+					Main.mostrarError(resourceBundle.getString("arbolNoEsta"), resourceBundle);
 				}
 			}
 			catch (NumberFormatException exception) {
@@ -166,25 +195,141 @@ public class ArbolController implements Initializable {
 		else {
 			Main.mostrarError(resourceBundle.getString("arbolNoValor"), resourceBundle);
 		}
+	}
+
+	/**
+	 * Rotar el nodo a la izquerda.
+	 */
+	@FXML
+	protected void botonRotarIzquerda() {
+		if (scene == null) {
+			initializeArbol();
+		}
+
+		// Mostrar el codigo
+		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
+		codigoArray.setText(codigoTexto);*/
+
+		arbol.rotarIzquerda(Integer.valueOf(valorRotar.getText()));
+
 		generarGrafico();
-	}*/
+	}
+
+	/**
+	 * Rotar el nodo a la izquerda.
+	 */
+	@FXML
+	protected void botonRotarDerecha() {
+		if (scene == null) {
+			initializeArbol();
+		}
+
+		// Mostrar el codigo
+		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
+		codigoArray.setText(codigoTexto);*/
+
+		arbol.rotarDerecha(Integer.valueOf(valorRotar.getText()));
+
+		generarGrafico();
+	}
+
+	/**
+	 * Mostrar los elementos en orden de pre order.
+	 */
+	@FXML
+	protected void botonPreOrder() {
+		if (scene == null) {
+			initializeArbol();
+		}
+
+		// Mostrar el codigo
+		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
+		codigoArray.setText(codigoTexto);*/
+
+		Colores colores = new Colores();
+
+		contenidoOrder.getChildren().clear();
+
+		List<ArbolNodo> orden = arbol.preOrder();
+		for (ArbolNodo anOrden : orden) {
+			contenidoOrder.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(anOrden.getValor()), String.valueOf(anOrden.getValor())));
+			colores.siguinteColor();
+		}
+	}
+
+	/**
+	 * Mostrar los elementos en orden de in order.
+	 */
+	@FXML
+	protected void botonInOrder() {
+		if (scene == null) {
+			initializeArbol();
+		}
+
+		// Mostrar el codigo
+		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
+		codigoArray.setText(codigoTexto);*/
+
+		Colores colores = new Colores();
+
+		contenidoOrder.getChildren().clear();
+
+		List<ArbolNodo> orden = arbol.inOrder();
+		for (ArbolNodo anOrden : orden) {
+			contenidoOrder.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(anOrden.getValor()), String.valueOf(anOrden.getValor())));
+			colores.siguinteColor();
+		}
+	}
+
+	/**
+	 * Mostrar los elementos en orden de post order.
+	 */
+	@FXML
+	protected void botonPostOrder() {
+		if (scene == null) {
+			initializeArbol();
+		}
+
+		// Mostrar el codigo
+		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
+		codigoArray.setText(codigoTexto);*/
+
+		Colores colores = new Colores();
+
+		contenidoOrder.getChildren().clear();
+
+		List<ArbolNodo> orden = arbol.postOrder();
+		for (ArbolNodo anOrden : orden) {
+			contenidoOrder.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(anOrden.getValor()), String.valueOf(anOrden.getValor())));
+			colores.siguinteColor();
+		}
+	}
 
 	/**
 	 * Crear un arbol nuevo.
 	 */
 	private void initializeArbol() {
 		scene = contenidoArbol.getScene();
-		// TODO: remove this
+		// Make the grid line present on the screen
 		//contenidoArbol.setGridLinesVisible(true);
-		grafico = new Grafico(scene);
-		//this.arbol = new Arbol();
+		this.arbol = new Arbol();
 		Arbol.Tipos tipos = (Arbol.Tipos) scene.getUserData();
 	}
 
+	/**
+	 * Este metodo generará el grafico de arbol en la ventana.
+	 */
 	private void generarGrafico() {
-		grafico.removerDestacar();
+		contenidoOrder.getChildren().clear();
 
-		// Node 0 contains the grid
+		Colores colores = new Colores();
+
+		for (int i = 0; i < arbol.size(); i++) {
+			contenidoOrder.getChildren().addAll(Grafico.crearCaja(colores, String.valueOf(i)));
+			colores.siguinteColor();
+		}
+
+		// Node 0 contains the grid lines, get them and restore them in the new drawing.
 		//Node node = contenidoArbol.getChildren().get(0);
 		contenidoArbol.getChildren().clear();
 		//contenidoArbol.getChildren().add(0, node);
@@ -196,6 +341,13 @@ public class ArbolController implements Initializable {
 		int ancho = (int) Math.pow(2, altura) + (int) ((Math.pow(2, altura)) - 1);
 
 		Text text;
+		if (altura == 0) {
+			contenidoArbol.addColumn(0);
+			text = new Text();
+			text.setText(" ");
+			text.setId(0 + "_" + 0);
+			contenidoArbol.add(text, 0, 0);
+		}
 		for (int i = 0; i < altura; i++) {
 			contenidoArbol.addRow(i);
 			for (int j = 0; j < ancho; j++) {
@@ -207,7 +359,7 @@ public class ArbolController implements Initializable {
 			}
 		}
 
-		Colores colores = new Colores();
+		colores = new Colores();
 		int k;
 		int l = 0;
 		for (int i = niveles.size() - 1; i >= 0 ; i--) {
@@ -237,8 +389,6 @@ public class ArbolController implements Initializable {
 							contenidoArbol.add(Grafico.crearLineaHorizontal(), m, i);
 						}
 					}
-
-					// Check the left for visual conflicts
 
 					colores.siguinteColor();
 					text = (Text) scene.lookup("#texto_" + j + "_" + i);

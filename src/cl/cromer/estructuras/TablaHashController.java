@@ -98,10 +98,14 @@ public class TablaHashController implements Initializable {
 
 		for (int i = 0; i < 10; i++) {
 			int numero = random.nextInt(rango) + minimo;
-			while (! tablaHash.insertar(palabras.getPalabra(), numero)) {
-				if (tablaHash.size() == 10) {
+			while (!tablaHash.insertar(palabras.getPalabra(), numero)) {
+				numero = random.nextInt(rango) + minimo;
+				if (tablaHash.size() >= 10) {
 					break;
 				}
+			}
+			if (tablaHash.size() >= 10) {
+				break;
 			}
 		}
 		generarGrafico();
