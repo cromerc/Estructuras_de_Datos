@@ -1,0 +1,39 @@
+public void preOrder(ArbolNodo nodo) {
+	if (nodo != null) {
+		System.out.println(nodo.getValor());
+		preOrder(nodo.getIzquerda());
+		preOrder(nodo.getDerecha());
+	}
+}
+
+final public class ArbolNodo {
+	private ArbolNodo izquerda;
+	private ArbolNodo derecha;
+	private int valor;
+
+	public ArbolNodo(int valor) {
+		this.izquerda = null;
+		this.derecha = null;
+		this.valor = valor;
+	}
+
+	public ArbolNodo getIzquerda() {
+		return izquerda;
+	}
+
+	public void setIzquerda(ArbolNodo izquerda) {
+		this.izquerda = izquerda;
+	}
+
+	public ArbolNodo getDerecha() {
+		return derecha;
+	}
+
+	public void setDerecha(ArbolNodo derecha) {
+		this.derecha = derecha;
+	}
+
+	public int getValor() {
+		return valor;
+	}
+}

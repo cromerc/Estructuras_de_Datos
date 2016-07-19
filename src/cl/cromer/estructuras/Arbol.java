@@ -54,7 +54,7 @@ public class Arbol {
 	 */
 	public boolean insertar(int valor) {
 		if (this.arbol == null) {
-			arbol = new ArbolNodo(valor, null);
+			arbol = new ArbolNodo(valor);
 			size++;
 
 			setAltura(calcularAltura(arbol));
@@ -69,7 +69,7 @@ public class Arbol {
 			return true;
 		}
 		else {
-			ArbolNodo nuevo = new ArbolNodo(valor, null);
+			ArbolNodo nuevo = new ArbolNodo(valor);
 			ArbolNodo actual = arbol;
 			ArbolNodo padre;
 			while (true) {
@@ -128,6 +128,10 @@ public class Arbol {
 	 * @return boolean: Verdad si fue eliminado, falso si no existe.
 	 */
 	public boolean eliminar(int valor) {
+		if (arbol == null) {
+			return false;
+		}
+
 		ArbolNodo actual = arbol;
 		ArbolNodo padre = arbol;
 		boolean izquerda = true;
@@ -161,23 +165,29 @@ public class Arbol {
 		else if(actual.getDerecha() == null) {
 			if (actual == arbol) {
 				arbol = actual.getIzquerda();
+				arbol.setPadre(null);
 			}
 			else if (izquerda) {
 				padre.setIzquerda(actual.getIzquerda());
+				actual.setPadre(padre);
 			}
 			else {
 				padre.setDerecha(actual.getIzquerda());
+				actual.setPadre(padre);
 			}
 		}
 		else if(actual.getIzquerda() == null) {
 			if (actual == arbol) {
 				arbol = actual.getDerecha();
+				arbol.setPadre(null);
 			}
 			else if (izquerda) {
 				padre.setIzquerda(actual.getDerecha());
+				actual.setPadre(padre);
 			}
 			else {
 				padre.setDerecha(actual.getDerecha());
+				actual.setPadre(padre);
 			}
 		}
 		else {
@@ -192,19 +202,24 @@ public class Arbol {
 			if (successor != actual.getDerecha()) {
 				successorParent.setIzquerda(successor.getDerecha());
 				successor.setDerecha(actual.getDerecha());
+				actual.setPadre(successor);
 			}
 
 			if (actual == arbol) {
 				arbol = successor;
+				arbol.setPadre(null);
 			}
 			else if (izquerda) {
 				padre.setIzquerda(successor);
+				successor.setPadre(padre);
 			}
 			else {
 				padre.setDerecha(successor);
+				successor.setPadre(padre);
 			}
 
 			successor.setIzquerda(actual.getIzquerda());
+			actual.setPadre(successor);
 		}
 		size--;
 		setAltura(calcularAltura(arbol));
@@ -504,7 +519,7 @@ public class Arbol {
 	}
 
 	/**
-	 * Esta clase contiene los tipos de arboles.
+	 * Esta clase contiene los arbolTipo de arboles.
 	 *
 	 * @author Chris Cromer
 	 */

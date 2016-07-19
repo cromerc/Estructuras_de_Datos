@@ -1,0 +1,93 @@
+public void rotarDerecha(int valor) {
+	if (arbol == null) {
+		// No hay nodos.
+		return;
+	}
+
+	ArbolNodo hijo = arbol;
+	ArbolNodo padre;
+	ArbolNodo abuelo;
+	while (true) {
+		abuelo = padre;
+		padre = hijo;
+		if (valor == hijo.getValor()) {
+			// Se encontró
+			hijo = padre.getIzquerda();
+			if (hijo == null) {
+				return false;
+			}
+
+			// Rotar los valores.
+			ArbolNodo hijoDerecha = hijo.getDerecha();
+
+			if (arbol == padre) {
+				arbol = hijo;
+			}
+			else {
+				if (abuelo.getDerecha() == padre) {
+					abuelo.setDerecha(hijo);
+				}
+				else {
+					abuelo.setIzquerda(hijo);
+				}
+			}
+
+			hijo.setDerecha(padre);
+			if (hijoDerecha != null) {
+				padre.setIzquerda(hijoDerecha);
+			}
+			else {
+				padre.setIzquerda(null);
+			}
+			return;
+		}
+		else if (valor < hijo.getValor()) {
+			// Izquerda
+			hijo = hijo.getIzquerda();
+			if (hijo == null) {
+				// No existe el nodo.
+				return;
+			}
+		}
+		else {
+			// Derecha
+			hijo = hijo.getDerecha();
+			if (hijo == null) {
+				// No existe el nodo.
+				return;
+			}
+		}
+	}
+}
+
+final public class ArbolNodo {
+    private ArbolNodo izquerda;
+    private ArbolNodo derecha;
+    private int valor;
+
+    public ArbolNodo(int valor) {
+        this.izquerda = null;
+        this.derecha = null;
+        this.valor = valor;
+    }
+
+    public ArbolNodo getIzquerda() {
+        return izquerda;
+    }
+
+    public void setIzquerda(ArbolNodo izquerda) {
+        this.izquerda = izquerda;
+    }
+
+    public ArbolNodo getDerecha() {
+        return derecha;
+    }
+
+    public void setDerecha(ArbolNodo derecha) {
+        this.derecha = derecha;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+}

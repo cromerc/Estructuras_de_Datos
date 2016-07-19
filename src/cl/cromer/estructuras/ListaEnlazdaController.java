@@ -276,6 +276,11 @@ public class ListaEnlazdaController implements Initializable {
 		nuevaLista();
 	}
 
+	/**
+	 * Devolver la string de tipo de lista enlazada.
+	 *
+	 * @return String: El nombre del tipo de lista enlazada.
+	 */
 	private String getTipoString() {
 		String tipo;
 		switch (listaEnlazadaTipos.getTipo()) {

@@ -1,0 +1,39 @@
+public void postOrder(ArbolNodo nodo) {
+	if (nodo != null) {
+		postOrder(nodo.getIzquerda());
+		postOrder(nodo.getDerecha());
+		System.out.println(nodo.getValor());
+	}
+}
+
+final public class ArbolNodo {
+	private ArbolNodo izquerda;
+	private ArbolNodo derecha;
+	private int valor;
+
+	public ArbolNodo(int valor) {
+		this.izquerda = null;
+		this.derecha = null;
+		this.valor = valor;
+	}
+
+	public ArbolNodo getIzquerda() {
+		return izquerda;
+	}
+
+	public void setIzquerda(ArbolNodo izquerda) {
+		this.izquerda = izquerda;
+	}
+
+	public ArbolNodo getDerecha() {
+		return derecha;
+	}
+
+	public void setDerecha(ArbolNodo derecha) {
+		this.derecha = derecha;
+	}
+
+	public int getValor() {
+		return valor;
+	}
+}

@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 /**
  * Esta clase es para controlar todos la interfaz de Arbol.
@@ -64,6 +65,11 @@ public class ArbolController implements Initializable {
 	private Arbol arbol;
 
 	/**
+	 * El tipo de arbol actual.
+	 */
+	Arbol.Tipos arbolTipo;
+
+	/**
 	 * Inicializar todos los datos y dibujar las graficas.
 	 *
 	 * @param location URL: El URL de fxml en uso.
@@ -86,7 +92,7 @@ public class ArbolController implements Initializable {
 			initializeArbol();
 		}
 
-		/*Random random = new Random();
+		Random random = new Random();
 		int maximo = 99;
 		int minimo = 0;
 		int rango = maximo - minimo + 1;
@@ -102,15 +108,7 @@ public class ArbolController implements Initializable {
 					break;
 				}
 			}
-		}*/
-
-		arbol.insertar(10);
-		arbol.insertar(8);
-		arbol.insertar(9);
-		arbol.insertar(7);
-		arbol.insertar(12);
-		arbol.insertar(11);
-		arbol.insertar(13);
+		}
 
 		generarGrafico();
 	}
@@ -139,8 +137,9 @@ public class ArbolController implements Initializable {
 		}
 
 		// Mostrar el codigo
-		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-		codigoArray.setText(codigoTexto);*/
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/arbol" + tipo + "/insertar")).useDelimiter("\\Z").next();
+		codigoArbol.setText(codigoTexto);
 
 		if (valorArbol.getText() != null && ! valorArbol.getText().trim().equals("")) {
 			try {
@@ -173,8 +172,9 @@ public class ArbolController implements Initializable {
 		}
 
 		// Mostrar el codigo
-		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-		codigoArray.setText(codigoTexto);*/
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/arbol" + tipo + "/eliminar")).useDelimiter("\\Z").next();
+		codigoArbol.setText(codigoTexto);
 
 		if (valorArbol.getText() != null && ! valorArbol.getText().trim().equals("")) {
 			try {
@@ -207,12 +207,28 @@ public class ArbolController implements Initializable {
 		}
 
 		// Mostrar el codigo
-		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-		codigoArray.setText(codigoTexto);*/
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/arbol" + tipo + "/rotarIzquerda")).useDelimiter("\\Z").next();
+		codigoArbol.setText(codigoTexto);
 
-		arbol.rotarIzquerda(Integer.valueOf(valorRotar.getText()));
-
-		generarGrafico();
+		if (valorRotar.getText() != null && ! valorRotar.getText().trim().equals("")) {
+			try {
+				boolean exito = arbol.rotarIzquerda(Integer.valueOf(valorRotar.getText()));
+				if (exito) {
+					generarGrafico();
+				}
+				else {
+					Main.mostrarError(resourceBundle.getString("arbolNoEsta"), resourceBundle);
+				}
+			}
+			catch (NumberFormatException exception) {
+				// El error no es fatal, sigue
+				Main.mostrarError(resourceBundle.getString("arbolNoValor"), resourceBundle);
+			}
+		}
+		else {
+			Main.mostrarError(resourceBundle.getString("arbolNoValor"), resourceBundle);
+		}
 	}
 
 	/**
@@ -225,12 +241,28 @@ public class ArbolController implements Initializable {
 		}
 
 		// Mostrar el codigo
-		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-		codigoArray.setText(codigoTexto);*/
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/arbol" + tipo + "/rotarDerecha")).useDelimiter("\\Z").next();
+		codigoArbol.setText(codigoTexto);
 
-		arbol.rotarDerecha(Integer.valueOf(valorRotar.getText()));
-
-		generarGrafico();
+		if (valorRotar.getText() != null && ! valorRotar.getText().trim().equals("")) {
+			try {
+				boolean exito = arbol.rotarDerecha(Integer.valueOf(valorRotar.getText()));
+				if (exito) {
+					generarGrafico();
+				}
+				else {
+					Main.mostrarError(resourceBundle.getString("arbolNoEsta"), resourceBundle);
+				}
+			}
+			catch (NumberFormatException exception) {
+				// El error no es fatal, sigue
+				Main.mostrarError(resourceBundle.getString("arbolNoValor"), resourceBundle);
+			}
+		}
+		else {
+			Main.mostrarError(resourceBundle.getString("arbolNoValor"), resourceBundle);
+		}
 	}
 
 	/**
@@ -243,8 +275,9 @@ public class ArbolController implements Initializable {
 		}
 
 		// Mostrar el codigo
-		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-		codigoArray.setText(codigoTexto);*/
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/arbol" + tipo + "/preOrder")).useDelimiter("\\Z").next();
+		codigoArbol.setText(codigoTexto);
 
 		Colores colores = new Colores();
 
@@ -267,8 +300,9 @@ public class ArbolController implements Initializable {
 		}
 
 		// Mostrar el codigo
-		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-		codigoArray.setText(codigoTexto);*/
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/arbol" + tipo + "/inOrder")).useDelimiter("\\Z").next();
+		codigoArbol.setText(codigoTexto);
 
 		Colores colores = new Colores();
 
@@ -291,8 +325,9 @@ public class ArbolController implements Initializable {
 		}
 
 		// Mostrar el codigo
-		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-		codigoArray.setText(codigoTexto);*/
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/arbol" + tipo + "/postOrder")).useDelimiter("\\Z").next();
+		codigoArbol.setText(codigoTexto);
 
 		Colores colores = new Colores();
 
@@ -313,7 +348,24 @@ public class ArbolController implements Initializable {
 		// Make the grid line present on the screen
 		//contenidoArbol.setGridLinesVisible(true);
 		this.arbol = new Arbol();
-		Arbol.Tipos tipos = (Arbol.Tipos) scene.getUserData();
+		arbolTipo = (Arbol.Tipos) scene.getUserData();
+	}
+
+	/**
+	 * Devolver el tipo de arbol en un string.
+	 *
+	 * @return String: El tipo de arbol.
+	 */
+	private String getTipoString() {
+		String tipo;
+		switch (arbolTipo.getTipo()) {
+			case Arbol.Tipos.GENERAL:
+				tipo = "General";
+				break;
+			default:
+				tipo = "General";
+		}
+		return tipo;
 	}
 
 	/**

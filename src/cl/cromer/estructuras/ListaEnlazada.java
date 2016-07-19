@@ -180,7 +180,7 @@ final public class ListaEnlazada {
 	}
 
 	/**
-	 * Esta clase contiene los tipos de listas enlazadas.
+	 * Esta clase contiene los arbolTipo de listas enlazadas.
 	 *
 	 * @author Chris Cromer
 	 */

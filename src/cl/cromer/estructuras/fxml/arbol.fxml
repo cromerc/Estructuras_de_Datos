@@ -28,7 +28,7 @@
 	            <HBox alignment="CENTER" spacing="10">
 		            <Button text="%arbolRotarIzquerda" onAction="#botonRotarIzquerda"/>
 		            <Button text="%arbolRotarDerecha" onAction="#botonRotarDerecha"/>
-		            <TextFieldLimited fx:id="valorRotar" maxLength="3" prefWidth="50" text="10"/>
+		            <TextFieldLimited fx:id="valorRotar" maxLength="3" prefWidth="50" text=""/>
 	            </HBox>
 	            <HBox fx:id="contenidoOrder" alignment="CENTER"/>
                 <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">

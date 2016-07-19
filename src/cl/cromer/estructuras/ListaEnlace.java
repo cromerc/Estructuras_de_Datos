@@ -1,7 +1,7 @@
 package cl.cromer.estructuras;
 
 /**
- * Esta interfaz es para los 2 tipos de enlace, {@link ListaEnlaceNormal} y {@link ListaEnlaceCircular}.
+ * Esta interfaz es para los 2 arbolTipo de enlace, {@link ListaEnlaceNormal} y {@link ListaEnlaceCircular}.
  *
  * @author Chris Cromer
  */

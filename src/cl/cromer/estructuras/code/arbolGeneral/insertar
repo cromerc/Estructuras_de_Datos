@@ -1,0 +1,69 @@
+public void insertar(int valor) {
+	if (this.arbol == null) {
+		// Crear la raiz.
+		arbol = new ArbolNodo(valor);
+		return;
+	}
+	else {
+		ArbolNodo nuevo = new ArbolNodo(valor);
+		ArbolNodo actual = arbol;
+		ArbolNodo padre;
+		while (true) {
+			padre = actual;
+			if (valor == actual.getValor()) {
+				// Ya existe.
+				return;
+			}
+			else if (valor < actual.getValor()) {
+				// Izquerda
+				actual = actual.getIzquerda();
+				if (actual == null) {
+					// Encontró un null, insertar el nodo nuevo.
+					padre.setIzquerda(nuevo);
+					return;
+				}
+			}
+			else {
+				// Derecha
+				actual = actual.getDerecha();
+				if (actual == null) {
+					// Encontró un null, insertar el nodo nuevo.
+					padre.setDerecha(nuevo);
+					return;
+				}
+			}
+		}
+	}
+}
+
+final public class ArbolNodo {
+	private ArbolNodo izquerda;
+	private ArbolNodo derecha;
+	private int valor;
+
+	public ArbolNodo(int valor) {
+		this.izquerda = null;
+		this.derecha = null;
+		this.valor = valor;
+	}
+
+	public ArbolNodo getIzquerda() {
+		return izquerda;
+	}
+
+	public void setIzquerda(ArbolNodo izquerda) {
+		this.izquerda = izquerda;
+	}
+
+	public ArbolNodo getDerecha() {
+		return derecha;
+	}
+
+	public void setDerecha(ArbolNodo derecha) {
+		this.derecha = derecha;
+	}
+
+	public int getValor() {
+		return valor;
+	}
+}

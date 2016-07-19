@@ -1,0 +1,117 @@
+public void eliminar(int valor) {
+	if (arbol == null) {
+		// No hay nodos.
+		return;
+	}
+
+	ArbolNodo actual = arbol;
+	ArbolNodo padre = arbol;
+	boolean izquerda = true;
+
+	while (actual.getValor() != valor) {
+		padre = actual;
+		if (valor < actual.getValor()) {
+			izquerda = true;
+			actual = actual.getIzquerda();
+		}
+		else {
+			izquerda = false;
+			actual = actual.getDerecha();
+		}
+		if (actual == null) {
+			return;
+		}
+	}
+
+	if (actual.getIzquerda() == null && actual.getDerecha() == null) {
+		if (actual == arbol) {
+			arbol = null;
+		}
+		else if (izquerda) {
+			padre.setIzquerda(null);
+		}
+		else {
+			padre.setDerecha(null);
+		}
+	}
+	else if(actual.getDerecha() == null) {
+		if (actual == arbol) {
+			arbol = actual.getIzquerda();
+		}
+		else if (izquerda) {
+			padre.setIzquerda(actual.getIzquerda());
+		}
+		else {
+			padre.setDerecha(actual.getIzquerda());
+		}
+	}
+	else if(actual.getIzquerda() == null) {
+		if (actual == arbol) {
+			arbol = actual.getDerecha();
+		}
+		else if (izquerda) {
+			padre.setIzquerda(actual.getDerecha());
+		}
+		else {
+			padre.setDerecha(actual.getDerecha());
+		}
+	}
+	else {
+		ArbolNodo successorParent = actual;
+		ArbolNodo successor = actual;
+		ArbolNodo current = actual.getDerecha();
+		while (current != null) {
+			successorParent = successor;
+			successor = current;
+			current = current.getIzquerda();
+		}
+		if (successor != actual.getDerecha()) {
+			successorParent.setIzquerda(successor.getDerecha());
+			successor.setDerecha(actual.getDerecha());
+		}
+
+		if (actual == arbol) {
+			arbol = successor;
+		}
+		else if (izquerda) {
+			padre.setIzquerda(successor);
+		}
+		else {
+			padre.setDerecha(successor);
+		}
+
+		successor.setIzquerda(actual.getIzquerda());
+	}
+}
+
+final public class ArbolNodo {
+	private ArbolNodo izquerda;
+	private ArbolNodo derecha;
+	private int valor;
+
+	public ArbolNodo(int valor) {
+		this.izquerda = null;
+		this.derecha = null;
+		this.valor = valor;
+	}
+
+	public ArbolNodo getIzquerda() {
+		return izquerda;
+	}
+
+	public void setIzquerda(ArbolNodo izquerda) {
+		this.izquerda = izquerda;
+	}
+
+	public ArbolNodo getDerecha() {
+		return derecha;
+	}
+
+	public void setDerecha(ArbolNodo derecha) {
+		this.derecha = derecha;
+	}
+
+	public int getValor() {
+		return valor;
+	}
+}

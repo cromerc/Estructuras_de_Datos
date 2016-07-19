@@ -35,10 +35,9 @@ final public class ArbolNodo {
 	 * Incilizar.
 	 *
 	 * @param valor int: El valor del nodo.
-	 * @param padre ArbolNodo: Su nodo padre.
 	 */
-	public ArbolNodo(int valor, ArbolNodo padre) {
-		this.padre = padre;
+	public ArbolNodo(int valor) {
+		this.padre = null;
 		this.izquerda = null;
 		this.derecha = null;
 		this.valor = valor;

@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Grafo {
 	/**
-	 * Esta clase contiene los tipos de grafo.
+	 * Esta clase contiene los arbolTipo de grafo.
 	 *
 	 * @author Chris Cromer
 	 */

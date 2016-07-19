@@ -529,7 +529,7 @@ final public class Array {
 	}
 
 	/**
-	 * Esta clase contiene los tipos de array.
+	 * Esta clase contiene los arbolTipo de array.
 	 *
 	 * @author Chris Cromer
 	 */
