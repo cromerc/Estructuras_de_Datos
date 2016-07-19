@@ -19,7 +19,7 @@ import java.util.logging.Level;
  * Estructuras de Datos
  * Creado como proyecto semestral para la asignatura de estructuras de datos por la profesora Karina Rojas y el profesor Jorge Elgueta.
  * Creado en 2016-1
- * Se necesita java 8 instalado.
+ * Se necesita java 8 con javafx instalado.
  *
  * @author Chris Cromer
  * @version 1.0.0
@@ -53,7 +53,7 @@ public class Main extends Application {
 			stage.close();
 		}
 
-		//stage.setMaximized(true);
+		stage.setMaximized(true);
 		stage.setMinHeight(640);
 		stage.setMinWidth(768);
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));

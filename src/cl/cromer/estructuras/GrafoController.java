@@ -40,6 +40,12 @@ public class GrafoController implements Initializable {
 	private TextFieldLimited valorNodo2;
 
 	/**
+	 * La caja por el peso.
+	 */
+	@FXML
+	private TextFieldLimited valorPeso;
+
+	/**
 	 * Donde poner el contenido de array.
 	 */
 	@FXML
@@ -87,9 +93,9 @@ public class GrafoController implements Initializable {
 	private GrafoNodo[] grafoNodos;
 
 	/**
-	 * A static weight.
+	 * Un peso estatico.
 	 */
-	final static private int WEIGHT = 0;
+	final static private int PESO_PREDETERMINADO = 0;
 
 	/**
 	 * Inicializar todos los datos y dibujar las graficas.
@@ -164,12 +170,12 @@ public class GrafoController implements Initializable {
 					dirigido.addVertex(vertex);
 				}
 			}
-			dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(1), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(2), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(4), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(0), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(4), dirigido.getVertex(3), WEIGHT);
-			dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(1), WEIGHT);
+			dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(1), PESO_PREDETERMINADO);
+			dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(2), PESO_PREDETERMINADO);
+			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(4), PESO_PREDETERMINADO);
+			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(0), PESO_PREDETERMINADO);
+			dirigido.addEdge(dirigido.getVertex(4), dirigido.getVertex(3), PESO_PREDETERMINADO);
+			dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(1), PESO_PREDETERMINADO);
 		}
 
 		generarGrafico();
@@ -351,12 +357,21 @@ public class GrafoController implements Initializable {
 					Main.mostrarError(resourceBundle.getString("grafoEdgeExiste"), resourceBundle);
 				}
 				else {
-
-					dirigido.addEdge(dirigido.findVertexByName(String.valueOf(nodos[0].getValue())), dirigido.findVertexByName(String.valueOf(nodos[1].getValue())), WEIGHT);
+					int peso = PESO_PREDETERMINADO;
+					if (valorPeso.getText() != null || !valorPeso.getText().trim().equals("")) {
+						try {
+							peso = Integer.valueOf(valorPeso.getText());
+						}
+						catch (NumberFormatException exception) {
+							peso = PESO_PREDETERMINADO;
+						}
+					}
+					dirigido.addEdge(dirigido.findVertexByName(String.valueOf(nodos[0].getValue())), dirigido.findVertexByName(String.valueOf(nodos[1].getValue())), peso);
 				}
 			}
 			valorNodo1.setText("");
 			valorNodo2.setText("");
+			valorPeso.setText("");
 		}
 		else {
 			Main.mostrarError(resourceBundle.getString("grafoNoNumero"), resourceBundle);
@@ -405,6 +420,7 @@ public class GrafoController implements Initializable {
 			}
 			valorNodo1.setText("");
 			valorNodo2.setText("");
+			valorPeso.setText("");
 		}
 		else {
 			Main.mostrarError(resourceBundle.getString("grafoNoEdge"), resourceBundle);
