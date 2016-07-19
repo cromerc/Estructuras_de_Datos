@@ -1,0 +1,27 @@
+private final Map<T, Set<T>> grafo = new HashMap<>();
+
+public void eliminarNodo(T nodo) {
+	if (!grafo.containsKey(nodo)) {
+		// No existe el nodo.
+		return;
+	}
+
+	// Remover el nodo.
+	grafo.remove(nodo);
+}
+
+class GrafoNodo {
+    private int valor;
+
+    public GrafoNodo(int valor) {
+        this.valor = valor;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValue(int valor) {
+        this.valor = valor;
+    }
+}

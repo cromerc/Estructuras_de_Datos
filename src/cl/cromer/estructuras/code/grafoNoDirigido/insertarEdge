@@ -1,0 +1,28 @@
+private final Map<T, Set<T>> grafo = new HashMap<>();
+
+public void insertarEdge(T nodo1, T nodo2) {
+	if (!grafo.containsKey(nodo1) || !grafo.containsKey(nodo2)) {
+		// Uno de los nodos no existe.
+		return;
+	}
+
+	// Insertar un edge de doble camino.
+	grafo.get(nodo1).add(nodo2);
+	grafo.get(nodo2).add(nodo1);
+}
+
+class GrafoNodo {
+    private int valor;
+
+    public GrafoNodo(int valor) {
+        this.valor = valor;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValue(int valor) {
+        this.valor = valor;
+    }
+}

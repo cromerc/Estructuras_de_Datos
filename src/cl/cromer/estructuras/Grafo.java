@@ -9,18 +9,18 @@ import java.util.*;
  */
 public class Grafo {
 	/**
-	 * Esta clase contiene los arbolTipo de grafo.
+	 * Esta clase contiene los arbolTipo de grafoNoDirigido.
 	 *
 	 * @author Chris Cromer
 	 */
 	final static public class Tipos {
 		/**
-		 * Tipo de grafo dirigido.
+		 * Tipo de grafoNoDirigido dirigido.
 		 */
 		static final public int DIRIGIDO = 0;
 
 		/**
-		 * Tipo de grafo no dirigido.
+		 * Tipo de grafoNoDirigido no dirigido.
 		 */
 		static final public int NO_DIRIGIDO = 1;
 
@@ -32,7 +32,7 @@ public class Grafo {
 		/**
 		 * Inicilizar el tipo.
 		 *
-		 * @param tipo int: Tipo de grafo, {@value #DIRIGIDO} o {@value #NO_DIRIGIDO}
+		 * @param tipo int: Tipo de grafoNoDirigido, {@value #DIRIGIDO} o {@value #NO_DIRIGIDO}
 		 */
 		public Tipos(int tipo) {
 			switch (tipo) {
@@ -50,7 +50,7 @@ public class Grafo {
 		/**
 		 * Devolver el tipo.
 		 *
-		 * @return int: El tipo de grafo.
+		 * @return int: El tipo de grafoNoDirigido.
 		 */
 		public int getTipo() {
 			return tipo;

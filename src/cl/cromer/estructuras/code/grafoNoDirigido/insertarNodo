@@ -1,0 +1,27 @@
+private final Map<T, Set<T>> grafo = new HashMap<>();
+
+public void insertarNodo(T nodo) {
+	if (grafo.containsKey(nodo)) {
+		// Ya existe el nodo.
+		return;
+	}
+
+	// Insertar el nodo nuevo.
+	grafo.put(nodo, new HashSet<>());
+}
+
+class GrafoNodo {
+    private int valor;
+
+    public GrafoNodo(int valor) {
+        this.valor = valor;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValue(int valor) {
+        this.valor = valor;
+    }
+}

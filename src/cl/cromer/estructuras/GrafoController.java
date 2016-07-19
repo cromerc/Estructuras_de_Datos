@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 /**
  * Esta clase es para controlar todos la interfaz de Arbol.
@@ -61,17 +62,17 @@ public class GrafoController implements Initializable {
 	private ResourceBundle resourceBundle;
 
 	/**
-	 * Tipo de grafo.
+	 * Tipo de grafoNoDirigido.
 	 */
 	private Grafo.Tipos grafoTipos;
 
 	/**
-	 * El grafo dirigido usado en la aplicación.
+	 * El grafoNoDirigido dirigido usado en la aplicación.
 	 */
 	private Grafo.Dirigido<GrafoNodo> dirigido;
 
 	/**
-	 * El grafo no dirigido usado en la aplicación.
+	 * El grafoNoDirigido no dirigido usado en la aplicación.
 	 */
 	private Grafo.NoDirigido<GrafoNodo> noDirigido;
 
@@ -105,7 +106,7 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * LLenar el grafo con nodos y edges al azar.
+	 * LLenar el grafoNoDirigido con nodos y edges al azar.
 	 */
 	@FXML
 	protected void botonLlenar() {
@@ -175,7 +176,7 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * Eliminar el grafo.
+	 * Eliminar el grafoNoDirigido.
 	 */
 	@FXML
 	protected void botonVaciar() {
@@ -194,7 +195,7 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * Insertar un nodo en el grafo.
+	 * Insertar un nodo en el grafoNoDirigido.
 	 */
 	@FXML
 	protected void botonInsertar() {
@@ -203,8 +204,9 @@ public class GrafoController implements Initializable {
 		}
 
 		// Mostrar el codigo
-		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-		codigoArray.setText(codigoTexto);*/
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/grafo" + tipo + "/insertarNodo")).useDelimiter("\\Z").next();
+		codigoGrafo.setText(codigoTexto);
 
 		if (valorGrafo.getText() != null && ! valorGrafo.getText().trim().equals("")) {
 			try {
@@ -255,7 +257,7 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * Eliminar un nodo del grafo.
+	 * Eliminar un nodo del grafoNoDirigido.
 	 */
 	@FXML
 	protected void botonEliminar() {
@@ -264,8 +266,9 @@ public class GrafoController implements Initializable {
 		}
 
 		// Mostrar el codigo
-		/*String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/array" + tipo + "/insertar")).useDelimiter("\\Z").next();
-		codigoArray.setText(codigoTexto);*/
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/grafo" + tipo + "/eliminarNodo")).useDelimiter("\\Z").next();
+		codigoGrafo.setText(codigoTexto);
 
 		if (valorGrafo.getText() != null && ! valorGrafo.getText().trim().equals("")) {
 			try {
@@ -314,13 +317,17 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * Insertar un edge al grafo y mostrar el codigo en la pantalla.
+	 * Insertar un edge al grafoNoDirigido y mostrar el codigo en la pantalla.
 	 */
 	@FXML
 	protected void botonInsertarEdge() {
 		if (scene == null) {
 			initializeGrafo();
 		}
+
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/grafo" + tipo + "/insertarEdge")).useDelimiter("\\Z").next();
+		codigoGrafo.setText(codigoTexto);
 
 		if (valorNodo1.getText() != null && !valorNodo1.getText().trim().equals("") && valorNodo2.getText() != null && !valorNodo2.getText().trim().equals("")) {
 			GrafoNodo[] nodos = getNodosEdge();
@@ -348,6 +355,8 @@ public class GrafoController implements Initializable {
 					dirigido.addEdge(dirigido.findVertexByName(String.valueOf(nodos[0].getValue())), dirigido.findVertexByName(String.valueOf(nodos[1].getValue())), WEIGHT);
 				}
 			}
+			valorNodo1.setText("");
+			valorNodo2.setText("");
 		}
 		else {
 			Main.mostrarError(resourceBundle.getString("grafoNoNumero"), resourceBundle);
@@ -357,13 +366,17 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * Eliminar un edge del grafo y mostrar el codigo en la pantalla.
+	 * Eliminar un edge del grafoNoDirigido y mostrar el codigo en la pantalla.
 	 */
 	@FXML
 	protected void botonEliminarEdge() {
 		if (scene == null) {
 			initializeGrafo();
 		}
+
+		String tipo = getTipoString();
+		String codigoTexto = new Scanner(getClass().getResourceAsStream("/cl/cromer/estructuras/code/grafo" + tipo + "/eliminarEdge")).useDelimiter("\\Z").next();
+		codigoGrafo.setText(codigoTexto);
 
 		if (valorNodo1.getText() != null && ! valorNodo1.getText().trim().equals("") && valorNodo2.getText() != null && ! valorNodo2.getText().trim().equals("")) {
 			GrafoNodo[] nodos = getNodosEdge();
@@ -390,6 +403,8 @@ public class GrafoController implements Initializable {
 					dirigido.removeEdge(dirigido.findVertexByName(String.valueOf(nodos[0].getValue())), dirigido.findVertexByName(String.valueOf(nodos[1].getValue())));
 				}
 			}
+			valorNodo1.setText("");
+			valorNodo2.setText("");
 		}
 		else {
 			Main.mostrarError(resourceBundle.getString("grafoNoEdge"), resourceBundle);
@@ -399,7 +414,7 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * Crear un grafo nuevo.
+	 * Crear un grafoNoDirigido nuevo.
 	 */
 	private void initializeGrafo() {
 		scene = contenidoGrafo.getScene();
@@ -439,7 +454,7 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * Buscar un grafo dirigido para ver si existe en edge entre los nodos.
+	 * Buscar un grafoNoDirigido dirigido para ver si existe en edge entre los nodos.
 	 *
 	 * @param nodo1 GrafoNodo: El primer nodo a buscar.
 	 * @param nodo2 GrafoNodo: El otro nodo a buscar.
@@ -459,7 +474,24 @@ public class GrafoController implements Initializable {
 	}
 
 	/**
-	 * Generar la canvas con el grafo.
+	 * Devolver el tipo de grafo en un string.
+	 *
+	 * @return String: El tipo de grafo.
+	 */
+	private String getTipoString() {
+		String tipo;
+		switch (grafoTipos.getTipo()) {
+			case Grafo.Tipos.NO_DIRIGIDO:
+				tipo = "NoDirigido";
+				break;
+			default:
+				tipo = "Dirigido";
+		}
+		return tipo;
+	}
+
+	/**
+	 * Generar la canvas con el grafoNoDirigido.
 	 */
 	private void generarGrafico() {
 		grafico.removerDestacar();
