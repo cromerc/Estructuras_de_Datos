@@ -22,7 +22,7 @@ import java.util.logging.Level;
  * Se necesita java 8 con javafx instalado.
  *
  * @author Chris Cromer
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class Main extends Application {
 	/**

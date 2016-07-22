@@ -382,7 +382,9 @@ public class GrafoController implements Initializable {
 			}
 			valorNodo1.setText("");
 			valorNodo2.setText("");
-			valorPeso.setText("");
+			if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+				valorPeso.setText("");
+			}
 		}
 		else {
 			Main.mostrarError(resourceBundle.getString("grafoNoNumero"), resourceBundle);
@@ -431,7 +433,9 @@ public class GrafoController implements Initializable {
 			}
 			valorNodo1.setText("");
 			valorNodo2.setText("");
-			valorPeso.setText("");
+			if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+				valorPeso.setText("");
+			}
 		}
 		else {
 			Main.mostrarError(resourceBundle.getString("grafoNoEdge"), resourceBundle);
