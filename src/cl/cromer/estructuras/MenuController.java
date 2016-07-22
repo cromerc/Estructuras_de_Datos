@@ -254,6 +254,20 @@ public class MenuController extends VBox implements Initializable {
 	}
 
 	/**
+	 * Click en Grafo No Dirigidos.
+	 */
+	@FXML
+	protected void menuGrafoPeso() {
+		Grafo.Tipos grafoTipos = new Grafo.Tipos(Grafo.Tipos.PESO);
+		loadStage(
+				resourceBundle.getString("tituloGrafoDirigido"),
+				"/cl/cromer/estructuras/fxml/grafoPeso.fxml",
+				"/cl/cromer/estructuras/css/main.css",
+				grafoTipos
+		);
+	}
+
+	/**
 	 * Click en Hash Table.
 	 */
 	@FXML

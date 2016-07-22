@@ -15,14 +15,19 @@ public class Grafo {
 	 */
 	final static public class Tipos {
 		/**
-		 * Tipo de grafoNoDirigido dirigido.
+		 * Tipo de grafo dirigido.
 		 */
 		static final public int DIRIGIDO = 0;
 
 		/**
-		 * Tipo de grafoNoDirigido no dirigido.
+		 * Tipo de grafo no dirigido.
 		 */
 		static final public int NO_DIRIGIDO = 1;
+
+		/**
+		 * Tipo de grafo dirigido con peso.
+		 */
+		static final public int PESO = 2;
 
 		/**
 		 * El tipo que está elegido.
@@ -41,6 +46,9 @@ public class Grafo {
 					break;
 				case NO_DIRIGIDO:
 					this.tipo = NO_DIRIGIDO;
+					break;
+				case PESO:
+					this.tipo = PESO;
 					break;
 				default:
 					this.tipo = NO_DIRIGIDO;

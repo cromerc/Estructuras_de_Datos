@@ -154,7 +154,8 @@ public class GrafoController implements Initializable {
 			noDirigido.addEdge(grafoNodos[3], grafoNodos[1]);
 		}
 		else {
-			for (int i = 0; i < 5; i++) {
+			int j = (grafoTipos.getTipo() == Grafo.Tipos.DIRIGIDO)?5:4;
+			for (int i = 0; i < j; i++) {
 				if (grafoNodos[i] == null) {
 
 					int numero = random.nextInt(rango) + minimo;
@@ -170,12 +171,22 @@ public class GrafoController implements Initializable {
 					dirigido.addVertex(vertex);
 				}
 			}
-			dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(1), PESO_PREDETERMINADO);
-			dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(2), PESO_PREDETERMINADO);
-			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(4), PESO_PREDETERMINADO);
-			dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(0), PESO_PREDETERMINADO);
-			dirigido.addEdge(dirigido.getVertex(4), dirigido.getVertex(3), PESO_PREDETERMINADO);
-			dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(1), PESO_PREDETERMINADO);
+			if (grafoTipos.getTipo() == Grafo.Tipos.DIRIGIDO) {
+				dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(1), PESO_PREDETERMINADO);
+				dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(2), PESO_PREDETERMINADO);
+				dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(4), PESO_PREDETERMINADO);
+				dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(0), PESO_PREDETERMINADO);
+				dirigido.addEdge(dirigido.getVertex(4), dirigido.getVertex(3), PESO_PREDETERMINADO);
+				dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(1), PESO_PREDETERMINADO);
+			}
+			else {
+				dirigido.addEdge(dirigido.getVertex(0), dirigido.getVertex(3), PESO_PREDETERMINADO);
+				dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(2), PESO_PREDETERMINADO);
+				dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(0), PESO_PREDETERMINADO);
+				dirigido.addEdge(dirigido.getVertex(1), dirigido.getVertex(0), PESO_PREDETERMINADO);
+				dirigido.addEdge(dirigido.getVertex(2), dirigido.getVertex(3), PESO_PREDETERMINADO);
+				dirigido.addEdge(dirigido.getVertex(3), dirigido.getVertex(1), PESO_PREDETERMINADO);
+			}
 		}
 
 		generarGrafico();
@@ -358,7 +369,7 @@ public class GrafoController implements Initializable {
 				}
 				else {
 					int peso = PESO_PREDETERMINADO;
-					if (valorPeso.getText() != null || !valorPeso.getText().trim().equals("")) {
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO && valorPeso.getText() != null && !valorPeso.getText().trim().equals("")) {
 						try {
 							peso = Integer.valueOf(valorPeso.getText());
 						}
@@ -653,30 +664,41 @@ public class GrafoController implements Initializable {
 				Grafo.Vertex<GrafoNodo> vTo = edge.getTo();
 				GrafoNodo from = vFrom.getData();
 				GrafoNodo to = vTo.getData();
+				int peso = edge.getCost();
 
-				if (from == grafoNodos[0]) {
-					if (to == from) {
-						graphicsContext.strokeArc(15, 40, 29, 30, 145, 250, ArcType.OPEN);
+				if (from == grafoNodos[0] && to == from) {
+					graphicsContext.strokeArc(15, 40, 29, 30, 145, 250, ArcType.OPEN);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), textX(15, String.valueOf(peso)), 80);
 					}
 				}
-				if (from == grafoNodos[1]) {
-					if (to == from) {
-						graphicsContext.strokeArc(215, 40, 29, 30, 145, 250, ArcType.OPEN);
+				if (from == grafoNodos[1] && to == from) {
+					graphicsContext.strokeArc(215, 40, 29, 30, 145, 250, ArcType.OPEN);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), textX(235, String.valueOf(peso)), 80);
 					}
 				}
-				if (from == grafoNodos[2]) {
-					if (to == from) {
-						graphicsContext.strokeArc(15, 240, 29, 30, 145, 250, ArcType.OPEN);
+				if (from == grafoNodos[2] && to == from) {
+					graphicsContext.strokeArc(15, 240, 29, 30, 145, 250, ArcType.OPEN);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), textX(15, String.valueOf(peso)), 280);
 					}
 				}
-				if (from == grafoNodos[3]) {
-					if (to == from) {
-						graphicsContext.strokeArc(215, 240, 29, 30, 145, 250, ArcType.OPEN);
+				if (from == grafoNodos[3] && to == from) {
+					graphicsContext.strokeArc(215, 240, 29, 30, 145, 250, ArcType.OPEN);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), textX(235, String.valueOf(peso)), 280);
 					}
 				}
-				if (from == grafoNodos[4]) {
-					if (to == from) {
-						graphicsContext.strokeArc(110, 440, 29, 30, 145, 250, ArcType.OPEN);
+				if (from == grafoNodos[4] && to == from) {
+					graphicsContext.strokeArc(110, 440, 29, 30, 145, 250, ArcType.OPEN);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), textX(120, String.valueOf(peso)), 485);
 					}
 				}
 
@@ -688,6 +710,10 @@ public class GrafoController implements Initializable {
 							new double[] {25.0, 30.0, 35.0},
 					        3
 					);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), 120, 25);
+					}
 				}
 				// Line between 1 and 0
 				if (from == grafoNodos[1] && to == grafoNodos[0]) {
@@ -697,6 +723,10 @@ public class GrafoController implements Initializable {
 							new double[] {25.0, 30.0, 35.0},
 							3
 					);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), 120, 45);
+					}
 				}
 				// Line between 2 and 3
 				if (from == grafoNodos[2] && to == grafoNodos[3]) {
@@ -706,6 +736,10 @@ public class GrafoController implements Initializable {
 							new double[] {225.0, 230.0, 235.0},
 							3
 					);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), 120, 225);
+					}
 				}
 				// Line between 3 and 2
 				if (from == grafoNodos[3] && to == grafoNodos[2]) {
@@ -715,6 +749,10 @@ public class GrafoController implements Initializable {
 							new double[] {225.0, 230.0, 235.0},
 							3
 					);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), 120, 245);
+					}
 				}
 				// Line between 0 and 2
 				if (from == grafoNodos[0] && to == grafoNodos[2]) {
@@ -724,6 +762,10 @@ public class GrafoController implements Initializable {
 							new double[] {200.0, 200.0, 210.0},
 							3
 					);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), textX(15, String.valueOf(peso)), 150);
+					}
 				}
 				// Line between 2 and 0
 				if (from == grafoNodos[2] && to == grafoNodos[0]) {
@@ -733,6 +775,10 @@ public class GrafoController implements Initializable {
 							new double[] {50.0, 60.0, 60.0},
 							3
 					);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), 35, 150);
+					}
 				}
 				// Line between 1 and 3
 				if (from == grafoNodos[1] && to == grafoNodos[3]) {
@@ -742,6 +788,10 @@ public class GrafoController implements Initializable {
 							new double[] {200.0, 200.0, 210.0},
 							3
 					);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), textX(215, String.valueOf(peso)), 150);
+					}
 				}
 				// Line between 3 and 1
 				if (from == grafoNodos[3] && to == grafoNodos[1]) {
@@ -751,6 +801,10 @@ public class GrafoController implements Initializable {
 							new double[] {50.0, 60.0, 60.0},
 							3
 					);
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), 235, 150);
+					}
 				}
 				// Line between 0 and 3
 				if (from == grafoNodos[0] && to == grafoNodos[3]) {
@@ -766,6 +820,10 @@ public class GrafoController implements Initializable {
 							3
 					);
 					graphicsContext.restore();
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), textX(90, String.valueOf(peso)), 110);
+					}
 				}
 				// Line between 3 and 0
 				if (from == grafoNodos[3] && to == grafoNodos[0]) {
@@ -780,6 +838,10 @@ public class GrafoController implements Initializable {
 							3
 					);
 					graphicsContext.restore();
+
+					if (grafoTipos.getTipo() == Grafo.Tipos.PESO) {
+						graphicsContext.strokeText(String.valueOf(peso), textX(115, String.valueOf(peso)), 110);
+					}
 				}
 				// Line between 1 and 2
 				if (from == grafoNodos[1] && to == grafoNodos[2]) {

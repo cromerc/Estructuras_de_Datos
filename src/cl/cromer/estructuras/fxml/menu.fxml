@@ -34,6 +34,7 @@
         <Menu text="%grafos">
             <MenuItem text="%dirigidos" onAction="#menuGrafoDirigidos"/>
             <MenuItem text="%noDirigidos" onAction="#menuGrafoNoDirigidos"/>
+            <MenuItem text="%grafoPeso" onAction="#menuGrafoPeso"/>
         </Menu>
         <MenuItem text="%tablaHash" onAction="#menuHashTable"/>
     </Menu>
