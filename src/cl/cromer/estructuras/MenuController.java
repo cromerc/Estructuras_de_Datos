@@ -18,6 +18,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+import java.util.prefs.Preferences;
 
 /**
  * Controlar las acciones cuando una opción es elegido en el menu.
@@ -284,6 +285,9 @@ public class MenuController extends VBox implements Initializable {
 	 */
 	@FXML
 	protected void menuIngles() {
+		Stage stage = (Stage) menuBar.getScene().getWindow();
+		Preferences preferences = (Preferences) stage.getUserData();
+
 		ButtonType botonCambiar = new ButtonType(resourceBundle.getString("cambiar"), ButtonBar.ButtonData.OK_DONE);
 		ButtonType botonCancelar = new ButtonType(resourceBundle.getString("cancelar"), ButtonBar.ButtonData.CANCEL_CLOSE);
 		Dialog<ButtonType> dialog = new Dialog<>();
@@ -299,6 +303,8 @@ public class MenuController extends VBox implements Initializable {
 		Optional<ButtonType> result = dialog.showAndWait();
 		if (result.isPresent() && result.get() == botonCambiar) {
 			// Si hace click en cambiar, cambiar el idioma y reiniciar.
+			preferences.put("idioma", "en");
+			preferences.put("idioma2", "EN");
 			Locale locale = new Locale("en", "EN");
 			ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
 
@@ -311,6 +317,9 @@ public class MenuController extends VBox implements Initializable {
 	 */
 	@FXML
 	protected void menuEspanol() {
+		Stage stage = (Stage) menuBar.getScene().getWindow();
+		Preferences preferences = (Preferences) stage.getUserData();
+
 		ButtonType botonCambiar = new ButtonType(resourceBundle.getString("cambiar"), ButtonBar.ButtonData.OK_DONE);
 		ButtonType botonCancelar = new ButtonType(resourceBundle.getString("cancelar"), ButtonBar.ButtonData.CANCEL_CLOSE);
 		Dialog<ButtonType> dialog = new Dialog<>();
@@ -326,6 +335,8 @@ public class MenuController extends VBox implements Initializable {
 		Optional<ButtonType> result = dialog.showAndWait();
 		if (result.isPresent() && result.get() == botonCambiar) {
 			// Si hace click en cambiar, cambiar el idioma y reiniciar.
+			preferences.put("idioma", "es");
+			preferences.put("idioma2", "ES");
 			Locale locale = new Locale("es", "ES");
 			ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
 

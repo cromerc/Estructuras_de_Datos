@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+import java.util.prefs.Preferences;
 
 /**
  * Estructuras de Datos
@@ -37,7 +38,11 @@ public class Main extends Application {
 	 */
 	@Override
 	public void start(Stage stage) {
-		Locale locale = new Locale("es", "ES");
+		Preferences preferences = Preferences.userRoot().node(this.getClass().getName());
+		String idoma = preferences.get("idioma", "en");
+		String idoma2 = preferences.get("idioma2", "EN");
+
+		Locale locale = new Locale(idoma, idoma2);
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
 
 		try {
@@ -53,10 +58,11 @@ public class Main extends Application {
 			stage.close();
 		}
 
-		stage.setMaximized(true);
+		//stage.setMaximized(true);
 		stage.setMinHeight(640);
 		stage.setMinWidth(768);
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
+		stage.setUserData(preferences);
 		stage.show();
 	}
 
