@@ -23,7 +23,7 @@ import java.util.prefs.Preferences;
  * Se necesita java 8 con javafx instalado.
  *
  * @author Chris Cromer
- * @version 1.0.1
+ * @version 1.0.2
  */
 public class Main extends Application {
 	/**

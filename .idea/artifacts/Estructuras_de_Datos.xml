@@ -38,6 +38,7 @@
           </list>
         </option>
         <option name="description" value="Esta aplicación muestra varios tipos de estrucuras de datos visualmente." />
+        <option name="enabledSigning" value="true" />
         <option name="height" value="768" />
         <option name="htmlParamFile" value="" />
         <option name="keystore" value="" />
