@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Permissions: sandbox
+Permissions: all-permissions
 Codebase: *.cromer.cl 127.0.0.1
 JavaFX-Version: 8.0
 Class-Path: /cl/cromer/estructuras

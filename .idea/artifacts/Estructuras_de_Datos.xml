@@ -1,0 +1,64 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Estructuras de Datos">
+    <output-path>$PROJECT_DIR$/out/artifacts/Estructuras_de_Datos</output-path>
+    <properties id="ant-postprocessing">
+      <options>
+        <file>file://$PROJECT_DIR$/estructuras_de_datos.xml</file>
+        <target>all</target>
+      </options>
+    </properties>
+    <properties id="ant-preprocessing">
+      <options>
+        <file>file://$PROJECT_DIR$/estructuras_de_datos.xml</file>
+        <target>clean</target>
+      </options>
+    </properties>
+    <properties id="javafx-properties">
+      <options>
+        <option name="alias" value="cromercl" />
+        <option name="appClass" value="cl.cromer.estructuras.Main" />
+        <option name="customManifestAttributes">
+          <list>
+            <JavaFxManifestAttribute>
+              <option name="name" value="Created-By" />
+              <option name="value" value="Chris Cromer" />
+            </JavaFxManifestAttribute>
+            <JavaFxManifestAttribute>
+              <option name="name" value="Class-Path" />
+              <option name="value" value="/cl/cromer/estructuras" />
+            </JavaFxManifestAttribute>
+            <JavaFxManifestAttribute>
+              <option name="name" value="Codebase" />
+              <option name="value" value="*.cromer.cl 127.0.0.1" />
+            </JavaFxManifestAttribute>
+            <JavaFxManifestAttribute>
+              <option name="name" value="Application-Name" />
+              <option name="value" value="Estructuras de Datos" />
+            </JavaFxManifestAttribute>
+            <JavaFxManifestAttribute>
+              <option name="name" value="Permissions" />
+              <option name="value" value="all-permissions" />
+            </JavaFxManifestAttribute>
+          </list>
+        </option>
+        <option name="description" value="Esta aplicación muestra varios tipos de estrucuras de datos visualmente." />
+        <option name="height" value="768" />
+        <option name="htmlParamFile" value="" />
+        <option name="keypass" value="SzdQUnhlNGV5ZVhHcjNGZVVMU2FwVUVxSGNLQVpna2FHZTZIbVg3Y05kODczWEJMd1I=" />
+        <option name="keystore" value="$USER_HOME$/cromercl_new/keystore" />
+        <option name="nativeBundle" value="all" />
+        <option name="paramFile" value="" />
+        <option name="selfSigning" value="false" />
+        <option name="storepass" value="SzdQUnhlNGV5ZVhHcjNGZVVMU2FwVUVxSGNLQVpna2FHZTZIbVg3Y05kODczWEJMd1I=" />
+        <option name="title" value="Estructuras de Datos" />
+        <option name="vendor" value="Chris Cromer" />
+        <option name="width" value="1024" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Estructuras_de_Datos.jar">
+        <element id="module-output" name="Estructuras de Datos" />
+      </element>
+    </root>
+  </artifact>
+</component>

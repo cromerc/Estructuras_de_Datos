@@ -303,8 +303,10 @@ public class MenuController extends VBox implements Initializable {
 		Optional<ButtonType> result = dialog.showAndWait();
 		if (result.isPresent() && result.get() == botonCambiar) {
 			// Si hace click en cambiar, cambiar el idioma y reiniciar.
-			preferences.put("idioma", "en");
-			preferences.put("idioma2", "EN");
+			if (preferences != null) {
+				preferences.put("idioma", "en");
+				preferences.put("idioma2", "EN");
+			}
 			Locale locale = new Locale("en", "EN");
 			ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
 
@@ -335,8 +337,10 @@ public class MenuController extends VBox implements Initializable {
 		Optional<ButtonType> result = dialog.showAndWait();
 		if (result.isPresent() && result.get() == botonCambiar) {
 			// Si hace click en cambiar, cambiar el idioma y reiniciar.
-			preferences.put("idioma", "es");
-			preferences.put("idioma2", "ES");
+			if (preferences != null) {
+				preferences.put("idioma", "es");
+				preferences.put("idioma2", "ES");
+			}
 			Locale locale = new Locale("es", "ES");
 			ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
 

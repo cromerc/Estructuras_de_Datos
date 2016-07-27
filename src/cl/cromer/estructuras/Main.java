@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.AccessControlException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -38,11 +39,22 @@ public class Main extends Application {
 	 */
 	@Override
 	public void start(Stage stage) {
-		Preferences preferences = Preferences.userRoot().node(this.getClass().getName());
-		String idoma = preferences.get("idioma", "en");
-		String idoma2 = preferences.get("idioma2", "EN");
+		String idioma;
+		String idioma2;
+		Preferences preferences;
+		try {
+			preferences = Preferences.userRoot().node(this.getClass().getName());
+			idioma = preferences.get("idioma", "en");
+			idioma2 = preferences.get("idioma2", "EN");
+		}
+		catch (AccessControlException exception) {
+			// This will throw if the applet is not signed.
+			preferences = null;
+			idioma = "en";
+			idioma2 = "EN";
+		}
 
-		Locale locale = new Locale(idoma, idoma2);
+		Locale locale = new Locale(idioma, idioma2);
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("cl.cromer.estructuras.bundles.Idioma", locale);
 
 		try {
@@ -58,7 +70,7 @@ public class Main extends Application {
 			stage.close();
 		}
 
-		//stage.setMaximized(true);
+		stage.setMaximized(true);
 		stage.setMinHeight(640);
 		stage.setMinWidth(768);
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));

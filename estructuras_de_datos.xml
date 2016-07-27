@@ -35,14 +35,14 @@
     <exclude name="**/vssver2.scc/**"/>
   </patternset>
   <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
     <include name="*.egg"/>
+    <include name="*.ane"/>
     <include name="*.jar"/>
     <include name="*.ear"/>
-    <include name="*.apk"/>
-    <include name="*.swc"/>
-    <include name="*.war"/>
-    <include name="*.ane"/>
-    <include name="*.zip"/>
   </patternset>
   <patternset id="compiler.resources">
     <exclude name="**/?*.java"/>
@@ -87,13 +87,6 @@
   <property name="project.jdk.home" value="${jdk.home.1.8}"/>
   <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
   <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
-  
-  
-  <!-- Global Libraries -->
-  
-  <path id="library.dtjava.classpath">
-    <pathelement location="/home/cromer/.IntelliJIdea2016.1/config/javascript/extLibs/http_java.com_js_dtjava.js"/>
-  </path>
   <!-- Register Custom Compiler Taskdefs -->
   <property name="javac2.home" value="${idea.home}/lib"/>
   <path id="javac2.classpath">
@@ -115,9 +108,9 @@
   <dirname property="module.estructuras_de_datos.basedir" file="${ant.file}"/>
   
   
-  <property name="module.jdk.home.estructuras_de_datos" value="${jdk.home.1.8}"/>
-  <property name="module.jdk.bin.estructuras_de_datos" value="${jdk.bin.1.8}"/>
-  <property name="module.jdk.classpath.estructuras_de_datos" value="jdk.classpath.1.8"/>
+  <property name="module.jdk.home.estructuras_de_datos" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.estructuras_de_datos" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.estructuras_de_datos" value="${project.jdk.classpath}"/>
   
   <property name="compiler.args.estructuras_de_datos" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
   
@@ -130,24 +123,20 @@
   
   <path id="estructuras_de_datos.module.production.classpath">
     <path refid="${module.jdk.classpath.estructuras_de_datos}"/>
-    <path refid="library.dtjava.classpath"/>
   </path>
   
   <path id="estructuras_de_datos.runtime.production.module.classpath">
     <pathelement location="${estructuras_de_datos.output.dir}"/>
-    <path refid="library.dtjava.classpath"/>
   </path>
   
   <path id="estructuras_de_datos.module.classpath">
     <path refid="${module.jdk.classpath.estructuras_de_datos}"/>
     <pathelement location="${estructuras_de_datos.output.dir}"/>
-    <path refid="library.dtjava.classpath"/>
   </path>
   
   <path id="estructuras_de_datos.runtime.module.classpath">
     <pathelement location="${estructuras_de_datos.testoutput.dir}"/>
     <pathelement location="${estructuras_de_datos.output.dir}"/>
-    <path refid="library.dtjava.classpath"/>
   </path>
   
   
@@ -237,12 +226,23 @@
       </manifest>
     </fx:jar>
     <fx:deploy width="1024" height="768" updatemode="background" outdir="${artifact.temp.output.Estructuras_de_Datos}/deploy" outfile="Estructuras_de_Datos" nativeBundles="all">
+      <fx:permissions elevated="true"/>
       <fx:application refid="Estructuras_de_Datos_id"/>
       <fx:info title="Estructuras de Datos" vendor="Chris Cromer" description="Esta aplicación muestra varios tipos de estrucuras de datos visualmente."/>
       <fx:resources>
         <fx:fileset refid="all_Estructuras_de_Datos"/>
       </fx:resources>
     </fx:deploy>
+    <property name="artifact.sign.vendor.Estructuras_de_Datos" value="CN=Chris Cromer"/>
+    <property name="artifact.sign.alias.Estructuras_de_Datos" value="cromercl"/>
+    <property name="artifact.sign.keystore.Estructuras_de_Datos" value="/home/cromer/cromercl_new/keystore"/>
+    <property name="artifact.sign.storepass.Estructuras_de_Datos" value="K7PRxe4eyeXGr3FeULSapUEqHcKAZgkaGe6HmX7cNd873XBLwR"/>
+    <property name="artifact.sign.keypass.Estructuras_de_Datos" value="K7PRxe4eyeXGr3FeULSapUEqHcKAZgkaGe6HmX7cNd873XBLwR"/>
+    <signjar alias="${artifact.sign.alias.Estructuras_de_Datos}" keystore="${artifact.sign.keystore.Estructuras_de_Datos}" storepass="${artifact.sign.storepass.Estructuras_de_Datos}" keypass="${artifact.sign.keypass.Estructuras_de_Datos}">
+      <fileset dir="${artifact.temp.output.Estructuras_de_Datos}/deploy">
+        <include name="*.jar"/>
+      </fileset>
+    </signjar>
     <copy todir="${artifact.output.estructuras_de_datos}">
       <fileset dir="${artifact.temp.output.Estructuras_de_Datos}/deploy"/>
     </copy>
