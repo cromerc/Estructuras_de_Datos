@@ -43,15 +43,22 @@
         </option>
         <option name="description" value="Esta aplicación muestra varios tipos de estrucuras de datos visualmente." />
         <option name="height" value="768" />
-        <option name="htmlParamFile" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="icons">
+          <JavaFxApplicationIcons>
+            <option name="linuxIcon" value="$PROJECT_DIR$/src/cl/cromer/estructuras/images/icon.png" />
+            <option name="macIcon" value="$PROJECT_DIR$/src/cl/cromer/estructuras/images/icon.icns" />
+            <option name="windowsIcon" value="$PROJECT_DIR$/src/cl/cromer/estructuras/images/icon.ico" />
+          </JavaFxApplicationIcons>
+        </option>
         <option name="keypass" value="SzdQUnhlNGV5ZVhHcjNGZVVMU2FwVUVxSGNLQVpna2FHZTZIbVg3Y05kODczWEJMd1I=" />
         <option name="keystore" value="$USER_HOME$/cromercl_new/keystore" />
         <option name="nativeBundle" value="all" />
-        <option name="paramFile" value="" />
         <option name="selfSigning" value="false" />
         <option name="storepass" value="SzdQUnhlNGV5ZVhHcjNGZVVMU2FwVUVxSGNLQVpna2FHZTZIbVg3Y05kODczWEJMd1I=" />
         <option name="title" value="Estructuras de Datos" />
         <option name="vendor" value="Chris Cromer" />
+        <option name="version" value="" />
         <option name="width" value="1024" />
       </options>
     </properties>

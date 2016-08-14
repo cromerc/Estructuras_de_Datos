@@ -62,6 +62,7 @@
     <fileset dir="${jdk.home.1.8}">
       <include name="jre/lib/charsets.jar"/>
       <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
       <include name="jre/lib/ext/cldrdata.jar"/>
       <include name="jre/lib/ext/dnsns.jar"/>
       <include name="jre/lib/ext/jaccess.jar"/>
@@ -70,6 +71,7 @@
       <include name="jre/lib/ext/nashorn.jar"/>
       <include name="jre/lib/ext/sunec.jar"/>
       <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
       <include name="jre/lib/ext/sunpkcs11.jar"/>
       <include name="jre/lib/ext/zipfs.jar"/>
       <include name="jre/lib/javaws.jar"/>
@@ -223,26 +225,32 @@
         <attribute name="Class-Path" value="/cl/cromer/estructuras"/>
         <attribute name="Codebase" value="*.cromer.cl 127.0.0.1"/>
         <attribute name="Application-Name" value="Estructuras de Datos"/>
+        <attribute name="Permissions" value="all-permissions"/>
       </manifest>
     </fx:jar>
+    <condition property="app.icon.path" value="${basedir}/src/cl/cromer/estructuras/images/icon.png">
+      <and>
+        <os family="unix"/>
+        <not>
+          <os family="mac"/>
+        </not>
+      </and>
+    </condition>
+    <condition property="app.icon.path" value="${basedir}/src/cl/cromer/estructuras/images/icon.icns">
+      <os family="mac"/>
+    </condition>
+    <condition property="app.icon.path" value="${basedir}/src/cl/cromer/estructuras/images/icon.ico">
+      <os family="windows"/>
+    </condition>
     <fx:deploy width="1024" height="768" updatemode="background" outdir="${artifact.temp.output.Estructuras_de_Datos}/deploy" outfile="Estructuras_de_Datos" nativeBundles="all">
-      <fx:permissions elevated="true"/>
       <fx:application refid="Estructuras_de_Datos_id"/>
-      <fx:info title="Estructuras de Datos" vendor="Chris Cromer" description="Esta aplicación muestra varios tipos de estrucuras de datos visualmente."/>
+      <fx:info title="Estructuras de Datos" vendor="Chris Cromer" description="Esta aplicación muestra varios tipos de estrucuras de datos visualmente.">
+        <fx:icon href="${app.icon.path}"/>
+      </fx:info>
       <fx:resources>
         <fx:fileset refid="all_Estructuras_de_Datos"/>
       </fx:resources>
     </fx:deploy>
-    <property name="artifact.sign.vendor.Estructuras_de_Datos" value="CN=Chris Cromer"/>
-    <property name="artifact.sign.alias.Estructuras_de_Datos" value="cromercl"/>
-    <property name="artifact.sign.keystore.Estructuras_de_Datos" value="/home/cromer/cromercl_new/keystore"/>
-    <property name="artifact.sign.storepass.Estructuras_de_Datos" value="K7PRxe4eyeXGr3FeULSapUEqHcKAZgkaGe6HmX7cNd873XBLwR"/>
-    <property name="artifact.sign.keypass.Estructuras_de_Datos" value="K7PRxe4eyeXGr3FeULSapUEqHcKAZgkaGe6HmX7cNd873XBLwR"/>
-    <signjar alias="${artifact.sign.alias.Estructuras_de_Datos}" keystore="${artifact.sign.keystore.Estructuras_de_Datos}" storepass="${artifact.sign.storepass.Estructuras_de_Datos}" keypass="${artifact.sign.keypass.Estructuras_de_Datos}">
-      <fileset dir="${artifact.temp.output.Estructuras_de_Datos}/deploy">
-        <include name="*.jar"/>
-      </fileset>
-    </signjar>
     <copy todir="${artifact.output.estructuras_de_datos}">
       <fileset dir="${artifact.temp.output.Estructuras_de_Datos}/deploy"/>
     </copy>
