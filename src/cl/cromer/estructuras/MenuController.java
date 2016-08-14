@@ -299,7 +299,7 @@ public class MenuController extends VBox implements Initializable {
 		dialog.getDialogPane().getButtonTypes().add(botonCancelar);
 		dialog.getDialogPane().getButtonTypes().add(botonCambiar);
 		dialog.getDialogPane().getScene().getWindow().sizeToScene();
-		dialog.getDialogPane().setPrefHeight(125);
+		dialog.getDialogPane().setPrefHeight(150);
 		dialog.getDialogPane().setPrefWidth(400);
 		Main.setIcon(dialog, getClass());
 
@@ -333,7 +333,7 @@ public class MenuController extends VBox implements Initializable {
 		dialog.getDialogPane().getButtonTypes().add(botonCancelar);
 		dialog.getDialogPane().getButtonTypes().add(botonCambiar);
 		dialog.getDialogPane().getScene().getWindow().sizeToScene();
-		dialog.getDialogPane().setPrefHeight(125);
+		dialog.getDialogPane().setPrefHeight(150);
 		dialog.getDialogPane().setPrefWidth(400);
 		Main.setIcon(dialog, getClass());
 
