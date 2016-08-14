@@ -27,6 +27,12 @@ import java.util.prefs.Preferences;
  * @version 1.0.2
  */
 public class Main extends Application {
+	static public String VERSION = "1.0.2";
+
+	/**
+	 * El stage pricipal
+	 */
+	static public Stage stage;
 	/**
 	 * El logger.
 	 */
@@ -35,10 +41,11 @@ public class Main extends Application {
 	/**
 	 * Crear el stage y la scene para la aplicación grafica.
 	 *
-	 * @param stage Stage: El primer stage donde va todas las cosas visuales.
+	 * @param startStage Stage: El primer stage donde va todas las cosas visuales.
 	 */
 	@Override
-	public void start(Stage stage) {
+	public void start(Stage startStage) {
+		stage = startStage;
 		String idioma;
 		String idioma2;
 		Preferences preferences;

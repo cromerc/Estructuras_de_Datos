@@ -3,6 +3,7 @@ package cl.cromer.estructuras;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
+import java.util.prefs.Preferences;
 
 /**
  * Rotación y generación de colores.
@@ -46,6 +47,19 @@ public class Colores {
 	 * Cambiar el color al siguinte. Si no hay, voler al primer.
 	 */
 	public void siguinteColor() {
+
+		int colorsToUse;
+		Preferences preferences = (Preferences) Main.stage.getUserData();
+		if (preferences != null) {
+			colorsToUse = preferences.getInt("colors", MAX_COLORS);
+		}
+		else {
+			colorsToUse = MAX_COLORS;
+		}
+		if (colorsToUse <= color) {
+			color = 0;
+		}
+
 		switch (color) {
 			case 1:
 				color = 2;

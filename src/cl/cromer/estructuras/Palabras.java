@@ -4,9 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Esta clase es una colleción de palabaras que se puede mostrar al azar.
+ *
+ * @author Chris Cromer
+ */
 public class Palabras {
 	final private List<String> palabras;
 
+	/**
+	 * Inicilizar la lista de palabras.
+	 */
 	public Palabras() {
 		palabras = new ArrayList<>();
 		palabras.add("hola");
@@ -57,6 +65,11 @@ public class Palabras {
 		palabras.add("no");
 	}
 
+	/**
+	 * Devolver una palabra al azar.
+	 *
+	 * @return String: La palabra.
+	 */
 	public String getPalabra() {
 		Random random = new Random();
 		int numero = random.nextInt(palabras.size());

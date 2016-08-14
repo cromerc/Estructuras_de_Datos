@@ -43,6 +43,7 @@
         <MenuItem onAction="#menuEspanol" text="%espanol"/>
     </Menu>
     <Menu text="%ayuda">
+        <MenuItem onAction="#menuConfig" text="%config"/>
         <MenuItem onAction="#menuAcerca" text="%acerca"/>
     </Menu>
 </MenuBar>

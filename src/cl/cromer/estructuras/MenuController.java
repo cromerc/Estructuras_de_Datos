@@ -9,8 +9,11 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.MenuBar;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -349,6 +352,47 @@ public class MenuController extends VBox implements Initializable {
 	}
 
 	/**
+	 * Click en Configuración
+	 */
+	@FXML
+	protected void menuConfig() {
+		Preferences preferences = (Preferences) Main.stage.getUserData();
+		if (preferences != null) {
+			Stage configStage = new Stage();
+			configStage.initModality(Modality.WINDOW_MODAL);
+			// Main is the daddy
+			configStage.initOwner(Main.stage);
+
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(getClass().getResource("/cl/cromer/estructuras/fxml/config.fxml"));
+				fxmlLoader.setResources(this.resourceBundle);
+				Parent parent = fxmlLoader.load();
+
+				Scene scene = new Scene(parent);
+				scene.setUserData(preferences);
+				scene.getStylesheets().add("/cl/cromer/estructuras/css/main.css");
+				configStage.setScene(scene);
+
+				configStage.setTitle(this.resourceBundle.getString("config"));
+
+				configStage.getIcons().add(new Image(getClass().getResourceAsStream("/cl/cromer/estructuras/images/icon.png")));
+				final ConfigController configController = fxmlLoader.getController();
+				configStage.addEventHandler(WindowEvent.WINDOW_SHOWN, window -> configController.handleWindowShownEvent());
+				configStage.show();
+			}
+			catch (IOException exception) {
+				// Este error es fatal, hay que cerrar la aplicación.
+				Logs.log(Level.SEVERE, exception);
+				configStage.close();
+			}
+		}
+		else {
+			Main.mostrarError(resourceBundle.getString("configNotAvailable"), resourceBundle);
+		}
+	}
+
+	/**
 	 * Click en Acerca.
 	 */
 	@FXML
@@ -356,7 +400,7 @@ public class MenuController extends VBox implements Initializable {
 		ButtonType botonCerrar = new ButtonType(resourceBundle.getString("cerrar"), ButtonBar.ButtonData.OK_DONE);
 		Dialog<String> dialog = new Dialog<>();
 		dialog.setTitle(resourceBundle.getString("acerca"));
-		dialog.setContentText(resourceBundle.getString("credito"));
+		dialog.setContentText(resourceBundle.getString("titulo") + " " + Main.VERSION + "\n\n" +resourceBundle.getString("credito"));
 		dialog.getDialogPane().getButtonTypes().add(botonCerrar);
 		dialog.getDialogPane().getScene().getWindow().sizeToScene();
 		Main.setIcon(dialog, getClass());
