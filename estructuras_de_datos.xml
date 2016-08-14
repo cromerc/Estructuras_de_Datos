@@ -62,7 +62,6 @@
     <fileset dir="${jdk.home.1.8}">
       <include name="jre/lib/charsets.jar"/>
       <include name="jre/lib/deploy.jar"/>
-      <include name="jre/lib/ext/access-bridge-64.jar"/>
       <include name="jre/lib/ext/cldrdata.jar"/>
       <include name="jre/lib/ext/dnsns.jar"/>
       <include name="jre/lib/ext/jaccess.jar"/>
@@ -71,7 +70,6 @@
       <include name="jre/lib/ext/nashorn.jar"/>
       <include name="jre/lib/ext/sunec.jar"/>
       <include name="jre/lib/ext/sunjce_provider.jar"/>
-      <include name="jre/lib/ext/sunmscapi.jar"/>
       <include name="jre/lib/ext/sunpkcs11.jar"/>
       <include name="jre/lib/ext/zipfs.jar"/>
       <include name="jre/lib/javaws.jar"/>
@@ -228,25 +226,9 @@
         <attribute name="Permissions" value="all-permissions"/>
       </manifest>
     </fx:jar>
-    <condition property="app.icon.path" value="${basedir}/src/cl/cromer/estructuras/images/icon.png">
-      <and>
-        <os family="unix"/>
-        <not>
-          <os family="mac"/>
-        </not>
-      </and>
-    </condition>
-    <condition property="app.icon.path" value="${basedir}/src/cl/cromer/estructuras/images/icon.icns">
-      <os family="mac"/>
-    </condition>
-    <condition property="app.icon.path" value="${basedir}/src/cl/cromer/estructuras/images/icon.ico">
-      <os family="windows"/>
-    </condition>
     <fx:deploy width="1024" height="768" updatemode="background" outdir="${artifact.temp.output.Estructuras_de_Datos}/deploy" outfile="Estructuras_de_Datos" nativeBundles="all">
       <fx:application refid="Estructuras_de_Datos_id"/>
-      <fx:info title="Estructuras de Datos" vendor="Chris Cromer" description="Esta aplicación muestra varios tipos de estrucuras de datos visualmente.">
-        <fx:icon href="${app.icon.path}"/>
-      </fx:info>
+      <fx:info title="Estructuras de Datos" vendor="Chris Cromer" description="Esta aplicación muestra varios tipos de estrucuras de datos visualmente."/>
       <fx:resources>
         <fx:fileset refid="all_Estructuras_de_Datos"/>
       </fx:resources>
