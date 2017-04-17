@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="EDD">
+    <output-path>$PROJECT_DIR$/out/artifacts/EDD</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="cl.cromer.estructuras.Main" />
+        <option name="description" value="" />
+        <option name="height" value="768" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="Estructuras de Datos" />
+        <option name="vendor" value="Chris Cromer" />
+        <option name="version" value="" />
+        <option name="width" value="1024" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="EDD.jar">
+        <element id="module-output" name="EDD" />
+      </element>
+    </root>
+  </artifact>
+</component>

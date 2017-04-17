@@ -24,10 +24,10 @@ import java.util.prefs.Preferences;
  * Se necesita java 8 con javafx instalado.
  *
  * @author Chris Cromer
- * @version 1.0.3
+ * @version 1.0.4
  */
 public class Main extends Application {
-	static public String VERSION = "1.0.3";
+	static public String VERSION = "1.0.4";
 
 	/**
 	 * El stage pricipal
