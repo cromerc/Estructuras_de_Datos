@@ -1,11 +1,11 @@
 package cl.cromer.estructuras;
 
-import com.sun.javafx.css.converters.SizeConverter;
 import javafx.beans.property.IntegerProperty;
 import javafx.css.CssMetaData;
 import javafx.css.Styleable;
 import javafx.css.StyleableIntegerProperty;
 import javafx.css.StyleableProperty;
+import javafx.css.converter.SizeConverter;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Shape;
 
